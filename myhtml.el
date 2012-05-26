@@ -1,0 +1,1 @@
+(load "autostart.el")
