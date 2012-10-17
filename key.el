@@ -16,6 +16,7 @@
 (global-set-key (kbd "C-)") 'end-kbd-macro)
 (global-set-key (kbd "C-b") 'call-last-kbd-macro)
 (global-set-key (kbd "C-p a") 'auto-complete-mode)
+(global-set-key (kbd "C-c m") 'nxhtml-mumamo-mode)
 
 ;; file/tab command
 (define-key 'file-move "\C-f" 'find-file)
@@ -45,8 +46,8 @@
 (global-set-key (kbd "M-l") 'select-word)
 (global-set-key (kbd "C-M-l") 'select-symbol)
 (define-key 'edition "k" 'kill-whole-line)
-(define-key 'edition "c" 'comment-region)
-(define-key 'edition "\C-c" 'uncomment-region)
+(define-key 'edition "\C-c" 'comment-region)
+(define-key 'edition "c" 'uncomment-region)
 (define-key 'edition "s" 'ispell-word)
 (define-key 'edition "\C-s" 'ispell-buffer)
 (define-key 'edition (kbd "C-M-s") 'langtool-check-buffer)
@@ -122,3 +123,5 @@
 (global-set-key (kbd "C-M-e") 'my-shell-command-on-region)
 (define-key isearch-mode-map (kbd "M-s") 'isearch-yank-word-or-char)
 (define-key isearch-mode-map (kbd "C-.") 'isearch-yank-x-selection)
+
+;; revert-buffer

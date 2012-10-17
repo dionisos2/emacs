@@ -25,6 +25,17 @@ set escape_end "}}"
 
 context code 
 
+template foreach :indent
+----
+foreach ({{?ITERABLE}} as {{?ELEMENT}})
+{
+{{^}}
+
+}
+
+----
+
+
 template incomplete :indent
 ----
 		$this->markTestIncomplete("{{^}}");
@@ -79,6 +90,12 @@ void {{?NAME}}({{^}});
 
 context declaration
 
+template t :indent
+----
+$this->{{^}}
+----
+
+
 template br :indent
 ----
 <br/>
@@ -93,6 +110,21 @@ template require_once :indent
 "require_once"
 ----
 require_once '{{^}}';
+
+----
+
+template class :indent
+----
+class {{?CLASS_NAME}}
+{
+
+  public function __construct() 
+  {
+    parent::__construct();
+  }
+	{{^}}
+
+}
 
 ----
 
@@ -116,17 +148,74 @@ class {{?CLASS_NAME}}Test extends PHPUnit_Framework_TestCase
 
 context classdecl
 
+
+
+template foreach :indent
+----
+foreach ({{?ITERABLE}} as {{?ELEMENT}})
+{
+{{^}}
+
+}
+
+----
+
+template magic_construct :indent
+----
+public function __construct() 
+{
+  parent::__construct();
+	{{^}}
+
+}
+
+----
+
+template magic_destruct :indent
+----
+public function __destruct() 
+{
+  parent::__destruct();
+	{{^}}
+
+}
+----
+
+template magic_tostring :indent
+----
+    public function __toString()
+    {
+        return $this->foo;
+				{{^}}
+    }
+
+----
+
+template magic_clone :indent
+----
+
+  public function __clone() 
+	{
+	{{^}}
+
+  }
+----
+
+template t :indent
+----
+$this->{{^}}
+----
+
 template incomplete :indent
 ----
-		$this->markTestIncomplete("{{^}}");
-
+$this->markTestIncomplete("{{^}}");
 ----
 
-;; prompt TYPE "public, or protected:" default "public" read y-or-n-p
+prompt TYPE_PUBLIC "public?" default "public" read y-or-n-p
 template methode :indent
 ----
 
-{{?TYPE}} {{?NAME}}({{^}})
+{{?TYPE}} function {{?NAME}}({{^}})
 {
 
 }
@@ -145,4 +234,216 @@ template annotation_exception :indent
  /**
  * @expectedException {{?EXCEPTION}}
  */
+----
+
+template annotation_depends :indent
+----
+ /**
+ * @depends {{?DEPENDANCE}}
+ */
+----
+
+
+template annotation_covers :indent
+----
+ /**
+ * @covers {{?COUVERTURE}}
+ */
+----
+
+
+template assert_equals :indent
+----
+$this->assertEquals({{^}});
+----
+
+template assert_true :indent
+----
+$this->assertTrue({{^}});
+----
+
+template assert_arrayhaskey :indent
+----
+$this->assertArrayHasKey({{^}});
+----
+
+template assert_classhasattribute :indent
+----
+$this->assertClassHasAttribute({{^}});
+----
+
+template assert_classhasstaticattribute :indent
+----
+$this->assertClassHasStaticAttribute({{^}});
+----
+
+template assert_contains :indent
+----
+$this->assertContains({{^}});
+----
+
+template assert_containsonly :indent
+----
+$this->assertContainsOnly({{^}});
+----
+
+template assert_count :indent
+----
+$this->assertCount({{^}});
+----
+
+template assert_empty :indent
+----
+$this->assertEmpty({{^}});
+----
+
+;; template assert_equalxmlstructure :indent
+;; ----
+;; $this->assertEqualXMLStructure({{^}});
+;; ----
+
+
+template assert_false :indent
+----
+$this->assertFalse({{^}});
+----
+
+template assert_fileequals :indent
+----
+$this->assertFileEquals({{^}});
+----
+
+template assert_fileexists :indent
+----
+$this->assertFileExists({{^}});
+----
+
+template assert_greaterthan :indent
+----
+$this->assertGreaterThan({{^}});
+----
+
+template assert_greaterthanorequal :indent
+----
+$this->assertGreaterThanOrEqual({{^}});
+----
+
+template assert_instanceof :indent
+----
+$this->assertInstanceOf({{^}});
+----
+
+template assert_internaltype :indent
+----
+$this->assertInternalType({{^}});
+----
+
+template assert_jsonfileequalsjsonfile :indent
+----
+$this->assertJsonFileEqualsJsonFile({{^}});
+----
+
+template assert_jsonstringequalsjsonfile :indent
+----
+$this->assertJsonStringEqualsJsonFile({{^}});
+----
+
+template assert_jsonstringequalsjsonstring :indent
+----
+$this->assertJsonStringEqualsJsonString({{^}});
+----
+
+template assert_lessthan :indent
+----
+$this->assertLessThan({{^}});
+----
+
+template assert_lessthanorequal :indent
+----
+$this->assertLessThanOrEqual({{^}});
+----
+
+template assert_null :indent
+----
+$this->assertNull({{^}});
+----
+
+template assert_objecthasattribute :indent
+----
+$this->assertObjectHasAttribute({{^}});
+----
+
+template assert_regexp :indent
+----
+$this->assertRegExp({{^}});
+----
+
+template assert_stringmatchesformat :indent
+----
+$this->assertStringMatchesFormat({{^}});
+----
+
+template assert_stringmatchesformatfile :indent
+----
+$this->assertStringMatchesFormatFile({{^}});
+----
+
+template assert_same :indent
+----
+$this->assertSame({{^}});
+----
+
+template assert_selectcount :indent
+----
+$this->assertSelectCount({{^}});
+----
+
+template assert_selectequals :indent
+----
+$this->assertSelectEquals({{^}});
+----
+
+template assert_selectregexp :indent
+----
+$this->assertSelectRegExp({{^}});
+----
+
+template assert_stringendswith :indent
+----
+$this->assertStringEndsWith({{^}});
+----
+
+template assert_stringequalsfile :indent
+----
+$this->assertStringEqualsFile({{^}});
+----
+
+template assert_stringstartswith :indent
+----
+$this->assertStringStartsWith({{^}});
+----
+
+template assert_tag :indent
+----
+$this->assertTag({{^}});
+----
+
+template assert_that :indent
+----
+$this->assertThat({{^}});
+----
+
+template assert_xmlfileequalsxmlfile :indent
+----
+$this->assertXmlFileEqualsXmlFile({{^}});
+----
+
+template assert_xmlstringequalsxmlfile :indent
+----
+$this->assertXmlStringEqualsXmlFile({{^}});
+----
+
+template assert_xmlstringequalsxmlstring :indent
+----
+$this->assertXmlStringEqualsXmlString({{^}});
 ----

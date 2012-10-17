@@ -1,11 +1,11 @@
 (setq auto-mode-alist(append '(("\\.h$" . c++-mode)) auto-mode-alist))
-(setq auto-mode-alist(append '(("\\.php$" . nxhtml-mumamo-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("SConstruct" . python-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("SConscript" . python-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("CMake*" . cmake-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.cmake$" . cmake-mode)) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.lua$" . lua-mode) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.php$" . nxhtml-mumamo-mode)) auto-mode-alist))
+(setq auto-mode-alist(append '(("\\.tpl$" . nxhtml-mumamo-mode)) auto-mode-alist))
 
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 
