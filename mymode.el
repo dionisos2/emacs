@@ -6,6 +6,7 @@
 (setq auto-mode-alist (cons '("\.lua$" . lua-mode) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.php$" . nxhtml-mumamo-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.tpl$" . nxhtml-mumamo-mode)) auto-mode-alist))
+(setq auto-mode-alist(append '(("\\.twig$" . django-mode)) auto-mode-alist)) ;; pas top mais ça fera l’affaire pour le moment
 
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 
@@ -36,6 +37,16 @@
 				(with-current-buffer (current-buffer) (setq compile-command (concatenate 'string "latex " (buffer-file-name))))
 				(with-current-buffer (current-buffer) (setq execute-command (concatenate 'string "xdvi " (replace-extention buffer-file-name ".dvi")))))))
 
+
+(define-minor-mode pdf-my-mode
+	:lighter "pdf-my-mode"
+	(if pdf-my-mode
+			(progn
+				(local-unset-key "\C-t")
+				(local-unset-key "n")
+				(local-unset-key "p")
+				(local-set-key (kbd "<C-right>") doc-view-next-page)
+				(local-set-key (kbd "<C-left>") doc-view-previous-page))))
 
 (add-hook 'cmake-mode-hook
 					(lambda ()(auto-complete-mode 1)))
@@ -88,3 +99,5 @@
 (add-hook 'org-mode-hook
 					(lambda () (auto-complete-mode 1)))
 
+(add-hook 'doc-view-mode
+					(lambda () (pdf-my-mode 1)))

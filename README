@@ -1,0 +1,4 @@
+replace in multiple buffer:
+find-file-dire (answer the question)
+t for toggle mark file
+Q for query replace in all marked file
