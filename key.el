@@ -15,8 +15,8 @@
 (global-set-key (kbd "C-(") 'start-kbd-macro)
 (global-set-key (kbd "C-)") 'end-kbd-macro)
 (global-set-key (kbd "C-b") 'call-last-kbd-macro)
-(global-set-key (kbd "C-p a") 'auto-complete-mode)
 (global-set-key (kbd "C-c m") 'nxhtml-mumamo-mode)
+(global-set-key (kbd "C-p a") 'company-mode)
 
 ;; file/tab command
 (define-key 'file-move "\C-f" 'find-file)
@@ -59,6 +59,7 @@
 (define-key 'edition "a" 'mark-whole-buffer)
 (global-set-key (kbd "<f10>") 'shell-script-mode)
 (global-set-key [C-tab] 'srecode-insert)
+(global-set-key [M-tab] 'company-complete)
 (global-set-key [C-return] 'semantic-complete-analyze-inline)
 (global-set-key [C-kp-enter] 'semantic-analyze-possible-completions)
 (define-key 'edition (kbd "u") 'downcase-region)
@@ -125,3 +126,5 @@
 (define-key isearch-mode-map (kbd "C-.") 'isearch-yank-x-selection)
 
 ;; revert-buffer
+
+;(global-set-key (kbd "...") (kbd "C-u M-x save-buffers-kill-emacs RET")) look like good trick !

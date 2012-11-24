@@ -8,8 +8,10 @@
 ;;(yas/load-directory "~/.emacs.el/yasnippet-0.6.1c/snippets")
 
 (require 'gtags)
-(require 'eassist)
-(require 'cmake-mode)
+(require 'semantic/util)
+
+;(require 'eassist)
+;(require 'cmake-mode)
 
 ;;-----------------------config------------------------
 ;; (modify-syntax-entry ?_ "w" c-mode-syntax-table)

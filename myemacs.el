@@ -12,15 +12,15 @@
 ;;./README
 ;;./template/
 ;;./TODOS.org
+
 (autoload 'magit-status "magit" nil t)
 (load "langtoolconfig.el")
-(load "thingatpt.el")
 (load "autosaveconfig.el")
 (load "haypo_style.el")
 (load "myfunction.el")
 (load "cedetconfig.el")
 (load "miscellaneous.el")
-(load "auto-completeconfig.el")
+;(load "auto-completeconfig.el")
 (load "mycustom.el")
 (load "auctexconfig.el")
 (load "key.el")
