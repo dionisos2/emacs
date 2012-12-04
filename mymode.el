@@ -4,7 +4,7 @@
 (setq auto-mode-alist(append '(("CMake*" . cmake-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.cmake$" . cmake-mode)) auto-mode-alist))
 (setq auto-mode-alist (cons '("\.lua$" . lua-mode) auto-mode-alist))
-(setq auto-mode-alist(append '(("\\.php$" . nxhtml-mumamo-mode)) auto-mode-alist))
+(setq auto-mode-alist(append '(("\\.php$" . php-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.tpl$" . nxhtml-mumamo-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.twig$" . django-mode)) auto-mode-alist)) ;; pas top mais ça fera l’affaire pour le moment
 

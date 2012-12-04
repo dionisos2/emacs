@@ -1,3 +1,6 @@
+(require 'thingatpt)
+(require 'view)
+
 (require 'recentf) 
 (recentf-mode 1)
 

@@ -5,8 +5,7 @@
 ;;------------------load elisp file--------------------
 
 (add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/nxhtml/")
-
+(add-to-list 'load-path "~/.emacs.d/nxhtml")
 
 ;;f5 pour un acces rapide aux fichiers, voir key.el pour tout les autres raccourcie clavier.
 ;;./README
@@ -20,7 +19,7 @@
 (load "myfunction.el")
 (load "cedetconfig.el")
 (load "miscellaneous.el")
-;(load "auto-completeconfig.el")
+(load "auto-completeconfig.el")
 (load "mycustom.el")
 (load "auctexconfig.el")
 (load "key.el")
