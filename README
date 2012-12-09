@@ -1,4 +1,4 @@
 replace in multiple buffer:
-find-name-dired (answer the question)
+find-name-dired (answer the question) (in find-dired.el)
 t for toggle mark file or %m for regexp
 Q for query replace in all marked file

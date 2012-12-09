@@ -5,8 +5,9 @@
  "haypo" 
  (quote
   (
-   ;; Indentation de base = 2 espaces
-   (c-basic-offset . 2) 
+   ;; Indentation de base = 4 espaces
+   (c-basic-offset . 4)
+   (indent-tabs-mode . nil)
    (c-backslash-column . 48) 
    (c-cleanup-list scope-operator) 
    (c-comment-only-line-offset . 0) 
@@ -59,7 +60,7 @@
     (substatement-open . 0)
     (case-label . 0)
     (access-label . -)
-    (label . 2)
+    (label . 20)
     (do-while-closure . 0)
     (else-clause . 0)
     (catch-clause . 0)

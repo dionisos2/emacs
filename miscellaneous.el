@@ -11,7 +11,7 @@
 ;;(yas/load-directory "~/.emacs.el/yasnippet-0.6.1c/snippets")
 
 (require 'gtags)
-(require 'semantic/util)
+(require 'php-mode)
 
 ;(require 'eassist)
 ;(require 'cmake-mode)

@@ -80,7 +80,9 @@ template function :indent
 
  /**
  * {{?INFO}}
+ *
  * @param
+ *
  * @return
  */
 void {{?NAME}}({{^}});
@@ -89,6 +91,17 @@ void {{?NAME}}({{^}});
 
 
 context declaration
+
+template annot_class :indent
+----
+		/**
+		* short_description
+		*
+		* long_description
+		*
+		* @api
+		*/
+----
 
 template t :indent
 ----
@@ -221,6 +234,21 @@ template methode :indent
 }
 
 ----
+
+template annot_method :indent
+----
+		/**
+		* short_description
+		*
+		* long_description
+		*
+		* @param 
+		* @param
+		*
+		* @return
+		*/
+----
+
 
 template annotation :indent
 ----

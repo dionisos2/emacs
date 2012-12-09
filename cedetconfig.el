@@ -4,7 +4,11 @@
 ;;  :file "~/source/monsuperprojet/CMakeLists.txt"
 ;;  :include-path '("/usr/include/c++/4.4"))
 
-;(require 'cedet)
+(require 'cedet)
+(require 'semantic)
+(require 'srecode)
+(global-ede-mode 1)
+
 ;; (require 'semantic-ia)
 ;; (require 'semantic-gcc)
 ;; (require 'semanticdb)
@@ -37,8 +41,10 @@
 ;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt4-base-dir "/Qt/qconfig-large.h"))
 ;; (add-to-list 'semantic-lex-c-preprocessor-symbol-file (concat qt4-base-dir "/Qt/qglobal.h"))
 
-;; (srecode-minor-mode 1)
-;; (add-to-list 'srecode-map-load-path "~/.emacs.d/template")
+(srecode-minor-mode 1)
+(add-to-list 'srecode-map-load-path "~/.emacs.d/template")
+
+
 ;; ;;Permet de limiter l'analyse de code au fichier courant ou au projet courant.
 ;; ;;Rajouter "unloaded system recursive" pour tout parser (beaucoup plus long !)
 ;; ;;(setq-mode-local c-mode semanticdb-find-default-throttle '(file local project))

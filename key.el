@@ -15,10 +15,10 @@
 (global-set-key (kbd "C-(") 'start-kbd-macro)
 (global-set-key (kbd "C-)") 'end-kbd-macro)
 (global-set-key (kbd "C-b") 'call-last-kbd-macro)
-(global-set-key (kbd "C-c m") 'nxhtml-mumamo-mode)
+;(global-set-key (kbd "C-c m") 'nxhtml-mumamo-mode)
 (global-set-key (kbd "C-p a") 'company-mode)
 
-;; file/tab command
+;; file/tab command (file-move = C-t)
 (define-key 'file-move "\C-f" 'find-file)
 (define-key 'file-move (kbd "C-M-f") 'write-file)
 (define-key 'file-move "\C-s" 'save-buffer)
@@ -37,7 +37,7 @@
 ;(define-key 'file-move "\C-c\C-c" 'save-buffers-kill-emacs)
 (define-key 'file-move "\C-c\C-c" 'delete-frame)
 
-;; édition command
+;; édition command (edition = C-c)
 (global-set-key (kbd "M-.") 'yank-pop)
 (global-set-key (kbd "C-y") 'kill-region)
 (global-set-key "\C-xx" 'copy-region-as-kill)
@@ -45,7 +45,7 @@
 (global-set-key (kbd "C-l") 'select-line)
 (global-set-key (kbd "M-l") 'select-word)
 (global-set-key (kbd "C-M-l") 'select-symbol)
-(define-key 'edition "k" 'kill-whole-line)
+(define-key 'edition "\C-k" 'kill-whole-line)
 (define-key 'edition "\C-c" 'comment-region)
 (define-key 'edition "c" 'uncomment-region)
 (define-key 'edition "s" 'ispell-word)
@@ -99,7 +99,7 @@
 (global-set-key (kbd "<C-kp-2>") 'split-window-vertically)
 (global-set-key (kbd "<C-kp-3>") 'split-window-horizontally)
 
-;; projet command
+;; projet command (projet = C-p)
 (define-key 'projet (kbd "<return>") 'execute)
 (global-set-key (kbd "C-}") 'next-error)
 (global-set-key [f12] 'eassist-switch-h-cpp)
