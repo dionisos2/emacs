@@ -9,6 +9,7 @@
 (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 (load-file "~/.emacs.d/cedet-1.1/srecode/srecode.el")
 (load-file "~/.emacs.d/cedet-1.1/semantic/semantic.el")
+(load-file "~/.emacs.d/php-mode/php-mode.el")
 
 ;;f5 pour un acces rapide aux fichiers, voir key.el pour tout les autres raccourcie clavier.
 ;;./README

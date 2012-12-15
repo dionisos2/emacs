@@ -31,6 +31,9 @@
 (setq custom-file "~/.emacs.d/mycustom.el")
 (load "mycustom.el")
 
+;(setq frame-title-format '(buffer-file-name "Emacs: %b"))
+;(setq mode-line-format '(buffer-file-name "(%f)"))
+
 ;;(set-frame-font "-unknown-LMRoman12-normal-normal-normal-*-15-*-*-*-*-0-iso10646-1")
 
 ;;(set-background-color "lightblue")
@@ -43,4 +46,3 @@
 (defvar first-open "non")
 (if (equal first-open "non") (find-file "~/.emacs.d/myemacs.el"))
 (setq first-open "oui")
-

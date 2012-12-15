@@ -2,3 +2,13 @@ replace in multiple buffer:
 find-name-dired (answer the question) (in find-dired.el)
 t for toggle mark file or %m for regexp
 Q for query replace in all marked file
+
+c-set-offset (C-c C-o) give what the style use for indent the current line. Then we can change the indent value in the style file
+c-set-style set the style to use (like haypo)
+
+click on the info bar for view useful information.
+vc-* are goods functions for manipulate git repository (it’s also possible to click on Git:master). (vc-annotate is fun !)
+
+ucs-insert for insert a special char
+describe-char for describe a char
+C-S-u for insert a special char in other windows

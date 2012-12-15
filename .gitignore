@@ -1,5 +1,4 @@
 .mycustom
-TODOS.org
 ac-comphist.dat
 bordel_inconnu
 tramp
@@ -7,3 +6,11 @@ count.el
 recentf
 supprimer
 elpa
+cedet-1.1
+emacs-flymake-phpcs
+geben-svn
+geben
+nxhtml
+php-mode
+sf.el
+ede-projects.el

@@ -58,7 +58,7 @@
 
     ;; Pas de décalage lors de l'ouverture d'un bloc
     (substatement-open . 0)
-    (case-label . 0)
+    (case-label . 4)
     (access-label . -)
     (label . 20)
     (do-while-closure . 0)
