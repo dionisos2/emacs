@@ -45,8 +45,13 @@
 				(local-unset-key "\C-t")
 				(local-unset-key "n")
 				(local-unset-key "p")
-				(local-set-key (kbd "<C-right>") doc-view-next-page)
-				(local-set-key (kbd "<C-left>") doc-view-previous-page))))
+				(local-set-key (kbd "<C-right>") 'doc-view-next-page)
+				(local-set-key (kbd "<C-left>") 'doc-view-previous-page))))
+
+(add-hook 'geben-mode-hook
+		  (lambda ()
+			(define-key geben-mode-map "v" 'geben-eval-current-word)
+			))
 
 (add-hook 'cmake-mode-hook
 					(lambda ()(company-mode 1)
@@ -57,9 +62,9 @@
 
 (add-hook 'emacs-lisp-mode-hook
 					(lambda ()(gtags-mode 1)
-										(company-mode 1)
-										 ;(srecode-minor-mode 1)
-						))
+					  (company-mode 1)
+										;(srecode-minor-mode 1)
+					  ))
 
 (add-hook 'conf-space-mode-hook
 					(lambda ()(gtags-mode 1)

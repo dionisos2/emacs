@@ -9,6 +9,10 @@ c-set-style set the style to use (like haypo)
 click on the info bar for view useful information.
 vc-* are goods functions for manipulate git repository (it’s also possible to click on Git:master). (vc-annotate is fun !)
 
-ucs-insert for insert a special char
+ucs-insert for insert a special char (just write the number)
 describe-char for describe a char
 C-S-u for insert a special char in other windows
+
+for know the used mode: "C-h m" or describe-mode
+
+C-q C-j to add a line break in the mini-buffer
