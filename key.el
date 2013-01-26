@@ -100,6 +100,7 @@
 (global-set-key (kbd "<C-kp-3>") 'split-window-horizontally)
 
 ;; projet command (projet = C-p)
+(define-key 'projet "r" 'revert-buffer)
 (define-key 'projet (kbd "<return>") 'execute)
 (global-set-key (kbd "C-}") 'next-error)
 (global-set-key [f12] 'eassist-switch-h-cpp)
