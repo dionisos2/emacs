@@ -122,3 +122,14 @@
 (defun replace-extention (file-name extention)
 	(concatenate 'string (base-name file-name) extention))
 
+(defun doc-view-rotate-current-page ()
+  "Rotate the current page by 90 degrees.
+Requires ImageMagick installation"
+  (interactive)
+  (when (eq major-mode 'doc-view-mode)
+    ;; we are assuming current doc-view internals about cache-names
+    (let ((file-name (expand-file-name (format "page-%d.png" (doc-view-current-page)) (doc-view-current-cache-dir))))
+      ;; assume imagemagick is installed and rotate file in-place and redisplay buffer
+      (call-process-shell-command "convert" nil nil nil "-rotate" "90" file-name file-name)
+      (clear-image-cache)
+      (doc-view-goto-page (doc-view-current-page)))))
