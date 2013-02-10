@@ -63,11 +63,12 @@
 (global-set-key [C-return] 'semantic-complete-analyze-inline)
 (global-set-key [C-kp-enter] 'semantic-analyze-possible-completions)
 (define-key 'edition (kbd "u") 'downcase-region)
-(define-key 'edition (kbd "C-u") 'upcase-region)
+(define-key 'edition (kbd "U") 'upcase-region)
 (define-key 'edition (kbd "t") 'transpose-lines)
 (define-key 'edition (kbd "C-t") 'anchored-transpose)
 (define-key 'edition "{" 'narrow-to-region)
 (define-key 'edition "}" 'widen)
+(define-key 'edition "d" 'echo-date)
 
 
 ;;navigation command
@@ -100,6 +101,7 @@
 (global-set-key (kbd "<C-kp-3>") 'split-window-horizontally)
 
 ;; projet command (projet = C-p)
+(define-key 'projet "s" 'cp_to_ukratio)
 (define-key 'projet "r" 'revert-buffer)
 (define-key 'projet (kbd "<return>") 'execute)
 (global-set-key (kbd "C-}") 'next-error)

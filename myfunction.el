@@ -2,6 +2,14 @@
 	(interactive)
 	(if (> (length (window-list)) 1) (kill-buffer-and-window) (kill-buffer)))
 
+(defun cp_to_ukratio ()
+  (interactive)
+  (print (concatenate 'string "transfert for " buffer-file-truename))
+  (start-process-shell-command "execution_process" "*transfert-to-ukratio*" (concatenate 'string "cp_to_ukratio " buffer-file-truename))
+  (switch-to-buffer "*transfert-to-ukratio*"))
+
+
+
 
 (defun find-next-tag ()
   (interactive)
@@ -115,6 +123,11 @@
 	(interactive)
 	(shell-command (concatenate 'string "echo " (buffer-file-name) " >> " recentf-path)))
 
+(defun echo-date()
+  (interactive)
+  (shell-command "date '+%Hh%M'" 't)
+  (next-word)
+  (delete-forward-char 1))
 
 (defun base-name (file-name)
   (replace-regexp-in-string ".[a-z_-A-Z]*$" "" file-name))

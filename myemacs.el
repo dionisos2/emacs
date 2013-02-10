@@ -6,11 +6,14 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/cedet-1.1")
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
+
 (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 (load-file "~/.emacs.d/cedet-1.1/srecode/srecode.el")
 (load-file "~/.emacs.d/cedet-1.1/semantic/semantic.el")
 (load-file "~/.emacs.d/php-mode/php-mode.el")
 (load-file "~/.emacs.d/web-mode/web-mode.el")
+
 
 ;;f5 pour un acces rapide aux fichiers, voir key.el pour tout les autres raccourcie clavier.
 ;;./README
@@ -32,6 +35,10 @@
 (load "anchored-transpose.el")
 (load "gebenconfig.el")
 (load "mymode.el")
+(load "mypackage.el")
+(load "mymacro.el")
+(load "myw3m.el")
+
 
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome
 ;;(load "ecbconfig.el")
