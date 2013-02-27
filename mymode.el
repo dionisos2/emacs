@@ -107,13 +107,14 @@
 											))
 
 (add-hook 'fundamental-mode-hook
-					(lambda () (company-mode 1)
-											;(srecode-minor-mode 1)
-						))
+		  (lambda () (company-mode 1)
+										;(srecode-minor-mode 1)
+			))
 
 (add-hook 'org-mode-hook
-					(lambda () (company-mode 1)
-						))
+		  (lambda () 
+			(company-mode 1)
+			(local-unset-key "\C-y")))
 
 (add-hook 'doc-view-mode
 					(lambda () (pdf-my-mode 1)))

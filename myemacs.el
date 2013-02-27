@@ -6,7 +6,7 @@
 
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/cedet-1.1")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
+;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
 
 (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
 (load-file "~/.emacs.d/cedet-1.1/srecode/srecode.el")
@@ -37,7 +37,7 @@
 (load "mymode.el")
 (load "mypackage.el")
 (load "mymacro.el")
-(load "myw3m.el")
+;; (load "myw3m.el")
 
 
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome
