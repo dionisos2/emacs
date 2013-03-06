@@ -7,6 +7,7 @@
 (setq auto-mode-alist(append '(("\\.php$" . php-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.tpl$" . nxhtml-mumamo-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.twig$" . web-mode)) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 
