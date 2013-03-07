@@ -1,3 +1,4 @@
+(require 'find-dired)
 (require 'thingatpt)
 (require 'view)
 
