@@ -7,6 +7,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/cedet-1.1")
 (add-to-list 'load-path "~/.emacs.d/yaml-mode")
+(add-to-list 'load-path "~/.emacs.d/auto-complete")
 ;; (add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
 
 (load-file "~/.emacs.d/cedet-1.1/common/cedet.el")
