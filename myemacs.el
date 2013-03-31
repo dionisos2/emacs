@@ -30,6 +30,7 @@
 (load "cedetconfig.el")
 (load "miscellaneous.el")
 (load "auto-completeconfig.el")
+(load "orgconfig.el")
 (load "mycustom.el")
 (load "auctexconfig.el")
 (load "key.el")

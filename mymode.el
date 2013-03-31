@@ -14,13 +14,21 @@
 (setq c-default-style '((c-mode . "haypo") (c++-mode . "haypo")))
 
 
+(define-minor-mode auto-complete-my-mode
+  "commentaire obligatoire /!\\"
+  :lighter " auto-complete-my-mode"
+  (if auto-complete-my-mode
+	  (progn
+		(auto-complete-mode 1)			  
+		(local-set-key [backtab] 'ac-previous)
+		)))
+
 (define-minor-mode c++-my-mode
   "quelques configurations personnelles pour le c++"
   :lighter " c++-my-mode"
   (if c++-my-mode
 			(progn
 				(gtags-mode 1)
-				;; (company-mode 1)
 				(local-unset-key "\C-c\C-c")
 				(local-unset-key (kbd "C-M-e"))
 				(setq compile-command "scons")
@@ -33,10 +41,11 @@
   (if latex-my-mode
 			(progn
 				(gtags-mode 1)
-				;; (company-mode 1)
+				(auto-complete-my-mode 1)
 				(local-unset-key "\C-c\C-s")
 				(with-current-buffer (current-buffer) (setq compile-command (concatenate 'string "latex " (buffer-file-name))))
 				(with-current-buffer (current-buffer) (setq execute-command (concatenate 'string "xdvi " (replace-extention buffer-file-name ".dvi")))))))
+
 
 
 (define-minor-mode pdf-my-mode
@@ -49,73 +58,74 @@
 				(local-set-key (kbd "<C-right>") 'doc-view-next-page)
 				(local-set-key (kbd "<C-left>") 'doc-view-previous-page))))
 
+
 (add-hook 'geben-mode-hook
 		  (lambda ()
 			(define-key geben-mode-map "v" 'geben-eval-current-word)
 			))
 
-;; (add-hook 'cmake-mode-hook
-					;; (lambda ()(company-mode 1)
-						;; ))
+(add-hook 'cmake-mode-hook
+					(lambda ()(auto-complete-my-mode 1)
+						))
 
 (add-hook 'LaTeX-mode-hook
 					(lambda ()(latex-my-mode 1)))
 
 (add-hook 'emacs-lisp-mode-hook
 					(lambda ()(gtags-mode 1)
-					  ;; (company-mode 1)
+					  (auto-complete-my-mode 1)
 										;(srecode-minor-mode 1)
 					  ))
 
 (add-hook 'conf-space-mode-hook
 					(lambda ()(gtags-mode 1)
-										 ;; (company-mode 1)
+										 (auto-complete-my-mode 1)
 						))
 
 (add-hook 'c-mode-hook
 					(lambda () (c++-my-mode 1)
-											;; (company-mode 1)
+											(auto-complete-my-mode 1)
 											;(srecode-minor-mode 1)
 						))
 
 (add-hook 'c++-mode-hook
 					(lambda () (c++-my-mode 1)
-											;; (company-mode 1)
+											(auto-complete-my-mode 1)
 											;(srecode-minor-mode 1)
 						))
 
 (add-hook 'python-mode-hook
 					(lambda () (local-unset-key "\C-c\r")
 						(local-unset-key "\C-c\C-c")
-						;; (company-mode 1)
+						(auto-complete-my-mode 1)
 						))
 
 (add-hook 'LaTeX-mode-hook
 					(lambda () (local-unset-key (kbd "C-M-e"))
-											;; (company-mode 1)
+											(auto-complete-my-mode 1)
 											;(srecode-minor-mode 1)
 						))
 
 (add-hook 'dired-mode-hook
 					(lambda () (local-unset-key (kbd "C-o"))
-											;; (company-mode 1)
+											(auto-complete-my-mode 1)
 						))
 
 (add-hook 'php-mode-hook
 					(lambda () (local-unset-key (kbd "C-."))
 											(local-unset-key "\C-c\C-u")
-											;; (company-mode 1)
+											(auto-complete-my-mode 1)
 											))
 
 (add-hook 'fundamental-mode-hook
 		  (lambda () 
-			;; (company-mode 1)
+			(auto-complete-my-mode 1)
 										;(srecode-minor-mode 1)
 			))
 
 (add-hook 'org-mode-hook
 		  (lambda () 
-			;; (company-mode 1)
+			(auto-complete-my-mode 1)
 			(local-unset-key "\C-y")))
 
 (add-hook 'doc-view-mode
