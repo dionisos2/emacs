@@ -21,6 +21,7 @@
 	  (progn
 		(auto-complete-mode 1)			  
 		(local-set-key [backtab] 'ac-previous)
+		(local-set-key [C-tab] 'ac-expand) 
 		)))
 
 (define-minor-mode c++-my-mode
@@ -125,8 +126,10 @@
 
 (add-hook 'org-mode-hook
 		  (lambda () 
-			(auto-complete-my-mode 1)
-			(local-unset-key "\C-y")))
+			;; (auto-complete-my-mode 1)
+			(local-unset-key "\C-y")
+			(local-set-key "\C-c\M-d" 'outline-up-heading)
+			(local-set-key "M-down" 'outline-next-visible-heading)))
 
 (add-hook 'doc-view-mode
 					(lambda () (pdf-my-mode 1)))

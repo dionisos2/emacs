@@ -16,3 +16,5 @@ C-S-u for insert a special char in other windows
 for know the used mode: "C-h m" or describe-mode
 
 C-q C-j to add a line break in the mini-buffer
+
+macro => view mymacro.el
