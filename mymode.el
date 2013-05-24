@@ -22,6 +22,7 @@
 		(auto-complete-mode 1)			  
 		(local-set-key [backtab] 'ac-previous)
 		(local-set-key [C-tab] 'ac-expand) 
+		(local-set-key [M-tab] 'ac-expand)
 		)))
 
 (define-minor-mode c++-my-mode
@@ -114,9 +115,9 @@
 
 (add-hook 'php-mode-hook
 					(lambda () (local-unset-key (kbd "C-."))
-											(local-unset-key "\C-c\C-u")
-											(auto-complete-my-mode 1)
-											))
+					  (local-unset-key "\C-c\C-u")
+					  (auto-complete-my-mode 1)
+					  ))
 
 (add-hook 'fundamental-mode-hook
 		  (lambda () 
