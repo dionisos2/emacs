@@ -8,7 +8,6 @@
 (local-unset-key "\C-x")
 
 
-
 ;; basic command
 (global-set-key (kbd "M-y") 'execute-extended-command)
 (global-set-key (kbd "C-M-y") 'eval-expression)

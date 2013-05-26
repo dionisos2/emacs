@@ -18,3 +18,8 @@ for know the used mode: "C-h m" or describe-mode
 C-q C-j to add a line break in the mini-buffer
 
 macro => view mymacro.el
+
+org-mode
+C-c C-t -> TODO to DONE
+C-c C-s -> make a SCHEDULED
+C-c C-q -> add tags

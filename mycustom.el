@@ -13,6 +13,7 @@
  '(iswitchb-mode t)
  '(kill-ring-max 100)
  '(line-number-mode t)
+ '(org-agenda-files (quote ("~/info/todo.org" "~/info/agenda.org")))
  '(org-startup-truncated nil)
  '(scroll-conservatively 99)
  '(scroll-step 1)

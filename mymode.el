@@ -130,7 +130,8 @@
 			;; (auto-complete-my-mode 1)
 			(local-unset-key "\C-y")
 			(local-set-key "\C-c\M-d" 'outline-up-heading)
-			(local-set-key "M-down" 'outline-next-visible-heading)))
+			(local-set-key "M-down" 'outline-next-visible-heading)
+			(local-set-key "\C-c\C-l" 'org-agenda)))
 
 (add-hook 'doc-view-mode
 					(lambda () (pdf-my-mode 1)))
