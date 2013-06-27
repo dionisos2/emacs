@@ -30,7 +30,7 @@
   :lighter " c++-my-mode"
   (if c++-my-mode
 			(progn
-				(gtags-mode 1)
+				;; (gtags-mode 1)
 				(local-unset-key "\C-c\C-c")
 				(local-unset-key (kbd "C-M-e"))
 				(setq compile-command "scons")
@@ -42,7 +42,7 @@
   :lighter " latex-my-mode"
   (if latex-my-mode
 			(progn
-				(gtags-mode 1)
+				;; (gtags-mode 1)
 				(auto-complete-my-mode 1)
 				(local-unset-key "\C-c\C-s")
 				(with-current-buffer (current-buffer) (setq compile-command (concatenate 'string "latex " (buffer-file-name))))
@@ -74,13 +74,13 @@
 					(lambda ()(latex-my-mode 1)))
 
 (add-hook 'emacs-lisp-mode-hook
-					(lambda ()(gtags-mode 1)
+					(lambda ();; (gtags-mode 1)
 					  (auto-complete-my-mode 1)
 										;(srecode-minor-mode 1)
 					  ))
 
 (add-hook 'conf-space-mode-hook
-					(lambda ()(gtags-mode 1)
+					(lambda ();; (gtags-mode 1)
 										 (auto-complete-my-mode 1)
 						))
 

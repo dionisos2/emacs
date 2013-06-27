@@ -14,7 +14,7 @@
 (global-set-key (kbd "C-(") 'start-kbd-macro)
 (global-set-key (kbd "C-)") 'end-kbd-macro)
 (global-set-key (kbd "C-b") 'call-last-kbd-macro)
-;(global-set-key (kbd "C-c m") 'nxhtml-mumamo-mode)
+(global-set-key (kbd "C-c m") 'nxhtml-mumamo-mode)
 (global-set-key (kbd "C-p a") 'auto-complete-my-mode)
 
 ;; file/tab command (file-move = C-t)
@@ -22,7 +22,7 @@
 (define-key 'file-move (kbd "C-M-f") 'write-file)
 (define-key 'file-move "\C-s" 'save-buffer)
 (define-key 'file-move "\C-t" 'switch-to-buffer)
-(define-key 'file-move (kbd "C-M-g") 'gtags-find-file)
+;(define-key 'file-move (kbd "C-M-g") 'gtags-find-file)
 (define-key 'file-move "g" 'find-tag)
 (define-key 'file-move "\M-g" 'find-next-tag)
 (define-key 'file-move "\C-r" 'recentf-open-files-compl)
@@ -33,7 +33,7 @@
 (global-set-key [f5] 'find-file-at-point)
 (define-key gtags-select-mode-map (kbd "<return>") 'gtags-select-tag)
 (define-key 'file-move "b" 'gtags-pop-stack)
-;(define-key 'file-move "\C-c\C-c" 'save-buffers-kill-emacs)
+(define-key 'file-move "\C-c\C-c" 'save-buffers-kill-emacs)
 (define-key 'file-move "\C-c\C-c" 'delete-frame)
 
 ;; édition command (edition = C-c)
@@ -108,14 +108,6 @@
 (global-set-key [f12] 'eassist-switch-h-cpp)
 (define-key 'projet "c" 'compile)
 (define-key 'projet "l" 'toggle-preview-latex)
-;(global-set-key "\C-cvu" 'svn_my_update)
-;(global-set-key "\C-cvc" 'svn_my_commit)
-;(global-set-key "\C-ca" 'ecb-mylayout)
-;(global-set-key "\C-cz" 'ecb-dir-speedbar)
-;(global-set-key "\C-ce" 'ecb-toggle-ecb-windows)
-;(global-set-key (kbd "C-&") 'ecb-goto-window-edit-last)
-;(global-set-key (kbd "C-²") 'ecb-goto-window-methods)
-;(global-set-key [C-tab] 'ecb-analyse-buffer-sync)
 
 
 ;; help command
