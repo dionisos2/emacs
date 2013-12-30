@@ -8,10 +8,35 @@
 (setq auto-mode-alist(append '(("\\.tpl$" . nxhtml-mumamo-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("\\.twig$" . web-mode)) auto-mode-alist))
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
+(add-to-list 'auto-mode-alist '("\\.svg$" . image-mode))
 
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 
 (setq c-default-style '((c-mode . "haypo") (c++-mode . "haypo")))
+
+
+(define-minor-mode w3m-my-mode
+  "commentaire obligatoire /!\\"
+  :lighter " w3m-my-mode"
+  (if w3m-my-mode
+	  (progn
+		(local-set-key (kbd "M-t") 'backward-char)
+		(local-set-key (kbd "M-d") 'previous-line)
+		(local-set-key (kbd "M-r") 'forward-char)
+		(local-set-key (kbd "M-s") 'next-line)
+		(local-set-key (kbd "<down>") 'w3m-scroll-up)
+		(local-set-key (kbd "<up>") 'w3m-scroll-down)
+		(local-set-key (kbd "<left>") 'w3m-scroll-right)
+		(local-set-key (kbd "<right>") 'w3m-scroll-left)
+		(local-set-key "\C-t\C-f" 'w3m-find-file)
+		(local-set-key (kbd "<M-left>") 'w3m-view-previous-page)
+		(local-set-key (kbd "<M-right>") 'w3m-view-next-page)
+		(local-set-key (kbd "M-f") 'w3m-lnum-goto)
+		(local-set-key [C-return] 'w3m-view-this-url-new-session)
+		(local-set-key (kbd "M-l") 'select-word)
+		(local-set-key (kbd "C-M-<left>") 'w3m-previous-buffer)
+		(local-set-key (kbd "C-M-<right>") 'w3m-next-buffer)
+		)))
 
 
 (define-minor-mode auto-complete-my-mode
@@ -19,9 +44,9 @@
   :lighter " auto-complete-my-mode"
   (if auto-complete-my-mode
 	  (progn
-		(auto-complete-mode 1)			  
+		(auto-complete-mode 1)
 		(local-set-key [backtab] 'ac-previous)
-		(local-set-key [C-tab] 'ac-expand) 
+		(local-set-key [C-tab] 'ac-expand)
 		(local-set-key [M-tab] 'ac-expand)
 		)))
 
@@ -120,13 +145,13 @@
 					  ))
 
 (add-hook 'fundamental-mode-hook
-		  (lambda () 
+		  (lambda ()
 			(auto-complete-my-mode 1)
 										;(srecode-minor-mode 1)
 			))
 
 (add-hook 'org-mode-hook
-		  (lambda () 
+		  (lambda ()
 			;; (auto-complete-my-mode 1)
 			(local-unset-key "\C-y")
 			(local-set-key "\C-c\M-d" 'outline-up-heading)
@@ -135,3 +160,6 @@
 
 (add-hook 'doc-view-mode
 					(lambda () (pdf-my-mode 1)))
+
+(add-hook 'w3m-mode-hook
+					(lambda () (w3m-my-mode 1)))

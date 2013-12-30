@@ -7,6 +7,7 @@
 (add-to-list 'load-path "~/.emacs.d")
 (add-to-list 'load-path "~/.emacs.d/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/emacs-w3m")
 
 ;;(add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
 
@@ -38,10 +39,8 @@
 (load "mymode.el")
 (load "mypackage.el")
 (load "mymacro.el")
-
-;; (load "myw3m.el")
+(load "myw3m.el")
 
 
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome
 ;;(load "ecbconfig.el")
-;;(load "w3.el")

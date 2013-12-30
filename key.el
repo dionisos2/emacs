@@ -56,6 +56,7 @@
 (global-set-key (kbd "M-.") 'yank-pop)
 (global-set-key (kbd "C-y") 'kill-region)
 (global-set-key "\C-xx" 'copy-region-as-kill)
+(global-set-key "\C-x\C-x" 'copy-region-as-kill)
 (global-set-key (kbd "C-.") 'yank)
 (global-set-key (kbd "C-l") 'select-line)
 (global-set-key (kbd "M-l") 'select-word)
@@ -84,7 +85,7 @@
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<prior>") 'backward-paragraph)
 (global-set-key (kbd "<next>") 'forward-paragraph)
-(global-set-key (kbd "C-o") 'other-window) 
+(global-set-key (kbd "C-o") 'other-window)
 (global-set-key (kbd "M-SPC") 'View-back-to-mark)
 
 (global-set-key (kbd "M-t") 'backward-char)
@@ -101,6 +102,7 @@
 (global-set-key (kbd "<C-kp-3>") 'split-window-horizontally)
 
 ;; projet command (projet = C-p)
+(define-key 'projet "w" 'w3m)
 (define-key 'projet "s" 'cp_to_ukratio)
 (define-key 'projet "r" 'revert-buffer)
 (define-key 'projet (kbd "<return>") 'execute)

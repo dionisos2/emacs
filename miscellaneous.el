@@ -30,7 +30,6 @@
 ;;(setq first-time-fullscreen "oui")
 
 (setq custom-file "~/.emacs.d/mycustom.el")
-(load "mycustom.el")
 
 ;(setq frame-title-format '(buffer-file-name "Emacs: %b"))
 ;(setq mode-line-format '(buffer-file-name "(%f)"))

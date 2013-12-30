@@ -18,6 +18,7 @@
  '(scroll-conservatively 99)
  '(scroll-step 1)
  '(show-paren-mode (quote t))
+ '(show-trailing-whitespace t)
  '(speedbar-indentation-width 4)
  '(tab-width 4)
  '(tool-bar-mode nil)

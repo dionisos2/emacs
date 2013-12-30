@@ -23,3 +23,5 @@ org-mode
 C-c C-t -> TODO to DONE
 C-c C-s -> make a SCHEDULED
 C-c C-q -> add tags
+
+delete-trailing-whitespace to delete whitespace at the end of line
