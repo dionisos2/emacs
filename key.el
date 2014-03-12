@@ -69,7 +69,9 @@
 (global-set-key (kbd "C-M-n") 'my-previous-error)
 (global-set-key (kbd "C-M-s") 'multi-occur-in-matching-buffers)
 (global-set-key (kbd "C-M-r") 'query-replace-regexp)
-(global-set-key (kbd "C-é") 'undo)
+(global-set-key (kbd "C-é") 'undo-tree-undo)
+(global-set-key (kbd "C-É") 'undo-tree-redo)
+(global-set-key (kbd "C-M-é") 'undo-tree-visualize)
 
 
 ;;navigation command

@@ -54,36 +54,36 @@
   "quelques configurations personnelles pour le c++"
   :lighter " c++-my-mode"
   (if c++-my-mode
-			(progn
-				;; (gtags-mode 1)
-				(local-unset-key "\C-c\C-c")
-				(local-unset-key (kbd "C-M-e"))
-				(setq compile-command "scons")
-				(setq execute-command "./game&"))))
+	  (progn
+		;; (gtags-mode 1)
+		(local-unset-key "\C-c\C-c")
+		(local-unset-key (kbd "C-M-e"))
+		(setq compile-command "scons")
+		(setq execute-command "./game&"))))
 
 
 (define-minor-mode latex-my-mode
   "quelques configurations personnelles pour le latex"
   :lighter " latex-my-mode"
   (if latex-my-mode
-			(progn
-				;; (gtags-mode 1)
-				(auto-complete-my-mode 1)
-				(local-unset-key "\C-c\C-s")
-				(with-current-buffer (current-buffer) (setq compile-command (concatenate 'string "latex " (buffer-file-name))))
-				(with-current-buffer (current-buffer) (setq execute-command (concatenate 'string "xdvi " (replace-extention buffer-file-name ".dvi")))))))
+	  (progn
+		;; (gtags-mode 1)
+		(auto-complete-my-mode 1)
+		(local-unset-key "\C-c\C-s")
+		(with-current-buffer (current-buffer) (setq compile-command (concatenate 'string "latex " (buffer-file-name))))
+		(with-current-buffer (current-buffer) (setq execute-command (concatenate 'string "xdvi " (replace-extention buffer-file-name ".dvi")))))))
 
 
 
 (define-minor-mode pdf-my-mode
-	:lighter "pdf-my-mode"
-	(if pdf-my-mode
-			(progn
-				(local-unset-key "\C-t")
-				(local-unset-key "n")
-				(local-unset-key "p")
-				(local-set-key (kbd "<C-right>") 'doc-view-next-page)
-				(local-set-key (kbd "<C-left>") 'doc-view-previous-page))))
+  :lighter "pdf-my-mode"
+  (if pdf-my-mode
+	  (progn
+		(local-unset-key "\C-t")
+		(local-unset-key "n")
+		(local-unset-key "p")
+		(local-set-key (kbd "<C-right>") 'doc-view-next-page)
+		(local-set-key (kbd "<C-left>") 'doc-view-previous-page))))
 
 
 (add-hook 'geben-mode-hook
@@ -92,57 +92,59 @@
 			))
 
 (add-hook 'cmake-mode-hook
-					(lambda ()(auto-complete-my-mode 1)
-						))
+		  (lambda ()(auto-complete-my-mode 1)
+			))
 
 (add-hook 'LaTeX-mode-hook
-					(lambda ()(latex-my-mode 1)))
+		  (lambda ()(latex-my-mode 1)))
 
 (add-hook 'emacs-lisp-mode-hook
-					(lambda ();; (gtags-mode 1)
-					  (auto-complete-my-mode 1)
+		  (lambda ();; (gtags-mode 1)
+			(auto-complete-my-mode 1)
 										;(srecode-minor-mode 1)
-					  ))
+			))
 
 (add-hook 'conf-space-mode-hook
-					(lambda ();; (gtags-mode 1)
-										 (auto-complete-my-mode 1)
-						))
+		  (lambda ();; (gtags-mode 1)
+			(auto-complete-my-mode 1)
+			))
 
 (add-hook 'c-mode-hook
-					(lambda () (c++-my-mode 1)
-											(auto-complete-my-mode 1)
-											;(srecode-minor-mode 1)
-						))
+		  (lambda () (c++-my-mode 1)
+			(auto-complete-my-mode 1)
+										;(srecode-minor-mode 1)
+			))
 
 (add-hook 'c++-mode-hook
-					(lambda () (c++-my-mode 1)
-											(auto-complete-my-mode 1)
-											;(srecode-minor-mode 1)
-						))
+		  (lambda () (c++-my-mode 1)
+			(auto-complete-my-mode 1)
+										;(srecode-minor-mode 1)
+			))
 
 (add-hook 'python-mode-hook
-					(lambda () (local-unset-key "\C-c\r")
-						(local-unset-key "\C-c\C-c")
-						(auto-complete-my-mode 1)
-						))
+		  (lambda () (local-unset-key "\C-c\r")
+			(local-unset-key "\C-c\C-c")
+			(auto-complete-my-mode 1)
+			))
 
 (add-hook 'LaTeX-mode-hook
-					(lambda () (local-unset-key (kbd "C-M-e"))
-											(auto-complete-my-mode 1)
-											;(srecode-minor-mode 1)
-						))
+		  (lambda () (local-unset-key (kbd "C-M-e"))
+			(auto-complete-my-mode 1)
+										;(srecode-minor-mode 1)
+			))
 
 (add-hook 'dired-mode-hook
-					(lambda () (local-unset-key (kbd "C-o"))
-											(auto-complete-my-mode 1)
-						))
+		  (lambda () (local-unset-key (kbd "C-o"))
+			(local-unset-key "\C-t\C-t")
+			(local-set-key (kbd "M-s M-s") 'next-line)
+			(auto-complete-my-mode 1)
+			))
 
 (add-hook 'php-mode-hook
-					(lambda () (local-unset-key (kbd "C-."))
-					  (local-unset-key "\C-c\C-u")
-					  (auto-complete-my-mode 1)
-					  ))
+		  (lambda () (local-unset-key (kbd "C-."))
+			(local-unset-key "\C-c\C-u")
+			(auto-complete-my-mode 1)
+			))
 
 (add-hook 'fundamental-mode-hook
 		  (lambda ()
@@ -159,7 +161,7 @@
 			(local-set-key "\C-c\C-l" 'org-agenda)))
 
 (add-hook 'doc-view-mode
-					(lambda () (pdf-my-mode 1)))
+		  (lambda () (pdf-my-mode 1)))
 
 (add-hook 'w3m-mode-hook
-					(lambda () (w3m-my-mode 1)))
+		  (lambda () (w3m-my-mode 1)))

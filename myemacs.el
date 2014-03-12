@@ -8,6 +8,7 @@
 (add-to-list 'load-path "~/.emacs.d/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/emacs-w3m")
+(add-to-list 'load-path "~/.emacs.d/diff_region")
 
 ;;(add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
 
@@ -40,6 +41,8 @@
 (load "mypackage.el")
 (load "mymacro.el")
 (load "myw3m.el")
+(load "diff_region.el")
+(load "undo-tree-0.6.4.el")
 
 
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome
