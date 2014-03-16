@@ -20,3 +20,5 @@ yaml-mode
 auto-save-list
 auto-complete/
 url
+diff_region
+undo-tree*
