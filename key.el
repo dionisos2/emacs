@@ -15,7 +15,6 @@
 (global-set-key (kbd "C-)") 'end-kbd-macro)
 (global-set-key (kbd "C-b") 'call-last-kbd-macro)
 (global-set-key (kbd "C-c m") 'nxhtml-mumamo-mode)
-(global-set-key (kbd "C-p a") 'auto-complete-my-mode)
 
 ;; file/tab command (file-move = C-t)
 (define-key 'file-move "\C-f" 'find-file)
@@ -104,6 +103,7 @@
 (global-set-key (kbd "<C-kp-3>") 'split-window-horizontally)
 
 ;; projet command (projet = C-p)
+(define-key 'projet "a" 'auto-complete-my-mode)
 (define-key 'projet "w" 'w3m)
 (define-key 'projet "s" 'cp_to_ukratio)
 (define-key 'projet "r" 'revert-buffer)
@@ -112,6 +112,7 @@
 (global-set-key [f12] 'eassist-switch-h-cpp)
 (define-key 'projet "c" 'compile)
 (define-key 'projet "l" 'toggle-preview-latex)
+(define-key 'projet "w" 'org-agenda-list)
 
 
 ;; help command

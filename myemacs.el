@@ -43,6 +43,7 @@
 (load "myw3m.el")
 (load "diff_region.el")
 (load "undo-tree-0.6.4.el")
+(load "graphviz-dot-mode.el")
 
 
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome
