@@ -104,7 +104,7 @@
 
 ;; projet command (projet = C-p)
 (define-key 'projet "a" 'auto-complete-my-mode)
-(define-key 'projet "w" 'w3m)
+(define-key 'projet "i" 'w3m)
 (define-key 'projet "s" 'cp_to_ukratio)
 (define-key 'projet "r" 'revert-buffer)
 (define-key 'projet (kbd "<return>") 'execute)
