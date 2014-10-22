@@ -10,7 +10,7 @@
  '(current-language-environment "utf-8")
  '(delete-selection-mode 1)
  '(inhibit-startup-screen t)
- '(iswitchb-mode t)
+ '(ido-mode t)
  '(kill-ring-max 100)
  '(line-number-mode t)
  '(org-agenda-files (quote ("~/info/todo.org" "~/info/agenda.org")))

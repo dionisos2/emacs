@@ -36,7 +36,6 @@
 (define-key 'file-move "\C-c\C-c" 'delete-frame)
 
 ;; édition command (edition = C-c)
-
 (define-key 'edition "\C-k" 'kill-whole-line)
 (define-key 'edition "\C-c" 'comment-region)
 (define-key 'edition "c" 'uncomment-region)

@@ -44,5 +44,5 @@
 (put 'yank 'delete-selection 'yank)
 
 (defvar first-open "non")
-(if (equal first-open "non") (find-file "~/.emacs.d/myemacs.el"))
+(if (equal first-open "non") (find-file "~/.emacs.d/lisp/myemacs.el"))
 (setq first-open "oui")

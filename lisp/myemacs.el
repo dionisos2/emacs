@@ -4,22 +4,22 @@
 
 ;;------------------load elisp file--------------------
 
-(add-to-list 'load-path "~/.emacs.d")
-(add-to-list 'load-path "~/.emacs.d/yaml-mode")
-(add-to-list 'load-path "~/.emacs.d/auto-complete")
-(add-to-list 'load-path "~/.emacs.d/emacs-w3m")
-(add-to-list 'load-path "~/.emacs.d/diff_region")
+(add-to-list 'load-path "~/.emacs.d/lisp")
+(add-to-list 'load-path "~/.emacs.d/lisp/yaml-mode")
+(add-to-list 'load-path "~/.emacs.d/lisp/auto-complete")
+(add-to-list 'load-path "~/.emacs.d/lisp/emacs-w3m")
+(add-to-list 'load-path "~/.emacs.d/lisp/diff_region")
 
 ;;(add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
 
-(load-file "~/.emacs.d/php-mode/php-mode.el")
-(load-file "~/.emacs.d/web-mode/web-mode.el")
+(load-file "~/.emacs.d/lisp/php-mode/php-mode.el")
+(load-file "~/.emacs.d/lisp/web-mode/web-mode.el")
 
 
 ;;f5 pour un acces rapide aux fichiers, voir key.el pour tout les autres raccourcie clavier.
-;;./README
-;;./template/
-;;./TODOS.org
+;;../README
+;;../template/
+;;../TODOS.org
 
 (autoload 'magit-status "magit" nil t)
 (load "langtoolconfig.el")
@@ -35,7 +35,7 @@
 (load "key.el")
 (load "myhtml.el")
 (load "anchored-transpose.el")
-;; (load "gebenconfig.el")
+;; ;; (load "gebenconfig.el")
 (load "yamlconfig")
 (load "mymode.el")
 (load "mypackage.el")
