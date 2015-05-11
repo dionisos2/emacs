@@ -19,7 +19,6 @@
 ;;f5 pour un acces rapide aux fichiers, voir key.el pour tout les autres raccourcie clavier.
 ;;../README
 ;;../template/
-;;../TODOS.org
 
 (autoload 'magit-status "magit" nil t)
 (load "langtoolconfig.el")
