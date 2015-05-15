@@ -26,7 +26,11 @@
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
  '(visible-bell t)
- '(x-select-enable-clipboard t))
+ '(x-select-enable-clipboard t)
+ '(org-track-ordered-property-with-tag t)
+ '(org-tags-exclude-from-inheritance '("ORDERED"))
+ '(delete-by-moving-to-trash t)
+ '(trash-directory "/home/dionisos/.local/share/Trash/files"))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

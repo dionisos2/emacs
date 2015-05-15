@@ -126,7 +126,7 @@
 
 (defun show-key-el()
 	(interactive)
-	(find-file "~/.emacs.d/key.el"))
+	(find-file "~/.emacs.d/lisp/key.el"))
 
 
 (setq recentf-path "~/.emacs.d/recentf")

@@ -112,6 +112,8 @@
 (define-key 'projet "c" 'compile)
 (define-key 'projet "l" 'toggle-preview-latex)
 (define-key 'projet "w" 'org-agenda-list)
+(define-key 'projet "t" 'org-todo-list)
+(define-key 'projet "\C-t" 'org-tags-view)
 
 
 ;; help command

@@ -156,9 +156,13 @@
 		  (lambda ()
 			;; (auto-complete-my-mode 1)
 			(local-unset-key "\C-y")
-			(local-set-key "\C-c\M-d" 'outline-up-heading)
-			(local-set-key "M-down" 'outline-next-visible-heading)
-			(local-set-key "\C-c\C-l" 'org-agenda)))
+			(local-set-key (kbd "C-M-d") 'outline-up-heading)
+			(local-set-key (kbd "<backtab>") 'hide-subtree)
+			(local-set-key [S-iso-lefttab] 'hide-subtree)
+			(local-set-key "\C-t\o" 'org-remove-occur-highlights)
+			(local-set-key "\C-c\C-o" 'org-toggle-ordered-property)
+			(local-set-key "\C-c\C-p" 'org-priority)
+			(local-set-key "\C-c\C-a" 'org-archive-to-archive-sibling)))
 
 (add-hook 'doc-view-mode
 		  (lambda () (pdf-my-mode 1)))
