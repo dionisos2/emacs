@@ -12,6 +12,9 @@
       (unless (file-exists-p dir)
         (make-directory dir)))))
 
+(defun org-tags-view-only-todo()
+  (interactive)
+  (org-tags-view t))
 
 (defun kill-buffer-and-maybe-window ()
 	(interactive)

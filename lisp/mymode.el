@@ -136,7 +136,7 @@
 (add-hook 'dired-mode-hook
 		  (lambda () (local-unset-key (kbd "C-o"))
 			(local-unset-key "\C-t\C-t")
-			(local-set-key (kbd "M-s M-s") 'next-line)
+			(local-set-key (kbd "M-s") 'next-line)
 			(auto-complete-my-mode 1)
 			))
 
