@@ -1,3 +1,8 @@
+;;; myfunction.el --- useful personnal functions
+;;; Commentary:
+;; nothing special
+
+;;; Code:
 (defadvice find-file (before make-directory-maybe (filename &optional wildcards) activate)
   "Create parent directory if not exists while visiting file."
   (unless (file-exists-p filename)
@@ -49,22 +54,33 @@
 		(progn (preview-document)
 					 (setq preview-latex-prout t))))
 
+
 (defun my-previous-error ()
-	(interactive)
-	(langtool-goto-previous-error)
-	(langtool-show-message-at-point))
+  (interactive)
+  (if langtool-buffer-process
+	  (progn
+		(langtool-goto-previous-error)
+		(langtool-show-message-at-point))
+	(progn
+	  (flycheck-previous-error)
+	  (flycheck-display-error-at-point))))
 
 (defun my-next-error ()
-	(interactive)
-	(langtool-goto-next-error)
-	(langtool-show-message-at-point))
+  (interactive)
+  (if langtool-buffer-process
+	  (progn
+		(langtool-goto-next-error)
+		(langtool-show-message-at-point))
+	(progn
+	  (flycheck-next-error)
+	  (flycheck-display-error-at-point))))
 
 (defcustom execute-command (purecopy "./game&")
   "Last shell command used to do a execution; default for next execution."
   :type 'string
   :group 'execution)
 
-(defun execute() 
+(defun execute()
 	(interactive)
 	(start-process-shell-command "execution_process" "*execution*" execute-command))
 
@@ -107,7 +123,7 @@
 
 (defun go-qt4-help(&optional class_name)
 	(interactive)
-	(progn 
+	(progn
 		(select-word)
 		(setq selection (buffer-substring-no-properties (region-beginning) (region-end)))
 		(w3-find-file "/usr/share/qt4/doc/html/classes.html")
@@ -120,7 +136,7 @@
 (defun recentf-open-files-compl ()
 	(interactive)
 	(let* ((all-files recentf-list)
-				 (tocpl (mapcar (function 
+				 (tocpl (mapcar (function
 												 (lambda (x) (cons (file-name-nondirectory x) x))) all-files))
 				 (prompt (append '("Recent File name: ") tocpl))
 				 (fname (completing-read (car prompt) (cdr prompt) nil nil)))

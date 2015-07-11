@@ -1,3 +1,8 @@
+;;; key.el --- global keys binding configuration
+;;; Commentary:
+;; nothing special
+
+;;; Code:
 (define-prefix-command 'file-move)
 (define-prefix-command 'edition)
 (define-prefix-command 'projet)
@@ -30,7 +35,7 @@
 (define-key 'file-move "\C-k" 'kill-buffer-and-maybe-window)
 (define-key 'file-move "k" 'kill-buffer)
 (global-set-key [f5] 'find-file-at-point)
-(define-key gtags-select-mode-map (kbd "<return>") 'gtags-select-tag)
+;(define-key gtags-select-mode-map (kbd "<return>") 'gtags-select-tag)
 (define-key 'file-move "b" 'gtags-pop-stack)
 (define-key 'file-move "\C-c\C-c" 'save-buffers-kill-emacs)
 (define-key 'file-move "\C-c\C-c" 'delete-frame)
@@ -129,3 +134,6 @@
 ;; revert-buffer
 
 ;(global-set-key (kbd "...") (kbd "C-u M-x save-buffers-kill-emacs RET")) look like good trick !
+
+(provide 'key)
+;;; key.el ends here

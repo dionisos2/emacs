@@ -86,6 +86,9 @@
 		(local-set-key (kbd "<C-left>") 'doc-view-previous-page))))
 
 
+(add-hook 'after-init-hook
+		  #'global-flycheck-mode)
+
 (add-hook 'geben-mode-hook
 		  (lambda ()
 			(define-key geben-mode-map "v" 'geben-eval-current-word)

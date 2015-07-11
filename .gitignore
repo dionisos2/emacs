@@ -23,3 +23,5 @@ url
 diff_region
 undo-tree*
 ido.last
+dash.el
+magit
