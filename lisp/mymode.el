@@ -9,6 +9,7 @@
 (setq auto-mode-alist(append '(("\\.twig$" . web-mode)) auto-mode-alist))
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.svg$" . image-mode))
+(add-to-list 'auto-mode-alist '("\\.feature$" . behave-mode))
 
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 

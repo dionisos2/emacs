@@ -2,7 +2,7 @@
 (require 'thingatpt)
 (require 'view)
 
-(require 'recentf) 
+(require 'recentf)
 (recentf-mode 1)
 
 ;;(require 'skeleton)
@@ -29,7 +29,7 @@
 ;;(if (equal first-time-fullscreen "non") (toggle-fullscreen))
 ;;(setq first-time-fullscreen "oui")
 
-(setq custom-file "~/.emacs.d/mycustom.el")
+(setq custom-file "~/.emacs.d/lisp/mycustom.el")
 
 ;(setq frame-title-format '(buffer-file-name "Emacs: %b"))
 ;(setq mode-line-format '(buffer-file-name "(%f)"))

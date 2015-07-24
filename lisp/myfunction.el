@@ -134,14 +134,14 @@
 
 
 (defun recentf-open-files-compl ()
-	(interactive)
-	(let* ((all-files recentf-list)
-				 (tocpl (mapcar (function
-												 (lambda (x) (cons (file-name-nondirectory x) x))) all-files))
-				 (prompt (append '("Recent File name: ") tocpl))
-				 (fname (completing-read (car prompt) (cdr prompt) nil nil)))
-		(find-file (or (cdr (assoc fname tocpl))
-									 fname))))
+  (interactive)
+  (let* ((all-files recentf-list)
+		 (tocpl (mapcar (function
+						 (lambda (x) (cons (file-name-nondirectory x) x))) all-files))
+		 (prompt (append '("Recent File name: ") tocpl))
+		 (fname (completing-read (car prompt) (cdr prompt) nil nil)))
+	(find-file (or (cdr (assoc fname tocpl))
+				   fname))))
 
 (defun show-key-el()
 	(interactive)
