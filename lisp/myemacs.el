@@ -27,6 +27,7 @@
 
 (require 'dash)
 (require 'magit)
+(require 'behave-mode)
 (load "langtoolconfig.el")
 (load "autosaveconfig.el")
 (load "haypo_style.el")

@@ -166,7 +166,12 @@
 			(local-set-key "\C-t\o" 'org-remove-occur-highlights)
 			(local-set-key "\C-c\C-o" 'org-toggle-ordered-property)
 			(local-set-key "\C-c\C-p" 'org-priority)
-			(local-set-key "\C-c\C-a" 'org-archive-to-archive-sibling)))
+			(local-set-key "\C-c\C-a" 'org-archive-to-archive-sibling)
+			(local-set-key "\C-c\é" 'org-columns) ;; use 'q' to quit columns view
+			(local-set-key "\C-c\h" 'org-clock-in)
+			(local-set-key "\C-c\C-h" 'org-clock-out)
+			(local-set-key (kbd "C-c C-M-h") 'org-clock-cancel)
+			))
 
 (add-hook 'doc-view-mode
 		  (lambda () (pdf-my-mode 1)))
