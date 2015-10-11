@@ -22,6 +22,7 @@
 	("~/organisation/todo.org" "~/organisation/agenda.org")))
  '(org-columns-default-format "%TODO %ITEM %Effort{:}")
  '(org-startup-truncated nil)
+ '(org-tags-column 100)
  '(org-tags-exclude-from-inheritance (quote ("ORDERED")))
  '(org-track-ordered-property-with-tag t)
  '(scroll-conservatively 99)
