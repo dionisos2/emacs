@@ -29,3 +29,6 @@ delete-trailing-whitespace to delete whitespace at the end of line
 insert command's result in a buffer :
 "(with-current-buffer "*view.svg*"
   (insert (shell-command-to-string cmd)))"
+
+f3 → kmacro-start-macro-or-insert-counter, f3→kmacro-insert-counter (kmacro-add-counter)
+C-h l → view-lossage
