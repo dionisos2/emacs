@@ -7,6 +7,7 @@
 ;;------------------load elisp file--------------------
 
 ;;; Code:
+(add-to-list 'load-path "~/.emacs.d/habitrpg/habitrpg/")
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.emacs.d/lisp/yaml-mode")
 (add-to-list 'load-path "~/.emacs.d/lisp/auto-complete")
@@ -51,7 +52,7 @@
 (load "undo-tree-0.6.4.el")
 (load "graphviz-dot-mode.el")
 (load "mypylint.el")
-
+(load "myhabitrpg.el")
 
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome
 ;;(load "ecbconfig.el")

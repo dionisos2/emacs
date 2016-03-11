@@ -180,3 +180,9 @@ Requires ImageMagick installation"
       (call-process-shell-command "convert" nil nil nil "-rotate" "90" file-name file-name)
       (clear-image-cache)
       (doc-view-goto-page (doc-view-current-page)))))
+
+(defun save-buffer-always ()
+  "Save the buffer even if it is not modified."
+  (interactive)
+  (set-buffer-modified-p t)
+  (save-buffer))

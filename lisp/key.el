@@ -55,6 +55,7 @@
 (define-key 'edition "{" 'narrow-to-region)
 (define-key 'edition "}" 'widen)
 (define-key 'edition "d" 'echo-date)
+(define-key 'edition "\M-a" 'habitrpg-add)
 
 (global-set-key (kbd "M-.") 'yank-pop)
 (global-set-key (kbd "C-y") 'kill-region)
@@ -119,7 +120,7 @@
 (define-key 'projet "w" 'org-agenda-list)
 (define-key 'projet "t" 'org-todo-list)
 (define-key 'projet "\C-t" 'org-tags-view-only-todo)
-
+(define-key 'projet "\C-h" 'habitrpg-status)
 
 ;; help command
 ;(global-set-key "\C-hq" 'go-qt4-help)
