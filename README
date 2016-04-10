@@ -32,3 +32,5 @@ insert command's result in a buffer :
 
 f3 → kmacro-start-macro-or-insert-counter, f3→kmacro-insert-counter (kmacro-add-counter)
 C-h l → view-lossage
+
+in a terminal : C-x C-e open emacs to continue to write the command
