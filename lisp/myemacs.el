@@ -15,6 +15,7 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/diff_region")
 (add-to-list 'load-path "~/.emacs.d/lisp/dash.el")
 (add-to-list 'load-path "~/.emacs.d/lisp/magit")
+(add-to-list 'load-path "~/.emacs.d/lisp/spray")
 
 ;;(add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
 
@@ -52,7 +53,8 @@
 (load "undo-tree-0.6.4.el")
 (load "graphviz-dot-mode.el")
 (load "mypylint.el")
-(load "myhabitrpg.el")
+(load "myspray.el")
+;; (load "myhabitrpg.el")
 
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome
 ;;(load "ecbconfig.el")

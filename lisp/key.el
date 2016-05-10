@@ -55,7 +55,7 @@
 (define-key 'edition "{" 'narrow-to-region)
 (define-key 'edition "}" 'widen)
 (define-key 'edition "d" 'echo-date)
-(define-key 'edition "\M-a" 'habitrpg-add)
+;; (define-key 'edition "\M-a" 'habitrpg-add)
 
 (global-set-key (kbd "M-.") 'yank-pop)
 (global-set-key (kbd "C-y") 'kill-region)
@@ -110,7 +110,7 @@
 ;; projet command (projet = C-p)
 (define-key 'projet "a" 'auto-complete-my-mode)
 (define-key 'projet "i" 'w3m)
-(define-key 'projet "s" 'cp_to_ukratio)
+(define-key 'projet "s" 'spray-mode)
 (define-key 'projet "r" 'revert-buffer)
 (define-key 'projet (kbd "<return>") 'execute)
 (global-set-key (kbd "C-}") 'next-error)
@@ -120,7 +120,7 @@
 (define-key 'projet "w" 'org-agenda-list)
 (define-key 'projet "t" 'org-todo-list)
 (define-key 'projet "\C-t" 'org-tags-view-only-todo)
-(define-key 'projet "\C-h" 'habitrpg-status)
+;; (define-key 'projet "\C-h" 'habitrpg-status)
 
 ;; help command
 ;(global-set-key "\C-hq" 'go-qt4-help)
