@@ -16,6 +16,7 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/dash.el")
 (add-to-list 'load-path "~/.emacs.d/lisp/magit")
 (add-to-list 'load-path "~/.emacs.d/lisp/spray")
+(add-to-list 'load-path "~/.emacs.d/elpa/flycheck-28")
 
 ;;(add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
 
@@ -30,6 +31,7 @@
 (require 'dash)
 (require 'magit)
 (require 'behave-mode)
+(load "mypackage.el")
 (load "langtoolconfig.el")
 (load "autosaveconfig.el")
 (load "haypo_style.el")
@@ -46,8 +48,8 @@
 (load "anchored-transpose.el")
 ;; ;; (load "gebenconfig.el")
 (load "yamlconfig")
+(load "myflycheck.el")
 (load "mymode.el")
-(load "mypackage.el")
 (load "mymacro.el")
 (load "myw3m.el")
 (load "diff_region.el")
@@ -55,8 +57,8 @@
 (load "graphviz-dot-mode.el")
 (load "mypylint.el")
 (load "myspray.el")
-;; (load "myhabitrpg.el")
 
+;; (load "myhabitrpg.el")
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome
 ;;(load "ecbconfig.el")
 

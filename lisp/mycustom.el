@@ -13,13 +13,14 @@
  '(ido-auto-merge-work-directories-length -1)
  '(ido-enable-regexp nil)
  '(ido-mode (quote both) nil (ido))
+ '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
  '(kill-ring-max 100)
  '(line-move-visual nil)
  '(line-number-mode t)
  '(org-agenda-files
    (quote
-	("~/organisation/todo.org" "~/organisation/agenda.org")))
+    ("~/organisation/todo.org" "~/organisation/agenda.org")))
  '(org-columns-default-format "%TODO %ITEM %Effort{:}")
  '(org-startup-truncated nil)
  '(org-tags-column 100)

@@ -145,10 +145,16 @@
 			))
 
 (add-hook 'php-mode-hook
-		  (lambda () (local-unset-key (kbd "C-."))
+		  (lambda ()
+			(local-unset-key (kbd "C-."))
 			(local-unset-key "\C-c\C-u")
 			(auto-complete-my-mode 1)
 			))
+
+(add-hook 'web-mode-hook
+		  (lambda ()
+			(flycheck-mode 't)
+		  ))
 
 (add-hook 'fundamental-mode-hook
 		  (lambda ()

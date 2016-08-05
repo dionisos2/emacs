@@ -111,6 +111,7 @@
 (define-key 'projet "a" 'auto-complete-my-mode)
 (define-key 'projet "p" 'phpcbf)
 (define-key 'projet "i" 'w3m)
+(define-key 'projet "\C-s" 'save-some-buffers)
 (define-key 'projet "s" 'spray-mode)
 (define-key 'projet "r" 'revert-buffer)
 (define-key 'projet (kbd "<return>") 'execute)
