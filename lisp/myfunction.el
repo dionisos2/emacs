@@ -31,8 +31,15 @@
   (start-process-shell-command "execution_process" "*transfert-to-ukratio*" (concatenate 'string "cp_to_ukratio " buffer-file-truename))
   (switch-to-buffer "*transfert-to-ukratio*"))
 
-
-
+(defun phpcbf ()
+  "Run phpcbf on the current file"
+  (interactive)
+  (progn
+	(print (concatenate 'string "phpcbf " buffer-file-truename))
+	(call-process-shell-command (concatenate 'string "phpcbf " buffer-file-truename))
+	(revert-buffer nil 't)
+	(delete-trailing-whitespace)
+	(save-buffer)))
 
 (defun find-next-tag ()
   (interactive)

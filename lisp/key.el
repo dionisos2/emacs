@@ -109,6 +109,7 @@
 
 ;; projet command (projet = C-p)
 (define-key 'projet "a" 'auto-complete-my-mode)
+(define-key 'projet "p" 'phpcbf)
 (define-key 'projet "i" 'w3m)
 (define-key 'projet "s" 'spray-mode)
 (define-key 'projet "r" 'revert-buffer)
@@ -120,6 +121,7 @@
 (define-key 'projet "w" 'org-agenda-list)
 (define-key 'projet "t" 'org-todo-list)
 (define-key 'projet "\C-t" 'org-tags-view-only-todo)
+(define-key 'projet "d" 'dired-jump) ;; Useful to rename file, use just R after
 ;; (define-key 'projet "\C-h" 'habitrpg-status)
 
 ;; help command

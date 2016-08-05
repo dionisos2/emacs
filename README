@@ -3,6 +3,10 @@ find-name-dired (answer the question) (in find-dired.el)
 t for toggle mark file or %m for regexp
 Q for query replace in all marked file
 
+rename file by regexp:
+dired → open directory
+%r → rename by regexp
+
 c-set-offset (C-c C-o) give what the style use for indent the current line. Then we can change the indent value in the style file
 c-set-style set the style to use (like haypo)
 
