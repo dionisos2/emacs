@@ -22,17 +22,19 @@
   (org-tags-view t))
 
 (defun kill-buffer-and-maybe-window ()
-	(interactive)
-	(if (> (length (window-list)) 1) (kill-buffer-and-window) (kill-buffer)))
+  "Kill the windows only if it isn’t the last."
+  (interactive)
+  (if (> (length (window-list)) 1) (kill-buffer-and-window) (kill-buffer)))
 
 (defun cp_to_ukratio ()
+  "Run the cp_to_ukratio command on this file."
   (interactive)
   (print (concatenate 'string "transfert for " buffer-file-truename))
   (start-process-shell-command "execution_process" "*transfert-to-ukratio*" (concatenate 'string "cp_to_ukratio " buffer-file-truename))
   (switch-to-buffer "*transfert-to-ukratio*"))
 
 (defun phpcbf ()
-  "Run phpcbf on the current file"
+  "Run phpcbf on the current file."
   (interactive)
   (progn
     (let
@@ -44,24 +46,25 @@
       (save-buffer))))
 
 (defun find-next-tag ()
+  "Old command."
   (interactive)
-	(find-tag last-tag 1))
+  (find-tag last-tag 1))
 
 (defun ecb-mylayout()(interactive)(ecb-layout-switch "mylayout"))
 
 (defun ecb-dir-speedbar()(interactive)(ecb-layout-switch "left-dir-plus-speedbar"))
-;(defun svn_my_commit()(interactive)(shell-command "svn cleanup")(shell-command "svn commit")) ;; bug :(
-;(defun svn_my_update()(interactive)(shell-command "svn update"))
+                                        ;(defun svn_my_commit()(interactive)(shell-command "svn cleanup")(shell-command "svn commit")) ;; bug :(
+                                        ;(defun svn_my_update()(interactive)(shell-command "svn update"))
 
 
 (setq preview-latex-prout nil)
 (defun toggle-preview-latex()
-	(interactive)
-	(if preview-latex-prout
-			(progn (preview-clearout)
-						 (setq preview-latex-prout nil))
-		(progn (preview-document)
-					 (setq preview-latex-prout t))))
+  (interactive)
+  (if preview-latex-prout
+      (progn (preview-clearout)
+             (setq preview-latex-prout nil))
+    (progn (preview-document)
+           (setq preview-latex-prout t))))
 
 
 (defun my-previous-error ()
@@ -90,56 +93,56 @@
   :group 'execution)
 
 (defun execute()
-	(interactive)
-	(start-process-shell-command "execution_process" "*execution*" execute-command))
+  (interactive)
+  (start-process-shell-command "execution_process" "*execution*" execute-command))
 
 (defun my-shell-command-on-region() (interactive)(shell-command-on-region (region-beginning) (region-end) "bash" t))
 
 
 (defun next-word()
-	(interactive)
-	(forward-word 1))
+  (interactive)
+  (forward-word 1))
 
 
 (defun previous-word()
-	(interactive)
-	(forward-word -1))
+  (interactive)
+  (forward-word -1))
 
 
 (defun select-line()
-	(interactive)
-	(move-beginning-of-line nil)
-	(set-mark-command nil)
-	(move-end-of-line nil))
+  (interactive)
+  (move-beginning-of-line nil)
+  (set-mark-command nil)
+  (move-end-of-line nil))
 
 (defun select-word()
-	(interactive)
-	(if (/= (point) (point-max)) (forward-char))
-	(forward-word -1)
-	(set-mark-command nil)
-	(forward-word 1))
+  (interactive)
+  (if (/= (point) (point-max)) (forward-char))
+  (forward-word -1)
+  (set-mark-command nil)
+  (forward-word 1))
 
 
 (defun select-symbol()
-	(interactive)
-	(if (/= (point) (point-max)) (forward-char))
-	(forward-symbol -1)
-	(set-mark-command nil)
-	(forward-symbol 1))
+  (interactive)
+  (if (/= (point) (point-max)) (forward-char))
+  (forward-symbol -1)
+  (set-mark-command nil)
+  (forward-symbol 1))
 
 
 (defvar selection)
 
 (defun go-qt4-help(&optional class_name)
-	(interactive)
-	(progn
-		(select-word)
-		(setq selection (buffer-substring-no-properties (region-beginning) (region-end)))
-		(w3-find-file "/usr/share/qt4/doc/html/classes.html")
-		(add-to-list 'search-ring selection)
-		(isearch-forward)
-		)
-	)
+  (interactive)
+  (progn
+    (select-word)
+    (setq selection (buffer-substring-no-properties (region-beginning) (region-end)))
+    (w3-find-file "/usr/share/qt4/doc/html/classes.html")
+    (add-to-list 'search-ring selection)
+    (isearch-forward)
+    )
+  )
 
 
 (defun recentf-open-files-compl ()
@@ -153,18 +156,18 @@
 				   fname))))
 
 (defun show-key-el()
-	(interactive)
-	(find-file "~/.emacs.d/lisp/key.el"))
+  (interactive)
+  (find-file "~/.emacs.d/lisp/key.el"))
 
 
 (setq recentf-path "~/.emacs.d/recentf")
 (defun show-recentf()
-	(interactive)
-	(find-file recentf-path))
+  (interactive)
+  (find-file recentf-path))
 
 (defun add-file-to-recentf()
-	(interactive)
-	(shell-command (concatenate 'string "echo " (buffer-file-name) " >> " recentf-path)))
+  (interactive)
+  (shell-command (concatenate 'string "echo " (buffer-file-name) " >> " recentf-path)))
 
 (defun echo-date()
   (interactive)
@@ -176,7 +179,7 @@
   (replace-regexp-in-string ".[a-z_-A-Z]*$" "" file-name))
 
 (defun replace-extention (file-name extention)
-	(concatenate 'string (base-name file-name) extention))
+  (concatenate 'string (base-name file-name) extention))
 
 (defun doc-view-rotate-current-page ()
   "Rotate the current page by 90 degrees.
@@ -195,3 +198,20 @@ Requires ImageMagick installation"
   (interactive)
   (set-buffer-modified-p t)
   (save-buffer))
+
+(defun revert-all-buffers ()
+  "Refreshes all open buffers from their respective files."
+  (interactive)
+  (let* ((list (buffer-list))
+         (buffer (car list)))
+    (while buffer
+      (when (and (buffer-file-name buffer)
+                 (not (buffer-modified-p buffer)))
+        (set-buffer buffer)
+        (revert-buffer t t t))
+      (setq list (cdr list))
+      (setq buffer (car list))))
+  (message "Refreshed open files"))
+
+(provide 'myfunction)
+;;; myfunction.el ends here

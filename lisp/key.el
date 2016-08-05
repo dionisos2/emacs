@@ -114,6 +114,7 @@
 (define-key 'projet "\C-s" 'save-some-buffers)
 (define-key 'projet "s" 'spray-mode)
 (define-key 'projet "r" 'revert-buffer)
+(define-key 'projet "\C-\M-r" 'revert-all-buffers)
 (define-key 'projet (kbd "<return>") 'execute)
 (global-set-key (kbd "C-}") 'next-error)
 (global-set-key [f12] 'eassist-switch-h-cpp)
