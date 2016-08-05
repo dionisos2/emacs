@@ -151,6 +151,11 @@
 			(auto-complete-my-mode 1)
 			))
 
+(add-hook 'grep-mode-hook
+		  (lambda ()
+			(local-unset-key (kbd "C-o"))
+			))
+
 (add-hook 'web-mode-hook
 		  (lambda ()
 			(flycheck-mode 't)

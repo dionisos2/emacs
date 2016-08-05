@@ -1,4 +1,6 @@
 ;; found here https://truongtx.me/2014/07/22/setup-php-development-environment-in-emacs
+;; To find rules, see by example : /usr/share/pear/PHP/CodeSniffer/Standards/Squiz/Sniffs/Commenting/ClassCommentSniff.php
+;; Les noms exactes des erreurs sont également donné par phpcs/flycheck quand il les rencontre.
 
 ;;; Code:
 (require 'flycheck)
@@ -20,7 +22,7 @@
 (flycheck-define-checker my-php-phpcs
   "A PHP style checker using PHP Code Sniffer."
 
-  :command ("phpcs" "--report=checkstyle"
+  :command ("phpcs" "--report=checkstyle" "--standard=~/projets/programmation/http/private/communautheque/ruleset.xml"
 			(option "--standard=" flycheck-phpcs-standard concat)
 			;; Pass original file name to phpcs.  We need to concat explicitly
 			;; here, because phpcs really insists to get option and argument as

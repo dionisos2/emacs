@@ -35,11 +35,13 @@
   "Run phpcbf on the current file"
   (interactive)
   (progn
-	(print (concatenate 'string "phpcbf " buffer-file-truename))
-	(call-process-shell-command (concatenate 'string "phpcbf " buffer-file-truename))
-	(revert-buffer nil 't)
-	(delete-trailing-whitespace)
-	(save-buffer)))
+    (let
+        ((my-command "phpcbf --standard=/home/dionisos/projets/programmation/http/private/communautheque/ruleset.xml "))
+      (print (concatenate 'string  my-command buffer-file-truename))
+      (call-process-shell-command (concatenate 'string my-command buffer-file-truename))
+      (revert-buffer nil 't)
+      (delete-trailing-whitespace)
+      (save-buffer))))
 
 (defun find-next-tag ()
   (interactive)
