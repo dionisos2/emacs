@@ -41,3 +41,6 @@ in a terminal : C-x C-e open emacs to continue to write the command
 
 Delete coloration of langtool:
 langtool-check-done
+
+log command:
+call mwe:open-command-log-buffer and then mwe:log-keyboard-commands to the buffer where to log command
