@@ -15,30 +15,37 @@
  '(ido-mode (quote both) nil (ido))
  '(indent-tabs-mode nil)
  '(inhibit-startup-screen t)
+ '(js-indent-level 2)
  '(kill-ring-max 100)
  '(line-move-visual nil)
  '(line-number-mode t)
- '(org-agenda-files
-   (quote
-    ("~/organisation/todo.org" "~/organisation/agenda.org")))
+ '(org-agenda-files (quote ("~/organisation/agenda.org")))
  '(org-columns-default-format "%TODO %ITEM %Effort{:}")
+ '(org-log-repeat nil)
+ '(org-modules
+   (quote
+    (org-bbdb org-bibtex org-docview org-gnus org-info org-irc org-mhe org-rmail org-w3m org-checklist)))
  '(org-startup-truncated nil)
  '(org-tags-column 100)
  '(org-tags-exclude-from-inheritance (quote ("ORDERED")))
  '(org-track-ordered-property-with-tag t)
+ '(package-selected-packages
+   (quote
+    (json-mode mwe-log-commands lua-mode flycheck elm-mode)))
  '(scroll-conservatively 99)
  '(scroll-step 1)
+ '(select-enable-clipboard t)
  '(show-paren-mode (quote t))
  '(show-trailing-whitespace t)
  '(speedbar-indentation-width 4)
- '(tab-width 4)
+ '(tab-width 2)
  '(tool-bar-mode nil)
  '(transient-mark-mode t)
  '(trash-directory "/home/dionisos/.local/share/Trash/files")
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
  '(visible-bell t)
- '(x-select-enable-clipboard t))
+ '(yank-excluded-properties t))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

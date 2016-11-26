@@ -1,3 +1,7 @@
+;;; mymode.el --- configuration of the diverses emacs modes
+;;; Commentary:
+
+;;; Code:
 (setq auto-mode-alist(append '(("\\.h$" . c++-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("SConstruct" . python-mode)) auto-mode-alist))
 (setq auto-mode-alist(append '(("SConscript" . python-mode)) auto-mode-alist))
@@ -182,6 +186,10 @@
 			(local-set-key "\C-c\h" 'org-clock-in)
 			(local-set-key "\C-c\C-h" 'org-clock-out)
 			(local-set-key (kbd "C-c C-M-h") 'org-clock-cancel)
+      (local-set-key [C-tab] 'org-global-cycle)
+      (local-set-key [M-right] 'org-shiftmetaright)
+      (local-set-key [M-left] 'org-shiftmetaleft)
+      (local-set-key (kbd "C-c C-.") 'org-time-stamp)
 			))
 
 (add-hook 'doc-view-mode
@@ -189,3 +197,6 @@
 
 (add-hook 'w3m-mode-hook
 		  (lambda () (w3m-my-mode 1)))
+
+(provide 'mymode.el)
+;;; mymode.el ends here
