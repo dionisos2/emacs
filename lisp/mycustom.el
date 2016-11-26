@@ -19,7 +19,10 @@
  '(kill-ring-max 100)
  '(line-move-visual nil)
  '(line-number-mode t)
- '(org-agenda-files (quote ("~/organisation/agenda.org")))
+ '(org-agenda-files
+   (quote
+    ("~/organisation/agenda.org" "~/organisation/birthdays.org")))
+ '(org-agenda-include-diary t)
  '(org-columns-default-format "%TODO %ITEM %Effort{:}")
  '(org-log-repeat nil)
  '(org-modules
