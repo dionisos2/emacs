@@ -121,7 +121,7 @@
 (define-key 'projet "c" 'compile)
 (define-key 'projet "l" 'toggle-preview-latex)
 (define-key 'projet "w" 'org-agenda-list)
-(define-key 'projet "t" 'org-todo-list)
+(define-key 'projet "t" 'org-agenda)
 (define-key 'projet "\C-t" 'org-tags-view-only-todo)
 (define-key 'projet "d" 'dired-jump) ;; Useful to rename file, use just R after
 ;; (define-key 'projet "\C-h" 'habitrpg-status)

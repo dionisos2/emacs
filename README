@@ -44,3 +44,6 @@ langtool-check-done
 
 log command:
 call mwe:open-command-log-buffer and then mwe:log-keyboard-commands to the buffer where to log command
+
+find collision problems with packages
+list-load-path-shadows

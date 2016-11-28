@@ -20,6 +20,20 @@
           calendar-month-name-array ["Janvier" "Février" "Mars" "Avril" "Mai"
                                      "Juin" "Juillet" "Août" "Septembre"
                                         "Octobre" "Novembre" "Décembre"])
+(setq org-agenda-custom-commands ())
+
+;; use org-agenda-filter-by-tag (/) to filter more than that
+(add-to-list 'org-agenda-custom-commands
+             '("p" "important tasks"
+               tags "PRIORITY=\"A\"/TODO"))
+
+(add-to-list 'org-agenda-custom-commands
+             '("t" "todo tasks (without schedule)"
+               tags "-SCHEDULED={.}-DEADLINE={.}+ponctuel/TODO"))
+
+(add-to-list 'org-agenda-custom-commands
+             '("w" "periodic tasks without schedule"
+               tags "-SCHEDULED={.}-DEADLINE={.}+périodique/TODO"))
 
 (provide 'orgconfig.el)
 ;;; orgconfig.el ends here

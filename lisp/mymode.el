@@ -66,7 +66,6 @@
 		(setq compile-command "scons")
 		(setq execute-command "./game&"))))
 
-
 (define-minor-mode latex-my-mode
   "quelques configurations personnelles pour le latex"
   :lighter " latex-my-mode"
@@ -159,6 +158,22 @@
 		  (lambda ()
 			(local-unset-key (kbd "C-o"))
 			))
+
+(add-hook 'wl-summary-mode-hook
+		  (lambda ()
+        (local-unset-key (kbd "C-o"))
+        (local-unset-key (kbd "C-t"))
+        (local-unset-key (kbd "M-s"))
+        (local-unset-key (kbd "M-t"))
+			))
+
+(add-hook 'wl-folder-mode-hook
+		  (lambda ()
+        (local-unset-key (kbd "C-o"))
+        (local-unset-key (kbd "C-t"))
+        (local-unset-key (kbd "M-s"))
+        (local-unset-key (kbd "M-t"))
+        ))
 
 (add-hook 'web-mode-hook
 		  (lambda ()

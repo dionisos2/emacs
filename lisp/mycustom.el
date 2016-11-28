@@ -34,7 +34,7 @@
  '(org-track-ordered-property-with-tag t)
  '(package-selected-packages
    (quote
-    (json-mode mwe-log-commands lua-mode flycheck elm-mode)))
+    (wanderlust realgud mocha json-mode mwe-log-commands lua-mode flycheck elm-mode)))
  '(scroll-conservatively 99)
  '(scroll-step 1)
  '(select-enable-clipboard t)
@@ -48,6 +48,7 @@
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
  '(visible-bell t)
+ '(wl-from " denis.baudouin@gmail.com")
  '(yank-excluded-properties t))
 
 (custom-set-faces
