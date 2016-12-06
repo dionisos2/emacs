@@ -50,6 +50,7 @@
 (load "yamlconfig")
 (load "myflycheck.el")
 (load "mymode.el")
+(load "mytrash.el")
 (load "mymacro.el")
 (load "myw3m.el")
 (load "diff_region.el")

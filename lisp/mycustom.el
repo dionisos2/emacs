@@ -10,6 +10,7 @@
  '(current-language-environment "utf-8")
  '(delete-by-moving-to-trash t)
  '(delete-selection-mode 1)
+ '(find-file-visit-truename t)
  '(ido-auto-merge-work-directories-length -1)
  '(ido-enable-regexp nil)
  '(ido-mode (quote both) nil (ido))
