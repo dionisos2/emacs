@@ -24,7 +24,7 @@
 
 
 ;;f5 pour un acces rapide aux fichiers, voir key.el pour tout les autres raccourcie clavier.
-;;../README
+;;../README.org
 ;;../template/
 
 (require 'dash)
