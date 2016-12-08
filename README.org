@@ -1,0 +1,46 @@
+* dired
+** find-name-dired (in find-dired.el)
+** dired-jump (C-p d)
+** t for toggle mark file or %m for regexp (% is "=" key on azerty)
+** Q for query replace in all marked file
+** %r for rename by regexp (% is "=" key on azerty)
+** C-t C-f /user@host.server.com:/ access on remote machine
+** dired-do-copy : C
+** diredp-dired-recent-dirs
+** dired-do-rename : R (rename or move (like the mv command))
+** dired-create-directory : +
+* coding system
+** c-set-offset (C-c C-o) give what the style use for indent the current line. Then we can change the indent value in the style file
+** c-set-style set the style to use (like haypo)
+** ucs-insert for insert a special char (just write the number)
+** describe-char for describe a char
+** C-S-u for insert a special char in other windows
+** C-q C-j to add a line break in the mini-buffer
+
+* git
+** vc-* are goods functions for manipulate git repository (it’s also possible to click on Git:master). (vc-annotate is fun !)
+
+* help and log
+** for know the used mode: "C-h m" or describe-mode
+** C-h l → view-lossage
+** log command:
+   call mwe:open-command-log-buffer and then mwe:log-keyboard-commands to the buffer where to log command
+
+* org-mode
+** C-c C-t -> TODO to DONE
+** C-c C-s -> make a SCHEDULED
+** C-c C-q -> add tags
+
+* macro
+** macro => view ./lisp/mymacro.el
+** f3 → kmacro-start-macro-or-insert-counter, f3→kmacro-insert-counter (kmacro-add-counter)
+
+* divers
+** click on the info bar for view useful information.
+** delete-trailing-whitespace to delete whitespace at the end of line
+** insert command's result in a buffer :
+   "(with-current-buffer "*view.svg*"
+   (insert (shell-command-to-string cmd)))"
+** in a terminal : C-x C-e open emacs to continue to write the command
+** langtool-check-done delete coloration of langtool
+** list-load-path-shadows find collision problems with packages

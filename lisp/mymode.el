@@ -144,6 +144,7 @@
 		  (lambda () (local-unset-key (kbd "C-o"))
 			(local-unset-key "\C-t\C-t")
 			(local-set-key (kbd "M-s") 'next-line)
+      (local-set-key "/" 'dired-narrow)
 			(auto-complete-my-mode 1)
 			))
 

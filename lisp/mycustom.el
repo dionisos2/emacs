@@ -10,6 +10,7 @@
  '(current-language-environment "utf-8")
  '(delete-by-moving-to-trash t)
  '(delete-selection-mode 1)
+ '(dired-listing-switches "-alh")
  '(find-file-visit-truename t)
  '(ido-auto-merge-work-directories-length -1)
  '(ido-enable-regexp nil)
@@ -35,7 +36,7 @@
  '(org-track-ordered-property-with-tag t)
  '(package-selected-packages
    (quote
-    (wanderlust realgud mocha json-mode mwe-log-commands lua-mode flycheck elm-mode)))
+    (dired-narrow dired+ wanderlust realgud mocha json-mode mwe-log-commands lua-mode flycheck elm-mode)))
  '(scroll-conservatively 99)
  '(scroll-step 1)
  '(select-enable-clipboard t)
