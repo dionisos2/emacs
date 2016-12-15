@@ -13,7 +13,6 @@
 (add-to-list 'load-path "~/.emacs.d/lisp/auto-complete")
 (add-to-list 'load-path "~/.emacs.d/lisp/emacs-w3m")
 (add-to-list 'load-path "~/.emacs.d/lisp/diff_region")
-(add-to-list 'load-path "~/.emacs.d/lisp/magit")
 (add-to-list 'load-path "~/.emacs.d/lisp/spray")
 (add-to-list 'load-path "~/.emacs.d/elpa/flycheck-28")
 
@@ -28,7 +27,6 @@
 ;;../template/
 
 (require 'dash)
-(require 'magit)
 (require 'behave-mode)
 (require 'wl)
 (load "mypackage.el")

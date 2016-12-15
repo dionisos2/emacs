@@ -12,6 +12,7 @@
  '(delete-selection-mode 1)
  '(dired-listing-switches "-alh")
  '(find-file-visit-truename t)
+ '(flycheck-emacs-lisp-load-path (quote inherit))
  '(ido-auto-merge-work-directories-length -1)
  '(ido-enable-regexp nil)
  '(ido-mode (quote both) nil (ido))
@@ -36,7 +37,7 @@
  '(org-track-ordered-property-with-tag t)
  '(package-selected-packages
    (quote
-    (dired-narrow dired+ wanderlust realgud mocha json-mode mwe-log-commands lua-mode flycheck elm-mode)))
+    (magit dired-narrow dired+ wanderlust realgud mocha json-mode mwe-log-commands lua-mode flycheck elm-mode)))
  '(scroll-conservatively 99)
  '(scroll-step 1)
  '(select-enable-clipboard t)
