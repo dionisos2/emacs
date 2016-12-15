@@ -9,6 +9,7 @@
 ** diredp-dired-recent-dirs
 ** dired-do-rename : R (rename or move (like the mv command))
 ** dired-create-directory : +
+** filter directory : "/" (dired-narrow)
 * coding system
 ** c-set-offset (C-c C-o) give what the style use for indent the current line. Then we can change the indent value in the style file
 ** c-set-style set the style to use (like haypo)
