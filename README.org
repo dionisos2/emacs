@@ -1,5 +1,5 @@
 * dired
-** find-name-dired (in find-dired.el)
+** find-name-dired (in find-dired.el) : find files by name
 ** dired-jump (C-p d)
 ** t for toggle mark file or %m for regexp (% is "=" key on azerty)
 ** Q for query replace in all marked file
@@ -27,6 +27,7 @@
 ** log command:
    call mwe:open-command-log-buffer and then mwe:log-keyboard-commands to the buffer where to log command
 
+** describe the bindings of the prefix used to reach this command : "key sequence" C-h
 * org-mode
 ** C-c C-t -> TODO to DONE
 ** C-c C-s -> make a SCHEDULED

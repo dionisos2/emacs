@@ -28,6 +28,7 @@
 
 (require 'dash)
 (require 'behave-mode)
+(require 'magit)
 (require 'wl)
 (load "mypackage.el")
 (load "langtoolconfig.el")
