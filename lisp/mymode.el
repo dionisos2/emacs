@@ -156,6 +156,12 @@
             (auto-complete-my-mode 1)
             ))
 
+(add-hook 'js-mode-hook
+          (lambda ()
+            (local-unset-key (kbd "M-."))
+            (auto-complete-my-mode 1)
+            ))
+
 (add-hook 'grep-mode-hook
           (lambda ()
             (local-unset-key (kbd "C-o"))
