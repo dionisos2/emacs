@@ -30,3 +30,4 @@ request
 .#ido.last
 spray
 network-security.data
+lisp/beancount.el

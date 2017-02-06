@@ -14,6 +14,7 @@
 (add-to-list 'auto-mode-alist '("\\.yml$" . yaml-mode))
 (add-to-list 'auto-mode-alist '("\\.svg$" . image-mode))
 (add-to-list 'auto-mode-alist '("\\.feature$" . behave-mode))
+(add-to-list 'auto-mode-alist '("\\.beancount$" . org-mode))
 
 (autoload 'lua-mode "lua-mode" "Lua editing mode." t)
 
@@ -80,7 +81,8 @@
 
 
 (define-minor-mode pdf-my-mode
-  :lighter "pdf-my-mode"
+  :init-value nil
+  :lighter " pdf-my-mode"
   (if pdf-my-mode
       (progn
         (local-unset-key "\C-t")
@@ -213,6 +215,8 @@
             (local-set-key [M-right] 'org-shiftmetaright)
             (local-set-key [M-left] 'org-shiftmetaleft)
             (local-set-key (kbd "C-c C-.") 'org-time-stamp)
+            (when (string= (file-name-extension buffer-file-name) "beancount")
+              (beancount-mode 1))
             ))
 
 (add-hook 'doc-view-mode

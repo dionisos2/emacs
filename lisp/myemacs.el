@@ -57,6 +57,7 @@
 (load "graphviz-dot-mode.el")
 (load "mypylint.el")
 (load "myspray.el")
+(load "beancount.el")
 
 ;; (load "myhabitrpg.el")
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome

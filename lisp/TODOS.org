@@ -1,2 +1,0 @@
-* TODO Régler le problème avec les backslashs et srecode, pour le php
-* TODO Faire en sorte que l’on voit directement dans quel fichier l’on se trouve
