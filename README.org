@@ -7,7 +7,7 @@
 ** C-t C-f /user@host.server.com:/ access on remote machine
 ** dired-do-copy : C
 ** diredp-dired-recent-dirs
-** dired-do-rename : R (rename or move (like the mv command))
+** dired-do-rename : R (rename or move (like the mv command) could use it on many selected files)
 ** dired-create-directory : +
 ** filter directory : "/" (dired-narrow)
 * coding system
