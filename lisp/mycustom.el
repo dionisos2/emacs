@@ -41,7 +41,8 @@
  '(org-track-ordered-property-with-tag t)
  '(package-selected-packages
    (quote
-    (magit dired-narrow dired+ wanderlust realgud mocha json-mode mwe-log-commands lua-mode flycheck elm-mode)))
+    (realgud elpy helm magit which-key dired-narrow dired+ flycheck elm-mode)))
+ '(realgud:pdb-command-name "python -m pdb")
  '(scroll-conservatively 99)
  '(scroll-step 1)
  '(select-enable-clipboard t)
@@ -55,6 +56,10 @@
  '(truncate-lines nil)
  '(truncate-partial-width-windows nil)
  '(visible-bell t)
+ '(which-key-frame-max-height 100)
+ '(which-key-idle-delay 0.2)
+ '(which-key-mode t)
+ '(which-key-paging-prefixes (quote ("C-c")))
  '(wl-from " denis.baudouin@gmail.com")
  '(yank-excluded-properties t))
 

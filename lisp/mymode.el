@@ -137,6 +137,14 @@
             (auto-complete-my-mode 1)
             ))
 
+(add-hook 'elpy-mode-hook
+          (lambda () (local-unset-key "\C-c\r")
+            (local-unset-key "\C-c\C-c")
+            (define-key elpy-mode-map "\C-c\C-c" nil)
+            (local-set-key "\C-c\C-t" 'anchored-transpose)
+            (auto-complete-my-mode 1)
+            ))
+
 (add-hook 'LaTeX-mode-hook
           (lambda () (local-unset-key (kbd "C-M-e"))
             (auto-complete-my-mode 1)
@@ -209,7 +217,7 @@
             (local-set-key "\C-c\C-a" 'org-archive-to-archive-sibling)
             (local-set-key "\C-c\é" 'org-columns) ;; use 'q' to quit columns view
             (local-set-key "\C-c\h" 'org-clock-in)
-            (local-set-key "\C-c\C-h" 'org-clock-out)
+            ;; (local-set-key "\C-c\C-h" 'org-clock-out)
             (local-set-key (kbd "C-c C-M-h") 'org-clock-cancel)
             (local-set-key [C-tab] 'org-global-cycle)
             (local-set-key [M-right] 'org-shiftmetaright)

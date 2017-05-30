@@ -124,6 +124,8 @@
 (define-key 'projet "t" 'org-agenda)
 (define-key 'projet "\C-t" 'org-tags-view-only-todo)
 (define-key 'projet "d" 'dired-jump) ;; Useful to rename file, use just R after
+(define-key 'projet "e" 'elpy-shell-send-region-or-buffer)
+
 ;; (define-key 'projet "\C-h" 'habitrpg-status)
 
 ;; help command

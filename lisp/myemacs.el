@@ -29,7 +29,7 @@
 (require 'dash)
 (require 'behave-mode)
 (require 'magit)
-(require 'wl)
+;;(require 'wl)
 (load "mypackage.el")
 (load "langtoolconfig.el")
 (load "autosaveconfig.el")
@@ -58,6 +58,7 @@
 (load "mypylint.el")
 (load "myspray.el")
 (load "beancount.el")
+(elpy-enable)
 
 ;; (load "myhabitrpg.el")
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome
