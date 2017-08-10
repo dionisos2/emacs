@@ -41,7 +41,7 @@
  '(org-track-ordered-property-with-tag t)
  '(package-selected-packages
    (quote
-    (realgud elpy helm magit which-key dired-narrow dired+ flycheck elm-mode)))
+    (lua-mode realgud elpy helm magit which-key dired-narrow dired+ flycheck elm-mode)))
  '(realgud:pdb-command-name "python -m pdb")
  '(scroll-conservatively 99)
  '(scroll-step 1)
