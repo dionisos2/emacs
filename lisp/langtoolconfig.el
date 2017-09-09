@@ -1,4 +1,5 @@
-(setq-default ispell-program-name "aspell")
+;; (setq-default ispell-program-name "aspell")
 (require 'langtool)
-(setq langtool-language-tool-jar "/home/dionisos/logiciels/LanguageTool/LanguageTool.jar")
-(setq langtool-default-language "fr")
+(setq langtool-language-tool-jar "/home/dionisos/logiciels/LanguageTool-3.8/languagetool-commandline.jar")
+(setq langtool-default-language "en-US")
+(setq langtool-mother-tongue "fr")

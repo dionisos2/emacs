@@ -4,6 +4,9 @@
 
 (require 'recentf)
 (recentf-mode 1)
+(global-undo-tree-mode)
+(global-company-mode 1)
+(diredp-toggle-find-file-reuse-dir 1)
 
 ;;(require 'skeleton)
 
@@ -41,8 +44,9 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;(get 'yank 'delete-selection)
-(put 'yank 'delete-selection 'yank)
+;; (put 'yank 'delete-selection 'yank)
 
 (defvar first-open "non")
 (if (equal first-open "non") (find-file "~/.emacs.d/lisp/myemacs.el"))
 (setq first-open "oui")
+;; (setq inhibit-message t)

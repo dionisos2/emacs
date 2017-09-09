@@ -1,3 +1,13 @@
+* moving
+  some ressource here : https://www.masteringemacs.org/article/effective-editing-movement
+** M-t M-s M-r M-d basic move
+** C-a C-e move start/end line
+** C-, C-; ace-jump-word-mode/ace-jump-char-mode
+** C-s C-r forward/backward isearch
+** C-[left] C-[right] C-M-[left] C-M-[right] move by word/sexp
+** M-m start of indentation
+** [orig] [fin] start/end of buffer
+** M-[space] move to previous point
 * dired
 ** find-name-dired (in find-dired.el) : find files by name
 ** dired-jump (C-p d)
@@ -46,3 +56,7 @@
 ** in a terminal : C-x C-e open emacs to continue to write the command
 ** langtool-check-done delete coloration of langtool
 ** list-load-path-shadows find collision problems with packages
+** linum-mode toggle line number
+** C-p s, spray mode, Rapid Serial Visual Presentation (RSVP)
+** packages
+   package-activated-list = (ace-jump-mode anchored-transpose auctex auto-complete dired+ dired-narrow dired-hacks-utils elpy company find-file-in-project flycheck geben graphviz-dot-mode helm-dash helm helm-core highlight-indentation ivy julia-mode langtool lua-mode magit git-commit magit-popup dash pdf-tools php-mode pkg-info epl popup pylint python-mode pyvenv s spray tablist undo-tree web-mode with-editor async yaml-mode yasnippet)

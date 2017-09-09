@@ -45,16 +45,20 @@
         )))
 
 
+;; (define-minor-mode auto-complete-my-mode
+;;   "commentaire obligatoire /!\\"
+;;   :lighter " auto-complete-my-mode"
+;;   (if auto-complete-my-mode
+;;       (progn
+;;         (auto-complete-mode 1)
+;;         (local-set-key [backtab] 'ac-previous)
+;;         (local-set-key [C-tab] 'ac-expand)
+;;         (local-set-key [M-tab] 'ac-expand)
+;;         )))
+
 (define-minor-mode auto-complete-my-mode
-  "commentaire obligatoire /!\\"
-  :lighter " auto-complete-my-mode"
-  (if auto-complete-my-mode
-      (progn
-        (auto-complete-mode 1)
-        (local-set-key [backtab] 'ac-previous)
-        (local-set-key [C-tab] 'ac-expand)
-        (local-set-key [M-tab] 'ac-expand)
-        )))
+  ()
+  )
 
 (define-minor-mode c++-my-mode
   "quelques configurations personnelles pour le c++"
@@ -130,11 +134,23 @@
                                         ;(srecode-minor-mode 1)
             ))
 
+(defun python-doc ()
+  (interactive)
+  (setq-local helm-dash-docsets '("Python 3")))
+
+(defun julia-doc ()
+  (interactive)
+  (setq-local helm-dash-docsets '("Julia")))
+
+;; (add-hook 'ein:notebook-multilang-mode-hook
+;;           (python-doc))
+
 (add-hook 'python-mode-hook
           (lambda () (local-unset-key "\C-c\r")
             (local-unset-key "\C-c\C-c")
             (local-set-key "\C-c\C-t" 'anchored-transpose)
             (auto-complete-my-mode 1)
+            (python-doc)
             ))
 
 (add-hook 'elpy-mode-hook
@@ -208,6 +224,7 @@
           (lambda ()
             ;; (auto-complete-my-mode 1)
             (local-unset-key "\C-y")
+            (local-unset-key (kbd "C-,"))
             (local-set-key (kbd "C-M-d") 'org-up-element)
             (local-set-key (kbd "<backtab>") 'hide-subtree)
             (local-set-key [S-iso-lefttab] 'hide-subtree)
@@ -223,8 +240,8 @@
             (local-set-key [M-right] 'org-shiftmetaright)
             (local-set-key [M-left] 'org-shiftmetaleft)
             (local-set-key (kbd "C-c C-.") 'org-time-stamp)
-            (when (string= (file-name-extension buffer-file-name) "beancount")
-              (beancount-mode 1))
+            ;; (when (string= (file-name-extension buffer-file-name) "beancount") // create bug with helm
+            ;;   (beancount-mode 1))
             ))
 
 (add-hook 'doc-view-mode

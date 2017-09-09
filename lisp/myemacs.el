@@ -7,58 +7,52 @@
 ;;------------------load elisp file--------------------
 
 ;;; Code:
-(add-to-list 'load-path "~/.emacs.d/habitrpg/habitrpg/")
 (add-to-list 'load-path "~/.emacs.d/lisp")
-(add-to-list 'load-path "~/.emacs.d/lisp/yaml-mode")
-(add-to-list 'load-path "~/.emacs.d/lisp/auto-complete")
-(add-to-list 'load-path "~/.emacs.d/lisp/emacs-w3m")
 (add-to-list 'load-path "~/.emacs.d/lisp/diff_region")
-(add-to-list 'load-path "~/.emacs.d/lisp/spray")
-(add-to-list 'load-path "~/.emacs.d/elpa/flycheck-28")
-
-;;(add-to-list 'load-path "/usr/share/emacs/site-lisp/w3m")
-
-(load-file "~/.emacs.d/lisp/php-mode/php-mode.el")
-(load-file "~/.emacs.d/lisp/web-mode/web-mode.el")
 
 
 ;;f5 pour un acces rapide aux fichiers, voir key.el pour tout les autres raccourcie clavier.
 ;;../README.org
 ;;../template/
 
-(require 'dash)
+(load "mypackage.el")
+
+(elpy-enable)
 (require 'behave-mode)
 (require 'magit)
-;;(require 'wl)
-(load "mypackage.el")
+(require 'helm-config)
+(helm-mode 1)
+
 (load "langtoolconfig.el")
 (load "autosaveconfig.el")
 (load "haypo_style.el")
 (load "myfunction.el")
 (load "cedetconfig.el")
 (load "miscellaneous.el")
-(load "auto-completeconfig.el")
+;; (load "myauto-complete.el")
 (load "orgconfig.el")
 (load "mycustom.el")
-(load "auctexconfig.el")
-(load "key.el")
+;; (load "auctexconfig.el")
 ;; (load "myhtml.el")
 (load "mywebmode.el")
-(load "anchored-transpose.el")
+;; (load "anchored-transpose.el")
 ;; ;; (load "gebenconfig.el")
 (load "yamlconfig")
 (load "myflycheck.el")
 (load "mymode.el")
 (load "mytrash.el")
 (load "mymacro.el")
-(load "myw3m.el")
+;; (load "myw3m.el")
 (load "diff_region.el")
-(load "undo-tree-0.6.4.el")
-(load "graphviz-dot-mode.el")
+(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
 (load "mypylint.el")
 (load "myspray.el")
 (load "beancount.el")
-(elpy-enable)
+(load "myace-jump.el")
+(load "mypdf-tool.el")
+(load "myhelm-dash.el")
+(load "myein.el")
+(load "key.el")
 
 ;; (load "myhabitrpg.el")
 ;;(load "fullscreen.el") ;; non utilisé car sous awesome

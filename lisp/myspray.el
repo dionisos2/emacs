@@ -5,7 +5,7 @@
 ;;; Code:
 (require 'spray)
 
-(setq spray-wpm 480)
+(setq spray-wpm 300)
 (setq spray-margin-left 14)
 (setq spray-margin-top 2)
 (provide 'myspray)

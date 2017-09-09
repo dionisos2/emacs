@@ -69,7 +69,7 @@
 
 (defun my-previous-error ()
   (interactive)
-  (if langtool-buffer-process
+  (if langtool-mode-line-message
 	  (progn
 		(langtool-goto-previous-error)
 		(langtool-show-message-at-point))
@@ -79,7 +79,7 @@
 
 (defun my-next-error ()
   (interactive)
-  (if langtool-buffer-process
+  (if langtool-mode-line-message
 	  (progn
 		(langtool-goto-next-error)
 		(langtool-show-message-at-point))

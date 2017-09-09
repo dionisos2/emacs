@@ -72,10 +72,10 @@ In particular, no temp files are created."
   "Attempt to move a file to the trash. If this fails, simply delete it.
 This guarantees that any deletable file will either be trashed or deleted.
 If the file is excluded from the trash, it is simply deleted."
-  (print filename)
+  ;; (print "plop")
   (if (file-excluded-from-system-trash-p filename)
-      ((when (file-exists-p filename)
-        (call-process-discard-output "rm" "-rf" filename)))
+      (when (file-exists-p filename)
+        (call-process-discard-output "rm" "-rf" filename))
       (call-process-discard-output "trash" filename)))
 
 

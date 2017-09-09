@@ -14,29 +14,37 @@
 
 
 ;; basic command
+(global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "M-y") 'execute-extended-command)
 (global-set-key (kbd "C-M-y") 'eval-expression)
 (global-set-key (kbd "C-(") 'start-kbd-macro)
 (global-set-key (kbd "C-)") 'end-kbd-macro)
 (global-set-key (kbd "C-b") 'call-last-kbd-macro)
 (global-set-key (kbd "C-c m") 'nxhtml-mumamo-mode)
+(global-set-key (kbd "C-,") 'ace-jump-word-mode)
+(global-set-key (kbd "C-;") 'ace-jump-char-mode)
 
 ;; file/tab command (file-move = C-t)
-(define-key 'file-move "\C-f" 'find-file)
+(define-key 'file-move "\C-f" 'helm-find-files)
 (define-key 'file-move (kbd "C-M-f") 'write-file)
 (define-key 'file-move "\C-s" 'save-buffer)
-(define-key 'file-move "\C-t" 'switch-to-buffer)
+(eval-after-load 'ein-notebook:
+  '(progn
+     (define-key ein:notebook-mode-map "\C-t\C-s" 'ein:notebook-save-notebook-command)))
+(define-key 'file-move "\C-t" 'helm-buffers-list)
 ;(define-key 'file-move (kbd "C-M-g") 'gtags-find-file)
 (define-key 'file-move "g" 'find-tag)
 (define-key 'file-move "\M-g" 'find-next-tag)
-(define-key 'file-move "\C-r" 'recentf-open-files-compl)
+(define-key 'file-move "\C-r" 'helm-recentf)
 (define-key 'file-move "r" 'show-recentf)
 (define-key 'file-move "a" 'add-file-to-recentf)
 (define-key 'file-move "\C-k" 'kill-buffer-and-maybe-window)
 (define-key 'file-move "k" 'kill-buffer)
 (global-set-key [f5] 'find-file-at-point)
 ;(define-key gtags-select-mode-map (kbd "<return>") 'gtags-select-tag)
-(define-key 'file-move "b" 'gtags-pop-stack)
+(define-key 'file-move "b" 'bookmark-set)
+(define-key 'file-move "\C-b" 'bookmark-jump)
+(define-key 'file-move "\C-l" 'bookmark-bmenu-list)
 (define-key 'file-move "\C-c\C-c" 'save-buffers-kill-emacs)
 (define-key 'file-move "\C-c\C-c" 'delete-frame)
 
@@ -57,7 +65,7 @@
 (define-key 'edition "d" 'echo-date)
 ;; (define-key 'edition "\M-a" 'habitrpg-add)
 
-(global-set-key (kbd "M-.") 'yank-pop)
+(global-set-key (kbd "M-.") 'helm-show-kill-ring)
 (global-set-key (kbd "C-y") 'kill-region)
 (global-set-key "\C-xx" 'copy-region-as-kill)
 (global-set-key "\C-x\C-x" 'copy-region-as-kill)
@@ -66,6 +74,8 @@
 (global-set-key (kbd "M-l") 'select-word)
 (global-set-key (kbd "C-M-l") 'select-symbol)
 (global-set-key (kbd "<f10>") 'shell-script-mode)
+(define-key company-active-map [tab] 'helm-company)
+(global-set-key [backtab] 'helm-company)
 (global-set-key [C-tab] 'srecode-insert)
 (global-set-key [C-return] 'semantic-complete-analyze-inline)
 (global-set-key [C-kp-enter] 'semantic-analyze-possible-completions)
@@ -93,12 +103,35 @@
 (global-set-key (kbd "<next>") 'forward-paragraph)
 (global-set-key (kbd "C-o") 'other-window)
 (global-set-key (kbd "M-SPC") 'View-back-to-mark)
-
 (global-set-key (kbd "M-t") 'backward-char)
 (global-set-key (kbd "M-d") 'previous-line)
 (global-set-key (kbd "M-r") 'forward-char)
 (global-set-key (kbd "M-s") 'next-line)
 (global-set-key (kbd "C-M-t") 'previous-word)
+
+(define-key helm-map (kbd "M-s") 'helm-next-line)
+(define-key helm-map (kbd "M-d") 'helm-previous-line)
+(define-key helm-map (kbd "M-t") 'backward-char)
+(define-key helm-map (kbd "M-r") 'forward-char)
+(define-key helm-map (kbd "C-s") 'helm-previous-line)
+
+(define-key helm-read-file-map (kbd "M-t") 'backward-char)
+(define-key helm-read-file-map (kbd "M-r") 'forward-char)
+
+(define-key helm-buffer-map (kbd "C-s") 'helm-next-line)
+
+(define-key helm-find-files-map (kbd "M-t") 'backward-char)
+(define-key helm-find-files-map (kbd "M-r") 'forward-char)
+(define-key helm-find-files-map (kbd "C-s") 'helm-next-line)
+
+(eval-after-load 'helm-company
+  '(progn
+     (define-key helm-company-map (kbd "M-s") 'helm-next-line)
+     (define-key helm-company-map (kbd "M-d") 'helm-previous-line)
+     (define-key helm-company-map (kbd "M-t") 'backward-char)
+     (define-key helm-company-map (kbd "M-r") 'forward-char)))
+
+(define-key dired-mode-map (kbd "DEL") 'dired-up-directory)
 
 
 ;; windows
@@ -119,12 +152,13 @@
 (global-set-key (kbd "C-}") 'next-error)
 (global-set-key [f12] 'eassist-switch-h-cpp)
 (define-key 'projet "c" 'compile)
-(define-key 'projet "l" 'toggle-preview-latex)
+(define-key 'projet "l" 'helm-locate)
 (define-key 'projet "w" 'org-agenda-list)
 (define-key 'projet "t" 'org-agenda)
 (define-key 'projet "\C-t" 'org-tags-view-only-todo)
 (define-key 'projet "d" 'dired-jump) ;; Useful to rename file, use just R after
 (define-key 'projet "e" 'elpy-shell-send-region-or-buffer)
+(global-set-key "\C-p\h" 'helm-dash-at-point)
 
 ;; (define-key 'projet "\C-h" 'habitrpg-status)
 
