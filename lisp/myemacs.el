@@ -29,6 +29,7 @@
 (require 'flycheck)
 (require 'trash-settings.el)
 (require 'spray)
+(require 'undo-tree)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")

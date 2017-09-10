@@ -56,6 +56,11 @@
 
 (bind-key* "C-s" 'isearch-forward-regexp)
 (bind-key* "C-r" 'isearch-backward-regexp)
+(bind-key "C-M-s" 'isearch-edit-string isearch-mode-map)
+(bind-key "<DEL>" 'isearch-del-char isearch-mode-map)
+(bind-key "<right>" 'isearch-yank-word isearch-mode-map)
+(bind-key "<left>" 'isearch-delete-char isearch-mode-map)
+
 (bind-key* "<C-right>" 'forward-word)
 (bind-key* "<C-left>" 'backward-word)
 (bind-key* "<end>" 'end-of-buffer)
@@ -72,6 +77,8 @@
 (bind-key* "C-o" 'other-window)
 (bind-key* "<C-kp-0>" 'delete-window)
 (bind-key* "<C-kp-1>" 'delete-other-windows)
+(bind-key* "<f1>" 'delete-window)
+(bind-key* "<f2>" 'delete-other-windows)
 (bind-key* "<C-kp-2>" 'split-window-vertically)
 (bind-key* "<C-kp-3>" 'split-window-horizontally)
 
@@ -81,9 +88,7 @@
 
 ;; (helm-map helm-read-file-map helm-find-files-map helm-buffer-map)
 
-(with-eval-after-load "helm-company"
-  (bind-key "M-s" 'helm-next-line helm-company-map)
-  (bind-key "M-d" 'helm-previous-line helm-company-map)
+(with-eval-after-load "company"
   (bind-key  "<tab>" 'helm-company company-active-map)
   (bind-key* "<backtab>" 'helm-company))
 
@@ -103,6 +108,7 @@
 (with-eval-after-load "org"
   (bind-key "C-M-d" 'org-up-element org-mode-map)
   (bind-key "<backtab>" 'hide-subtree org-mode-map)
+  (bind-key "<f5>" 'org-todo org-mode-map)
   ;; (bind-key "S-iso-lefttab" 'hide-subtree org-mode-map)
   (bind-key "C-t o" 'org-remove-occur-highlights org-mode-map)
   (bind-key "C-c C-o" 'org-toggle-ordered-property org-mode-map)
@@ -128,9 +134,9 @@
 (bind-key* "C-t C-t" 'helm-buffers-list)
 
 (bind-key* "C-t C-M-f" 'write-file)
-(bind-key* "C-t C-s" 'save-buffer)
+(bind-key "C-t C-s" 'save-buffer)
 (with-eval-after-load "ein-notebook"
-  (bind-key "C-t C-s" 'ein:notebook-save-notebook-command))
+  (bind-key "C-t C-s" 'ein:notebook-save-notebook-command ein:notebook-mode-map))
 
 ;; (bind-key* "C-t g" 'find-tag)
 ;; (bind-key* "C-t M-g" 'find-next-tag)

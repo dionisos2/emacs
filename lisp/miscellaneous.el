@@ -1,5 +1,4 @@
 (recentf-mode 1)
-(global-undo-tree-mode)
 (global-company-mode 1)
 (diredp-toggle-find-file-reuse-dir 1)
 (helm-mode 1)
@@ -15,4 +14,16 @@
 (defvar first-open "non")
 (if (equal first-open "non") (find-file "~/.emacs.d/lisp/myemacs.el"))
 (setq first-open "oui")
+
+(defun my-turn-on-undo-tree-mode (&optional print-message)
+  "Enable `undo-tree-mode' in the current buffer, when appropriate."
+  (interactive "p")
+  (if (memq major-mode undo-tree-incompatible-major-modes)
+      (when print-message
+	(message "Buffer does not support undo-tree-mode;\
+ undo-tree-mode NOT enabled"))
+    (undo-tree-mode 1)))
+
+(define-globalized-minor-mode my-global-undo-tree-mode undo-tree-mode my-turn-on-undo-tree-mode)
+(my-global-undo-tree-mode)
 ;; (setq inhibit-message t)
