@@ -2,7 +2,6 @@
 ;;; Commentary:
 
 ;;; Code:
-(require 'trash-settings.el)
 
 (setq system-trash-exclude-matches '("#[^/]+#$" ".*~$" "\\.emacs\\.desktop.*"))
 (setq system-trash-exclude-paths '("/tmp"))

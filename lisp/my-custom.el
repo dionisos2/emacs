@@ -7,6 +7,7 @@
  '(auto-save-default nil)
  '(backward-delete-char-untabify-method nil)
  '(browse-url-browser-function (quote eww))
+ '(c-default-style (quote ((c-mode . "haypo") (c++-mode . "haypo"))))
  '(column-number-mode t)
  '(company-idle-delay 0.2)
  '(current-language-environment "utf-8")
@@ -25,6 +26,7 @@
  '(global-flycheck-mode t)
  '(helm-buffer-max-length nil)
  '(helm-dash-browser-func (quote eww))
+ '(helm-prevent-escaping-from-minibuffer nil)
  '(ido-auto-merge-work-directories-length -1)
  '(ido-enable-regexp nil)
  '(ido-mode (quote both) nil (ido))
@@ -42,6 +44,7 @@
     ("~/organisation/agenda.org" "~/organisation/birthdays.org")))
  '(org-agenda-include-diary t)
  '(org-columns-default-format "%TODO %ITEM %Effort{:}")
+ '(org-log-done (quote time))
  '(org-log-repeat nil)
  '(org-modules
    (quote
@@ -66,6 +69,9 @@
  '(show-paren-mode (quote t))
  '(show-trailing-whitespace t)
  '(speedbar-indentation-width 4)
+ '(spray-margin-left 14)
+ '(spray-margin-top 2)
+ '(spray-wpm 300)
  '(tab-width 2)
  '(tool-bar-mode nil)
  '(transient-mark-mode t)

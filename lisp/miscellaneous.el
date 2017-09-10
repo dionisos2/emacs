@@ -1,50 +1,16 @@
-(require 'find-dired)
-(require 'thingatpt)
-(require 'view)
-
-(require 'recentf)
 (recentf-mode 1)
 (global-undo-tree-mode)
 (global-company-mode 1)
 (diredp-toggle-find-file-reuse-dir 1)
+(helm-mode 1)
+(elpy-enable)
+(pdf-tools-install)
 
-;;(require 'skeleton)
+(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
 
-;;(require 'yasnippet)
-;;(yas/initialize)
-;;(yas/load-directory "~/.emacs.el/yasnippet-0.6.1c/snippets")
-
-(require 'gtags)
-(require 'php-mode)
-
-;(require 'eassist)
-;(require 'cmake-mode)
-
-;;-----------------------config------------------------
-;; (modify-syntax-entry ?_ "w" c-mode-syntax-table)
-;; (modify-syntax-entry ?_ "w" c++-mode-syntax-table)
-;; (modify-syntax-entry ?- "w" lisp-mode-syntax-table)
-;; (modify-syntax-entry ?- "w" emacs-lisp-mode-syntax-table)
-;; (modify-syntax-entry ?_"w" lisp-mode-syntax-table)
-;; (modify-syntax-entry ?_ "w" emacs-lisp-mode-syntax-table)
-
-;;(defvar first-time-fullscreen "non")
-;;(if (equal first-time-fullscreen "non") (toggle-fullscreen))
-;;(setq first-time-fullscreen "oui")
-
-(setq custom-file "~/.emacs.d/lisp/mycustom.el")
-
-;(setq frame-title-format '(buffer-file-name "Emacs: %b"))
-;(setq mode-line-format '(buffer-file-name "(%f)"))
-
-;;(set-frame-font "-unknown-LMRoman12-normal-normal-normal-*-15-*-*-*-*-0-iso10646-1")
-
-;;(set-background-color "lightblue")
-
+(setq custom-file "~/.emacs.d/lisp/my-custom.el")
+(load custom-file)
 (fset 'yes-or-no-p 'y-or-n-p)
-
-;(get 'yank 'delete-selection)
-;; (put 'yank 'delete-selection 'yank)
 
 (defvar first-open "non")
 (if (equal first-open "non") (find-file "~/.emacs.d/lisp/myemacs.el"))

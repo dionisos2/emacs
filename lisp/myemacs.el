@@ -3,60 +3,56 @@
 ;; a mettre dans le fichier .emacs
 ;; (add-to-list 'load-path "~/.emacs.el")
 ;; (load "myemacs.el")
+;; ../README.org
 
 ;;------------------load elisp file--------------------
 
 ;;; Code:
 (add-to-list 'load-path "~/.emacs.d/lisp")
-(add-to-list 'load-path "~/.emacs.d/lisp/diff_region")
 
+(require 'package)
+(package-initialize)
 
-;;f5 pour un acces rapide aux fichiers, voir key.el pour tout les autres raccourcie clavier.
-;;../README.org
-;;../template/
-
-(load "mypackage.el")
-
-(elpy-enable)
 (require 'behave-mode)
 (require 'magit)
 (require 'helm-config)
-(helm-mode 1)
+(require 'find-dired)
+(require 'thingatpt)
+(require 'view)
+(require 'recentf)
+(require 'gtags)
+(require 'php-mode)
+(require 'web-mode)
+(require 'langtool)
+(require 'org-checklist)
+(require 'french-holidays)
+(require 'flycheck)
+(require 'trash-settings.el)
+(require 'spray)
 
-(load "langtoolconfig.el")
-(load "autosaveconfig.el")
-(load "haypo_style.el")
-(load "myfunction.el")
-(load "cedetconfig.el")
 (load "miscellaneous.el")
-;; (load "myauto-complete.el")
-(load "orgconfig.el")
-(load "mycustom.el")
-;; (load "auctexconfig.el")
-;; (load "myhtml.el")
-(load "mywebmode.el")
-;; (load "anchored-transpose.el")
-;; ;; (load "gebenconfig.el")
-(load "yamlconfig")
-(load "myflycheck.el")
-(load "mymode.el")
-(load "mytrash.el")
-(load "mymacro.el")
-;; (load "myw3m.el")
+(load "haypo_style.el")
 (load "diff_region.el")
-(setenv "IPY_TEST_SIMPLE_PROMPT" "1")
-(load "mypylint.el")
-(load "myspray.el")
-(load "beancount.el")
-(load "myace-jump.el")
-(load "mypdf-tool.el")
-(load "myhelm-dash.el")
-(load "myein.el")
-(load "key.el")
 
+(load "my-langtool.el")
+(load "my-autosaveconfig.el")
+(load "my-function.el")
+(load "my-org-mode.el")
+(load "my-web-mode.el")
+
+(load "my-flycheck.el")
+(load "my-mode.el")
+(load "my-trash.el")
+(load "my-pylint.el")
+(load "my-ace-jump.el")
+(load "my-custom.el")
+(load "my-key.el")
+
+;; (load "anchored-transpose.el")
+;; (load "beancount.el")
 ;; (load "myhabitrpg.el")
-;;(load "fullscreen.el") ;; non utilisé car sous awesome
-;;(load "ecbconfig.el")
+;; (load "fullscreen.el") ;; non utilisé car sous awesome
+;; (load "ecbconfig.el")
 
 (provide 'myemacs.el)
 ;;; myemacs.el ends here
