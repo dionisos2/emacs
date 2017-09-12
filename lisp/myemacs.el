@@ -11,10 +11,13 @@
 (add-to-list 'load-path "~/.emacs.d/lisp")
 
 (require 'package)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
 (require 'behave-mode)
 (require 'magit)
+(require 'helm)
 (require 'helm-config)
 (require 'find-dired)
 (require 'thingatpt)
