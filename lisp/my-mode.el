@@ -46,6 +46,11 @@
             (python-doc)
             ))
 
+(add-hook 'julia-mode-hook
+          (lambda ()
+            (julia-doc)
+            ))
+
 (add-hook 'dired-mode-hook
           (lambda ()
             (local-set-key "/" 'dired-narrow)
