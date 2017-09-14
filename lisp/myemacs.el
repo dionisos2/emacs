@@ -33,6 +33,7 @@
 (require 'trash-settings.el)
 (require 'spray)
 (require 'undo-tree)
+(require 'company-statistics)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")

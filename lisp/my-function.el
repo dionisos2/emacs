@@ -4,6 +4,11 @@
 
 ;;; Code:
 
+(defun my-helm-company()
+  (interactive)
+  (if (equal (length company-candidates) 1)
+      (company-complete-selection)
+    (helm-company)))
 
 (defun org-tags-view-only-todo()
   (interactive)
@@ -24,7 +29,7 @@
   (interactive)
   (if helm-alive-p
       (helm-next-line)
-    (forward-line)))
+    (next-line)))
 
 
 (defun my-previous-line ()
@@ -32,7 +37,7 @@
   (interactive)
   (if helm-alive-p
       (helm-previous-line)
-    (forward-line -1)))
+    (previous-line)))
 
 (defun my-previous-error ()
   (interactive)

@@ -4,6 +4,7 @@
 (helm-mode 1)
 (elpy-enable)
 (pdf-tools-install)
+(company-statistics-mode)
 
 (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
 

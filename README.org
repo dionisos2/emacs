@@ -60,3 +60,4 @@
 ** C-p s, spray mode, Rapid Serial Visual Presentation (RSVP)
 ** packages
    package-activated-list = (ace-jump-mode anchored-transpose auctex auto-complete dired+ dired-narrow dired-hacks-utils elpy company find-file-in-project flycheck geben graphviz-dot-mode helm-dash helm helm-core highlight-indentation ivy julia-mode langtool lua-mode magit git-commit magit-popup dash pdf-tools php-mode pkg-info epl popup pylint python-mode pyvenv s spray tablist undo-tree web-mode with-editor async yaml-mode yasnippet)
+** company-diag, too see company backends currently used

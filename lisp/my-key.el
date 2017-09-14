@@ -89,8 +89,10 @@
 ;; (helm-map helm-read-file-map helm-find-files-map helm-buffer-map)
 
 (with-eval-after-load "company"
-  (bind-key  "<tab>" 'helm-company company-active-map)
-  (bind-key* "<backtab>" 'helm-company))
+  (bind-key  "<tab>" 'my-helm-company company-active-map)
+  (bind-key  "<return>" 'newline company-active-map)
+  (bind-key* "C-<tab>" 'my-helm-company)
+  (bind-key*  "M-<tab>" 'helm-complete-file-name-at-point))
 
 (with-eval-after-load "helm-files"
   (bind-key "<left>" 'backward-char helm-find-files-map)
@@ -136,7 +138,9 @@
 (bind-key* "C-t C-M-f" 'write-file)
 (bind-key "C-t C-s" 'save-buffer)
 (with-eval-after-load "ein-notebook"
-  (bind-key "C-t C-s" 'ein:notebook-save-notebook-command ein:notebook-mode-map))
+  (bind-key "C-t C-s" 'ein:notebook-save-notebook-command ein:notebook-mode-map)
+  (bind-key "C-<enter>" 'ein:worksheet-execute-cell ein:notebook-mode-map))
+
 
 ;; (bind-key* "C-t g" 'find-tag)
 ;; (bind-key* "C-t M-g" 'find-next-tag)
