@@ -66,7 +66,7 @@
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (web-beautify company-lua company-math company-php company-statistics pdf-tools elm-mode helm-company bind-key realgud which-key picpocket ein anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
+    (web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket ein anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")
  '(realgud:pdb-command-name "python -m pdb")

@@ -108,6 +108,7 @@
 ;;; Org-mode
 
 (with-eval-after-load "org"
+  (bind-key "<f6>" 'org-schedule org-mode-map)
   (bind-key "C-M-d" 'org-up-element org-mode-map)
   (bind-key "<backtab>" 'hide-subtree org-mode-map)
   (bind-key "<f5>" 'org-todo org-mode-map)
