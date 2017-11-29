@@ -41,7 +41,7 @@
 (bind-key* "C-M-é" 'undo-tree-visualize)
 
 ;;; Navigation
-(bind-key* "C-n" 'my-next-error)
+(bind-key "C-n" 'my-next-error)
 (bind-key* "C-M-n" 'my-previous-error)
 
 (bind-key* "C-d" 'ace-jump-word-mode)
@@ -52,10 +52,10 @@
 (bind-key* "M-SPC" 'View-back-to-mark)
 
 (bind-key* "C-M-SPC" 'point-to-register)
-(bind-key* "C-f" 'jump-to-register)
+(bind-key "C-f" 'jump-to-register)
 
-(bind-key* "C-s" 'isearch-forward-regexp)
-(bind-key* "C-r" 'isearch-backward-regexp)
+(bind-key "C-s" 'isearch-forward-regexp)
+(bind-key "C-r" 'isearch-backward-regexp)
 (bind-key "C-M-s" 'isearch-edit-string isearch-mode-map)
 (bind-key "<DEL>" 'isearch-del-char isearch-mode-map)
 (bind-key "<right>" 'isearch-yank-word isearch-mode-map)
@@ -85,6 +85,9 @@
 ;;; Helm
 (bind-key* "M-x" 'helm-M-x)
 (bind-key* "M-." 'helm-show-kill-ring)
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
+(define-key helm-map (kbd "C-j")  'helm-select-action) ; list actions using C-z
 
 ;; (helm-map helm-read-file-map helm-find-files-map helm-buffer-map)
 
@@ -132,7 +135,8 @@
 ;; (global-set-key (kbd "C-M-s") 'multi-occur-in-matching-buffers)
 
 ;; File/tab command (file-move = C-t)
-(bind-key* "C-t C-f" 'helm-find-files)
+(bind-key* "C-t C-f" 'find-file)
+(bind-key* "<f9>" 'helm-find-files)
 (bind-key* "C-t C-r" 'helm-recentf)
 (bind-key* "C-t C-t" 'helm-buffers-list)
 

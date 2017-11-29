@@ -3,7 +3,7 @@
 ** M-t M-s M-r M-d basic move
 ** C-a C-e move start/end line
 ** C-, C-; ace-jump-word-mode/ace-jump-char-mode
-** C-s C-r forward/backward isearch
+** C-s C-r forward/backward isearch M-i helm-swoop
 ** C-[left] C-[right] C-M-[left] C-M-[right] move by word/sexp
 ** M-m start of indentation
 ** [orig] [fin] start/end of buffer

@@ -13,7 +13,7 @@
    (quote
     ((company-dabbrev-code company-gtags company-etags company-keywords company-abbrev company-dabbrev)
      company-dabbrev)))
- '(company-dabbrev-char-regexp "\\(\\sw\\|\\s_\\)")
+ '(company-dabbrev-char-regexp "\\(\\sw\\|[-$_]\\)")
  '(company-dabbrev-minimum-length 3)
  '(company-idle-delay 0.2)
  '(current-language-environment "utf-8")
@@ -66,7 +66,7 @@
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket ein anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
+    (helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket ein anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")
  '(realgud:pdb-command-name "python -m pdb")

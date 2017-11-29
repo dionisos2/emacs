@@ -25,7 +25,7 @@
 (require 'thingatpt)
 (require 'view)
 (require 'recentf)
-(require 'gtags)
+;;(require 'gtags)
 (require 'php-mode)
 (require 'web-mode)
 (require 'langtool)
@@ -36,6 +36,7 @@
 (require 'spray)
 (require 'undo-tree)
 (require 'company-statistics)
+(require 'helm-swoop)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")

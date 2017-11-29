@@ -6,6 +6,11 @@
 (pdf-tools-install)
 (company-statistics-mode)
 
+(put 'downcase-region 'disabled nil)
+(put 'narrow-to-region 'disabled nil)
+(put 'narrow-to-page 'disabled nil)
+(put 'upcase-region 'disabled nil)
+
 (setenv "IPY_TEST_SIMPLE_PROMPT" "1")
 
 (setq custom-file "~/.emacs.d/lisp/my-custom.el")
