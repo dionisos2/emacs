@@ -77,8 +77,8 @@
 (bind-key* "C-o" 'other-window)
 (bind-key* "<C-kp-0>" 'delete-window)
 (bind-key* "<C-kp-1>" 'delete-other-windows)
-(bind-key* "<f1>" 'delete-window)
-(bind-key* "<f2>" 'delete-other-windows)
+(bind-key* "<f2>" 'delete-window)
+(bind-key* "<f1>" 'delete-other-windows)
 (bind-key* "<C-kp-2>" 'split-window-vertically)
 (bind-key* "<C-kp-3>" 'split-window-horizontally)
 
@@ -144,7 +144,9 @@
 (bind-key "C-t C-s" 'save-buffer)
 (with-eval-after-load "ein-notebook"
   (bind-key "C-t C-s" 'ein:notebook-save-notebook-command ein:notebook-mode-map)
-  (bind-key "C-<enter>" 'ein:worksheet-execute-cell ein:notebook-mode-map))
+  (bind-key "C-<enter>" 'ein:worksheet-execute-cell ein:notebook-mode-map)
+  (bind-key "C-<return>" 'ein:worksheet-execute-cell ein:notebook-mode-map)
+  )
 
 
 ;; (bind-key* "C-t g" 'find-tag)

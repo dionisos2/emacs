@@ -9,6 +9,7 @@
 ** [orig] [fin] start/end of buffer
 ** M-[space] move to previous point
 * dired
+** 'w' when on a file/directory to copy the path
 ** find-name-dired (in find-dired.el) : find files by name
 ** dired-jump (C-p d)
 ** t for toggle mark file or %m for regexp (% is "=" key on azerty)
