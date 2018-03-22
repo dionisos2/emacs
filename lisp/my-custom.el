@@ -50,6 +50,8 @@
    (quote
     ("~/organisation/agenda.org" "~/organisation/birthdays.org")))
  '(org-agenda-include-diary t)
+ '(org-agenda-restore-windows-after-quit t)
+ '(org-agenda-window-setup (quote current-window))
  '(org-columns-default-format "%TODO %ITEM %Effort{:}")
  '(org-log-done (quote time))
  '(org-log-repeat nil)
@@ -78,7 +80,7 @@
  '(speedbar-indentation-width 4)
  '(spray-margin-left 14)
  '(spray-margin-top 2)
- '(spray-wpm 300)
+ '(spray-wpm 350)
  '(tab-width 2)
  '(tool-bar-mode nil)
  '(transient-mark-mode t)
