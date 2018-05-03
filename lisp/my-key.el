@@ -40,6 +40,7 @@
 (bind-key* "C-É" 'undo-tree-redo)
 (bind-key* "C-M-é" 'undo-tree-visualize)
 
+(bind-key* "C-M-b" 'my-shell-command-on-region)
 ;;; Navigation
 (bind-key "C-n" 'my-next-error)
 (bind-key* "C-M-n" 'my-previous-error)

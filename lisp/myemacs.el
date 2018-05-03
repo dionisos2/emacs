@@ -55,6 +55,7 @@
 (load "my-ace-jump.el")
 (load "my-custom.el")
 (load "my-key.el")
+(load "my-jupyter.el")
 
 ;; (load "anchored-transpose.el")
 ;; (load "beancount.el")

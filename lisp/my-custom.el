@@ -21,6 +21,11 @@
  '(delete-selection-mode 1)
  '(dired-listing-switches "-alh")
  '(doc-view-continuous t)
+ '(ein:connect-default-notebook "sage_calculator")
+ '(ein:enable-keepalive t)
+ '(ein:jupyter-default-notebook-directory "/home/dionisos/projets/programmation/notebooks/")
+ '(ein:jupyter-server-buffer-name "jupyter-server")
+ '(ein:notebooklist-first-open-hook nil)
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))

@@ -4,6 +4,9 @@
 
 ;;; Code:
 
+;; (defun rename-ein-buffer()
+;;   (interactive)
+;;   ()
 (defun my-helm-company()
   (interactive)
   (if (equal (length company-candidates) 1)
