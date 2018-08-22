@@ -3,7 +3,7 @@
 (diredp-toggle-find-file-reuse-dir 1)
 (helm-mode 1)
 (elpy-enable)
-(pdf-tools-install)
+;(pdf-tools-install)
 (company-statistics-mode)
 
 (put 'downcase-region 'disabled nil)
