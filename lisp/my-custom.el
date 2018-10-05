@@ -57,8 +57,9 @@
  '(org-agenda-include-diary t)
  '(org-agenda-restore-windows-after-quit t)
  '(org-agenda-window-setup (quote current-window))
+ '(org-closed-keep-when-no-todo nil)
  '(org-columns-default-format "%TODO %ITEM %Effort{:}")
- '(org-log-done (quote time))
+ '(org-log-done nil)
  '(org-log-repeat nil)
  '(org-modules
    (quote

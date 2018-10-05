@@ -35,3 +35,4 @@ lisp/beancount.el
 bookmarks
 save/
 company-statistics-cache.el
+eshell/
