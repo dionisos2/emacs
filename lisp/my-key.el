@@ -106,13 +106,14 @@
 (bind-key  "DEL" 'dired-up-directory dired-mode-map)
 
 ;;; Pdf-tools
-;;;; (local-set-key (kbd "<C-right>") 'doc-view-next-page)
-;;;; (local-set-key (kbd "<C-left>") 'doc-view-previous-page)
+;; (local-set-key (kbd "<C-right>") 'doc-view-next-page)
+;; (local-set-key (kbd "<C-left>") 'doc-view-previous-page)
 
 ;;; Org-mode
 
 (with-eval-after-load "org"
   (bind-key "<f6>" 'org-schedule org-mode-map)
+  ;; (bind-key* "q" 'org-agenda-exit org-mode-map)
   (bind-key "C-M-d" 'org-up-element org-mode-map)
   (bind-key "<backtab>" 'hide-subtree org-mode-map)
   (bind-key "<f5>" 'org-todo org-mode-map)
@@ -155,9 +156,9 @@
 
 (bind-key* "C-t C-k" 'my-kill-buffer)
 (bind-key* "C-t k" 'kill-buffer-and-maybe-window)
-(bind-key* "C-t b" 'bookmark-set)
-(bind-key* "C-t C-b" 'bookmark-jump)
-(bind-key* "C-t C-l" 'bookmark-bmenu-list)
+(bind-key* "C-t b" 'diredp-bookmark-this-file)
+(bind-key* "C-t C-b" 'bookmark-set)
+(bind-key* "C-t C-l" 'helm-bookmarks)
 (bind-key* "C-t C-c C-c" 'delete-frame)
 
 ;; Edition command (edition = C-c)
@@ -200,6 +201,7 @@
 
 (bind-key* "C-p l" 'helm-locate)
 (bind-key* "C-p h" 'helm-dash-at-point)
+(bind-key* "C-p q" 'my-kill-boring-buffer)
 
 ;; Help command
 (bind-key* "C-h C-k" 'show-key-el)

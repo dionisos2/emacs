@@ -37,6 +37,7 @@
 (require 'undo-tree)
 (require 'company-statistics)
 (require 'helm-swoop)
+(require 'openwith)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")

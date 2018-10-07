@@ -19,11 +19,18 @@
  '(current-language-environment "utf-8")
  '(delete-by-moving-to-trash t)
  '(delete-selection-mode 1)
+ '(describe-char-unidata-list
+   (quote
+    (name old-name general-category canonical-combining-class bidi-class decomposition decimal-digit-value)))
+ '(dired-hide-details-hide-information-lines nil)
+ '(dired-hide-details-hide-symlink-targets nil)
  '(dired-listing-switches "-alh")
  '(doc-view-continuous t)
- '(ein:connect-default-notebook "sage_calculator")
  '(ein:enable-keepalive t)
+ '(ein:force-sync nil)
  '(ein:jupyter-default-notebook-directory "/home/dionisos/projets/programmation/notebooks/")
+ '(ein:jupyter-default-server-command "jupyter-notebook")
+ '(ein:jupyter-server-args (quote ("--no-browser")))
  '(ein:jupyter-server-buffer-name "jupyter-server")
  '(ein:notebooklist-first-open-hook nil)
  '(elpy-modules
@@ -46,11 +53,14 @@
  '(inhibit-startup-screen t)
  '(js-indent-level 2)
  '(kill-ring-max 100)
+ '(langtool-default-language "fr")
+ '(langtool-mother-tongue "fr")
  '(line-move-visual nil)
  '(line-number-mode t)
  '(minibuffer-prompt-properties
    (quote
     (read-only t cursor-intangible t face minibuffer-prompt)))
+ '(openwith-associations (quote (("\\.pdf\\'" "evince" (file)))))
  '(org-agenda-files
    (quote
     ("~/organisation/agenda.org" "~/organisation/birthdays.org")))
@@ -74,10 +84,16 @@
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket ein anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
+    (ein openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
+ '(pdf-view-continuous t)
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")
  '(realgud:pdb-command-name "python -m pdb")
+ '(safe-local-variable-values
+   (quote
+    ((eval setq byte-compile-not-obsolete-vars
+           (quote
+            (display-buffer-function))))))
  '(scroll-conservatively 99)
  '(scroll-step 1)
  '(select-enable-clipboard t)

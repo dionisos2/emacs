@@ -4,18 +4,17 @@
 
 ;;; Code:
 
-(add-hook 'ein:notebooklist-first-open-hook
- (lambda ()
-   (ein:notebooklist-open-notebook-by-name "calc.ipynb" "localhost:8888")
-   ;; (ein:notebook-open "localhost:8888" "calc.ipynb")
-   ;; (ein:notebooklist-open-notebook-global "localhost:8888/calc.ipynb")
-   (sleep-for 10)
-   (switch-to-buffer "*ein: localhost:8888/calc.ipynb*")
-   (rename-buffer "calc")
-   ;; (switch-to-buffer "*ein:notebooklist http://localhost:8888*")
-   ;; (rename-buffer "notebooklist")
-   )
- )
+;; (add-hook 'ein:notebooklist-first-open-hook
+;;  (lambda ()
+;;    ;; (ein:notebooklist-open-notebook-by-name "calc")
+;;    ;; (ein:notebook-open "localhost:8888" "calc.ipynb" "sagemath")
+;;    (ein:notebooklist-open-notebook-global "localhost:8888/calc.ipynb")
+;;    ;; (ein:notebooklist-open-file "localhost:8888" "calc.ipynb")
+;;    (sleep-for 2)
+;;    (switch-to-buffer "*ein: localhost:8888/calc.ipynb*")
+;;    (rename-buffer "calc")
+;;    )
+;;  )
 
 
 
