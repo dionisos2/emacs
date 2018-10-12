@@ -203,6 +203,10 @@
 (bind-key* "C-p h" 'helm-dash-at-point)
 (bind-key* "C-p q" 'my-kill-boring-buffer)
 
+(bind-key* "C-p j" 'my-jupyter)
+(bind-key* "C-p m" 'math)
+
+
 ;; Help command
 (bind-key* "C-h C-k" 'show-key-el)
 
