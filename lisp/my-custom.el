@@ -25,6 +25,7 @@
  '(dired-hide-details-hide-information-lines nil)
  '(dired-hide-details-hide-symlink-targets nil)
  '(dired-listing-switches "-alh")
+ '(diredp-hide-details-initially-flag nil)
  '(doc-view-continuous t)
  '(ein:enable-keepalive t)
  '(ein:force-sync nil)
@@ -42,8 +43,10 @@
     (my-php-checker my-php-phpcs ada-gnat asciidoc c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint d-dmd emacs-lisp emacs-lisp-checkdoc erlang eruby-erubis fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy jade javascript-jshint javascript-standard javascript-eslint javascript-gjslint javascript-jscs json-jsonlint json-python-json less lua-luacheck lua perl perl-perlcritic php php-phpmd php-phpcs processing puppet-parser puppet-lint python-pylint python-flake8 python-pycompile r-lintr racket rpm-rpmlint markdown-mdl rst-sphinx rst ruby-rubocop ruby-rubylint ruby ruby-jruby rust-cargo rust sass scala scala-scalastyle scheme-chicken scss-lint scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint tex-chktex tex-lacheck texinfo typescript-tslint verilog-verilator xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby)))
  '(flycheck-emacs-lisp-load-path (quote inherit))
  '(global-flycheck-mode t)
+ '(helm-bookmark-show-location t)
  '(helm-buffer-max-length nil)
  '(helm-dash-browser-func (quote eww))
+ '(helm-dash-candidate-format "%d %n (%t) [%f]")
  '(helm-dash-min-length 2)
  '(helm-prevent-escaping-from-minibuffer nil)
  '(ido-auto-merge-work-directories-length -1)
@@ -84,7 +87,7 @@
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (ein openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
+    (dired-quick-sort fish-mode ein openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
  '(pdf-view-continuous t)
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")
@@ -94,6 +97,7 @@
     ((eval setq byte-compile-not-obsolete-vars
            (quote
             (display-buffer-function))))))
+ '(savehist-mode t)
  '(scroll-conservatively 99)
  '(scroll-step 1)
  '(select-enable-clipboard t)
