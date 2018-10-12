@@ -41,6 +41,12 @@
 ;; (add-hook 'ein:notebook-multilang-mode-hook
 ;;           (python-doc))
 
+
+(add-hook 'ein:notebook-multilang-mode-hook
+          (lambda ()
+            (python-doc)
+            ))
+
 (add-hook 'python-mode-hook
           (lambda ()
             (python-doc)
