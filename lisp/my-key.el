@@ -180,6 +180,9 @@
 (bind-key* "C-c {" 'narrow-to-region)
 (bind-key* "C-c }" 'widen)
 
+(bind-key "C-c f" 'with-editor-finish)
+(bind-key "C-c q" 'with-editor-cancel)
+
 ;; Projet command (projet = C-p)
 ;;;; (bind-key* "C-t a" 'auto-complete-my-mode)
 ;;;;(bind-key* "p" 'phpcbf)
