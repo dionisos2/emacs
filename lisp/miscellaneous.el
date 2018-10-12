@@ -6,6 +6,7 @@
 ;; (pdf-tools-install)
 (openwith-mode t)
 (company-statistics-mode)
+(dired-quick-sort-setup)
 
 (put 'downcase-region 'disabled nil)
 (put 'narrow-to-region 'disabled nil)

@@ -38,6 +38,7 @@
 (require 'company-statistics)
 (require 'helm-swoop)
 (require 'openwith)
+(require 'dired-quick-sort)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")
