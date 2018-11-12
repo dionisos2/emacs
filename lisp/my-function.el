@@ -21,6 +21,7 @@
   (kill-matching-buffers "^\\*ein:log-all\\*$")
   (kill-matching-buffers "^\\*Calendar\\*$")
   (kill-matching-buffers "^\\*Completions\\*$")
+  (kill-matching-buffers "^\\*Ido Completions\\*$")
   )
 
 (defun my-helm-company()

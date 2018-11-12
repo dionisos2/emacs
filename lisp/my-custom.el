@@ -30,10 +30,12 @@
  '(ein:enable-keepalive t)
  '(ein:force-sync nil)
  '(ein:jupyter-default-notebook-directory "/home/dionisos/projets/programmation/notebooks/")
- '(ein:jupyter-default-server-command "jupyter-notebook")
+ '(ein:jupyter-default-server-command "jupyter")
  '(ein:jupyter-server-args (quote ("--no-browser")))
  '(ein:jupyter-server-buffer-name "jupyter-server")
  '(ein:notebooklist-first-open-hook nil)
+ '(ein:worksheet-enable-undo t)
+ '(elpy-eldoc-show-current-function nil)
  '(elpy-modules
    (quote
     (elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults)))
@@ -87,7 +89,7 @@
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (dired-quick-sort fish-mode ein openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
+    (ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
  '(pdf-view-continuous t)
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")
@@ -104,9 +106,9 @@
  '(show-paren-mode (quote t))
  '(show-trailing-whitespace t)
  '(speedbar-indentation-width 4)
- '(spray-margin-left 14)
- '(spray-margin-top 2)
- '(spray-wpm 350)
+ '(spray-margin-left 20)
+ '(spray-margin-top 6)
+ '(spray-wpm 400)
  '(tab-width 2)
  '(tool-bar-mode nil)
  '(transient-mark-mode t)
