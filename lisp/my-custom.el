@@ -91,6 +91,7 @@
    (quote
     (ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
  '(pdf-view-continuous t)
+ '(printer-name "EPSON_WF-2750")
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")
  '(realgud:pdb-command-name "python -m pdb")
