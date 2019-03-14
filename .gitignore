@@ -37,3 +37,4 @@ save/
 company-statistics-cache.el
 eshell/
 history
+transient

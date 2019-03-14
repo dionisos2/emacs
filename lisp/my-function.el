@@ -22,6 +22,7 @@
   (kill-matching-buffers "^\\*Calendar\\*$")
   (kill-matching-buffers "^\\*Completions\\*$")
   (kill-matching-buffers "^\\*Ido Completions\\*$")
+  (kill-matching-buffers "^\\*Warnings\\*$")
   )
 
 (defun my-helm-company()
