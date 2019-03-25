@@ -83,6 +83,11 @@
 (bind-key* "<C-kp-2>" 'split-window-vertically)
 (bind-key* "<C-kp-3>" 'split-window-horizontally)
 
+;;; Markdown
+(with-eval-after-load "markdown-mode"
+  (bind-key "C-p C-p" 'markdown-preview markdown-mode-map)
+  )
+
 ;;; Helm
 (bind-key* "M-x" 'helm-M-x)
 (bind-key* "M-." 'helm-show-kill-ring)
@@ -145,6 +150,7 @@
 (bind-key* "C-t C-M-f" 'write-file)
 (bind-key "C-t C-s" 'save-buffer)
 (with-eval-after-load "ein-notebook"
+  (bind-key "C-c -" 'ein:worksheet-delete-cell ein:notebook-mode-map)
   (bind-key "C-t C-s" 'ein:notebook-save-notebook-command ein:notebook-mode-map)
   (bind-key "C-<enter>" 'ein:worksheet-execute-cell ein:notebook-mode-map)
   (bind-key "C-<return>" 'ein:worksheet-execute-cell ein:notebook-mode-map)
