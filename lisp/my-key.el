@@ -176,6 +176,8 @@
 (bind-key* "C-c C-c" 'comment-region)
 (bind-key* "C-c c" 'uncomment-region)
 
+(bind-key* "C-c <tab>" 'yas-insert-snippet)
+
 (bind-key* "C-c s" 'ispell-word)
 (bind-key* "C-c C-s" 'ispell-region)
 (bind-key* "C-c C-M-s" 'langtool-check-buffer)

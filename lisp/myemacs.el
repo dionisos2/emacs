@@ -39,6 +39,7 @@
 (require 'helm-swoop)
 (require 'openwith)
 (require 'dired-quick-sort)
+(require 'yasnippet)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")
@@ -58,6 +59,7 @@
 (load "my-custom.el")
 (load "my-key.el")
 (load "my-jupyter.el")
+(load "my-yasnippet.el")
 
 ;; (load "anchored-transpose.el")
 ;; (load "beancount.el")

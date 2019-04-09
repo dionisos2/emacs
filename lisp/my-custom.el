@@ -125,12 +125,15 @@
  '(which-key-mode t)
  '(which-key-paging-prefixes (quote ("C-c")))
  '(wl-from " denis.baudouin@gmail.com")
- '(yank-excluded-properties t))
+ '(yank-excluded-properties t)
+ '(yas-snippet-dirs
+   (quote
+    ("/home/dionisos/.emacs.d/snippets/snippets" "/home/dionisos/.emacs.d/elpa/elpy-20190314.2349/snippets/"))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(region ((t (:background "blue1" :foreground "gtk_selection_fg_color"))))
+ '(region ((t (:background "blue1" :foreground "white"))))
  '(web-mode-html-attr-name-face ((t (:foreground "red")))))
