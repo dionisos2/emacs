@@ -119,7 +119,7 @@
 (with-eval-after-load "org"
   (bind-key "<f6>" 'org-schedule org-mode-map)
   ;; (bind-key* "q" 'org-agenda-exit org-mode-map)
-  (bind-key "C-M-d" 'org-up-element org-mode-map)
+  (bind-key "C-D" 'org-up-element org-mode-map)
   (bind-key "<backtab>" 'hide-subtree org-mode-map)
   (bind-key "<f5>" 'org-todo org-mode-map)
   ;; (bind-key "S-iso-lefttab" 'hide-subtree org-mode-map)
@@ -127,6 +127,7 @@
   (bind-key "C-c C-o" 'org-toggle-ordered-property org-mode-map)
   (bind-key "C-c C-p" 'org-priority org-mode-map)
   (bind-key "C-c C-a" 'org-archive-to-archive-sibling org-mode-map)
+  (bind-key "M-c" 'org-toggle-checkbox org-mode-map)
   (bind-key "C-c é" 'org-columns org-mode-map)
   (bind-key "C-c h" 'org-clock-in org-mode-map)
   (bind-key "C-c C-M-h" 'org-clock-cancel org-mode-map)

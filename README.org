@@ -40,10 +40,10 @@
 
 ** describe the bindings of the prefix used to reach this command : "key sequence" C-h
 * org-mode
-** C-c C-t -> TODO to DONE
-** C-c C-s -> make a SCHEDULED
+** <f5> -> TODO to DONE
+** <f6> -> make a SCHEDULED
 ** C-c C-q -> add tags
-
+** C-c C-p -> add priority
 * macro
 ** macro => view ./lisp/mymacro.el
 ** f3 → kmacro-start-macro-or-insert-counter, f3→kmacro-insert-counter (kmacro-add-counter)
