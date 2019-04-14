@@ -8,6 +8,12 @@
 ;;   (interactive)
 ;;   ()
 
+(defun my-buffer-path-to-ring ()
+  "copy buffer's full path to kill ring"
+  (interactive)
+  (when buffer-file-name
+    (kill-new (file-truename buffer-file-name))))
+
 (defun my-kill-boring-buffer()
   (interactive)
   (kill-matching-buffers "^\\*Bookmark List\\*$")

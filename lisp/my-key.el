@@ -119,7 +119,7 @@
 (with-eval-after-load "org"
   (bind-key "<f6>" 'org-schedule org-mode-map)
   ;; (bind-key* "q" 'org-agenda-exit org-mode-map)
-  (bind-key "C-D" 'org-up-element org-mode-map)
+  (bind-key "C-S-d" 'org-up-element org-mode-map)
   (bind-key "<backtab>" 'hide-subtree org-mode-map)
   (bind-key "<f5>" 'org-todo org-mode-map)
   ;; (bind-key "S-iso-lefttab" 'hide-subtree org-mode-map)
@@ -143,6 +143,7 @@
 ;; (global-set-key (kbd "C-M-s") 'multi-occur-in-matching-buffers)
 
 ;; File/tab command (file-move = C-t)
+(bind-key* "C-t p" 'my-buffer-path-to-ring)
 (bind-key* "C-t C-f" 'find-file)
 (bind-key* "<f9>" 'helm-find-files)
 (bind-key* "C-t C-r" 'helm-recentf)

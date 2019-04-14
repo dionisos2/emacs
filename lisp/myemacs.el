@@ -40,6 +40,8 @@
 (require 'openwith)
 (require 'dired-quick-sort)
 (require 'yasnippet)
+(require 'key-chord)
+
 
 (load "miscellaneous.el")
 (load "haypo_style.el")
@@ -60,6 +62,7 @@
 (load "my-key.el")
 (load "my-jupyter.el")
 (load "my-yasnippet.el")
+(load "my-keychord.el")
 
 ;; (load "anchored-transpose.el")
 ;; (load "beancount.el")
@@ -69,3 +72,13 @@
 
 (provide 'myemacs.el)
 ;;; myemacs.el ends here
+
+
+;; for helm-dash use : https://github.com/paul-nameless/helm-dash/commit/bea57c6cbd2e1a6c07cb263e80e1e36cfcb3a892
+;; (defun helm-dash-read-json-from-url (url)
+;;   "Use different method for MacOS because url-retrieve-synchronously not working correctly"
+;;   (let ((tmp-buffer "*helm-dash-download*"))
+;;     (shell-command (concat "curl -s " url) tmp-buffer)
+;;     (with-current-buffer tmp-buffer
+;;       (json-read)))
+;; )

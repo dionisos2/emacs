@@ -51,6 +51,7 @@
  '(helm-buffer-max-length nil)
  '(helm-dash-browser-func (quote eww))
  '(helm-dash-candidate-format "%d %n (%t) [%f]")
+ '(helm-dash-docsets-url (quote https://raw\.github\.com/Kapeli/feeds/master))
  '(helm-dash-min-length 2)
  '(helm-prevent-escaping-from-minibuffer nil)
  '(ido-auto-merge-work-directories-length -1)
@@ -91,7 +92,7 @@
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (markdown-mode ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode helm-dash langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
+    (helm-dash key-chord markdown-mode ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex elpy flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
  '(pdf-view-continuous t)
  '(printer-name "EPSON_WF-2750")
  '(python-shell-interpreter "python")
@@ -126,6 +127,7 @@
  '(which-key-paging-prefixes (quote ("C-c")))
  '(wl-from " denis.baudouin@gmail.com")
  '(yank-excluded-properties t)
+ '(yas-indent-line (quote fixed))
  '(yas-snippet-dirs
    (quote
     ("/home/dionisos/.emacs.d/snippets/snippets" "/home/dionisos/.emacs.d/elpa/elpy-20190314.2349/snippets/"))))
