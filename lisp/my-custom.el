@@ -130,7 +130,7 @@
  '(yas-indent-line (quote fixed))
  '(yas-snippet-dirs
    (quote
-    ("/home/dionisos/.emacs.d/snippets/snippets" "/home/dionisos/.emacs.d/elpa/elpy-20190314.2349/snippets/"))))
+    ("/home/dionisos/.emacs.d/snippets/snippets" "/home/dionisos/.emacs.d/elpa/elpy-20190523.2246/snippets/"))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
