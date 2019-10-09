@@ -8,6 +8,12 @@
 ;;   (interactive)
 ;;   ()
 
+(defun my-run-zeal ()
+  (interactive)
+  (setq cur-mode (substring (prin1-to-string major-mode) 0 -5))
+  (async-shell-command (concatenate 'string "zeal " cur-mode ":"))
+  )
+
 (defun my-buffer-path-to-ring ()
   "copy buffer's full path to kill ring"
   (interactive)

@@ -213,7 +213,7 @@
 
 
 (bind-key* "C-p l" 'helm-locate)
-(bind-key* "C-p h" 'helm-dash-at-point)
+(bind-key* "C-p h" 'my-run-zeal)
 (bind-key* "C-p q" 'my-kill-boring-buffer)
 
 (bind-key* "C-p j" 'my-jupyter)
