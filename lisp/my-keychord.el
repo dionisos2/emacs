@@ -11,7 +11,9 @@
 (setq key-chord-two-keys-delay 0.05)
 (setq key-chord-one-key-delay 0.15)
 
-(key-chord-define-global "dd" 'org-up-element)
+(with-eval-after-load "org"
+  (key-chord-define org-mode-map "dd" 'org-up-element)
+  )
 (key-chord-define-global "ae" 'yas-insert-snippet)
 
 
