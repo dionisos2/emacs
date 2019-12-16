@@ -8,6 +8,13 @@
 
 (flycheck-mode 't)
 
+
+;; (add-to-list 'load-path "/home/dionisos/.emacs.d/elpa/flycheck-julia-20170729.2141/")
+(require 'flycheck-julia)
+(flycheck-julia-setup)
+
+;; (flycheck-add-next-checker 'c/c++-cppcheck '(warning . cstyle))
+
 ;; (flycheck-define-checker my-php-checker
 ;;   "A PHP syntax checker using the PHP command line interpreter."
 ;;   :command ("php" "-l" "-d" "error_reporting=E_ALL" "-d" "display_errors=1"

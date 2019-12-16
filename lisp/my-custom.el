@@ -92,7 +92,7 @@
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (json-mode elpy helm-dash key-chord markdown-mode ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
+    (flycheck-elm flycheck-haskell flycheck-julia json-mode elpy helm-dash key-chord markdown-mode ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
  '(pdf-view-continuous t)
  '(printer-name "EPSON_WF-2750")
  '(python-shell-interpreter "python")
@@ -130,7 +130,7 @@
  '(yas-indent-line (quote fixed))
  '(yas-snippet-dirs
    (quote
-    ("/home/dionisos/.emacs.d/snippets/snippets" "/home/dionisos/.emacs.d/elpa/elpy-20190523.2246/snippets/"))))
+    ("/home/dionisos/.emacs.d/snippets/snippets" "/home/dionisos/.emacs.d/elpa/elpy-20191002.2144/snippets/"))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -138,4 +138,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(region ((t (:background "blue1" :foreground "white"))))
- '(web-mode-html-attr-name-face ((t (:foreground "red")))))
+ '(web-mode-html-attr-name-face ((t (:foreground "red"))))
+ '(web-mode-html-tag-face ((t (:foreground "red")))))
