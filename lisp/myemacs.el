@@ -63,6 +63,7 @@
 (load "my-jupyter.el")
 (load "my-yasnippet.el")
 (load "my-keychord.el")
+(load "my-macro.el")
 
 ;; (load "anchored-transpose.el")
 ;; (load "beancount.el")
