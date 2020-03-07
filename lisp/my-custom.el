@@ -65,6 +65,7 @@
  '(langtool-mother-tongue "fr")
  '(line-move-visual nil)
  '(line-number-mode t)
+ '(lsp-julia-default-environment "~/.julia/environments/v1.3")
  '(minibuffer-prompt-properties
    (quote
     (read-only t cursor-intangible t face minibuffer-prompt)))
@@ -92,7 +93,7 @@
      ("gnu" . "http://elpa.gnu.org/packages/"))))
  '(package-selected-packages
    (quote
-    (flycheck-elm flycheck-haskell flycheck-julia json-mode elpy helm-dash key-chord markdown-mode ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
+    (flycheck-elm flycheck-haskell json-mode elpy helm-dash key-chord markdown-mode ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+)))
  '(pdf-view-continuous t)
  '(printer-name "EPSON_WF-2750")
  '(python-shell-interpreter "python")

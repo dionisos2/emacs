@@ -9,9 +9,6 @@
 (flycheck-mode 't)
 
 
-;; (add-to-list 'load-path "/home/dionisos/.emacs.d/elpa/flycheck-julia-20170729.2141/")
-(require 'flycheck-julia)
-(flycheck-julia-setup)
 
 ;; (flycheck-add-next-checker 'c/c++-cppcheck '(warning . cstyle))
 
