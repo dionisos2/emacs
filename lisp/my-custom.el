@@ -70,6 +70,7 @@
    (quote
     (read-only t cursor-intangible t face minibuffer-prompt)))
  '(openwith-associations (quote (("\\.pdf\\'" "evince" (file)))))
+ '(openwith-associations (quote (("\\.docx\\'" "libreoffice" (file)))))
  '(org-agenda-files
    (quote
     ("~/organisation/agenda.org" "~/organisation/birthdays.org")))
