@@ -41,7 +41,7 @@
 (require 'dired-quick-sort)
 (require 'yasnippet)
 (require 'key-chord)
-
+(require 'kmb)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")

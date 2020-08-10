@@ -21,6 +21,7 @@
 ** dired-do-rename : R (rename or move (like the mv command) could use it on many selected files)
 ** dired-create-directory : +
 ** filter directory : "/" (dired-narrow)
+** open directory recursively with C-u C-x d and then add -R (-alh → -alhR)
 * coding system
 ** revert-buffer-with-coding-system to change read encoding system
    in particular try windows-1258 or later encoding system
