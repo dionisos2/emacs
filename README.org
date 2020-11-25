@@ -48,6 +48,7 @@
 ** <f6> -> make a SCHEDULED
 ** C-c C-q -> add tags
 ** C-c C-p -> add priority
+** C-u C-u C-u <tb> -> show all items
 * macro
 ** macro => view ./lisp/mymacro.el
 ** f3 → kmacro-start-macro-or-insert-counter, f3→kmacro-insert-counter (kmacro-add-counter)
