@@ -84,14 +84,15 @@
    '(("melpa" . "http://melpa.org/packages/")
 	 ("gnu" . "http://elpa.gnu.org/packages/")))
  '(package-selected-packages
-   '(kmb flycheck-elm flycheck-haskell json-mode elpy helm-dash key-chord markdown-mode ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+))
+   '(csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy helm-dash key-chord markdown-mode ein dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+))
  '(pdf-view-continuous t)
  '(printer-name "EPSON_WF-2750")
- '(python-indent-guess-indent-offset nil)
- '(python-indent-offset 2)
+ '(python-indent-guess-indent-offset t)
+ '(python-indent-offset 4)
  '(python-indent-trigger-commands '(indent-for-tab-command yas-expand))
  '(python-shell-interpreter "python")
  '(python-shell-interpreter-args "")
+ '(python-shell-virtualenv-root "/home/dionisos/.emacs.d/elpy/rpc-venv")
  '(realgud:pdb-command-name "python -m pdb")
  '(safe-local-variable-values
    '((py-indent-offset . 4)

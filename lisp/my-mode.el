@@ -50,15 +50,16 @@
 (add-hook 'python-mode-hook
           (lambda ()
             (python-doc)
-			(setq-default indent-tabs-mode 1)
-			(setq-default tab-width 4)
-			(setq-default python-indent-offset 4)
-			(setq-default python-indent-guess-indent-offset nil)
+			;; (setq-default indent-tabs-mode 1)
+			;; (setq-default tab-width 4)
+			;; (setq-default python-indent-offset 4)
+			;; (setq-default python-indent-guess-indent-offset nil)
 
-			(setq indent-tabs-mode 1)
-			(setq tab-width 4)
-			(setq python-indent-offset 4)
-			(setq python-indent-guess-indent-offset nil)
+			;; (setq indent-tabs-mode 1)
+			;; (setq tab-width 4)
+			;; (setq python-indent-offset 4)
+
+			;; (setq python-indent-guess-indent-offset nil)
             ))
 
 
