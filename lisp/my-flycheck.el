@@ -6,10 +6,6 @@
 
 ;;; Code:
 
-(flycheck-mode 't)
-
-
-
 ;; (flycheck-add-next-checker 'c/c++-cppcheck '(warning . cstyle))
 
 ;; (flycheck-define-checker my-php-checker

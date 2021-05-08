@@ -131,7 +131,7 @@
   (bind-key "C-c é" 'org-columns org-mode-map)
   (bind-key "C-c h" 'org-clock-in org-mode-map)
   (bind-key "C-c C-M-h" 'org-clock-cancel org-mode-map)
-  (bind-key "C-<tab>" 'org-global-cycle org-mode-map)
+  (bind-key "C-M-<tab>" 'org-global-cycle org-mode-map)
   (bind-key "M-<right>" 'org-shiftmetaright org-mode-map)
   (bind-key "M-<left>" 'org-shiftmetaleft org-mode-map)
   (bind-key "C-c C-." 'org-time-stamp org-mode-map))

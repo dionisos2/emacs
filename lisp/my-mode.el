@@ -1,4 +1,4 @@
-;;; mymode.el --- configuration of the diverses emacs modes
+;;; my-mode.el --- configuration of the diverses emacs modes
 ;;; Commentary:
 
 ;;; Code:
@@ -25,31 +25,13 @@
   (if latex-my-mode
       (progn
         ;; (gtags-mode 1)
-        (auto-complete-my-mode 1)
         (with-current-buffer (current-buffer) (setq compile-command (concatenate 'string "latex " (buffer-file-name))))
-        (with-current-buffer (current-buffer) (setq execute-command (concatenate 'string "xdvi " (replace-extention buffer-file-name ".dvi")))))))
+        ;; (with-current-buffer (current-buffer) (setq execute-command (concatenate 'string "xdvi " (replace-extention buffer-file-name ".dvi"))))
+				)))
 
-
-(defun python-doc ()
-  (interactive)
-  (setq-local helm-dash-docsets '("Python 3")))
-
-(defun julia-doc ()
-  (interactive)
-  (setq-local helm-dash-docsets '("Julia")))
-
-;; (add-hook 'ein:notebook-multilang-mode-hook
-;;           (python-doc))
-
-
-(add-hook 'ein:notebook-multilang-mode-hook
-          (lambda ()
-            (python-doc)
-            ))
 
 (add-hook 'python-mode-hook
           (lambda ()
-            (python-doc)
 			;; (setq-default indent-tabs-mode 1)
 			;; (setq-default tab-width 4)
 			;; (setq-default python-indent-offset 4)
@@ -66,7 +48,6 @@
 
 (add-hook 'julia-mode-hook
           (lambda ()
-            (julia-doc)
             ))
 
 (add-hook 'dired-mode-hook
@@ -81,10 +62,8 @@
 
 (add-hook 'org-mode-hook
           (lambda ()
-            ;; (when (string= (file-name-extension buffer-file-name) "beancount") // create bug with helm
-            ;;   (beancount-mode 1))
             ))
 
 
-(provide 'mymode.el)
-;;; mymode.el ends here
+(provide 'my-mode)
+;;; my-mode.el ends here

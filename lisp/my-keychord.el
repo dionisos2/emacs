@@ -12,7 +12,7 @@
 (setq key-chord-one-key-delay 0.15)
 
 (with-eval-after-load "org"
-  (key-chord-define org-mode-map "dd" 'org-up-element)
+  (key-chord-define org-mode-map "td" 'org-up-element)
   )
 (key-chord-define-global "ae" 'yas-insert-snippet)
 

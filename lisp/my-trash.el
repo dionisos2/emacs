@@ -1,4 +1,4 @@
-;;; mytrash.el --- configure flycheck
+;;; mytrash.el --- configure trash system
 ;;; Commentary:
 
 ;;; Code:
