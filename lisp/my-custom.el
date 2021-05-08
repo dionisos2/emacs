@@ -6,6 +6,8 @@
  '(after-save-hook nil)
  '(auto-image-file-mode t)
  '(auto-save-default nil)
+ '(avy-escape-chars '(27 7))
+ '(avy-keys '(97 117 105 101 116 115 114 110 113 120))
  '(backward-delete-char-untabify-method nil)
  '(browse-url-browser-function 'eww-browse-url)
  '(c-default-style '((c-mode . "haypo") (c++-mode . "haypo")))
@@ -31,6 +33,9 @@
  '(elpy-modules
 	 '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults))
  '(find-file-visit-truename t)
+ '(flycheck-checkers
+	 '(tex-aspell-dynamic ada-gnat asciidoctor asciidoc awk-gawk bazel-buildifier c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cuda-nvcc cwl d-dmd dockerfile-hadolint elixir-credo emacs-lisp emacs-lisp-checkdoc ember-template erlang-rebar3 erlang eruby-erubis eruby-ruumba fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-staticcheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json json-jq jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli markdown-mdl nix nix-linter opam perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc protobuf-prototool pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-pyright python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-standard ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar terraform terraform-tflint tex-chktex tex-lacheck texinfo textlint typescript-tslint verilog-verilator vhdl-ghdl xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby yaml-yamllint))
+ '(flycheck-emacs-lisp-load-path '("/home/dionisos/.emacs.d/lisp"))
  '(global-company-mode t)
  '(global-flycheck-mode t)
  '(global-undo-tree-mode t)
@@ -70,7 +75,7 @@
 	 '(("melpa" . "http://melpa.org/packages/")
 		 ("gnu" . "http://elpa.gnu.org/packages/")))
  '(package-selected-packages
-	 '(smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit ace-jump-mode auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+))
+	 '(avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+))
  '(printer-name "EPSON_WF-2750")
  '(python-indent-guess-indent-offset t)
  '(python-indent-offset 4)
@@ -118,6 +123,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(flycheck-error ((t (:underline (:color "Red1" :style wave)))))
+ '(flycheck-verify-select-checker ((t (:box (:line-width 1 :style released-button)))))
  '(region ((t (:background "blue1" :foreground "white"))))
  '(web-mode-html-attr-name-face ((t (:foreground "red"))))
  '(web-mode-html-tag-face ((t (:foreground "red")))))

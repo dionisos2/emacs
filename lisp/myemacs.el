@@ -32,9 +32,11 @@
 ;; (require 'org-checklist)
 (require 'french-holidays)
 (require 'flycheck)
+
 ;; (require 'trash-settings.el)
 (require 'spray)
 (require 'undo-tree)
+
 (require 'company-statistics)
 (require 'helm-swoop)
 (require 'openwith)
@@ -57,7 +59,7 @@
 (load "my-mode.el")
 ;; (load "my-trash.el")
 (load "my-pylint.el")
-(load "my-ace-jump.el")
+(load "my-avy.el")
 (load "my-custom.el")
 (load "my-key.el")
 (load "my-yasnippet.el")

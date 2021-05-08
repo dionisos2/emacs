@@ -45,8 +45,8 @@
 (bind-key "C-n" 'my-next-error)
 (bind-key* "C-M-n" 'my-previous-error)
 
-(bind-key* "C-d" 'ace-jump-word-mode)
-(bind-key* "C-M-d" 'ace-jump-char-mode)
+(bind-key* "C-d" 'avy-goto-word-0)
+(bind-key* "C-M-d" 'avy-goto-char)
 
 (bind-key* "C-v" 'recenter)
 (bind-key* "C-t g" 'goto-line)
