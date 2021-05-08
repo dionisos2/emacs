@@ -48,6 +48,8 @@
  '(ido-mode 'both nil (ido))
  '(indent-tabs-mode t)
  '(inhibit-startup-screen t)
+ '(ivy-height 20)
+ '(ivy-prescient-mode t)
  '(kill-ring-max 100)
  '(langtool-default-language "fr")
  '(langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
@@ -75,7 +77,7 @@
 	 '(("melpa" . "http://melpa.org/packages/")
 		 ("gnu" . "http://elpa.gnu.org/packages/")))
  '(package-selected-packages
-	 '(avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode dired-quick-sort fish-mode openwith s helm-swoop web-beautify company-lua company-math company-php company-statistics elm-mode helm-company bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+))
+	 '(ivy-prescient counsel async ivy-todo ivy-yasnippet ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode dired-quick-sort fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+))
  '(printer-name "EPSON_WF-2750")
  '(python-indent-guess-indent-offset t)
  '(python-indent-offset 4)

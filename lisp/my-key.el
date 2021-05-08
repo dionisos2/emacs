@@ -42,8 +42,8 @@
 
 (bind-key* "C-M-b" 'my-shell-command-on-region)
 ;;; Navigation
-(bind-key "C-n" 'my-next-error)
-(bind-key* "C-M-n" 'my-previous-error)
+(bind-key "C-n" 'next-error)
+(bind-key* "C-M-n" 'previous-error)
 
 (bind-key* "C-d" 'avy-goto-word-0)
 (bind-key* "C-M-d" 'avy-goto-char)
@@ -55,9 +55,11 @@
 (bind-key* "C-M-SPC" 'point-to-register)
 (bind-key "C-f" 'jump-to-register)
 
-(bind-key "C-s" 'isearch-forward-regexp)
-(bind-key "C-r" 'isearch-backward-regexp)
-(bind-key "C-M-s" 'isearch-edit-string isearch-mode-map)
+(bind-key "C-s" 'swiper-isearch)
+(bind-key "C-r" 'swiper-isearch-backward)
+(bind-key (kbd "C-S-s") 'swiper-thing-at-point)
+;; (bind-key "C-M-s" 'isearch-edit-string isearch-mode-map)
+(bind-key "C-M-s" 'counsel-rg)
 (bind-key "<DEL>" 'isearch-del-char isearch-mode-map)
 (bind-key "<right>" 'isearch-yank-word isearch-mode-map)
 (bind-key "<left>" 'isearch-delete-char isearch-mode-map)
@@ -71,8 +73,8 @@
 
 (bind-key* "M-t" 'backward-char)
 (bind-key* "M-r" 'forward-char)
-(bind-key* "M-d" 'my-previous-line)
-(bind-key* "M-s" 'my-next-line)
+(bind-key* "M-d" 'previous-line)
+(bind-key* "M-s" 'next-line)
 
 ;;; Windows
 (bind-key* "C-o" 'other-window)
@@ -89,23 +91,19 @@
   )
 
 ;;; Helm
-(bind-key* "M-x" 'helm-M-x)
-(bind-key* "M-." 'helm-show-kill-ring)
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebind tab to run persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB work in terminal
-(define-key helm-map (kbd "C-j")  'helm-select-action) ; list actions using C-z
+(bind-key* "M-x" 'counsel-M-x)
+(bind-key* "M-." 'counsel-yank-pop)
 
-;; (helm-map helm-read-file-map helm-find-files-map helm-buffer-map)
 
-(with-eval-after-load "company"
-  (bind-key  "<tab>" 'my-helm-company company-active-map)
-  (bind-key  "<return>" 'newline company-active-map)
-  (bind-key* "C-<tab>" 'my-helm-company)
-  (bind-key*  "M-<tab>" 'helm-complete-file-name-at-point))
+;; (with-eval-after-load "company"
+;;   (bind-key  "<tab>" 'my-helm-company company-active-map)
+;;   (bind-key  "<return>" 'newline company-active-map)
+;;   (bind-key* "C-<tab>" 'my-helm-company)
+;;   (bind-key*  "M-<tab>" 'helm-complete-file-name-at-point))
 
-(with-eval-after-load "helm-files"
-  (bind-key "<left>" 'backward-char helm-find-files-map)
-  (bind-key "<right>" 'forward-char helm-find-files-map))
+;; (with-eval-after-load "helm-files"
+;;   (bind-key "<left>" 'backward-char helm-find-files-map)
+;;   (bind-key "<right>" 'forward-char helm-find-files-map))
 
 ;;; Dired
 (bind-key  "DEL" 'dired-up-directory dired-mode-map)
@@ -144,20 +142,19 @@
 
 ;; File/tab command (file-move = C-t)
 (bind-key* "C-t p" 'my-buffer-path-to-ring)
-(bind-key* "C-t C-f" 'find-file)
-(bind-key* "<f9>" 'helm-find-files)
-(bind-key* "C-t C-r" 'helm-recentf)
-(bind-key* "C-t C-t" 'helm-buffers-list)
+(bind-key* "C-t C-f" 'counsel-find-file)
+(bind-key* "<f9>" 'find-file-at-point)
+(bind-key* "C-t C-r" 'counsel-recentf)
+(bind-key* "C-t C-t" 'ivy-switch-buffer)
+
+(define-key ivy-minibuffer-map (kbd "M-d") 'ivy-next-line)
+(define-key ivy-minibuffer-map (kbd "M-s") 'ivy-previous-line)
+(define-key swiper-map (kbd "C-\"") 'swiper-avy)
+(define-key swiper-map (kbd "C-M-s") 'swiper-query-replace)
+
 
 (bind-key* "C-t C-M-f" 'write-file)
 (bind-key "C-t C-s" 'save-buffer)
-(with-eval-after-load "ein-notebook"
-  (bind-key "C-c -" 'ein:worksheet-delete-cell ein:notebook-mode-map)
-  (bind-key "C-t C-s" 'ein:notebook-save-notebook-command ein:notebook-mode-map)
-  (bind-key "C-<enter>" 'ein:worksheet-execute-cell ein:notebook-mode-map)
-  (bind-key "C-<return>" 'ein:worksheet-execute-cell ein:notebook-mode-map)
-  )
-
 
 ;; (bind-key* "C-t g" 'find-tag)
 ;; (bind-key* "C-t M-g" 'find-next-tag)
@@ -166,7 +163,7 @@
 (bind-key* "C-t k" 'kill-buffer-and-maybe-window)
 (bind-key* "C-t b" 'diredp-bookmark-this-file)
 (bind-key* "C-t C-b" 'bookmark-set)
-(bind-key* "C-t C-l" 'helm-bookmarks)
+(bind-key* "C-t C-l" 'counsel-bookmark)
 (bind-key* "C-t C-c C-c" 'delete-frame)
 
 ;; Edition command (edition = C-c)
@@ -212,7 +209,7 @@
 (bind-key* "C-p C-t" 'org-tags-view-only-todo)
 
 
-(bind-key* "C-p l" 'helm-locate)
+(bind-key* "C-p l" 'counsel-locate)
 (bind-key* "C-p h" 'my-run-zeal)
 (bind-key* "C-p q" 'my-kill-boring-buffer)
 
@@ -221,7 +218,10 @@
 
 
 ;; Help command
-(bind-key* "C-h C-k" 'show-key-el)
+;; (bind-key* "C-h C-k" 'show-key-el)
+(bind-key* "C-h C-k" 'counsel-descbinds)
+(bind-key* "C-h f" 'counsel-describe-function)
+(bind-key* "C-h v" 'counsel-describe-variable)
 
 (provide 'my-key)
 ;;; my-key.el ends here

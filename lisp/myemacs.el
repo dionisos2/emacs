@@ -17,10 +17,15 @@
              '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (package-initialize)
 
+(with-eval-after-load 'undo-tree (defun undo-tree-overridden-undo-bindings-p () nil))
+(require 'undo-tree)
+(global-undo-tree-mode)
+
 ;; (require 'behave-mode)
+(require 'ivy)
+(require 'counsel)
+(require 'ivy-prescient)
 (require 'magit)
-(require 'helm)
-(require 'helm-config)
 (require 'find-dired)
 (require 'thingatpt)
 (require 'view)
@@ -35,10 +40,8 @@
 
 ;; (require 'trash-settings.el)
 (require 'spray)
-(require 'undo-tree)
 
 (require 'company-statistics)
-(require 'helm-swoop)
 (require 'openwith)
 (require 'dired-quick-sort)
 (require 'yasnippet)
@@ -74,13 +77,3 @@
 
 (provide 'myemacs.el)
 ;;; myemacs.el ends here
-
-
-;; for helm-dash use : https://github.com/paul-nameless/helm-dash/commit/bea57c6cbd2e1a6c07cb263e80e1e36cfcb3a892
-;; (defun helm-dash-read-json-from-url (url)
-;;   "Use different method for MacOS because url-retrieve-synchronously not working correctly"
-;;   (let ((tmp-buffer "*helm-dash-download*"))
-;;     (shell-command (concat "curl -s " url) tmp-buffer)
-;;     (with-current-buffer tmp-buffer
-;;       (json-read)))
-;; )

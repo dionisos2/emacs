@@ -37,11 +37,11 @@
   (kill-matching-buffers "^\\*Warnings\\*$")
   )
 
-(defun my-helm-company()
-  (interactive)
-  (if (equal (length company-candidates) 1)
-      (company-complete-selection)
-    (helm-company)))
+;; (defun my-helm-company()
+;;   (interactive)
+;;   (if (equal (length company-candidates) 1)
+;;       (company-complete-selection)
+;;     (helm-company)))
 
 (defun org-tags-view-only-todo()
   (interactive)
@@ -57,12 +57,12 @@
   (interactive)
   (if (> (length (window-list)) 1) (kill-buffer-and-window) (kill-buffer)))
 
-(defun my-next-line ()
-  "Next-line or helm-next-line."
-  (interactive)
-  (if helm-alive-p
-      (helm-next-line)
-    (next-line)))
+;; (defun my-next-line ()
+;;   "Next-line or helm-next-line."
+;;   (interactive)
+;;   (if helm-alive-p
+;;       (helm-next-line)
+;;     (next-line)))
 
 
 (defun my-previous-line ()
