@@ -81,6 +81,8 @@
  '(package-selected-packages
 	 '(dash-functional counsel-dash phi-search multiple-cursors wgrep ivy-prescient counsel async ivy-todo ivy-yasnippet ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode dired-quick-sort fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+))
  '(printer-name "EPSON_WF-2750")
+ '(proced-auto-update-flag t)
+ '(proced-auto-update-interval 1)
  '(python-indent-guess-indent-offset t)
  '(python-indent-offset 4)
  '(python-indent-trigger-commands '(indent-for-tab-command yas-expand))

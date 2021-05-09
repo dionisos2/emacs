@@ -10,11 +10,15 @@
 				indent-for-tab-command
 				kill-region
 				select-symbol
+				select-word
 				swiper-isearch
+				undefined
+				with-editor-finish
 				))
 
 (setq mc/cmds-to-run-once
       '(
 				counsel-M-x
 				swiper-mc
+				wgrep-change-to-wgrep-mode
 				))

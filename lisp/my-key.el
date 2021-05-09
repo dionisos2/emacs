@@ -218,6 +218,8 @@
 (bind-key* "C-p j" 'my-jupyter)
 (bind-key* "C-p m" 'magit-status)
 
+(bind-key* "C-p C-p" 'proced)
+
 
 
 ;; Help command
