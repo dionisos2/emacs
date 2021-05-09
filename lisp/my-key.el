@@ -63,6 +63,13 @@
 (bind-key "<DEL>" 'isearch-del-char isearch-mode-map)
 (bind-key "<right>" 'isearch-yank-word isearch-mode-map)
 (bind-key "<left>" 'isearch-delete-char isearch-mode-map)
+(bind-key (kbd "C-s") 'phi-search mc/keymap)
+(bind-key (kbd "C-r") 'phi-search-backward mc/keymap)
+
+(bind-key (kbd "M-d") 'ivy-next-line ivy-minibuffer-map)
+(bind-key (kbd "M-s") 'ivy-previous-line ivy-minibuffer-map)
+(bind-key (kbd "C-\"") 'swiper-avy swiper-map)
+(bind-key (kbd "C-M-s") 'swiper-query-replace swiper-map)
 
 (bind-key* "<C-right>" 'forward-word)
 (bind-key* "<C-left>" 'backward-word)
@@ -147,12 +154,6 @@
 (bind-key* "C-t C-r" 'counsel-recentf)
 (bind-key* "C-t C-t" 'ivy-switch-buffer)
 
-(define-key ivy-minibuffer-map (kbd "M-d") 'ivy-next-line)
-(define-key ivy-minibuffer-map (kbd "M-s") 'ivy-previous-line)
-(define-key swiper-map (kbd "C-\"") 'swiper-avy)
-(define-key swiper-map (kbd "C-M-s") 'swiper-query-replace)
-
-
 (bind-key* "C-t C-M-f" 'write-file)
 (bind-key "C-t C-s" 'save-buffer)
 
@@ -189,6 +190,7 @@
 
 (bind-key "C-c f" 'with-editor-finish)
 (bind-key "C-c q" 'with-editor-cancel)
+(bind-key "C-<f3>" 'mc/edit-lines)
 
 ;; Projet command (projet = C-p)
 ;;;; (bind-key* "C-t a" 'auto-complete-my-mode)
@@ -214,7 +216,8 @@
 (bind-key* "C-p q" 'my-kill-boring-buffer)
 
 (bind-key* "C-p j" 'my-jupyter)
-(bind-key* "C-p m" 'math)
+(bind-key* "C-p m" 'magit-status)
+
 
 
 ;; Help command

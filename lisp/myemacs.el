@@ -47,6 +47,9 @@
 (require 'yasnippet)
 (require 'key-chord)
 (require 'kmb)
+(require 'wgrep)
+(require 'multiple-cursors)
+(require 'phi-search)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")

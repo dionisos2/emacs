@@ -1,9 +1,13 @@
+* search
+** search in multiple file C-M-s
+	 -g blob -- search_string to filter
+	 ex : -g *py -- while
 * moving
   some ressource here : https://www.masteringemacs.org/article/effective-editing-movement
 ** M-t M-s M-r M-d basic move
 ** C-a C-e move start/end line
-** C-, C-; ace-jump-word-mode/ace-jump-char-mode
-** C-s C-r forward/backward isearch M-i helm-swoop
+** C-d C-M-d avy-goto-word/avy-goto-char
+** C-s C-r forward/backward isearch then C-M-s to replace
 ** C-[left] C-[right] C-M-[left] C-M-[right] move by word/sexp
 ** M-m start of indentation
 ** [orig] [fin] start/end of buffer
@@ -43,6 +47,7 @@
    call mwe:open-command-log-buffer and then mwe:log-keyboard-commands to the buffer where to log command
 
 ** describe the bindings of the prefix used to reach this command : "key sequence" C-h
+** M-x describe-personal-keybindings to see personal keybinding with some info
 * org-mode
 ** <f5> -> TODO to DONE
 ** <f6> -> make a SCHEDULED

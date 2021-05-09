@@ -21,7 +21,9 @@
  '(company-dabbrev-minimum-length 3)
  '(company-idle-delay 0.2)
  '(company-statistics-mode t)
+ '(counsel-grep-swiper-limit 30000)
  '(current-language-environment "utf-8")
+ '(dash-docs-docsets-path "/home/dionisos/.local/share/Zeal/Zeal/docsets")
  '(delete-by-moving-to-trash t)
  '(delete-selection-mode 1)
  '(dired-hide-details-hide-information-lines nil)
@@ -77,7 +79,7 @@
 	 '(("melpa" . "http://melpa.org/packages/")
 		 ("gnu" . "http://elpa.gnu.org/packages/")))
  '(package-selected-packages
-	 '(ivy-prescient counsel async ivy-todo ivy-yasnippet ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode dired-quick-sort fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+))
+	 '(dash-functional counsel-dash phi-search multiple-cursors wgrep ivy-prescient counsel async ivy-todo ivy-yasnippet ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode dired-quick-sort fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray dired-narrow dired+))
  '(printer-name "EPSON_WF-2750")
  '(python-indent-guess-indent-offset t)
  '(python-indent-offset 4)
@@ -127,6 +129,8 @@
  ;; If there is more than one, they won't work right.
  '(flycheck-error ((t (:underline (:color "Red1" :style wave)))))
  '(flycheck-verify-select-checker ((t (:box (:line-width 1 :style released-button)))))
+ '(ivy-modified-buffer ((t (:foreground "red"))))
+ '(ivy-org ((t (:inherit black))))
  '(region ((t (:background "blue1" :foreground "white"))))
  '(web-mode-html-attr-name-face ((t (:foreground "red"))))
  '(web-mode-html-tag-face ((t (:foreground "red")))))
