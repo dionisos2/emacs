@@ -173,7 +173,7 @@
         (when (y-or-n-p (format "`%s' was modified; still kill it? " (buffer-name))) 1)
       1)))
 
-(add-to-list 'kill-buffer-query-functions 'my-ask-before-killing-buffer)
+;; (add-to-list 'kill-buffer-query-functions 'my-ask-before-killing-buffer)
 
 
 (provide 'myfunction)

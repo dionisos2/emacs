@@ -17,6 +17,12 @@
 (global-set-key (kbd "C-c") 'edition)
 (global-set-key (kbd "C-p") 'projet)
 
+;; Unbind
+(with-eval-after-load "winner-mode"
+	(bind-key "C-c <left>" nil winner-mode-map)
+	(bind-key "C-c <right>" nil winner-mode-map)
+)
+
 ;; Without prefix
 ;;; Basic
 (bind-key* "C-(" 'start-kbd-macro)
@@ -71,6 +77,8 @@
 (bind-key (kbd "C-\"") 'swiper-avy swiper-map)
 (bind-key (kbd "C-M-s") 'swiper-query-replace swiper-map)
 
+(bind-key "C-n"	'ivy-rotate-preferred-builders swiper-map)
+
 (bind-key* "<C-right>" 'forward-word)
 (bind-key* "<C-left>" 'backward-word)
 (bind-key* "<end>" 'end-of-buffer)
@@ -82,6 +90,7 @@
 (bind-key* "M-r" 'forward-char)
 (bind-key* "M-d" 'previous-line)
 (bind-key* "M-s" 'next-line)
+
 
 ;;; Windows
 (bind-key* "C-o" 'other-window)
@@ -114,6 +123,7 @@
 
 ;;; Dired
 (bind-key  "DEL" 'dired-up-directory dired-mode-map)
+
 
 ;;; Pdf-tools
 ;; (local-set-key (kbd "<C-right>") 'doc-view-next-page)
@@ -214,6 +224,7 @@
 (bind-key* "C-p l" 'counsel-locate)
 (bind-key* "C-p h" 'my-run-zeal)
 (bind-key* "C-p q" 'my-kill-boring-buffer)
+(bind-key* "C-p C-q" 'kill-matching-buffers)
 
 (bind-key* "C-p j" 'my-jupyter)
 (bind-key* "C-p m" 'magit-status)

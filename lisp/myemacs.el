@@ -50,6 +50,8 @@
 (require 'wgrep)
 (require 'multiple-cursors)
 (require 'phi-search)
+(require 'google-translate)
+(require 'google-translate-smooth-ui)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")
@@ -65,12 +67,21 @@
 (load "my-mode.el")
 ;; (load "my-trash.el")
 (load "my-pylint.el")
-(load "my-avy.el")
+(load "my-ivy.el")
 (load "my-custom.el")
-(load "my-key.el")
 (load "my-yasnippet.el")
-(load "my-keychord.el")
 (load "my-macro.el")
+
+(load "my-key.el")
+(load "my-keychord.el")
+(load "my-hydra.el")
+
+
+(bind-key "\C-p g" 'google-translate-smooth-translate)
+(setq google-translate-translation-directions-alist
+      '(("fr" . "en") ("en" . "fr")))
+(defun google-translate--search-tkk () "Search TKK." (list 430675 2721866130))
+(setq google-translate-backend-method 'curl)
 
 ;; (load "anchored-transpose.el")
 ;; (load "beancount.el")
