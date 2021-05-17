@@ -4,9 +4,17 @@
 
 ;;; Code:
 
-;; (defun rename-ein-buffer()
-;;   (interactive)
-;;   ()
+(defun my-ivy-occur-and-wgrep ()
+	(interactive)
+	(ivy-occur)
+	(wgrep-change-to-wgrep-mode)
+	)
+
+(defun my-wgrep-finish-and-save-buffers()
+	(interactive)
+	(wgrep-finish-edit)
+	(wgrep-save-all-buffers)
+	)
 
 (defun my-term ()
   "My personal term command."
@@ -26,7 +34,7 @@
 (defun my-run-zeal ()
   (interactive)
   (setq cur-mode (substring (prin1-to-string major-mode) 0 -5))
-  (async-shell-command (concatenate 'string "zeal " cur-mode ":"))
+  (async-shell-command (cl-concatenate 'string "zeal " cur-mode ":"))
   )
 
 (defun my-buffer-path-to-ring ()
@@ -50,6 +58,7 @@
   (kill-matching-buffers "^\\*Completions\\*$")
   (kill-matching-buffers "^\\*Ido Completions\\*$")
   (kill-matching-buffers "^\\*Warnings\\*$")
+  (kill-matching-buffers "^\\*Customize.*\\*$")
   )
 
 ;; (defun my-helm-company()

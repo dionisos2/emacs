@@ -55,9 +55,11 @@
 (require 'google-translate-smooth-ui)
 (require 'term)
 
+(setq custom-file "~/.emacs.d/lisp/my-custom.el")
+(load custom-file)
+
 (load "miscellaneous.el")
 (load "haypo_style.el")
-;; (load "diff_region.el")
 
 (load "my-langtool.el")
 (load "my-autosaveconfig.el")
@@ -70,7 +72,7 @@
 ;; (load "my-trash.el")
 (load "my-pylint.el")
 (load "my-ivy.el")
-(load "my-custom.el")
+
 (load "my-yasnippet.el")
 (load "my-macro.el")
 

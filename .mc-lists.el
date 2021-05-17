@@ -19,6 +19,7 @@
 (setq mc/cmds-to-run-once
       '(
 				counsel-M-x
+				describe-key
 				swiper-mc
 				wgrep-change-to-wgrep-mode
 				))

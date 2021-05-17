@@ -1,8 +1,5 @@
 (recentf-mode 1)
 
-(setq custom-file "~/.emacs.d/lisp/my-custom.el")
-(load custom-file)
-
 (diredp-toggle-find-file-reuse-dir 1)
 
 (elpy-enable)

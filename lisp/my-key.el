@@ -13,15 +13,14 @@
 (define-prefix-command 'file-move-prefix)
 (define-prefix-command 'edition-prefix)
 (define-prefix-command 'projet-prefix)
-;; (define-prefix-command 'help-prefix)
+
 ;; Files and buffers manipulation
 (global-set-key (kbd "C-t") 'file-move-prefix)
 ;; Edition of buffer
 (global-set-key (kbd "C-c") 'edition-prefix)
 ;; Start a major mode or something big
 (global-set-key (kbd "C-p") 'projet-prefix)
-;; Help
-;; (global-set-key (kbd "C-h") 'help-prefix)
+
 
 ;; Unbind
 (with-eval-after-load "winner-mode"
@@ -176,10 +175,11 @@
 
 (bind-key* "C-t C-M-f" 'write-file)
 (bind-key "C-t C-s" 'save-buffer)
-;; (bind-key "C-t C-s" 'save-buffer)
 
-;; (bind-key* "C-t g" 'find-tag)
-;; (bind-key* "C-t M-g" 'find-next-tag)
+(with-eval-after-load "cus-edit"
+	(bind-key "C-t C-s" 'Custom-save custom-mode-map)
+	)
+
 
 (bind-key* "C-t C-k" 'my-kill-buffer)
 (bind-key* "C-t k" 'kill-buffer-and-maybe-window)
@@ -209,9 +209,13 @@
 (bind-key* "C-c {" 'narrow-to-region)
 (bind-key* "C-c }" 'widen)
 
-(bind-key "C-c f" 'with-editor-finish)
-(bind-key "C-c q" 'with-editor-cancel)
-(bind-key "C-<f3>" 'mc/edit-lines)
+(bind-key "C-c f" 'with-editor-finish with-editor-mode-map)
+(bind-key "C-c q" 'with-editor-cancel with-editor-mode-map)
+(bind-key "C-c f" 'my-wgrep-finish-and-save-buffers wgrep-mode-map)
+(bind-key "C-c q" 'wgrep-abort-changes wgrep-mode-map)
+
+(bind-key "C-<f3>" 'mc/edit-beginnings-of-lines)
+(bind-key "M-<f3>" 'mc/mark-all-dwim)
 
 ;; Projet command (projet = C-p)
 ;;;; (bind-key* "C-t a" 'auto-complete-my-mode)
@@ -234,6 +238,9 @@
 
 (bind-key* "C-p l" 'counsel-locate)
 (bind-key* "C-p h" 'my-run-zeal)
+(bind-key "C-p C-o" 'my-ivy-occur-and-wgrep swiper-map)
+(bind-key "C-p C-o" 'my-ivy-occur-and-wgrep ivy-minibuffer-map)
+
 (bind-key* "C-p q" 'my-kill-boring-buffer)
 (bind-key* "C-p C-q" 'kill-matching-buffers)
 

@@ -7,7 +7,7 @@
  '(auto-image-file-mode t)
  '(auto-save-default nil)
  '(avy-escape-chars '(27 7))
- '(avy-keys '(97 117 105 101 116 115 114 110 113 120))
+ '(avy-keys '(97 117 105 101 116 115 114 110 113 120 100 112 111))
  '(backup-directory-alist
 	 '(("." . "/home/dionisos/personnelle/records_and_save/emacs_backups/")))
  '(backward-delete-char-untabify-method nil)
