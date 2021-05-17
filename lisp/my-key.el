@@ -57,6 +57,7 @@
 (bind-key* "C-M-n" 'previous-error)
 
 (bind-key "C-d" 'avy-goto-word-0)
+(bind-key "C-d" 'avy-goto-word-0 ivy-occur-grep-mode-map)
 (bind-key* "C-M-d" 'avy-goto-char)
 
 (bind-key* "C-v" 'recenter)

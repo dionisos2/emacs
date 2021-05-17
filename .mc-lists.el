@@ -13,11 +13,13 @@
 				select-word
 				swiper-isearch
 				undefined
-				with-editor-finish
 				))
 
 (setq mc/cmds-to-run-once
       '(
+				my-wgrep-finish-and-save-buffers
+				with-editor-finish
+				avy-goto-word-0
 				counsel-M-x
 				describe-key
 				swiper-mc

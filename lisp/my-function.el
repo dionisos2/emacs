@@ -1,19 +1,55 @@
-;;; myfunction.el --- useful personnal functions
+;;; myfunction.el --- useful personnal functions  -*- lexical-binding: t -*-
 ;;; Commentary:
-;; nothing special
+;;; lexical-binding is necessary for the lambda function.
 
 ;;; Code:
 
+
+;; wgrep-change-to-wgrep-mode directly added in ivy-occur because ivy-exit-with-action seem to abort the function (TOFIX)
 (defun my-ivy-occur-and-wgrep ()
-	(interactive)
-	(ivy-occur)
-	(wgrep-change-to-wgrep-mode)
-	)
+  "Stop completion and put the current candidates into a new buffer.
+
+The new buffer remembers current action(s).
+
+While in the *ivy-occur* buffer, selecting a candidate with RET or
+a mouse click will call the appropriate action for that candidate.
+
+There is no limit on the number of *ivy-occur* buffers."
+  (interactive)
+  (if (not (window-minibuffer-p))
+      (user-error "No completion session is active")
+    (let* ((caller (ivy-state-caller ivy-last))
+           (occur-fn (or (plist-get ivy--occurs-list caller)
+                         #'ivy--occur-default))
+           (buffer
+            (generate-new-buffer
+             (format "*ivy-occur%s \"%s\"*"
+                     (if caller
+                         (concat " " (prin1-to-string caller))
+                       "")
+                     ivy-text))))
+      (with-current-buffer buffer
+        (funcall occur-fn ivy--old-cands)
+        (setf (ivy-state-text ivy-last) ivy-text)
+        (setq ivy-occur-last ivy-last))
+			(message "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
+			(message (buffer-name buffer))
+			(message "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+      (ivy-exit-with-action
+       (lambda (_)
+				 (message (buffer-name buffer))
+         (pop-to-buffer buffer)
+         (setq next-error-last-buffer buffer)
+         (setq-local next-error-function #'ivy-occur-next-error)
+				 (wgrep-change-to-wgrep-mode)))
+			)))
 
 (defun my-wgrep-finish-and-save-buffers()
 	(interactive)
 	(wgrep-finish-edit)
 	(wgrep-save-all-buffers)
+	;; Because wgrep-finish-edit quit wgrep mode
+	(wgrep-change-to-wgrep-mode)
 	)
 
 (defun my-term ()

@@ -2,6 +2,7 @@
 ** search in multiple file C-M-s
 	 -g blob -- search_string to filter
 	 ex : -g *py -- while
+** C-u C-M-s → counsel-rg but ask for directory
 * moving
   some ressource here : https://www.masteringemacs.org/article/effective-editing-movement
 ** M-t M-s M-r M-d basic move
