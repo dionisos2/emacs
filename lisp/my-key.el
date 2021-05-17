@@ -10,12 +10,18 @@
 (require 'bind-key)
 
 ;; Define prefixes
-(define-prefix-command 'file-move)
-(define-prefix-command 'edition)
-(define-prefix-command 'projet)
-(global-set-key (kbd "C-t") 'file-move)
-(global-set-key (kbd "C-c") 'edition)
-(global-set-key (kbd "C-p") 'projet)
+(define-prefix-command 'file-move-prefix)
+(define-prefix-command 'edition-prefix)
+(define-prefix-command 'projet-prefix)
+;; (define-prefix-command 'help-prefix)
+;; Files and buffers manipulation
+(global-set-key (kbd "C-t") 'file-move-prefix)
+;; Edition of buffer
+(global-set-key (kbd "C-c") 'edition-prefix)
+;; Start a major mode or something big
+(global-set-key (kbd "C-p") 'projet-prefix)
+;; Help
+;; (global-set-key (kbd "C-h") 'help-prefix)
 
 ;; Unbind
 (with-eval-after-load "winner-mode"
@@ -51,7 +57,7 @@
 (bind-key "C-n" 'next-error)
 (bind-key* "C-M-n" 'previous-error)
 
-(bind-key* "C-d" 'avy-goto-word-0)
+(bind-key "C-d" 'avy-goto-word-0)
 (bind-key* "C-M-d" 'avy-goto-char)
 
 (bind-key* "C-v" 'recenter)
@@ -149,7 +155,11 @@
   (bind-key "C-M-<tab>" 'org-global-cycle org-mode-map)
   (bind-key "M-<right>" 'org-shiftmetaright org-mode-map)
   (bind-key "M-<left>" 'org-shiftmetaleft org-mode-map)
-  (bind-key "C-c C-." 'org-time-stamp org-mode-map))
+  (bind-key "C-c C-." 'org-time-stamp org-mode-map)
+	(bind-key "C-p c" 'org-timer-set-timer)
+	(bind-key "C-p C-c" 'org-timer-start)
+	(bind-key "C-p M-c" 'org-timer-stop)
+	)
 ;;;;(bind-key "C-c C-h" 'org-clock-out)
 
 ;; (global-set-key [C-tab] 'srecode-insert)
@@ -166,6 +176,7 @@
 
 (bind-key* "C-t C-M-f" 'write-file)
 (bind-key "C-t C-s" 'save-buffer)
+;; (bind-key "C-t C-s" 'save-buffer)
 
 ;; (bind-key* "C-t g" 'find-tag)
 ;; (bind-key* "C-t M-g" 'find-next-tag)
@@ -208,7 +219,7 @@
 (bind-key* "C-p i" 'eww)
 (bind-key* "C-p s" 'spray-mode)
 (bind-key* "C-p <return>" 'execute)
-(bind-key* "C-p c" 'compile)
+;; (bind-key* "C-p c" 'compile)
 (bind-key* "C-p e" 'elpy-shell-send-region-or-buffer)
 (bind-key* "C-p d" 'dired-jump) ;; Useful to rename file, use just R after
 
@@ -231,6 +242,16 @@
 
 (bind-key* "C-p C-p" 'proced)
 
+(with-eval-after-load "term"
+	(bind-key* "C-p v" 'my-term)
+	(bind-key "<f8>" 'my-term-toggle-mode term-mode-map)
+	(bind-key "<f8>" 'my-term-toggle-mode term-raw-map)
+	(bind-key* "C-h k" 'describe-key)
+	(bind-key "C-d" 'term-send-raw term-raw-map)
+)
+
+
+(bind-key* "\C-p g" 'google-translate-smooth-translate)
 
 
 ;; Help command

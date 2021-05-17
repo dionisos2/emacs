@@ -17,6 +17,7 @@
              '("melpa-stable" . "http://stable.melpa.org/packages/"))
 (package-initialize)
 
+;; To fix some bug
 (with-eval-after-load 'undo-tree (defun undo-tree-overridden-undo-bindings-p () nil))
 (require 'undo-tree)
 (global-undo-tree-mode)
@@ -52,6 +53,7 @@
 (require 'phi-search)
 (require 'google-translate)
 (require 'google-translate-smooth-ui)
+(require 'term)
 
 (load "miscellaneous.el")
 (load "haypo_style.el")
@@ -75,19 +77,8 @@
 (load "my-key.el")
 (load "my-keychord.el")
 (load "my-hydra.el")
+(load "my-google-translate.el")
 
-
-(bind-key "\C-p g" 'google-translate-smooth-translate)
-(setq google-translate-translation-directions-alist
-      '(("fr" . "en") ("en" . "fr")))
-(defun google-translate--search-tkk () "Search TKK." (list 430675 2721866130))
-(setq google-translate-backend-method 'curl)
-
-;; (load "anchored-transpose.el")
-;; (load "beancount.el")
-;; (load "myhabitrpg.el")
-;; (load "fullscreen.el") ;; non utilisé car sous awesome
-;; (load "ecbconfig.el")
 
 (provide 'myemacs.el)
 ;;; myemacs.el ends here

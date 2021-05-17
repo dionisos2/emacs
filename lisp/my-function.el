@@ -8,6 +8,21 @@
 ;;   (interactive)
 ;;   ()
 
+(defun my-term ()
+  "My personal term command."
+  (interactive)
+  (set-buffer (make-term "terminal" explicit-shell-file-name))
+  (term-mode)
+  (term-char-mode)
+  (switch-to-buffer "*terminal*"))
+
+(defun my-term-toggle-mode ()
+  "Toggles term between line mode and char mode"
+  (interactive)
+  (if (term-in-line-mode)
+      (term-char-mode)
+    (term-line-mode)))
+
 (defun my-run-zeal ()
   (interactive)
   (setq cur-mode (substring (prin1-to-string major-mode) 0 -5))
