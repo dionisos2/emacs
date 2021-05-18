@@ -23,7 +23,7 @@
 
 
 ;; Unbind
-(with-eval-after-load "winner-mode"
+(with-eval-after-load "winner"
 	(bind-key "C-c <left>" nil winner-mode-map)
 	(bind-key "C-c <right>" nil winner-mode-map)
 )
@@ -78,24 +78,24 @@
 (bind-key (kbd "C-s") 'phi-search mc/keymap)
 (bind-key (kbd "C-r") 'phi-search-backward mc/keymap)
 
-(bind-key (kbd "M-d") 'ivy-next-line ivy-minibuffer-map)
-(bind-key (kbd "M-s") 'ivy-previous-line ivy-minibuffer-map)
+(bind-key (kbd "M-s") 'ivy-next-line ivy-minibuffer-map)
+(bind-key (kbd "M-d") 'ivy-previous-line ivy-minibuffer-map)
 (bind-key (kbd "C-\"") 'swiper-avy swiper-map)
 (bind-key (kbd "C-M-s") 'swiper-query-replace swiper-map)
 
 (bind-key "C-n"	'ivy-rotate-preferred-builders swiper-map)
 
-(bind-key* "<C-right>" 'forward-word)
-(bind-key* "<C-left>" 'backward-word)
+(bind-key "<C-right>" 'forward-word)
+(bind-key "<C-left>" 'backward-word)
 (bind-key* "<end>" 'end-of-buffer)
 (bind-key* "<home>" 'beginning-of-buffer)
 (bind-key* "<prior>" 'backward-paragraph)
 (bind-key* "<next>" 'forward-paragraph)
 
-(bind-key* "M-t" 'backward-char)
-(bind-key* "M-r" 'forward-char)
-(bind-key* "M-d" 'previous-line)
-(bind-key* "M-s" 'next-line)
+(bind-key "M-t" 'backward-char)
+(bind-key "M-r" 'forward-char)
+(bind-key "M-d" 'previous-line)
+(bind-key "M-s" 'next-line)
 
 
 ;;; Windows
@@ -256,6 +256,20 @@
 	(bind-key "<f8>" 'my-term-toggle-mode term-raw-map)
 	(bind-key* "C-h k" 'describe-key)
 	(bind-key "C-d" 'term-send-raw term-raw-map)
+	(bind-key "C-d" 'avy-goto-word-0 term-mode-map)
+	(bind-key "C-q" 'my-term-insert-literal term-mode-map)
+	(bind-key "C-q" 'my-term-insert-literal term-raw-map)
+	(bind-key "C-t" 'term-send-left term-raw-map)
+	(bind-key "C-r" 'term-send-right term-raw-map)
+	(bind-key "<C-left>" 'term-send-ctrl-left term-raw-map)
+	(bind-key "<C-right>" 'term-send-ctrl-right term-raw-map)
+	;; Found with "bind" command in fish
+	(bind-key "<C-delete>" (lambda() (interactive) (term-send-raw-string "\ed")) term-raw-map)
+	(bind-key "<C-backspace>" (lambda() (interactive) (term-send-raw-string "\e\x7f")) term-raw-map)
+	(bind-key "M-t" 'term-send-left term-raw-map)
+	(bind-key "M-r" 'term-send-right term-raw-map)
+	(bind-key "M-d" 'term-send-up term-raw-map)
+	(bind-key "M-s" 'term-send-down term-raw-map)
 )
 
 

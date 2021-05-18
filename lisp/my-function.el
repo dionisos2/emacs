@@ -5,6 +5,15 @@
 ;;; Code:
 
 
+(defun my-term-insert-literal ()
+    "Take a keypress KEY and insert it literally into a terminal."
+    (interactive)
+		(let ((key (read-key)))
+			(message (format "%s" key))
+			(term-send-raw-string (format "%c" key))
+			)
+    )
+
 ;; wgrep-change-to-wgrep-mode directly added in ivy-occur because ivy-exit-with-action seem to abort the function (TOFIX)
 (defun my-ivy-occur-and-wgrep ()
   "Stop completion and put the current candidates into a new buffer.
@@ -32,12 +41,8 @@ There is no limit on the number of *ivy-occur* buffers."
         (funcall occur-fn ivy--old-cands)
         (setf (ivy-state-text ivy-last) ivy-text)
         (setq ivy-occur-last ivy-last))
-			(message "iiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii")
-			(message (buffer-name buffer))
-			(message "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
       (ivy-exit-with-action
        (lambda (_)
-				 (message (buffer-name buffer))
          (pop-to-buffer buffer)
          (setq next-error-last-buffer buffer)
          (setq-local next-error-function #'ivy-occur-next-error)

@@ -39,7 +39,6 @@
 (require 'french-holidays)
 (require 'flycheck)
 
-;; (require 'trash-settings.el)
 (require 'spray)
 
 (require 'company-statistics)
@@ -69,7 +68,6 @@
 
 (load "my-flycheck.el")
 (load "my-mode.el")
-;; (load "my-trash.el")
 (load "my-pylint.el")
 (load "my-ivy.el")
 
