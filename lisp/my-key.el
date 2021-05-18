@@ -40,7 +40,7 @@
 (bind-key* "C-y" 'kill-region)
 (bind-key* "C-x x" 'copy-region-as-kill)
 (bind-key* "C-x C-x" 'copy-region-as-kill)
-(bind-key* "C-." 'yank)
+(bind-key "C-." 'yank)
 
 (bind-key* "C-l" 'select-line)
 (bind-key* "M-l" 'select-word)
@@ -184,7 +184,7 @@
 
 (bind-key* "C-t C-k" 'my-kill-buffer)
 (bind-key* "C-t k" 'kill-buffer-and-maybe-window)
-(bind-key* "C-t b" 'diredp-bookmark-this-file)
+;; (bind-key* "C-t b" 'diredp-bookmark-this-file)
 (bind-key* "C-t C-b" 'bookmark-set)
 (bind-key* "C-t C-l" 'counsel-bookmark)
 (bind-key* "C-t C-c C-c" 'delete-frame)
@@ -248,6 +248,11 @@
 (bind-key* "C-p j" 'my-jupyter)
 (bind-key* "C-p m" 'magit-status)
 
+(with-eval-after-load "magit"
+	;; 16 = C-u C-u (C-u = *4)
+	(bind-key "q" (lambda() (interactive) (magit-mode-bury-buffer 16)) magit-status-mode-map)
+	)
+
 (bind-key* "C-p C-p" 'proced)
 
 (with-eval-after-load "term"
@@ -263,15 +268,34 @@
 	(bind-key "C-r" 'term-send-right term-raw-map)
 	(bind-key "<C-left>" 'term-send-ctrl-left term-raw-map)
 	(bind-key "<C-right>" 'term-send-ctrl-right term-raw-map)
-	;; Found with "bind" command in fish
+	;; Found with "bind" command in fish. Or C-v in bash
 	(bind-key "<C-delete>" (lambda() (interactive) (term-send-raw-string "\ed")) term-raw-map)
 	(bind-key "<C-backspace>" (lambda() (interactive) (term-send-raw-string "\e\x7f")) term-raw-map)
 	(bind-key "M-t" 'term-send-left term-raw-map)
 	(bind-key "M-r" 'term-send-right term-raw-map)
 	(bind-key "M-d" 'term-send-up term-raw-map)
 	(bind-key "M-s" 'term-send-down term-raw-map)
+
+	(bind-key "C-." 'term-paste term-raw-map)
 )
 
+(with-eval-after-load "ranger"
+	(bind-key "M-t" 'ranger-up-directory ranger-mode-map)
+	(bind-key "M-r" 'ranger-find-file ranger-mode-map)
+	(bind-key "M-d" 'ranger-prev-file ranger-mode-map)
+	(bind-key "M-s" 'ranger-next-file ranger-mode-map)
+
+	(bind-key "t" 'ranger-up-directory ranger-mode-map)
+	(bind-key "r" 'ranger-find-file ranger-mode-map)
+	(bind-key "d" 'ranger-prev-file ranger-mode-map)
+	(bind-key "s" 'ranger-next-file ranger-mode-map)
+
+	(bind-key "c c" 'ranger-copy ranger-mode-map)
+	(bind-key "C C" 'ranger-cut ranger-mode-map)
+	(bind-key "SPC" 'ranger-toggle-mark ranger-mode-map)
+	(bind-key "C-SPC" 'dired-mark-files-regexp ranger-mode-map)
+	(bind-key "V" 'dired-unmark-all-marks ranger-mode-map)
+	)
 
 (bind-key* "\C-p g" 'google-translate-smooth-translate)
 

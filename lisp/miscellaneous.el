@@ -1,11 +1,11 @@
 (recentf-mode 1)
 
-(diredp-toggle-find-file-reuse-dir 1)
+;; (diredp-toggle-find-file-reuse-dir 1)
 
 (elpy-enable)
 
 (company-statistics-mode)
-(dired-quick-sort-setup)
+;; (dired-quick-sort-setup)
 
 ;; activate desactivated function
 (put 'downcase-region 'disabled nil)

@@ -52,7 +52,7 @@
 
 (add-hook 'dired-mode-hook
           (lambda ()
-            (local-set-key "/" 'dired-narrow)
+            ;; (local-set-key "/" 'dired-narrow)
             ))
 
 (add-hook 'web-mode-hook

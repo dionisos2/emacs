@@ -30,7 +30,7 @@
 (require 'find-dired)
 (require 'thingatpt)
 (require 'view)
-(require 'recentf)
+;; (require 'recentf)
 ;;(require 'gtags)
 (require 'php-mode)
 (require 'web-mode)
@@ -43,7 +43,7 @@
 
 (require 'company-statistics)
 (require 'openwith)
-(require 'dired-quick-sort)
+;; (require 'dired-quick-sort)
 (require 'yasnippet)
 (require 'key-chord)
 (require 'kmb)
