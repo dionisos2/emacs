@@ -5,6 +5,32 @@
 ;;; Code:
 
 
+(defun my-parse-time-string (time-string)
+	"Parse TIME-STRING in format '10h35'."
+	(interactive "s")
+	(let* ((hour (nth 0 (s-split "h" time-string)))
+				 (min (nth 1 (s-split "h" time-string))))
+		;; The ` evaluate every expression starting with , inside the list.
+		`(0 ,(string-to-number min) ,(string-to-number hour) 0 0 2000)
+		)
+	)
+
+(defun my-add-time (time-string-1 time-string-2)
+	"Add TIME-STRING-1 and TIME-STRING-2 in format '10h35'."
+	(let* (
+				 (ti1 (my-parse-time-string time-string-1))
+				 (ti2 (my-parse-time-string time-string-2)))
+
+		(format-time-string "%Hh%M" (time-add
+																 (apply #'encode-time ti1)
+																 (+
+																	(* (nth 1 ti2) 60)
+																	(* (nth 2 ti2) 3600)
+																	)
+																 )
+												)
+		)
+	)
 
 (defun my-sudo-edit (&optional arg)
   "Edit currently visited file as root.
@@ -20,13 +46,13 @@ buffer is not visiting a file."
 
 
 (defun my-term-insert-literal ()
-    "Take a keypress KEY and insert it literally into a terminal."
-    (interactive)
-		(let ((key (read-key)))
-			(message (format "%s" key))
-			(term-send-raw-string (format "%c" key))
-			)
-    )
+  "Take a keypress KEY and insert it literally into a terminal."
+  (interactive)
+	(let ((key (read-key)))
+		(message (format "%s" key))
+		(term-send-raw-string (format "%c" key))
+		)
+  )
 
 ;; wgrep-change-to-wgrep-mode directly added in ivy-occur because ivy-exit-with-action seem to abort the function (TOFIX)
 (defun my-ivy-occur-and-wgrep ()
@@ -154,22 +180,22 @@ There is no limit on the number of *ivy-occur* buffers."
 (defun my-previous-error ()
   (interactive)
   (if langtool-mode-line-message
-	  (progn
-		(langtool-goto-previous-error)
-		(langtool-show-message-at-point))
-	(progn
-	  (flycheck-previous-error)
-	  (flycheck-display-error-at-point))))
+			(progn
+				(langtool-goto-previous-error)
+				(langtool-show-message-at-point))
+		(progn
+			(flycheck-previous-error)
+			(flycheck-display-error-at-point))))
 
 (defun my-next-error ()
   (interactive)
   (if langtool-mode-line-message
-	  (progn
-		(langtool-goto-next-error)
-		(langtool-show-message-at-point))
-	(progn
-	  (flycheck-next-error)
-	  (flycheck-display-error-at-point))))
+			(progn
+				(langtool-goto-next-error)
+				(langtool-show-message-at-point))
+		(progn
+			(flycheck-next-error)
+			(flycheck-display-error-at-point))))
 
 (defcustom execute-command (purecopy "./game&")
   "Last shell command used to do a execution; default for next execution."
@@ -243,9 +269,9 @@ There is no limit on the number of *ivy-occur* buffers."
   "Ask before killing user buffer."
   (interactive)
   (let ((user-buff-p (if (or
-                        (string-match  "^ \\|\\*" (buffer-name))
-                        (get-buffer-process (buffer-name))
-                        (buffer-file-name)) nil t)))
+													(string-match  "^ \\|\\*" (buffer-name))
+													(get-buffer-process (buffer-name))
+													(buffer-file-name)) nil t)))
 
     ;; Ask to save modified buffer
     (if (and user-buff-p (buffer-modified-p))
