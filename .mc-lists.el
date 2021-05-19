@@ -6,6 +6,7 @@
 				View-back-to-mark
 				anchored-transpose
 				backward-sexp
+				copy-region-as-kill
 				forward-sexp
 				indent-for-tab-command
 				kill-region
@@ -17,11 +18,11 @@
 
 (setq mc/cmds-to-run-once
       '(
-				my-wgrep-finish-and-save-buffers
-				with-editor-finish
 				avy-goto-word-0
 				counsel-M-x
 				describe-key
+				my-wgrep-finish-and-save-buffers
 				swiper-mc
 				wgrep-change-to-wgrep-mode
+				with-editor-finish
 				))

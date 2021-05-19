@@ -273,8 +273,13 @@
 	(bind-key "<C-backspace>" (lambda() (interactive) (term-send-raw-string "\e\x7f")) term-raw-map)
 	(bind-key "M-t" 'term-send-left term-raw-map)
 	(bind-key "M-r" 'term-send-right term-raw-map)
-	(bind-key "M-d" 'term-send-up term-raw-map)
 	(bind-key "M-s" 'term-send-down term-raw-map)
+	(bind-key "M-d" 'term-send-up term-raw-map)
+
+	(bind-key "M-t" 'backward-char term-mode-map)
+	(bind-key "M-r" 'forward-char term-mode-map)
+	(bind-key "M-s" 'next-line term-mode-map)
+	(bind-key "M-d" 'previous-line term-mode-map)
 
 	(bind-key "C-." 'term-paste term-raw-map)
 )
