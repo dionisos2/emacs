@@ -44,6 +44,11 @@
  '(flycheck-checkers
 	 '(tex-aspell-dynamic ada-gnat asciidoctor asciidoc awk-gawk bazel-buildifier c/c++-clang c/c++-gcc c/c++-cppcheck cfengine chef-foodcritic coffee coffee-coffeelint coq css-csslint css-stylelint cuda-nvcc cwl d-dmd dockerfile-hadolint elixir-credo emacs-lisp emacs-lisp-checkdoc ember-template erlang-rebar3 erlang eruby-erubis eruby-ruumba fortran-gfortran go-gofmt go-golint go-vet go-build go-test go-errcheck go-unconvert go-staticcheck groovy haml handlebars haskell-stack-ghc haskell-ghc haskell-hlint html-tidy javascript-eslint javascript-jshint javascript-standard json-jsonlint json-python-json json-jq jsonnet less less-stylelint llvm-llc lua-luacheck lua markdown-markdownlint-cli markdown-mdl nix nix-linter opam perl perl-perlcritic php php-phpmd php-phpcs processing proselint protobuf-protoc protobuf-prototool pug puppet-parser puppet-lint python-flake8 python-pylint python-pycompile python-pyright python-mypy r-lintr racket rpm-rpmlint rst-sphinx rst ruby-rubocop ruby-standard ruby-reek ruby-rubylint ruby ruby-jruby rust-cargo rust rust-clippy scala scala-scalastyle scheme-chicken scss-lint scss-stylelint sass/scss-sass-lint sass scss sh-bash sh-posix-dash sh-posix-bash sh-zsh sh-shellcheck slim slim-lint sql-sqlint systemd-analyze tcl-nagelfar terraform terraform-tflint tex-chktex tex-lacheck texinfo textlint typescript-tslint verilog-verilator vhdl-ghdl xml-xmlstarlet xml-xmllint yaml-jsyaml yaml-ruby yaml-yamllint))
  '(flycheck-emacs-lisp-load-path '("/home/dionisos/.emacs.d/lisp"))
+ '(flyspell-abbrev-p t)
+ '(flyspell-auto-correct-binding [67108923])
+ '(flyspell-delay 2)
+ '(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("francais" "english"))
+ '(flyspell-duplicate-distance 40000)
  '(global-company-mode t)
  '(global-flycheck-mode t)
  '(global-undo-tree-mode t)
@@ -93,7 +98,8 @@
 	 '(("melpa" . "http://melpa.org/packages/")
 		 ("gnu" . "http://elpa.gnu.org/packages/")))
  '(package-selected-packages
-	 '(w3m semi ranger guess-language kiwix google-translate dash-functional phi-search multiple-cursors wgrep ivy-prescient counsel async ivy-todo ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray))
+	 '(paradox all-the-icons-dired all-the-icons-ivy all-the-icons flyspell-correct-ivy w3m semi ranger guess-language kiwix google-translate dash-functional phi-search multiple-cursors wgrep ivy-prescient counsel async ivy-todo ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray))
+ '(paradox-github-token t)
  '(printer-name "EPSON_WF-2750")
  '(proced-auto-update-flag t)
  '(proced-auto-update-interval 1)
@@ -158,6 +164,8 @@
  ;; If there is more than one, they won't work right.
  '(flycheck-error ((t (:underline (:color "Red1" :style wave)))))
  '(flycheck-verify-select-checker ((t (:box (:line-width 1 :style released-button)))))
+ '(flyspell-duplicate ((t (:underline (:color "DarkOrange" :style wave)))))
+ '(flyspell-incorrect ((t (:underline (:color "Red1" :style wave)))))
  '(ivy-modified-buffer ((t (:foreground "red"))))
  '(ivy-org ((t (:inherit black))))
  '(region ((t (:background "blue1" :foreground "white"))))

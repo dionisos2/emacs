@@ -200,7 +200,7 @@
 
 (bind-key* "C-c <tab>" 'yas-insert-snippet)
 
-(bind-key* "C-c s" 'ispell-word)
+(bind-key* "C-c s" 'flyspell-correct-wrapper)
 (bind-key* "C-c C-s" 'ispell-region)
 (bind-key* "C-c C-M-s" 'langtool-check-buffer)
 
@@ -221,7 +221,8 @@
 ;; Projet command (projet = C-p)
 ;;;; (bind-key* "C-t a" 'auto-complete-my-mode)
 ;;;;(bind-key* "p" 'phpcbf)
-(bind-key* "C-p i" 'w3m)
+(bind-key "C-p f" 'flyspell-mode)
+(bind-key "C-p i" 'w3m)
 (bind-key* "C-p s" 'spray-mode)
 (bind-key* "C-p <return>" 'execute)
 ;; (bind-key* "C-p c" 'compile)
@@ -308,6 +309,15 @@
 	(bind-key "M-s" 'next-line w3m-mode-map)
 	(bind-key "M-d" 'previous-line w3m-mode-map)
 	)
+
+(with-eval-after-load "flyspell"
+	(bind-key "C-." 'yank flyspell-mode-map)
+	)
+
+(with-eval-after-load "abbrev"
+	(bind-key "C-t C-s" 'abbrev-edit-save-buffer edit-abbrevs-mode-map)
+	)
+
 (bind-key* "\C-p g" 'google-translate-smooth-translate)
 
 

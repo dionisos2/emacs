@@ -55,6 +55,13 @@
 (require 'term)
 (require 'w3m-load)
 (require 'mime-w3m)
+(require 'flyspell)
+(require 'flyspell-correct-ivy)
+(require 'all-the-icons)
+(require 'all-the-icons-ivy)
+(require 'all-the-icons-dired)
+(require 'paradox)
+(paradox-enable)
 
 (setq custom-file "~/.emacs.d/lisp/my-custom.el")
 (load custom-file)
@@ -68,6 +75,7 @@
 (load "my-org-mode.el")
 (load "my-web-mode.el")
 
+(load "my-flyspell.el")
 (load "my-flycheck.el")
 (load "my-mode.el")
 (load "my-pylint.el")
