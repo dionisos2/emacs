@@ -221,7 +221,7 @@
 ;; Projet command (projet = C-p)
 ;;;; (bind-key* "C-t a" 'auto-complete-my-mode)
 ;;;;(bind-key* "p" 'phpcbf)
-(bind-key* "C-p i" 'eww)
+(bind-key* "C-p i" 'w3m)
 (bind-key* "C-p s" 'spray-mode)
 (bind-key* "C-p <return>" 'execute)
 ;; (bind-key* "C-p c" 'compile)
@@ -302,6 +302,12 @@
 	(bind-key "V" 'dired-unmark-all-marks ranger-mode-map)
 	)
 
+(with-eval-after-load "w3m"
+	(bind-key "M-t" 'backward-char w3m-mode-map)
+	(bind-key "M-r" 'forward-char w3m-mode-map)
+	(bind-key "M-s" 'next-line w3m-mode-map)
+	(bind-key "M-d" 'previous-line w3m-mode-map)
+	)
 (bind-key* "\C-p g" 'google-translate-smooth-translate)
 
 

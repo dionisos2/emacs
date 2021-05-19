@@ -4,6 +4,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(after-save-hook nil)
+ '(auth-source-save-behavior nil)
  '(auto-image-file-mode t)
  '(auto-save-default nil)
  '(avy-escape-chars '(27 7))
@@ -11,7 +12,7 @@
  '(backup-directory-alist
 	 '(("." . "/home/dionisos/personnelle/records_and_save/emacs_backups/")))
  '(backward-delete-char-untabify-method nil)
- '(browse-url-browser-function 'eww-browse-url)
+ '(browse-url-browser-function 'w3m-browse-url)
  '(c-default-style '((c-mode . "haypo") (c++-mode . "haypo")))
  '(calendar-day-header-array ["Di" "Lu" "Ma" "Me" "Je" "Ve" "Sa"])
  '(calendar-day-name-array
@@ -61,6 +62,7 @@
  '(ivy-height 20)
  '(ivy-prescient-mode t)
  '(kill-ring-max 100)
+ '(kiwix-default-browser-function 'w3m-browse-url)
  '(kiwix-default-data-dir "/home/dionisos/.local/share/kiwix/")
  '(kiwix-default-library-dir "/home/dionisos/.local/share/kiwix/")
  '(kiwix-server-port 8080)
@@ -91,7 +93,7 @@
 	 '(("melpa" . "http://melpa.org/packages/")
 		 ("gnu" . "http://elpa.gnu.org/packages/")))
  '(package-selected-packages
-	 '(ranger guess-language kiwix google-translate dash-functional phi-search multiple-cursors wgrep ivy-prescient counsel async ivy-todo ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray))
+	 '(w3m semi ranger guess-language kiwix google-translate dash-functional phi-search multiple-cursors wgrep ivy-prescient counsel async ivy-todo ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray))
  '(printer-name "EPSON_WF-2750")
  '(proced-auto-update-flag t)
  '(proced-auto-update-interval 1)
@@ -136,6 +138,7 @@
  '(truncate-partial-width-windows nil)
  '(version-control t)
  '(visible-bell t)
+ '(w3m-default-display-inline-images t)
  '(web-mode-markup-indent-offset 2)
  '(which-key-frame-max-height 100)
  '(which-key-idle-delay 0.2)

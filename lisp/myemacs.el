@@ -53,6 +53,8 @@
 (require 'google-translate)
 (require 'google-translate-smooth-ui)
 (require 'term)
+(require 'w3m-load)
+(require 'mime-w3m)
 
 (setq custom-file "~/.emacs.d/lisp/my-custom.el")
 (load custom-file)
