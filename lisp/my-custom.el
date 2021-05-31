@@ -47,7 +47,7 @@
  '(flyspell-abbrev-p t)
  '(flyspell-auto-correct-binding [67108923])
  '(flyspell-delay 2)
- '(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("francais" "english"))
+ '(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("english" "francais"))
  '(flyspell-duplicate-distance 40000)
  '(global-company-mode t)
  '(global-flycheck-mode t)

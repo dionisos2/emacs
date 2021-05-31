@@ -61,6 +61,9 @@
 (require 'all-the-icons-ivy)
 (require 'all-the-icons-dired)
 (require 'paradox)
+(require 'org)
+(require 'ranger)
+
 (paradox-enable)
 
 (setq custom-file "~/.emacs.d/lisp/my-custom.el")

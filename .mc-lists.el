@@ -10,6 +10,8 @@
 				forward-sexp
 				indent-for-tab-command
 				kill-region
+				org-self-insert-command
+				org-todo
 				select-symbol
 				select-word
 				swiper-isearch

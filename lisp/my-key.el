@@ -265,8 +265,7 @@
 	(bind-key "C-d" 'avy-goto-word-0 term-mode-map)
 	(bind-key "C-q" 'my-term-insert-literal term-mode-map)
 	(bind-key "C-q" 'my-term-insert-literal term-raw-map)
-	(bind-key "C-t" 'term-send-left term-raw-map)
-	(bind-key "C-r" 'term-send-right term-raw-map)
+	(bind-key "C-r" 'term-send-raw term-raw-map)
 	(bind-key "<C-left>" 'term-send-ctrl-left term-raw-map)
 	(bind-key "<C-right>" 'term-send-ctrl-right term-raw-map)
 	;; Found with "bind" command in fish. Or C-v in bash
@@ -301,6 +300,8 @@
 	(bind-key "SPC" 'ranger-toggle-mark ranger-mode-map)
 	(bind-key "C-SPC" 'dired-mark-files-regexp ranger-mode-map)
 	(bind-key "V" 'dired-unmark-all-marks ranger-mode-map)
+	(bind-key "V" 'dired-unmark-all-marks ranger-mode-map)
+	(bind-key "C-+" 'dired-create-empty-file ranger-mode-map)
 	)
 
 (with-eval-after-load "w3m"
