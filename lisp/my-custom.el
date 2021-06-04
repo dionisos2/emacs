@@ -4,6 +4,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(after-save-hook nil)
+ '(ansi-color-faces-vector
+	 [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+	 ["#242424" "#e5786d" "#95e454" "#cae682" "#8ac6f2" "#333366" "#ccaa8f" "#f6f3e8"])
  '(auth-source-save-behavior nil)
  '(auto-image-file-mode t)
  '(auto-save-default nil)
@@ -31,11 +35,15 @@
  '(company-statistics-mode t)
  '(counsel-grep-swiper-limit 30000)
  '(current-language-environment "utf-8")
+ '(custom-enabled-themes '(abyss))
+ '(custom-safe-themes
+	 '("3d4df186126c347e002c8366d32016948068d2e9198c496093a96775cc3b3eaa" "c9ddf33b383e74dac7690255dd2c3dfa1961a8e8a1d20e401c6572febef61045" "36ca8f60565af20ef4f30783aa16a26d96c02df7b4e54e9900a5138fb33808da" default))
  '(dash-docs-docsets-path "/home/dionisos/.local/share/Zeal/Zeal/docsets")
  '(delete-by-moving-to-trash t)
  '(delete-old-versions t)
  '(delete-selection-mode 1)
  '(doc-view-continuous t)
+ '(electric-indent-mode nil)
  '(elpy-eldoc-show-current-function nil)
  '(elpy-modules
 	 '(elpy-module-company elpy-module-eldoc elpy-module-pyvenv elpy-module-highlight-indentation elpy-module-yasnippet elpy-module-django elpy-module-sane-defaults))
@@ -54,6 +62,32 @@
  '(global-undo-tree-mode t)
  '(google-translate-default-source-language "en")
  '(google-translate-default-target-language "fr")
+ '(guess-language-after-detection-functions
+	 '(guess-language-switch-flyspell-function guess-language-switch-typo-mode-function my-change-dictionary))
+ '(guess-language-langcodes
+	 '((ar "ar" nil)
+		 (cs "czech" "Czech")
+		 (da "dansk" nil)
+		 (de "de" "German")
+		 (en "en" "English")
+		 (eo "eo" "English")
+		 (es "spanish" nil)
+		 (fi "finnish" "Finnish")
+		 (fr "francais" "French")
+		 (it "italiano" "Italian")
+		 (nb "norsk" nil)
+		 (nl "nederlands" nil)
+		 (pl "polish" "Polish")
+		 (pt "portuguese" nil)
+		 (ru "russian" "Russian")
+		 (sk "slovak" nil)
+		 (sl "slovenian" nil)
+		 (sr "serbian" "Serbian")
+		 (sr_LAT "sr-lat" "Serbian")
+		 (sv "svenska" "Swedish")
+		 (vi "viet" nil)))
+ '(guess-language-languages '(en fr))
+ '(guess-language-min-paragraph-length 30)
  '(helm-bookmark-show-location t)
  '(helm-buffer-max-length nil)
  '(helm-mode t)
@@ -74,6 +108,8 @@
  '(langtool-default-language "fr")
  '(langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
  '(langtool-mother-tongue "fr")
+ '(langtool-user-arguments
+	 '("--languagemodel" "/home/dionisos/logiciels/ngrams_dicts/"))
  '(line-move-visual nil)
  '(line-number-mode t)
  '(minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
@@ -98,7 +134,7 @@
 	 '(("melpa" . "http://melpa.org/packages/")
 		 ("gnu" . "http://elpa.gnu.org/packages/")))
  '(package-selected-packages
-	 '(paradox all-the-icons-dired all-the-icons-ivy all-the-icons flyspell-correct-ivy w3m semi ranger guess-language kiwix google-translate dash-functional phi-search multiple-cursors wgrep ivy-prescient counsel async ivy-todo ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray))
+	 '(abyss-theme paradox all-the-icons-dired all-the-icons-ivy all-the-icons flyspell-correct-ivy w3m semi ranger guess-language kiwix google-translate dash-functional phi-search multiple-cursors wgrep ivy-prescient counsel async ivy-todo ivy swiper avy smartparens find-file-in-project flymake-eslint org-roam csharp-mode kmb flycheck-elm flycheck-haskell json-mode elpy key-chord markdown-mode fish-mode openwith s web-beautify company-lua company-math company-php company-statistics elm-mode bind-key realgud which-key picpocket anchored-transpose geben julia-mode lua-mode python-mode web-mode magit auctex flycheck graphviz-dot-mode langtool pylint undo-tree yaml-mode php-mode spray))
  '(paradox-github-token t)
  '(printer-name "EPSON_WF-2750")
  '(proced-auto-update-flag t)

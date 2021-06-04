@@ -4,6 +4,26 @@
 
 ;;; Code:
 
+(defun my-dwim-done ()
+	"Close stuff like langtool and org-timer."
+	(interactive)
+	(when org-timer-start-time
+		(org-timer-stop)
+		)
+	(when locale-language-names
+		(langtool-check-done)
+		)
+	)
+
+(defun my-change-dictionary (&optional lang _beginning _end)
+	"Change dictionary, called by guess-language-after-detection-functions"
+	(interactive)
+	(if (eq lang 'fr)
+			(langtool-switch-default-language "fr")
+		(langtool-switch-default-language "en")
+		)
+	)
+
 
 (defun my-parse-time-string (time-string)
 	"Parse TIME-STRING in format '10h35'."
@@ -188,14 +208,15 @@ There is no limit on the number of *ivy-occur* buffers."
 			(flycheck-display-error-at-point))))
 
 (defun my-next-error ()
+	"Correct word with flyspell or langtool"
   (interactive)
   (if langtool-mode-line-message
 			(progn
 				(langtool-goto-next-error)
-				(langtool-show-message-at-point))
+				)
 		(progn
-			(flycheck-next-error)
-			(flycheck-display-error-at-point))))
+			(flyspell-goto-next-error)
+			(flyspell-correct-wrapper))))
 
 (defcustom execute-command (purecopy "./game&")
   "Last shell command used to do a execution; default for next execution."

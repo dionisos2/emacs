@@ -53,8 +53,8 @@
 
 (bind-key* "C-M-b" 'my-shell-command-on-region)
 ;;; Navigation
-(bind-key "C-n" 'next-error)
-(bind-key* "C-M-n" 'previous-error)
+(bind-key "C-n" 'my-next-error)
+(bind-key* "C-M-n" 'next-error)
 
 (bind-key "C-d" 'avy-goto-word-0)
 (bind-key "C-d" 'avy-goto-word-0 ivy-occur-grep-mode-map)
@@ -203,6 +203,7 @@
 (bind-key* "C-c s" 'flyspell-correct-wrapper)
 (bind-key* "C-c C-s" 'ispell-region)
 (bind-key* "C-c C-M-s" 'langtool-check-buffer)
+(bind-key* "<f4>" 'my-dwim-done)
 
 (bind-key* "C-c u" 'downcase-region)
 (bind-key* "C-c U" 'upcase-region)

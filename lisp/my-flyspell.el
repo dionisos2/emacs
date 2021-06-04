@@ -7,3 +7,5 @@
 
 (add-hook 'flyspell-mode-hook
           'abbrev-mode)
+
+(add-hook 'flyspell-mode-hook (lambda () (guess-language-mode 1)))

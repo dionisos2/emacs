@@ -63,6 +63,7 @@
 (require 'paradox)
 (require 'org)
 (require 'ranger)
+(require 'guess-language)
 
 (paradox-enable)
 

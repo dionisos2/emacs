@@ -45,7 +45,6 @@
             ))
 
 
-
 (add-hook 'julia-mode-hook
           (lambda ()
             ))
@@ -61,6 +60,7 @@
 
 (add-hook 'org-mode-hook
           (lambda ()
+						(electric-indent-local-mode -1)
             ))
 
 
