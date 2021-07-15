@@ -34,11 +34,11 @@
 (global-set-key (kbd "C-)") 'end-kbd-macro)
 (global-set-key (kbd "C-b") 'call-last-kbd-macro)
 (global-set-key (kbd "C-M-x") 'eval-expression)
-(define-key override-global-map (kbd "C-M-x") 'eval-expression)
+(global-set-key (kbd "C-M-x") 'eval-expression)
 (define-key emacs-lisp-mode-map (kbd "C-M-x") 'eval-expression)
 (global-set-key (kbd "C-M-b") 'my-shell-command-on-region)
 (global-set-key (kbd "M-x") 'execute-extended-command)
-(define-key override-global-map (kbd "M-x") 'execute-extended-command)
+(global-set-key (kbd "M-x") 'execute-extended-command)
 (global-set-key (kbd "C-p e") 'my-eval-region)
 (global-set-key (kbd "C-p C-e") 'my-eval-buffer)
 
@@ -66,7 +66,7 @@
 (global-set-key (kbd "M-SPC") 'View-back-to-mark)
 
 (global-set-key (kbd "C-M-SPC") 'point-to-register)
-(global-set-key (kbd "C-c C-g") 'jump-to-register)
+(global-set-key (kbd "C-t C-g") 'jump-to-register)
 
 (global-set-key (kbd "C-c {") 'narrow-to-region)
 (global-set-key (kbd "C-c }") 'widen)
@@ -116,8 +116,8 @@
 
 (global-set-key (kbd "C-t C-k") 'my-kill-buffer)
 (global-set-key (kbd "C-t k") 'my-kill-buffer-and-maybe-window)
-(define-key override-global-map (kbd "C-t C-k") 'my-kill-buffer)
-(define-key override-global-map (kbd "C-t k") 'my-kill-buffer-and-maybe-window)
+(global-set-key (kbd "C-t C-k") 'my-kill-buffer)
+(global-set-key (kbd "C-t k") 'my-kill-buffer-and-maybe-window)
 (global-set-key (kbd "C-t C-c C-c") 'delete-frame)
 
 (global-set-key (kbd "C-t C-r") 'recentf-open-files)
@@ -126,36 +126,36 @@
 (global-set-key (kbd "C-t C-t") 'switch-to-buffer)
 (global-set-key (kbd "C-t C-b") 'bookmark-set)
 (global-set-key (kbd "C-t C-l") 'bookmark-jump)
-(define-key override-global-map (kbd "C-t C-t") 'switch-to-buffer)
-(define-key override-global-map (kbd "C-t C-b") 'bookmark-set)
-(define-key override-global-map (kbd "C-t C-l") 'bookmark-jump)
+(global-set-key (kbd "C-t C-t") 'switch-to-buffer)
+(global-set-key (kbd "C-t C-b") 'bookmark-set)
+(global-set-key (kbd "C-t C-l") 'bookmark-jump)
 
 ;; Start mode or big things
 (global-set-key (kbd "C-p d") 'dired-jump) ;; Useful to rename file, use just R after
 (global-set-key (kbd "C-p C-s") 'save-some-buffers)
 (global-set-key (kbd "C-p r") 'revert-buffer)
 (global-set-key (kbd "C-p C-M-r") 'my-revert-all-buffers)
-(define-key override-global-map (kbd "C-p C-s") 'save-some-buffers)
-(define-key override-global-map (kbd "C-p r") 'revert-buffer)
-(define-key override-global-map (kbd "C-p C-M-r") 'my-revert-all-buffers)
+(global-set-key (kbd "C-p C-s") 'save-some-buffers)
+(global-set-key (kbd "C-p r") 'revert-buffer)
+(global-set-key (kbd "C-p C-M-r") 'my-revert-all-buffers)
 
 (global-set-key (kbd "C-p q") 'my-kill-boring-buffer)
 (global-set-key (kbd "C-p C-q") 'kill-matching-buffers)
-(define-key override-global-map (kbd "C-p q") 'my-kill-boring-buffer)
-(define-key override-global-map (kbd "C-p C-q") 'kill-matching-buffers)
+(global-set-key (kbd "C-p q") 'my-kill-boring-buffer)
+(global-set-key (kbd "C-p C-q") 'kill-matching-buffers)
 
 ;;; TODO : See if org-clock could be useful
 (global-set-key (kbd "C-p c") 'org-timer-set-timer)
 (global-set-key (kbd "C-p C-c") 'org-timer-start)
 (global-set-key (kbd "C-p M-c") 'org-timer-stop)
-(define-key override-global-map (kbd "C-p c") 'org-timer-set-timer)
-(define-key override-global-map (kbd "C-p C-c") 'org-timer-start)
-(define-key override-global-map (kbd "C-p M-c") 'org-timer-stop)
+(global-set-key (kbd "C-p c") 'org-timer-set-timer)
+(global-set-key (kbd "C-p C-c") 'org-timer-start)
+(global-set-key (kbd "C-p M-c") 'org-timer-stop)
 
 (global-set-key (kbd "C-p w") 'org-agenda-list)
 (global-set-key (kbd "C-p C-w") 'org-agenda)
-(define-key override-global-map (kbd "C-p w") 'org-agenda-list)
-(define-key override-global-map (kbd "C-p C-w") 'org-agenda)
+(global-set-key (kbd "C-p w") 'org-agenda-list)
+(global-set-key (kbd "C-p C-w") 'org-agenda)
 
 ;; org-mode
 (define-key org-mode-map (kbd "<f5>") 'org-todo)

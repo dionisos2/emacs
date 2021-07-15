@@ -21,7 +21,7 @@
  '(delete-selection-mode 1)
  '(doc-view-continuous t)
  '(electric-indent-mode nil)
- '(explicit-shell-file-name "/usr/bin/fish")
+ '(explicit-shell-file-name "/usr/bin/xonsh")
  '(find-file-visit-truename t)
  '(history-length 10000)
  '(ido-auto-merge-work-directories-length -1)
@@ -46,7 +46,7 @@
  '(org-timer-default-timer "4")
  '(org-track-ordered-property-with-tag t)
  '(package-selected-packages
-	 '(selectrum yasnippet which-key wgrep w3m use-package-chords undo-tree spray realgud ranger popup phi-search org-roam openwith multiple-cursors markdown-mode magit langtool kiwix hydra google-translate flycheck company-statistics company-quickhelp avy all-the-icons-dired abyss-theme))
+	 '(embark-consult embark yasnippet which-key wgrep w3m vertico use-package-chords undo-tree spray selectrum realgud ranger popup phi-search org-roam orderless openwith multiple-cursors markdown-mode marginalia magit langtool kiwix hydra google-translate flycheck consult company-statistics company-quickhelp avy all-the-icons-dired abyss-theme))
  '(printer-name "EPSON_WF-2750")
  '(register-preview-delay nil)
  '(savehist-mode t)

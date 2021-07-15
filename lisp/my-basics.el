@@ -339,7 +339,7 @@ buffer is not visiting a file."
 		)
   )
 
-(customize-set-variable 'explicit-shell-file-name "/usr/bin/fish")
+(customize-set-variable 'explicit-shell-file-name "/usr/bin/bash")
 (defun my-term ()
   "Run terminal without asking for shell."
   (interactive)

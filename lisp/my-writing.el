@@ -24,6 +24,8 @@
 				 (prog-mode-hook . flyspell-prog-mode)
 	)
 	:bind (
+				 ("C-c s" . flyspell-correct-word-before-point)
+				 ("C-p i" . my-change-dictionary)
 				 :map flyspell-mode-map
 							("C-." . nil)
 							("C-M-i" . nil)
@@ -34,7 +36,7 @@
 	(flyspell-delay 2)
 	(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("en" "fr"))
 	(flyspell-duplicate-distance 500)
-)
+	)
 
 (use-package google-translate
 	:demand
@@ -47,6 +49,9 @@
   (google-translate-default-source-language "en")
 	(google-translate-default-target-language "fr")
 	(google-translate-translation-directions-alist '(("fr" . "en") ("en" . "fr")))
+	:bind (
+				 ("C-p t" . google-translate-at-point)
+				 )
 )
 
 (use-package google-translate-smooth-ui

@@ -6,9 +6,38 @@
 (require 'use-package)
 
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
-(customize-set-variable 'custom-safe-themes '("3d4df186126c347e002c8366d32016948068d2e9198c496093a96775cc3b3eaa" default))
-(load-theme 'abyss)
 
+(use-package bind-key
+	:bind (
+				 :map override-global-map
+							("C-M-x" . eval-expression)
+							("M-x" . execute-extended-command)
+							("C-t C-k" . my-kill-buffer)
+							("C-t k" . my-kill-buffer-and-maybe-window)
+							("C-t C-t" . switch-to-buffer)
+							("C-t C-b" . bookmark-set)
+							("C-t C-l" . bookmark-jump)
+							("C-p C-s" . save-some-buffers)
+							("C-p r" . revert-buffer)
+							("C-p C-M-r" . my-revert-all-buffers)
+							("C-p q" . my-kill-boring-buffer)
+							("C-p C-q" . kill-matching-buffers)
+							("C-p c" . org-timer-set-timer)
+							("C-p C-c" . org-timer-start)
+							("C-p M-c" . org-timer-stop)
+							("C-p w" . org-agenda-list)
+							("C-p C-w" . org-agenda)
+				 )
+	)
+
+(use-package abyss-theme
+	:ensure t
+	:demand
+	:custom
+	(custom-safe-themes '("3d4df186126c347e002c8366d32016948068d2e9198c496093a96775cc3b3eaa" default))
+	:config
+	(load-theme 'abyss)
+	)
 
 (use-package use-package-chords
   :ensure t
@@ -55,6 +84,8 @@
 				 ("C-d" . avy-goto-word-0)
 				 ("C-M-d" . avy-goto-char)
 				 )
+	:custom
+	(avy-keys '(?a ?u ?i ?e ?p ?o ?n ?r ?s ?t ?d ?v ?g ?y))
 )
 
 (use-package magit
@@ -132,6 +163,8 @@
 
 (use-package all-the-icons
 	:demand
+	:ensure
+	;; (all-the-icons-install-fonts t)
 )
 
 (use-package all-the-icons-dired
@@ -171,11 +204,12 @@
 (use-package company
 	:ensure
 	:config
+	:demand
 	(setcdr company-active-map  nil) ;; I don’t want any keybinding.
 	:bind (
 				 :map company-active-map
 							("C-g" . company-abort)
-							("C-h c" . company-show-location)
+							;; ("C-h c" . company-show-location)
 							)
 	:custom
 	(global-company-mode t)
@@ -186,6 +220,7 @@
 
 
 (use-package company-dabbrev
+	:demand
 	:after (company)
 	:custom
 	(company-dabbrev-char-regexp "\\(\\sw\\|[-$_]\\)")
@@ -195,6 +230,8 @@
 )
 
 (use-package company-statistics
+	:ensure
+	:demand
 	:after (company)
 	:custom
 	(company-statistics-mode t)
@@ -207,26 +244,11 @@
 	(company-quickhelp-mode t)
 )
 
-(use-package kiwix
-	:ensure
-	:custom
-	(kiwix-default-browser-function 'w3m-browse-url)
-	(kiwix-default-data-dir "/home/dionisos/.local/share/kiwix/")
-	(kiwix-default-library-dir "/home/dionisos/.local/share/kiwix/")
-	(kiwix-server-port 8080)
-)
-
 (use-package proced
 	:ensure
 	:custom
 	(proced-auto-update-flag t)
 	(proced-auto-update-interval 1)
-)
-
-(use-package w3m
-	:ensure
-	:custom
-	(w3m-default-display-inline-images t)
 )
 
 (use-package which-key
@@ -239,12 +261,165 @@
 	(which-key-paging-prefixes '("C-c"))
 )
 
-(use-package selectrum
+(use-package vertico
 	:ensure
 	:demand
+  :init
+  (vertico-mode)
+  ;; (setq vertico-cycle t)
+	:bind (
+				 :map minibuffer-local-map
+							("M-d" . previous-line)
+							("M-s" . next-line)
+				 )
+  )
+
+(use-package orderless
+	:ensure
+	:demand
+  :init
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles partial-completion)))))
+
+(use-package marginalia
+	;; Enable richer annotations using the Marginalia package
+	:ensure
+  ;; Either bind `marginalia-cycle` globally or only in the minibuffer
+  :bind (("M-A" . marginalia-cycle)
+         :map minibuffer-local-map
+         ("M-A" . marginalia-cycle))
+  :init
+  (marginalia-mode))
+
+(use-package consult
+	:ensure
+	:demand
+  :bind (;; C-c bindings (mode-specific-map)
+         ;; ("C-c h" . consult-history)
+         ;; ("C-c m" . consult-mode-command)
+				 :map override-global-map
+         ("C-t C-l" . consult-bookmark)
+         ;; ("C-c C-b" . consult-kmacro)
+         ;; C-x bindings (ctl-x-map)
+         ;; ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
+         ("C-t C-t" . consult-buffer)
+
+         ("C-t C-g" . consult-register-load)
+         ("C-M-SPC" . consult-register-store)
+
+         ("M-." . consult-yank-pop)                ;; orig. yank-pop
+         ("<help> a" . consult-apropos)            ;; orig. apropos-command
+
+         ;; ("M-g e" . consult-compile-error)
+         ;; ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
+         ("C-c g" . consult-goto-line)             ;; orig. goto-line
+         ;; ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
+         ("M-SPC" . consult-global-mark)
+         ;; ("M-g i" . consult-imenu)
+         ;; ("M-g I" . consult-project-imenu)
+
+         ("C-p f" . consult-find)
+         ("C-p l" . consult-locate)
+         ;; ("M-s G" . consult-git-grep)
+         ("C-p g" . consult-ripgrep)
+         ;; ("M-s m" . consult-multi-occur)
+
+         ;; Isearch integration
+				 :map global-map
+         ("C-s" . consult-line)
+         :map isearch-mode-map
+         ("C-s" . isearch-repeat-forward)
+         :map minibuffer-local-map
+         ("C-s" . isearch-forward)
+				 )
+
+  :init
+  ;; Optionally configure the register formatting. This improves the register
+  ;; preview for `consult-register', `consult-register-load',
+  ;; `consult-register-store' and the Emacs built-ins.
+  (setq register-preview-delay 0
+        register-preview-function #'consult-register-format)
+
+  (advice-add #'register-preview :override #'consult-register-window)
+  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+
+  ;; (setq xref-show-xrefs-function #'consult-xref
+  ;;       xref-show-definitions-function #'consult-xref)
+
+
+  :config
+  (setq consult-preview-key (kbd "M-p"))
+  (setq consult-narrow-key "<")
+
+
+  ;; Optionally configure a function which returns the project root directory.
+  ;; There are multiple reasonable alternatives to chose from.
+  ;;;; 1. project.el (project-roots)
+  ;; (setq consult-project-root-function
+  ;;       (lambda ()
+  ;;         (when-let (project (project-current))
+  ;;           (car (project-roots project)))))
+  ;;;; 2. projectile.el (projectile-project-root)
+  ;; (autoload 'projectile-project-root "projectile")
+  ;; (setq consult-project-root-function #'projectile-project-root)
+  ;;;; 3. vc.el (vc-root-dir)
+  ;; (setq consult-project-root-function #'vc-root-dir)
+  ;;;; 4. locate-dominating-file
+  ;; (setq consult-project-root-function (lambda () (locate-dominating-file "." ".git")))
+	)
+
+(use-package embark
+  :ensure
+
+  :bind
+  (("C-." . yank)
+	 ("M-o" . embark-act)         ;; pick some comfortable binding
+   ("C-M-o" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none))))
+	(setq embark-action-indicator
+				(lambda (map _target)
+					(which-key--show-keymap "Embark" map nil nil 'no-paging)
+					#'which-key--hide-popup-ignore-command)
+				embark-become-indicator embark-action-indicator)
+	)
+
+(use-package embark-consult
+  :ensure
+  :after (embark consult)
+  :demand
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package kiwix
+	:ensure
 	:custom
-	(selectrum-mode 1)
+	(kiwix-default-browser-function 'w3m-browse-url)
+	(kiwix-default-data-dir "/stockage/kiwix/data")
+	(kiwix-default-library-dir "/stokage/kiwix/lib")
+	(kiwix-server-port 8080)
 )
+
+(use-package w3m
+	:ensure
+	:custom
+	(w3m-default-display-inline-images t)
+)
+
+(customize-set-variable 'explicit-shell-file-name "/usr/bin/xonsh")
 
 (provide 'my-common)
 ;;; my-common.el ends here
