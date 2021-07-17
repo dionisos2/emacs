@@ -42,3 +42,6 @@ snippets/
 elpy/
 image-dired/
 abbrev_defs
+private/
+.org-id-locations
+org-roam.db

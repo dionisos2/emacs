@@ -23,7 +23,7 @@
 (package-initialize)
 (require 'use-package)
 ;;; Automatic add of hook suffix is uselessly confuging
-(setq use-package-hook-name-suffix nil)
+(customize-set-variable 'use-package-hook-name-suffix nil)
 
 (load "my-common.el")
 (load "my-writing.el")

@@ -27,6 +27,8 @@
 							("C-p M-c" . org-timer-stop)
 							("C-p w" . org-agenda-list)
 							("C-p C-w" . org-agenda)
+							("C-c C-c" . comment-region)
+							("C-c c" . uncomment-region)
 				 )
 	)
 
@@ -60,6 +62,8 @@
 	:ensure
 	:custom
 	(org-roam-directory "~/projets/R&D/org_roam/")
+	:init
+	(setq org-roam-v2-ack t)
 	)
 
 
@@ -85,7 +89,7 @@
 				 ("C-M-d" . avy-goto-char)
 				 )
 	:custom
-	(avy-keys '(?a ?u ?i ?e ?p ?o ?n ?r ?s ?t ?d ?v ?g ?y))
+	(avy-keys '(?a ?u ?i ?e ?p ?o ?n ?r ?s ?t ?d ?v ?g ?x ?q))
 )
 
 (use-package magit
@@ -103,6 +107,7 @@
 )
 
 (use-package yasnippet
+	:demand
 	:ensure
 	:bind (
 				 :map yas-minor-mode-map
@@ -116,7 +121,7 @@
 	(yas-reload-all)
 	:custom
 	(yas-indent-line 'fixed)
-	;; (yas-snippet-dirs '("/home/dionisos/.emacs.d/snippets/snippets" "/home/dionisos/.emacs.d/elpa/elpy-20210328.1852/snippets/"))
+	(yas-snippet-dirs '("/home/dionisos/.emacs.d/snippets/yasnippet-snippets" "/home/dionisos/.emacs.d/snippets/my-snippets"))
 )
 
 (use-package wgrep
@@ -194,8 +199,9 @@
 	)
 
 (use-package abbrev
+	:demand
   :hook
-  ((text-mode prog-mode erc-mode LaTeX-mode) . abbrev-mode)
+  ((text-mode-hook prog-mode-hook erc-mode-hook LaTeX-mode-hook org-mode-hook) . abbrev-mode)
   :config
   (if (file-exists-p abbrev-file-name)
       (quietly-read-abbrev-file))
@@ -299,6 +305,7 @@
          ;; ("C-c h" . consult-history)
          ;; ("C-c m" . consult-mode-command)
 				 :map override-global-map
+         ("C-t C-r" . consult-recent-file)
          ("C-t C-l" . consult-bookmark)
          ;; ("C-c C-b" . consult-kmacro)
          ;; C-x bindings (ctl-x-map)
@@ -349,10 +356,15 @@
 
 
   :config
-  (setq consult-preview-key (kbd "M-p"))
+  (setq consult-preview-key 'any)
   (setq consult-narrow-key "<")
 
-
+	(consult-customize
+	 consult-ripgrep consult-git-grep consult-grep
+	 consult-bookmark consult-recent-file consult-xref
+	 consult--source-file consult--source-project-file consult--source-bookmark
+	 consult-buffer
+	 :preview-key (kbd "M-v"))
   ;; Optionally configure a function which returns the project root directory.
   ;; There are multiple reasonable alternatives to chose from.
   ;;;; 1. project.el (project-roots)
@@ -402,7 +414,8 @@
   :after (embark consult)
   :demand
   :hook
-  (embark-collect-mode . consult-preview-at-point-mode))
+  (embark-collect-mode-hook . consult-preview-at-point-mode)
+	)
 
 (use-package kiwix
 	:ensure

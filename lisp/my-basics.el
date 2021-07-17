@@ -378,6 +378,7 @@ buffer is not visiting a file."
   (kill-matching-buffers "^\\*Ido Completions\\*$")
   (kill-matching-buffers "^\\*Warnings\\*$")
   (kill-matching-buffers "^\\*Customize.*\\*$")
+  (kill-matching-buffers "^\\*Man .*\\*$")
   )
 
 (defun my-kill-buffer ()

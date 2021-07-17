@@ -24,7 +24,7 @@
 				 (prog-mode-hook . flyspell-prog-mode)
 	)
 	:bind (
-				 ("C-c s" . flyspell-correct-word-before-point)
+				 ("C-c s" . flyspell-correct-wrapper)
 				 ("C-p i" . my-change-dictionary)
 				 :map flyspell-mode-map
 							("C-." . nil)
@@ -36,6 +36,12 @@
 	(flyspell-delay 2)
 	(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("en" "fr"))
 	(flyspell-duplicate-distance 500)
+	)
+
+(use-package flyspell-correct
+	:ensure
+	:demand
+  :after flyspell
 	)
 
 (use-package google-translate
