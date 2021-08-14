@@ -7,6 +7,15 @@
 
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 
+(use-package with-editor
+	:ensure
+	:demand
+	:bind (
+				 :map with-editor-mode-map
+				 ("C-t C-s" . with-editor-finish)
+				 ("C-t C-k" . with-editor-cancel)
+				 )
+)
 (use-package org
 	:demand
 	:bind (
@@ -118,6 +127,8 @@
 	:bind (
 				 ("C-p m" . magit-status)
 				 )
+	:config
+	(bind-key "q" '(lambda () "Completely quit magit." (interactive) (magit-mode-bury-buffer 16)) magit-status-mode-map)
 )
 
 (use-package openwith
