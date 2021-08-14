@@ -5,23 +5,31 @@
 ;;; Code:
 
 (bind-key "C-n" 'my-next-error)
-(bind-key "C-S-n" 'my-previous-error)
+(bind-key "C-M-n" 'my-previous-error)
 
 (use-package langtool
 	:ensure
 	:demand
+	:bind (
+				 ("C-c C-M-s" . langtool-check)
+				 )
 	:custom
 	(langtool-default-language "fr")
-	(langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
 	(langtool-mother-tongue "fr")
-	(langtool-user-arguments '("--languagemodel" "/home/dionisos/logiciels/ngrams_dicts/"))
+	;; (langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
+	;; (langtool-user-arguments '("--languagemodel" "/home/dionisos/logiciels/ngrams_dicts/"))
+	(langtool-http-server-host "localhost")
+  (langtool-http-server-port 8081)
 )
 
 (use-package flyspell
 	:demand
 	:hook (
 				 (text-mode-hook . flyspell-mode)
+				 (text-mode-hook . (lambda() (my-set-dictionary "fr")))
 				 (prog-mode-hook . flyspell-prog-mode)
+				 (prog-mode-hook . (lambda() (my-set-dictionary "en")))
+
 	)
 	:bind (
 				 ("C-c s" . flyspell-correct-wrapper)
@@ -36,6 +44,9 @@
 	(flyspell-delay 2)
 	(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("en" "fr"))
 	(flyspell-duplicate-distance 500)
+	;; (ispell-dictionary "fr")
+	;; (ispell-local-dictionary "fr")
+	;; (flyspell-mode-line-string " Fly:(fr)")
 	)
 
 (use-package flyspell-correct

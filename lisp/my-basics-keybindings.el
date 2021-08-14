@@ -72,12 +72,21 @@
 (global-set-key (kbd "C-c }") 'widen)
 
 (define-key isearch-mode-map (kbd "<DEL>") 'isearch-del-char)
-(global-set-key (kbd "C-s") 'isearch-forward)
-(global-set-key (kbd "C-r") 'isearch-backward)
+(define-key isearch-mode-map (kbd "C-h m") 'describe-mode)
+(define-key isearch-mode-map (kbd "<C-right>") 'isearch-yank-word)
+(define-key isearch-mode-map (kbd "C-.") 'isearch-yank-kill)
+(define-key isearch-mode-map (kbd "<C-M-right>") 'isearch-yank-symbol-or-char)
+(global-set-key (kbd "C-s") 'isearch-forward-regexp)
+(global-set-key (kbd "C-r") 'isearch-backward-regexp)
 (global-set-key (kbd "C-M-r") 'query-replace-regexp)
 
 (global-set-key (kbd "<C-right>") 'forward-word)
 (global-set-key (kbd "<C-left>") 'backward-word)
+
+(global-set-key (kbd "<C-M-backspace>") 'backward-kill-sexp)
+(define-key minibuffer-local-map (kbd "<C-M-backspace>") 'backward-kill-sexp)
+(define-key isearch-mode-map (kbd "<C-M-backspace>") 'backward-kill-sexp)
+
 (global-set-key (kbd "<end>") 'end-of-buffer)
 (global-set-key (kbd "<home>") 'beginning-of-buffer)
 (global-set-key (kbd "<prior>") 'backward-paragraph)

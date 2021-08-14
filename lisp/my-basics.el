@@ -58,6 +58,9 @@
 (put 'upcase-region 'disabled nil)
 
 (recentf-mode 1)
+(customize-set-variable 'recentf-max-saved-items 500)
+(customize-set-variable 'recentf-max-menu-items 20)
+
 (fset 'yes-or-no-p 'y-or-n-p)
 (customize-set-variable 'current-language-environment "utf-8")
 ;;; Don’t save tramp password
@@ -292,8 +295,8 @@ Should use kbd, this isn’t a smart macro so don’t try complex stuffs"
 (defun my-parse-time-string (time-string)
 	"Parse TIME-STRING in format '10h35'."
 	(interactive "s")
-	(let* ((hour (nth 0 (split-string "h" time-string)))
-				 (min (nth 1 (split-string "h" time-string))))
+	(let* ((hour (nth 0 (split-string time-string "h")))
+				 (min (nth 1 (split-string time-string "h"))))
 		;; The ` evaluate every expression starting with , inside the list.
 		`(0 ,(string-to-number min) ,(string-to-number hour) 0 0 2000)
 		)

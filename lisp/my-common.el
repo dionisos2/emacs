@@ -7,9 +7,27 @@
 
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 
+(use-package org
+	:demand
+	:bind (
+				 ("<f4>" . my-dwim-done)
+				 :map org-agenda-mode-map
+				 ("h" . my-copy-heading)
+				 )
+)
+
+(use-package transpose-mark
+	:ensure
+	:demand
+	:bind (
+				 ("C-c C-t" . transpose-mark)
+				 )
+)
+
 (use-package bind-key
 	:bind (
 				 :map override-global-map
+							("C-h k" . describe-key)
 							("C-M-x" . eval-expression)
 							("M-x" . execute-extended-command)
 							("C-t C-k" . my-kill-buffer)
@@ -33,7 +51,7 @@
 	)
 
 (use-package abyss-theme
-	:ensure t
+	:ensure
 	:demand
 	:custom
 	(custom-safe-themes '("3d4df186126c347e002c8366d32016948068d2e9198c496093a96775cc3b3eaa" default))
@@ -41,8 +59,11 @@
 	(load-theme 'abyss)
 	)
 
+;; Seem like abyss-theme activate ido-mode, this is very weird
+(ido-mode -1)
+
 (use-package use-package-chords
-  :ensure t
+  :ensure
 	:demand
   :config
 	(key-chord-mode 1)
@@ -106,13 +127,20 @@
 	(openwith-mode t)
 )
 
+
 (use-package yasnippet
 	:demand
 	:ensure
 	:bind (
+				 ("C-p C-y" . yas-new-snippet)
+				 ("C-p y" . yas-visit-snippet-file)
 				 :map yas-minor-mode-map
-							("<tab>" . nil)
-							("C-M-f" . yas-expand-from-trigger-key))
+				 ("<tab>" . nil)
+				 ("TAB" . nil)
+				 ("C-M-f" . yas-expand-from-trigger-key)
+				 :map yas-keymap
+				 ("<tab>" . yas-next-field)
+				 )
 	:chords (
 					 ("ae" . yas-insert-snippet)
 					 )
@@ -121,7 +149,7 @@
 	(yas-reload-all)
 	:custom
 	(yas-indent-line 'fixed)
-	(yas-snippet-dirs '("/home/dionisos/.emacs.d/snippets/yasnippet-snippets" "/home/dionisos/.emacs.d/snippets/my-snippets"))
+	(yas-snippet-dirs '("/home/dionisos/.emacs.d/snippets/yasnippet-snippets/snippets" "/home/dionisos/.emacs.d/snippets/my-snippets" "/home/dionisos/.emacs.d/snippets/private-snippets"))
 )
 
 (use-package wgrep
@@ -207,14 +235,21 @@
       (quietly-read-abbrev-file))
 )
 
+
 (use-package company
 	:ensure
-	:config
 	:demand
+	:config
 	(setcdr company-active-map  nil) ;; I don’t want any keybinding.
+	(company-keymap--bind-quick-access company-active-map) ;; But still want M-0, M-1, etc shortcut.
 	:bind (
 				 :map company-active-map
 							("C-g" . company-abort)
+							("C-f" . company-complete)
+							("C-n" . company-select-next-or-abort)
+							("C-M-n" . company-select-previous-or-abort)
+							("<down>" . company-select-next-or-abort)
+							("<up>" . company-select-previous-or-abort)
 							;; ("C-h c" . company-show-location)
 							)
 	:custom
@@ -223,7 +258,6 @@
 	(company-idle-delay 0.2)
 	(company-show-numbers t)
 	)
-
 
 (use-package company-dabbrev
 	:demand
@@ -267,6 +301,7 @@
 	(which-key-paging-prefixes '("C-c"))
 )
 
+
 (use-package vertico
 	:ensure
 	:demand
@@ -275,8 +310,8 @@
   ;; (setq vertico-cycle t)
 	:bind (
 				 :map minibuffer-local-map
-							("M-d" . previous-line)
-							("M-s" . next-line)
+				 ("M-d" . previous-line)
+				 ("M-s" . next-line)
 				 )
   )
 
@@ -304,8 +339,10 @@
   :bind (;; C-c bindings (mode-specific-map)
          ;; ("C-c h" . consult-history)
          ;; ("C-c m" . consult-mode-command)
+         ("M-SPC" . consult-mark)
 				 :map override-global-map
          ("C-t C-r" . consult-recent-file)
+				 ("C-M-s" . consult-line)
          ("C-t C-l" . consult-bookmark)
          ;; ("C-c C-b" . consult-kmacro)
          ;; C-x bindings (ctl-x-map)
@@ -322,7 +359,6 @@
          ;; ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
          ("C-c g" . consult-goto-line)             ;; orig. goto-line
          ;; ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
-         ("M-SPC" . consult-global-mark)
          ;; ("M-g i" . consult-imenu)
          ;; ("M-g I" . consult-project-imenu)
 
@@ -333,12 +369,11 @@
          ;; ("M-s m" . consult-multi-occur)
 
          ;; Isearch integration
-				 :map global-map
-         ("C-s" . consult-line)
          :map isearch-mode-map
-         ("C-s" . isearch-repeat-forward)
+         ("M-e" . consult-isearch)
          :map minibuffer-local-map
-         ("C-s" . isearch-forward)
+         ("M-SPC" . vertico-next)
+         ;; ("C-s" . isearch-forward)
 				 )
 
   :init
@@ -365,6 +400,10 @@
 	 consult--source-file consult--source-project-file consult--source-bookmark
 	 consult-buffer
 	 :preview-key (kbd "M-v"))
+
+	:custom
+	(consult-find-command "find . -ipath *ARG* OPTS")
+
   ;; Optionally configure a function which returns the project root directory.
   ;; There are multiple reasonable alternatives to chose from.
   ;;;; 1. project.el (project-roots)

@@ -19,15 +19,19 @@
 	(interactive)
 	(if (and (boundp 'ispell-local-dictionary) (equal ispell-local-dictionary "fr"))
 			(progn
-				(langtool-switch-default-language "en")
-				(ispell-change-dictionary "en")
-				(customize-set-variable 'flyspell-mode-line-string " Fly:(en)")
+				(my-set-dictionary "en")
 				)
-		(langtool-switch-default-language "fr")
-		(ispell-change-dictionary "fr")
-		(customize-set-variable 'flyspell-mode-line-string " Fly:(fr)")
+		(my-set-dictionary "fr")
 		)
 	)
+
+(defun my-set-dictionary(lang)
+	"Change dictionary for LANG (fr or en)."
+	(interactive "s")
+	(langtool-switch-default-language lang)
+	(ispell-change-dictionary lang)
+	(customize-set-variable 'flyspell-mode-line-string (format " Fly:(%s)" lang))
+)
 
 (defun my-wgrep-finish-and-save-buffers()
 	"Finish edition in wgrep buffer and save all modified buffers."
