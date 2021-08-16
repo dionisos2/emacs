@@ -7,6 +7,18 @@
 
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 
+
+(use-package appt
+	:bind (
+				 ("C-p C-M-c" . appt-add)
+				 )
+	:custom
+	(appt-message-warning-time 1)
+	(appt-display-interval appt-message-warning-time)
+	(appt-disp-window-function 'my-appt-notification)
+	(appt-delete-window-function (lambda () t))
+)
+
 (use-package with-editor
 	:ensure
 	:demand
@@ -160,7 +172,7 @@
 	(yas-reload-all)
 	:custom
 	(yas-indent-line 'fixed)
-	(yas-snippet-dirs '("/home/dionisos/.emacs.d/snippets/yasnippet-snippets/snippets" "/home/dionisos/.emacs.d/snippets/my-snippets" "/home/dionisos/.emacs.d/snippets/private-snippets"))
+	(yas-snippet-dirs '("/home/dionisos/.emacs.d/snippets/private-snippets" "/home/dionisos/.emacs.d/snippets/yasnippet-snippets/snippets" "/home/dionisos/.emacs.d/snippets/my-snippets"))
 )
 
 (use-package wgrep
@@ -323,6 +335,10 @@
 				 :map minibuffer-local-map
 				 ("M-d" . previous-line)
 				 ("M-s" . next-line)
+				 :map vertico-map
+				 ("C-f" . vertico-insert)
+				 ("<return>" . vertico-directory-enter)
+				 ("^" . vertico-directory-up)
 				 )
   )
 

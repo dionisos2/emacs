@@ -4,6 +4,45 @@
 
 ;;; Code:
 
+;;; Found here : https://github.com/minad/vertico/blob/main/extensions/vertico-directory.el
+(defun vertico-directory--completing-file-p ()
+  "Return non-nil when completing file names."
+  (eq 'file
+      (completion-metadata-get
+       (completion-metadata
+        (buffer-substring (minibuffer-prompt-end)
+                          (max (minibuffer-prompt-end) (point)))
+        minibuffer-completion-table
+        minibuffer-completion-predicate)
+       'category)))
+
+
+(defun vertico-directory-enter ()
+  "Enter directory or exit completion with current candidate."
+  (interactive)
+  (if (and (>= vertico--index 0)
+           (string-suffix-p "/" (vertico--candidate))
+           (vertico-directory--completing-file-p))
+      (vertico-insert)
+    (vertico-exit)))
+
+
+(defun vertico-directory-up ()
+  "Delete directory before point."
+  (interactive)
+  (when (and (eq (char-before) ?/)
+             (vertico-directory--completing-file-p))
+    (save-excursion
+      (goto-char (1- (point)))
+      (when (search-backward "/" (minibuffer-prompt-end) t)
+        (delete-region (1+ (point)) (point-max))
+        t))))
+
+(defun my-appt-notification (min-to-app new-time msg)
+	(interactive)
+  (start-process "my-appt-notification-app" nil "notify-send" msg)
+	)
+
 (defun my-delete-file-and-buffer ()
   "Kill the current buffer and deletes the file it is visiting."
   (interactive)
