@@ -15,6 +15,7 @@
 (require 'auth-source)
 (require 'doc-view)
 (require 'ido)
+(require 'bookmark)
 
 ;; How to save backup files (TODO:Reconfigure this correctly)
 (setq backup-by-copying t)
@@ -40,6 +41,8 @@
 
 (customize-set-variable 'auto-save-default nil)
 (customize-set-variable 'version-control t)
+
+(customize-set-variable 'bookmark-save-flag 0)
 
 ;;; Delete excess backup silently
 (customize-set-variable 'delete-old-versions t)
@@ -70,7 +73,7 @@
 ;;; Don't transform tabulation in space, just remove a character.
 (customize-set-variable 'backward-delete-char-untabify-method nil)
 ;;; Don’t ignore case in searches and matches
-(customize-set-variable 'case-fold-search nil)
+(customize-set-variable 'case-fold-search t)
 ;;; Display line and column in the mode line
 (customize-set-variable 'column-number-mode t)
 (customize-set-variable 'line-number-mode t)

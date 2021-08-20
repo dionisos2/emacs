@@ -12,5 +12,8 @@
 (fset 'my-copy-heading
    (kmacro-lambda-form [?\C-s ?T ?O ?D ?O return ?\C-s ?  ?  return left left ?\C-  ?\C-r ?T ?O ?D ?O return C-right right ?\C-x ?\C-x] 0 "%d"))
 
+(fset 'my-copy-heading-org
+   (kmacro-lambda-form [C-right right ?\C-  ?\C-e ?\C-x ?\C-x ?\C-a] 0 "%d"))
+
 (provide 'my-macro.el)
 ;;; my-macro.el ends here

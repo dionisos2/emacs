@@ -4,6 +4,12 @@
 
 ;;; Code:
 
+(require 'ansi-color)
+
+(defun my-display-ansi-colors ()
+  (interactive)
+  (ansi-color-apply-on-region (point-min) (point-max)))
+
 ;;; Found here : https://github.com/minad/vertico/blob/main/extensions/vertico-directory.el
 (defun vertico-directory--completing-file-p ()
   "Return non-nil when completing file names."

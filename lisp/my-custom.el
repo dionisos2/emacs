@@ -3,17 +3,20 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+	 ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(auth-source-save-behavior nil)
  '(auto-image-file-mode t)
  '(auto-save-default nil)
  '(backup-directory-alist
 	 '(("." . "/home/dionisos/personnelle/records_and_save/emacs_backups/")))
  '(backward-delete-char-untabify-method nil)
+ '(bookmark-save-flag 0)
  '(calendar-day-header-array ["Di" "Lu" "Ma" "Me" "Je" "Ve" "Sa"])
  '(calendar-day-name-array
 	 ["Dimanche" "Lundi" "Mardi" "Mercredi" "Jeudi" "Vendredi" "Samedi"])
  '(calendar-week-start-day 1)
- '(case-fold-search nil)
+ '(case-fold-search t)
  '(column-number-mode t)
  '(current-language-environment "utf-8")
  '(delete-by-moving-to-trash t)
@@ -23,6 +26,7 @@
  '(electric-indent-mode nil)
  '(explicit-shell-file-name "/usr/bin/bash")
  '(find-file-visit-truename t)
+ '(flyspell-mode-line-string " Fly:(en)")
  '(history-length 10000)
  '(ido-auto-merge-work-directories-length -1)
  '(ido-enable-regexp t)
@@ -46,7 +50,7 @@
  '(org-timer-default-timer "4")
  '(org-track-ordered-property-with-tag t)
  '(package-selected-packages
-	 '(yasnippet xonsh-mode which-key wgrep w3m vertico use-package-chords undo-tree transpose-mark spray semi selectrum realgud ranger popup phi-search org-roam orderless openwith multiple-cursors markdown-mode marginalia magit langtool kiwix hydra google-translate flyspell-correct flycheck embark-consult emacsql-sqlite3 elquery company-statistics company-quickhelp avy all-the-icons-dired abyss-theme))
+	 '(yasnippet xterm-color xonsh-mode which-key wgrep w3m vertico use-package-chords undo-tree transpose-mark spray semi selectrum realgud ranger popup phi-search org-roam orderless openwith multiple-cursors markdown-mode marginalia magit langtool kiwix hydra google-translate flyspell-correct flycheck embark-consult emacsql-sqlite3 elquery company-statistics company-quickhelp avy all-the-icons-dired abyss-theme))
  '(printer-name "EPSON_WF-2750")
  '(recentf-max-menu-items 20)
  '(recentf-max-saved-items 500)
@@ -73,4 +77,5 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(Man-overstrike ((t (:inherit bold :foreground "blue"))))
+ '(Man-underline ((t (:inherit underline :foreground "green")))))

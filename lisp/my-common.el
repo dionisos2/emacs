@@ -8,6 +8,19 @@
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 
 
+(use-package xterm-color
+	:ensure
+	:demand
+)
+
+(use-package emacs-pager
+	:demand
+	:config
+	(add-to-list 'auto-mode-alist '("\\.emacs-pager$" . emacs-pager-mode))
+)
+
+;(setq auto-mode-alist (delete '("\\.emacs-pager$" . text-mode) auto-mode-alist))
+
 (use-package appt
 	:bind (
 				 ("C-p C-M-c" . appt-add)
@@ -32,6 +45,8 @@
 	:demand
 	:bind (
 				 ("<f4>" . my-dwim-done)
+				 :map org-mode-map
+				 ("C-c h" . my-copy-heading-org)
 				 :map org-agenda-mode-map
 				 ("h" . my-copy-heading)
 				 )
@@ -79,6 +94,12 @@
 	:config
 	(load-theme 'abyss)
 	)
+
+
+;; (unless (display-graphic-p)
+;; 	(disable-theme 'abyss)
+;; 	(load-theme 'tango-dark)
+;;   )
 
 ;; Seem like abyss-theme activate ido-mode, this is very weird
 (ido-mode -1)
