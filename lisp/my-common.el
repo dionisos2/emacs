@@ -7,6 +7,14 @@
 
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 
+(use-package xonsh
+	:require
+	:demand
+)
+
+(use-package man
+	:demand
+)
 
 (use-package xterm-color
 	:ensure
