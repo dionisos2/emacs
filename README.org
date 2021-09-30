@@ -1,0 +1,78 @@
+* search
+** search in multiple file C-p g
+	 -g blob -- search_string to filter
+	 ex : -g *py -- while
+** C-u C-p g → counsel-rg but ask for directory
+** in isearch use M-c (isearch-toggle-case-fold) to change case sensitivity
+* moving
+  some ressource here : https://www.masteringemacs.org/article/effective-editing-movement
+** M-t M-s M-r M-d basic move
+** C-a C-e move start/end line
+** C-d C-M-d avy-goto-word/avy-goto-char
+** C-s C-r forward/backward isearch then C-M-s to replace
+** C-[left] C-[right] C-M-[left] C-M-[right] move by word/sexp
+** M-m start of indentation
+** [orig] [fin] start/end of buffer
+** M-[space] move to previous point
+* dired
+** 'w' when on a file/directory to copy the path
+** find-name-dired (in find-dired.el) : find files by name
+** dired-jump (C-p d)
+** t for toggle mark file or %m for regexp (% is "=" key on azerty)
+** Q for query replace in all marked file
+** %r for rename by regexp (% is "=" key on azerty)
+** C-t C-f /user@host.server.com:/ access on remote machine
+** dired-do-copy : C
+** diredp-dired-recent-dirs
+** dired-do-rename : R (rename or move (like the mv command) could use it on many selected files)
+** dired-create-directory : +
+** filter directory : "/" (dired-narrow)
+** open directory recursively with C-u C-x d and then add -R (-alh → -alhR)
+* coding system
+** revert-buffer-with-coding-system to change read encoding system
+   in particular try windows-1258 or later encoding system
+** set-buffer-file-coding-system to modify the encoding system
+** c-set-offset (C-c C-o) give what the style use for indent the current line. Then we can change the indent value in the style file
+** c-set-style set the style to use (like haypo)
+** ucs-insert for insert a special char (just write the number)
+** describe-char for describe a char
+** C-S-u for insert a special char in other windows
+** C-q C-j to add a line break in the mini-buffer
+
+* git
+** vc-* are goods functions for manipulate git repository (it’s also possible to click on Git:master). (vc-annotate is fun !)
+
+* help and log
+** for know the used mode: "C-h m" or describe-mode
+** C-h l → view-lossage
+** log command:
+   call mwe:open-command-log-buffer and then mwe:log-keyboard-commands to the buffer where to log command
+
+** describe the bindings of the prefix used to reach this command : "key sequence" C-h
+** M-x describe-personal-keybindings to see personal keybinding with some info
+* org-mode
+** <f5> -> TODO to DONE
+** <f6> -> make a SCHEDULED
+** C-c C-q -> add tags
+** C-c C-p -> add priority
+** C-u C-u C-u <tb> -> show all items
+** C-M-<tab> -> retract all items
+** C-S-d -> go to parent items
+* macro
+** macro => view ./lisp/my-macro.el
+** f3 → kmacro-start-macro-or-insert-counter, f3→kmacro-insert-counter (kmacro-add-counter)
+
+* divers
+** click on the info bar for view useful information.
+** delete-trailing-whitespace to delete whitespace at the end of line
+** insert command's result in a buffer :
+   "(with-current-buffer "*view.svg*"
+   (insert (shell-command-to-string cmd)))"
+** in a terminal : C-x C-e open emacs to continue to write the command
+** langtool-check-done delete coloration of langtool
+** list-load-path-shadows find collision problems with packages
+** linum-mode toggle line number
+** C-p s, spray mode, Rapid Serial Visual Presentation (RSVP)
+** packages
+   package-activated-list = (ace-jump-mode anchored-transpose auctex auto-complete dired+ dired-narrow dired-hacks-utils elpy company find-file-in-project flycheck geben graphviz-dot-mode helm-dash helm helm-core highlight-indentation ivy julia-mode langtool lua-mode magit git-commit magit-popup dash pdf-tools php-mode pkg-info epl popup pylint python-mode pyvenv s spray tablist undo-tree web-mode with-editor async yaml-mode yasnippet)
+** company-diag, too see company backends currently used

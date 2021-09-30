@@ -3,8 +3,6 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-	 ["#212526" "#ff4b4b" "#b4fa70" "#fce94f" "#729fcf" "#e090d7" "#8cc4ff" "#eeeeec"])
  '(auth-source-save-behavior nil)
  '(auto-image-file-mode t)
  '(auto-save-default nil)
@@ -26,7 +24,6 @@
  '(electric-indent-mode nil)
  '(explicit-shell-file-name "/usr/bin/bash")
  '(find-file-visit-truename t)
- '(flyspell-mode-line-string " Fly:(en)")
  '(history-length 10000)
  '(ido-auto-merge-work-directories-length -1)
  '(ido-enable-regexp t)
@@ -77,5 +74,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(Man-overstrike ((t (:inherit bold :foreground "blue"))))
- '(Man-underline ((t (:inherit underline :foreground "green")))))
+ )
