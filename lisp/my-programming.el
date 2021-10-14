@@ -14,7 +14,7 @@
 
 (use-package python
 	:custom
-	(python-indent-guess-indent-offset t)
+	;; (python-indent-guess-indent-offset t)
 	(python-indent-offset 4)
 	(python-indent-trigger-commands '(indent-for-tab-command yas-expand))
 	(python-shell-interpreter "python")

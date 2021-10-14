@@ -47,7 +47,7 @@
  '(org-timer-default-timer "4")
  '(org-track-ordered-property-with-tag t)
  '(package-selected-packages
-	 '(lsp-mode julia-mode xonsh-mode yasnippet xterm-color which-key wgrep w3m vertico use-package-chords undo-tree transpose-mark spray realgud ranger popup phi-search org-roam orderless openwith multiple-cursors markdown-mode marginalia magit langtool kiwix hydra google-translate flyspell-correct flycheck embark-consult company-statistics company-quickhelp avy all-the-icons-dired abyss-theme))
+	 '(yasnippet xterm-color xonsh-mode which-key wgrep w3m vertico use-package-chords undo-tree transpose-mark spray semi selectrum realgud ranger popup phi-search org-roam orderless openwith multiple-cursors markdown-mode marginalia magit langtool kiwix hydra google-translate flyspell-correct flycheck embark-consult emacsql-sqlite3 elquery company-statistics company-quickhelp avy all-the-icons-dired abyss-theme))
  '(printer-name "EPSON_WF-2750")
  '(recentf-max-menu-items 20)
  '(recentf-max-saved-items 500)
