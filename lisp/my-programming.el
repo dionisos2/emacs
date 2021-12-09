@@ -28,6 +28,13 @@
 	(realgud:pdb-command-name "python -m pdb")
 )
 
+(use-package julia-mode
+	:ensure
+)
+
+(use-package haskell-mode
+	:ensure
+)
 
 (provide 'my-programming)
 ;;; my-programming.el ends here

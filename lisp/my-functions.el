@@ -6,6 +6,15 @@
 
 (require 'ansi-color)
 
+(defun my-show-appt ()
+	(interactive)
+	(with-output-to-temp-buffer "appt-notifications"
+		(cl-loop for notif in appt-time-msg-list
+						 do (print (nth 1 notif))
+						 )
+		)
+	)
+
 (defun my-display-ansi-colors ()
   (interactive)
   (ansi-color-apply-on-region (point-min) (point-max)))
