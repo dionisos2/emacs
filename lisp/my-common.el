@@ -7,8 +7,8 @@
 
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 
-(use-package xonsh
-	:require
+(use-package xonsh-mode
+	:ensure
 	:demand
 )
 
@@ -295,9 +295,9 @@
 	(setcdr company-active-map  nil) ;; I don’t want any keybinding.
 	(company-keymap--bind-quick-access company-active-map) ;; But still want M-0, M-1, etc shortcut.
 	:bind (
+				 ("C-f" . company-complete)
 				 :map company-active-map
 							("C-g" . company-abort)
-							("C-f" . company-complete)
 							("C-n" . company-select-next-or-abort)
 							("C-M-n" . company-select-previous-or-abort)
 							("<down>" . company-select-next-or-abort)
@@ -310,6 +310,24 @@
 	(company-idle-delay 0.2)
 	(company-show-numbers t)
 	)
+
+(use-package flx
+	:ensure
+)
+
+(use-package company-fuzzy
+	:ensure
+	:init
+	(global-company-fuzzy-mode 1)
+	:custom
+	(company-fuzzy-sorting-backend 'flx)
+)
+
+
+(use-package consult-lsp
+	:ensure
+)
+
 
 (use-package company-dabbrev
 	:demand
@@ -334,6 +352,9 @@
 	:after (company)
 	:custom
 	(company-quickhelp-mode t)
+	(company-quickhelp-color-background "black")
+	(company-quickhelp-color-foreground "white")
+	(company-quickhelp-delay 0.1)
 )
 
 (use-package proced
@@ -426,7 +447,7 @@
 
          ;; Isearch integration
          :map isearch-mode-map
-         ("M-e" . consult-isearch)
+         ("M-e" . consult-isearch-history)
          :map minibuffer-local-map
          ("M-SPC" . vertico-next)
          ;; ("C-s" . isearch-forward)
@@ -476,6 +497,10 @@
   ;; (setq consult-project-root-function (lambda () (locate-dominating-file "." ".git")))
 	)
 
+(use-package consult-company
+	:ensure
+)
+
 (use-package embark
   :ensure
 
@@ -511,6 +536,7 @@
   :hook
   (embark-collect-mode-hook . consult-preview-at-point-mode)
 	)
+
 
 (use-package kiwix
 	:ensure
