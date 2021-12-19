@@ -189,7 +189,7 @@
 				 :map yas-minor-mode-map
 				 ("<tab>" . nil)
 				 ("TAB" . nil)
-				 ("C-M-f" . yas-expand-from-trigger-key)
+				 ("M-f" . yas-expand-from-trigger-key)
 				 :map yas-keymap
 				 ("<tab>" . yas-next-field)
 				 )
@@ -228,6 +228,29 @@
 	(ranger-show-hidden 'hidden)
 	(ranger-show-literal nil)
 	(ranger-width-preview 0.5)
+	:bind (
+				 :map ranger-mode-map
+				 ("M-t" . ranger-up-directory)
+				 ("M-r" . ranger-find-file)
+
+				 ("t" . ranger-up-directory)
+				 ("r" . ranger-find-file)
+				 ("d" . ranger-prev-file)
+				 ("s" . ranger-next-file)
+				 ("H" . ranger-toggle-dotfiles)
+				 ("SPC" . ranger-toggle-mark)
+				 ("C-d" . avy-goto-word-0)
+				 ("C-M-d" . avy-goto-char)
+
+				 ("v" . dired-toggle-marks)
+				 ("C-v" . dired-mark-sexp)
+
+				 ("cc" . ranger-copy)
+				 ("CC" . ranger-cut)
+				 ("C-t p" . ranger-copy-filename)
+
+				 ("<delete>" . dired-do-delete)
+				 )
 )
 
 (use-package image-mode
@@ -287,7 +310,6 @@
       (quietly-read-abbrev-file))
 )
 
-
 (use-package company
 	:ensure
 	:demand
@@ -295,7 +317,8 @@
 	(setcdr company-active-map  nil) ;; I don’t want any keybinding.
 	(company-keymap--bind-quick-access company-active-map) ;; But still want M-0, M-1, etc shortcut.
 	:bind (
-				 ("C-f" . company-complete)
+				 ("C-f" . company-complete-selection)
+				 ("C-M-f" . company-complete)
 				 :map company-active-map
 							("C-g" . company-abort)
 							("C-n" . company-select-next-or-abort)
@@ -309,6 +332,16 @@
 	(company-continue-commands t)
 	(company-idle-delay 0.2)
 	(company-show-numbers t)
+	(company-backends '(
+											(company-files company-keywords company-capf)
+											(company-abbrev company-dabbrev)
+											)
+										)
+	;; :hook (
+	;; 			 (haskell-mode-hook . (lambda() (setq-local company-backends (company-lsp :with company-dabbrev :with company-yasnippet :with company-files))))
+	;; 			 (elisp-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
+	;; 			 (julia-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
+	;; 			 )
 	)
 
 (use-package flx
@@ -426,8 +459,7 @@
          ;; ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
          ("C-t C-t" . consult-buffer)
 
-         ("C-t C-g" . consult-register-load)
-         ("C-M-SPC" . consult-register-store)
+         ("C-t C-g" . consult-register)
 
          ("M-." . consult-yank-pop)                ;; orig. yank-pop
          ("<help> a" . consult-apropos)            ;; orig. apropos-command
@@ -457,8 +489,7 @@
   ;; Optionally configure the register formatting. This improves the register
   ;; preview for `consult-register', `consult-register-load',
   ;; `consult-register-store' and the Emacs built-ins.
-  (setq register-preview-delay 0
-        register-preview-function #'consult-register-format)
+
 
   (advice-add #'register-preview :override #'consult-register-window)
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
@@ -480,21 +511,6 @@
 
 	:custom
 	(consult-find-command "find . -ipath *ARG* OPTS")
-
-  ;; Optionally configure a function which returns the project root directory.
-  ;; There are multiple reasonable alternatives to chose from.
-  ;;;; 1. project.el (project-roots)
-  ;; (setq consult-project-root-function
-  ;;       (lambda ()
-  ;;         (when-let (project (project-current))
-  ;;           (car (project-roots project)))))
-  ;;;; 2. projectile.el (projectile-project-root)
-  ;; (autoload 'projectile-project-root "projectile")
-  ;; (setq consult-project-root-function #'projectile-project-root)
-  ;;;; 3. vc.el (vc-root-dir)
-  ;; (setq consult-project-root-function #'vc-root-dir)
-  ;;;; 4. locate-dominating-file
-  ;; (setq consult-project-root-function (lambda () (locate-dominating-file "." ".git")))
 	)
 
 (use-package consult-company

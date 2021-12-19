@@ -6,17 +6,17 @@
 * DONE restore LanguageTool
 * DONE completion with C-f
 * DONE fix tabulations (see /home/dionisos/.xonshrc)
+* TODO install ranger
 * TODO restore magit
-* TODO restore jump to mark
+* DONE restore jump to mark
 * TODO transpose in org-mode
 * TODO my-org-save-all-org-buffers
 * TODO install language server protocol
 * TODO Flycheck
-* TODO Completion
+* DONE Completion
 * TODO fix issue with pager (ex: git diff)
 * TODO fix consult-buffer switch issue
 
 * DONE Ngram
 * DONE Yasnippet
-* TODO Org-Roam
 

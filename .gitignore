@@ -2,4 +2,5 @@ elpa
 lisp/beancount.el
 snippets/yasnippet-snippets
 private/
-
+.dap-breakpoints
+.lsp-session-v1

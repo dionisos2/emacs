@@ -35,12 +35,13 @@
 (use-package lsp-mode
 	:ensure
   :init
-  ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
-  (setq lsp-keymap-prefix "C-c l")
+  (setq lsp-keymap-prefix "C-c l") ;; lsp-keymap-prefix is mostly for documentation of which-key integration only.
   :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
          (julia-mode-hook . lsp)
          (lsp-mode-hook . lsp-enable-which-key-integration))
   :commands lsp
+  :config
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
 )
 
 
