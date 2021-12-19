@@ -127,6 +127,10 @@
 	(electric-indent-local-mode -1)
 	:custom
 	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org"))
+	:bind (
+				 :map org-mode-map
+							("C-c C-t" . transpose-mark)
+				 )
 )
 
 (use-package org-roam
