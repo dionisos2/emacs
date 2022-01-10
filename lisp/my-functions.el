@@ -97,6 +97,16 @@
 	(langtool-switch-default-language lang)
 	(ispell-change-dictionary lang)
 	(customize-set-variable 'flyspell-mode-line-string (format " Fly:(%s)" lang))
+	(if (equal lang "fr")
+		(progn
+		 (setq google-translate-default-source-language "fr")
+		 (setq google-translate-default-target-language "en")
+		 )
+		(progn
+		 (setq google-translate-default-source-language "en")
+		 (setq google-translate-default-target-language "fr")
+		 )
+		)
 )
 
 (defun my-wgrep-finish-and-save-buffers()

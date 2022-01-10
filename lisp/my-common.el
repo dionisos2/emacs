@@ -314,6 +314,7 @@
       (quietly-read-abbrev-file))
 )
 
+
 (use-package company
 	:ensure
 	:demand
@@ -348,18 +349,6 @@
 	;; 			 )
 	)
 
-(use-package flx
-	:ensure
-)
-
-(use-package company-fuzzy
-	:ensure
-	:init
-	(global-company-fuzzy-mode 1)
-	:custom
-	(company-fuzzy-sorting-backend 'flx)
-)
-
 
 (use-package consult-lsp
 	:ensure
@@ -376,12 +365,27 @@
 	(company-dabbrev-minimum-length 3)
 )
 
-(use-package company-statistics
+;; (use-package company-statistics
+;; 	:ensure
+;; 	:demand
+;; 	:after (company)
+;; 	:custom
+;; 	(company-statistics-mode t)
+;; )
+
+
+(use-package prescient
 	:ensure
-	:demand
-	:after (company)
+)
+
+
+(use-package company-prescient
+	:ensure
+	:config
+	(company-prescient-mode 1)
+	(prescient-persist-mode 1)
 	:custom
-	(company-statistics-mode t)
+	(prescient-save-file "/home/dionisos/.emacs.d/private/prescient-save.el")
 )
 
 (use-package company-quickhelp

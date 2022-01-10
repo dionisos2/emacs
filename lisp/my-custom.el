@@ -46,6 +46,8 @@
  '(org-tags-exclude-from-inheritance '("ORDERED"))
  '(org-timer-default-timer "4")
  '(org-track-ordered-property-with-tag t)
+ '(package-selected-packages
+	 '(yasnippet xterm-color xonsh-mode which-key wgrep w3m vertico use-package-chords undo-tree transpose-mark spray semi selectrum rust-mode realgud ranger popup phi-search org-roam orderless openwith multiple-cursors marginalia magit lsp-ui langtool kiwix julia-repl julia-mode jsonrpc haskell-mode google-translate flyspell-correct flymake flycheck embark-consult emacsql-sqlite3 elquery dap-mode csharp-mode corfu consult-lsp consult-company company-quickhelp company-prescient all-the-icons-dired abyss-theme))
  '(printer-name "EPSON_WF-2750")
  '(recentf-max-menu-items 20)
  '(recentf-max-saved-items 500)

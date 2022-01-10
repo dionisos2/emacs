@@ -61,13 +61,14 @@
 	:config
 	;; Fix a bug, see : https://github.com/atykhonov/google-translate/issues/52
 	(defun google-translate--search-tkk () "Search TKK." (list 430675 2721866130))
+	(setq google-translate-translation-directions-alist '(("fr" . "en") ("en" . "fr")))
 	:custom
 	(google-translate-backend-method 'curl)
   (google-translate-default-source-language "en")
 	(google-translate-default-target-language "fr")
-	(google-translate-translation-directions-alist '(("fr" . "en") ("en" . "fr")))
 	:bind (
 				 ("C-p t" . google-translate-at-point)
+				 ("C-p C-t" . google-translate-smooth-translate)
 				 )
 )
 

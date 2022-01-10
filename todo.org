@@ -11,8 +11,8 @@
 * DONE restore jump to mark
 * DONE transpose in org-mode
 * TODO my-org-save-all-org-buffers
-* TODO install language server protocol
-* TODO Flycheck
+* DONE install language server protocol
+* DONE Flycheck
 * DONE Completion
 * TODO fix issue with pager (ex: git diff)
 * TODO fix consult-buffer switch issue
