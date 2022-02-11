@@ -6,6 +6,19 @@
 
 (require 'ansi-color)
 
+(defun call-process-discard-output (program &rest args)
+  "Execute program with args without saving any output.
+In particular, no temp files are created. TOSEE : Why use eval?"
+  (eval (append `(call-process ,program nil nil nil) args)))
+
+
+(defun my-trash (filename)
+  "Use trash-cli to trash file (with system-move-file-to-trash)"
+	(call-process-discard-output "trash" filename)
+	)
+
+(defalias 'system-move-file-to-trash 'my-trash)
+
 (defun my-show-appt ()
 	(interactive)
 	(with-output-to-temp-buffer "appt-notifications"

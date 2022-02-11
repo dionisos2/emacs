@@ -191,6 +191,10 @@
 (global-set-key (kbd "C-h k") 'describe-key)
 (define-key term-raw-map (kbd "C-d") 'term-send-raw)
 (define-key term-mode-map (kbd "C-d") 'avy-goto-word-0)
+
+(define-key term-raw-map (kbd "C-o") 'other-window)
+(define-key term-mode-map (kbd "C-o") 'other-window)
+
 (define-key term-mode-map (kbd "C-q") 'my-term-insert-literal)
 (define-key term-raw-map (kbd "C-q") 'my-term-insert-literal)
 (define-key term-raw-map (kbd "C-r") 'term-send-raw)
@@ -203,6 +207,7 @@
 (define-key term-raw-map (kbd "M-r") 'term-send-right)
 (define-key term-raw-map (kbd "M-s") 'term-send-down)
 (define-key term-raw-map (kbd "M-d") 'term-send-up)
+
 
 (define-key term-mode-map (kbd "M-t") 'backward-char)
 (define-key term-mode-map (kbd "M-r") 'forward-char)

@@ -6,6 +6,7 @@
 (require 'use-package)
 
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
+(set-face-attribute 'default nil :height 120)
 
 (use-package xonsh-mode
 	:ensure
@@ -210,7 +211,13 @@
 
 (use-package wgrep
 	:ensure
-)
+	:bind (
+				 ("C-c w" . wgrep-change-to-wgrep-mode)
+				 :map wgrep-mode-map
+				 ("C-t C-s" . wgrep-finish-edit)
+				 ("C-c w" . wgrep-change-to-wgrep-mode)
+				 )
+	)
 
 (use-package multiple-cursors
 	:ensure
@@ -483,6 +490,7 @@
          ("C-p l" . consult-locate)
          ;; ("M-s G" . consult-git-grep)
          ("C-p g" . consult-ripgrep)
+         ("C-p C-g" . (lambda () (interactive) (consult-ripgrep t)))
          ;; ("M-s m" . consult-multi-occur)
 
          ;; Isearch integration
