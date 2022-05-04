@@ -105,10 +105,10 @@
 	)
 
 
-;; (unless (display-graphic-p)
-;; 	(disable-theme 'abyss)
-;; 	(load-theme 'tango-dark)
-;;   )
+ ;; (unless (display-graphic-p)
+ ;; 	(disable-theme 'abyss)
+ ;; 	(load-theme 'tango-dark)
+ ;;   )
 
 ;; Seem like abyss-theme activate ido-mode, this is very weird
 (ido-mode -1)
@@ -155,6 +155,8 @@
 				 )
   :config
 	(global-undo-tree-mode 1)
+	:custom
+	(undo-tree-history-directory-alist '(("." . "~/.emacs.d/private/undo-tree-save/")))
 )
 
 (use-package avy
@@ -174,7 +176,7 @@
 				 ("C-p m" . magit-status)
 				 )
 	:config
-	(bind-key "q" '(lambda () "Completely quit magit." (interactive) (magit-mode-bury-buffer 16)) magit-status-mode-map)
+	(bind-key "q" #'(lambda () "Completely quit magit." (interactive) (magit-mode-bury-buffer 16)) magit-status-mode-map)
 )
 
 (use-package openwith
@@ -521,7 +523,7 @@
 	(consult-customize
 	 consult-ripgrep consult-git-grep consult-grep
 	 consult-bookmark consult-recent-file consult-xref
-	 consult--source-file consult--source-project-file consult--source-bookmark
+	 ;; consult--source-file consult--source-project-file consult--source-bookmark
 	 consult-buffer
 	 :preview-key (kbd "M-v"))
 
