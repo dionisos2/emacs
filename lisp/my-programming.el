@@ -12,6 +12,15 @@
 	(global-flycheck-mode t)
 	)
 
+(use-package cc-mode
+	:bind (
+				 ("C-d" . avy-goto-word-0)
+				 ("C-M-d" . avy-goto-char)
+				 :map c-mode-map
+				 ("C-d" . avy-goto-word-0)
+				 ("C-M-d" . avy-goto-char)
+				 )
+)
 
 (use-package lsp-mode
 	:ensure
