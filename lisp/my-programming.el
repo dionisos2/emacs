@@ -36,6 +36,12 @@
   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
 	)
 
+(use-package lsp-pyright
+  :ensure t
+  :hook (python-mode . (lambda ()
+                          (require 'lsp-pyright)
+                          (lsp))))  ; or lsp-deferred
+
 
 (use-package dap-mode
 	:ensure

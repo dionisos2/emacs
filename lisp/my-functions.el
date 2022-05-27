@@ -6,6 +6,14 @@
 
 (require 'ansi-color)
 
+(defun my-quit-elfeed ()
+	"Quit elfeed"
+	(interactive)
+	(elfeed-search-quit-window)
+  (kill-matching-buffers "^\\*elfeed-search\\*$" nil t)
+  (kill-matching-buffers "^\\*elfeed-log\\*$" nil t)
+)
+
 (defun call-process-discard-output (program &rest args)
   "Execute program with args without saving any output.
 In particular, no temp files are created. TOSEE : Why use eval?"

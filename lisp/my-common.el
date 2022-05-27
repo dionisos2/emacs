@@ -8,6 +8,45 @@
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 (set-face-attribute 'default nil :height 120)
 
+(use-package elfeed
+	:ensure
+	:demand
+	:bind (
+         ("C-p s" . (lambda () (interactive) (elfeed) (elfeed-update)))
+				 :map elfeed-search-mode-map
+				 ("U" . elfeed-update)
+				 ("q" . my-quit-elfeed)
+				 )
+	:custom
+	(elfeed-feeds '(
+									"https://astralcodexten.substack.com/feed"
+                  "https://www.dragonball-multiverse.com/flux.rss.php?lang=fr"
+									"https://www.fdn.fr/feed/"
+									"https://noob-tv.com/includes/flux_rss.xml"
+									"https://archlinux.org/feeds/news/"
+                  ))
+	(elfeed-enclosure-default-dir "/home/dionisos/a_trier") ;; don’t know what it is, but don’t want it in my main directory
+
+)
+
+;; (use-package smtp
+;; 	(setq send-mail-function 'smtpmail-send-it)
+;; 	(setq smtpmail-smtp-server "smtp.gmail.com")
+;; 	(setq smtpmail-smtp-service 25)
+;; 	(setq smtpmail-auth-credentials '(("smtp.gmail.com" 25 "USERNAME" "PASSWORD")))
+;; 	(setq smtpmail-starttls-credentials '(("smtp.gmail.com" 25 nil nil)))
+;; )
+
+(use-package notmuch
+	:ensure
+	:demand
+	:bind (
+				 ("C-p n" . notmuch)
+				 )
+	:custom
+	(notmuch-search-oldest-first nil)
+)
+
 (use-package xonsh-mode
 	:ensure
 	:demand
@@ -233,7 +272,7 @@
 	:ensure
 	:custom
 	(ranger-cleanup-eagerly t)
-	(ranger-excluded-extensions '("mkv" "iso" "mp4" "bin" "exe" "msi"))
+	(ranger-excluded-extensions '("mkv" "iso" "mp4" "bin" "exe" "msi" "pdf"))
 	(ranger-format-regexp '("^\\.?#\\|^\\.$\\|^\\.\\.$"))
 	(ranger-override-dired 'ranger)
 	(ranger-override-dired-mode t)
