@@ -1,4 +1,4 @@
-;;; my-common.el --- stuffs that I use everywhere  -*- lexical-binding: t -*-
+;;; my-common.el --- stuffs that I use everywhere	 -*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; Nothing special.
 
@@ -12,7 +12,7 @@
 	:ensure
 	:demand
 	:bind (
-         ("C-p s" . (lambda () (interactive) (elfeed) (elfeed-update)))
+				 ("C-p s" . (lambda () (interactive) (elfeed) (elfeed-update)))
 				 :map elfeed-search-mode-map
 				 ("U" . elfeed-update)
 				 ("q" . my-quit-elfeed)
@@ -20,21 +20,21 @@
 	:custom
 	(elfeed-feeds '(
 									"https://astralcodexten.substack.com/feed"
-                  "https://www.dragonball-multiverse.com/flux.rss.php?lang=fr"
+									"https://www.dragonball-multiverse.com/flux.rss.php?lang=fr"
 									"https://www.fdn.fr/feed/"
 									"https://noob-tv.com/includes/flux_rss.xml"
 									"https://archlinux.org/feeds/news/"
-                  ))
+									))
 	(elfeed-enclosure-default-dir "/home/dionisos/a_trier") ;; don’t know what it is, but don’t want it in my main directory
 
 )
 
 ;; (use-package smtp
-;; 	(setq send-mail-function 'smtpmail-send-it)
-;; 	(setq smtpmail-smtp-server "smtp.gmail.com")
-;; 	(setq smtpmail-smtp-service 25)
-;; 	(setq smtpmail-auth-credentials '(("smtp.gmail.com" 25 "USERNAME" "PASSWORD")))
-;; 	(setq smtpmail-starttls-credentials '(("smtp.gmail.com" 25 nil nil)))
+;;		(setq send-mail-function 'smtpmail-send-it)
+;;		(setq smtpmail-smtp-server "smtp.gmail.com")
+;;		(setq smtpmail-smtp-service 25)
+;;		(setq smtpmail-auth-credentials '(("smtp.gmail.com" 25 "USERNAME" "PASSWORD")))
+;;		(setq smtpmail-starttls-credentials '(("smtp.gmail.com" 25 nil nil)))
 ;; )
 
 (use-package notmuch
@@ -145,17 +145,17 @@
 
 
  ;; (unless (display-graphic-p)
- ;; 	(disable-theme 'abyss)
- ;; 	(load-theme 'tango-dark)
- ;;   )
+ ;;		(disable-theme 'abyss)
+ ;;		(load-theme 'tango-dark)
+ ;;		)
 
 ;; Seem like abyss-theme activate ido-mode, this is very weird
 (ido-mode -1)
 
 (use-package use-package-chords
-  :ensure
+	:ensure
 	:demand
-  :config
+	:config
 	(key-chord-mode 1)
 	:custom
 	(key-chord-two-keys-delay 0.05)
@@ -184,15 +184,15 @@
 
 (use-package undo-tree
 	:ensure
-  :demand
+	:demand
 	:init
 	(defun undo-tree-overridden-undo-bindings-p () nil);; To fix some bug
-  :bind (
+	:bind (
 				 ("C-é" . undo-tree-undo)
 				 ("C-É" . undo-tree-redo)
 				 ("C-M-é" . undo-tree-visualize)
 				 )
-  :config
+	:config
 	(global-undo-tree-mode 1)
 	:custom
 	(undo-tree-history-directory-alist '(("." . "~/.emacs.d/private/undo-tree-save/")))
@@ -345,7 +345,7 @@
 (use-package hydra
 	:ensure
 	:demand
-  :config
+	:config
 	(defhydra hydra-zoom (global-map "C-t")
 		"winner"
 		("<left>" winner-undo)
@@ -355,11 +355,11 @@
 
 (use-package abbrev
 	:demand
-  :hook
-  ((text-mode-hook prog-mode-hook erc-mode-hook LaTeX-mode-hook org-mode-hook) . abbrev-mode)
-  :config
-  (if (file-exists-p abbrev-file-name)
-      (quietly-read-abbrev-file))
+	:hook
+	((text-mode-hook prog-mode-hook erc-mode-hook LaTeX-mode-hook org-mode-hook) . abbrev-mode)
+	:config
+	(if (file-exists-p abbrev-file-name)
+			(quietly-read-abbrev-file))
 )
 
 
@@ -367,7 +367,7 @@
 	:ensure
 	:demand
 	:config
-	(setcdr company-active-map  nil) ;; I don’t want any keybinding.
+	(setcdr company-active-map	nil) ;; I don’t want any keybinding.
 	(company-keymap--bind-quick-access company-active-map) ;; But still want M-0, M-1, etc shortcut.
 	:bind (
 				 ("C-f" . company-complete-selection)
@@ -391,10 +391,10 @@
 											)
 										)
 	;; :hook (
-	;; 			 (haskell-mode-hook . (lambda() (setq-local company-backends (company-lsp :with company-dabbrev :with company-yasnippet :with company-files))))
-	;; 			 (elisp-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
-	;; 			 (julia-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
-	;; 			 )
+	;;				 (haskell-mode-hook . (lambda() (setq-local company-backends (company-lsp :with company-dabbrev :with company-yasnippet :with company-files))))
+	;;				 (elisp-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
+	;;				 (julia-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
+	;;				 )
 	)
 
 
@@ -414,11 +414,11 @@
 )
 
 ;; (use-package company-statistics
-;; 	:ensure
-;; 	:demand
-;; 	:after (company)
-;; 	:custom
-;; 	(company-statistics-mode t)
+;;		:ensure
+;;		:demand
+;;		:after (company)
+;;		:custom
+;;		(company-statistics-mode t)
 ;; )
 
 
@@ -467,9 +467,9 @@
 (use-package vertico
 	:ensure
 	:demand
-  :init
-  (vertico-mode)
-  ;; (setq vertico-cycle t)
+	:init
+	(vertico-mode)
+	;; (setq vertico-cycle t)
 	:bind (
 				 :map minibuffer-local-map
 				 ("M-d" . previous-line)
@@ -479,85 +479,85 @@
 				 ("<return>" . vertico-directory-enter)
 				 ("^" . vertico-directory-up)
 				 )
-  )
+	)
 
 (use-package orderless
 	:ensure
 	:demand
-  :init
-  (setq completion-styles '(orderless)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles partial-completion)))))
+	:init
+	(setq completion-styles '(orderless)
+				completion-category-defaults nil
+				completion-category-overrides '((file (styles partial-completion)))))
 
 (use-package marginalia
 	;; Enable richer annotations using the Marginalia package
 	:ensure
-  ;; Either bind `marginalia-cycle` globally or only in the minibuffer
-  :bind (("M-A" . marginalia-cycle)
-         :map minibuffer-local-map
-         ("M-A" . marginalia-cycle))
-  :init
-  (marginalia-mode))
+	;; Either bind `marginalia-cycle` globally or only in the minibuffer
+	:bind (("M-A" . marginalia-cycle)
+				 :map minibuffer-local-map
+				 ("M-A" . marginalia-cycle))
+	:init
+	(marginalia-mode))
 
 (use-package consult
 	:ensure
 	:demand
-  :bind (;; C-c bindings (mode-specific-map)
-         ;; ("C-c h" . consult-history)
-         ;; ("C-c m" . consult-mode-command)
-         ("M-SPC" . consult-mark)
+	:bind (;; C-c bindings (mode-specific-map)
+				 ;; ("C-c h" . consult-history)
+				 ;; ("C-c m" . consult-mode-command)
+				 ("M-SPC" . consult-mark)
 				 :map override-global-map
-         ("C-t C-r" . consult-recent-file)
+				 ("C-t C-r" . consult-recent-file)
 				 ("C-M-s" . consult-line)
-         ("C-t C-l" . consult-bookmark)
-         ;; ("C-c C-b" . consult-kmacro)
-         ;; C-x bindings (ctl-x-map)
-         ;; ("C-x M-:" . consult-complex-command)     ;; orig. repeat-complex-command
-         ("C-t C-t" . consult-buffer)
+				 ("C-t C-l" . consult-bookmark)
+				 ;; ("C-c C-b" . consult-kmacro)
+				 ;; C-x bindings (ctl-x-map)
+				 ;; ("C-x M-:" . consult-complex-command)			;; orig. repeat-complex-command
+				 ("C-t C-t" . consult-buffer)
 
-         ("C-t C-g" . consult-register)
+				 ("C-t C-g" . consult-register)
 
-         ("M-." . consult-yank-pop)                ;; orig. yank-pop
-         ("<help> a" . consult-apropos)            ;; orig. apropos-command
+				 ("M-." . consult-yank-pop)								 ;; orig. yank-pop
+				 ("<help> a" . consult-apropos)						 ;; orig. apropos-command
 
-         ;; ("M-g e" . consult-compile-error)
-         ;; ("M-g f" . consult-flymake)               ;; Alternative: consult-flycheck
-         ("C-c g" . consult-goto-line)             ;; orig. goto-line
-         ;; ("M-g o" . consult-outline)               ;; Alternative: consult-org-heading
-         ;; ("M-g i" . consult-imenu)
-         ;; ("M-g I" . consult-project-imenu)
+				 ;; ("M-g e" . consult-compile-error)
+				 ;; ("M-g f" . consult-flymake)								;; Alternative: consult-flycheck
+				 ("C-c g" . consult-goto-line)						 ;; orig. goto-line
+				 ;; ("M-g o" . consult-outline)								;; Alternative: consult-org-heading
+				 ;; ("M-g i" . consult-imenu)
+				 ;; ("M-g I" . consult-project-imenu)
 
-         ("C-p f" . consult-find)
-         ("C-p l" . consult-locate)
-         ;; ("M-s G" . consult-git-grep)
-         ("C-p g" . consult-ripgrep)
-         ("C-p C-g" . (lambda () (interactive) (consult-ripgrep t)))
-         ;; ("M-s m" . consult-multi-occur)
+				 ("C-p f" . consult-find)
+				 ("C-p l" . consult-locate)
+				 ;; ("M-s G" . consult-git-grep)
+				 ("C-p g" . consult-ripgrep)
+				 ("C-p C-g" . (lambda () (interactive) (consult-ripgrep t)))
+				 ;; ("M-s m" . consult-multi-occur)
 
-         ;; Isearch integration
-         :map isearch-mode-map
-         ("M-e" . consult-isearch-history)
-         :map minibuffer-local-map
-         ("M-SPC" . vertico-next)
-         ;; ("C-s" . isearch-forward)
+				 ;; Isearch integration
+				 :map isearch-mode-map
+				 ("M-e" . consult-isearch-history)
+				 :map minibuffer-local-map
+				 ("M-SPC" . vertico-next)
+				 ;; ("C-s" . isearch-forward)
 				 )
 
-  :init
-  ;; Optionally configure the register formatting. This improves the register
-  ;; preview for `consult-register', `consult-register-load',
-  ;; `consult-register-store' and the Emacs built-ins.
+	:init
+	;; Optionally configure the register formatting. This improves the register
+	;; preview for `consult-register', `consult-register-load',
+	;; `consult-register-store' and the Emacs built-ins.
 
 
-  (advice-add #'register-preview :override #'consult-register-window)
-  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+	(advice-add #'register-preview :override #'consult-register-window)
+	(advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
 
-  ;; (setq xref-show-xrefs-function #'consult-xref
-  ;;       xref-show-definitions-function #'consult-xref)
+	;; (setq xref-show-xrefs-function #'consult-xref
+	;;			 xref-show-definitions-function #'consult-xref)
 
 
-  :config
-  (setq consult-preview-key 'any)
-  (setq consult-narrow-key "<")
+	:config
+	(setq consult-preview-key 'any)
+	(setq consult-narrow-key "<")
 
 	(consult-customize
 	 consult-ripgrep consult-git-grep consult-grep
@@ -575,26 +575,26 @@
 )
 
 (use-package embark
-  :ensure
+	:ensure
 
-  :bind
-  (("C-." . yank)
-	 ("M-o" . embark-act)         ;; pick some comfortable binding
-   ("C-M-o" . embark-dwim)        ;; good alternative: M-.
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+	:bind
+	(("C-." . yank)
+	 ("M-o" . embark-act)					;; pick some comfortable binding
+	 ("C-M-o" . embark-dwim)				;; good alternative: M-.
+	 ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
-  :init
+	:init
 
-  ;; Optionally replace the key help with a completing-read interface
-  (setq prefix-help-command #'embark-prefix-help-command)
+	;; Optionally replace the key help with a completing-read interface
+	(setq prefix-help-command #'embark-prefix-help-command)
 
-  :config
+	:config
 
-  ;; Hide the mode line of the Embark live/completions buffers
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none))))
+	;; Hide the mode line of the Embark live/completions buffers
+	(add-to-list 'display-buffer-alist
+							 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+								 nil
+								 (window-parameters (mode-line-format . none))))
 	(setq embark-action-indicator
 				(lambda (map _target)
 					(which-key--show-keymap "Embark" map nil nil 'no-paging)
@@ -603,11 +603,11 @@
 	)
 
 (use-package embark-consult
-  :ensure
-  :after (embark consult)
-  :demand
-  :hook
-  (embark-collect-mode-hook . consult-preview-at-point-mode)
+	:ensure
+	:after (embark consult)
+	:demand
+	:hook
+	(embark-collect-mode-hook . consult-preview-at-point-mode)
 	)
 
 

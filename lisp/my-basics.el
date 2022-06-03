@@ -87,7 +87,8 @@
 (customize-set-variable 'doc-view-continuous t)
 
 ;;; Indentation stuffs
-(customize-set-variable 'electric-indent-mode nil)
+(customize-set-variable 'electric-indent-mode t)
+;;; indent-tabs-mode is a variable defined in ‘C source code’.
 (customize-set-variable 'indent-tabs-mode t)
 (customize-set-variable 'standard-indent 2)
 (customize-set-variable 'tab-width 2)
@@ -115,6 +116,12 @@
 ;;; Move point by visual instead of real lines.
 (customize-set-variable 'line-move-visual t)
 
+;;; If a line go off screen, still show it.
+(customize-set-variable 'truncate-lines nil)
+
+;;; wrap on words
+(customize-set-variable 'word-wrap t)
+
 ;;; Add cursor-intangible property for the prompt, probably avoiding cursor to select it.
 (customize-set-variable 'minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt))
 
@@ -137,9 +144,6 @@
 
 ;;; Show selected region.
 (customize-set-variable 'transient-mark-mode t)
-
-;;; If a line go off screen, still show it.
-(customize-set-variable 'truncate-lines nil)
 
 ;;; Unsure
 ;; (customize-set-variable 'truncate-partial-width-windows nil)
