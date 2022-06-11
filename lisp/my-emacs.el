@@ -25,7 +25,24 @@
 ;;; Automatic add of hook suffix is uselessly confuging
 (customize-set-variable 'use-package-hook-name-suffix nil)
 
+;;; Choose theme here, to avoid blink at eval in my-common.el
+(use-package abyss-theme
+	:ensure
+	:demand
+	:custom
+	(custom-safe-themes '("3d4df186126c347e002c8366d32016948068d2e9198c496093a96775cc3b3eaa" default))
+	:config
+	(load-theme 'abyss)
+	)
+;; (unless (display-graphic-p)
+;;		(disable-theme 'abyss)
+;;		(load-theme 'tango-dark)
+;;		)
+
+;; Seem like abyss-theme activate ido-mode, this is very weird
+
 (load "my-common.el")
+(load "my-yasnippet.el")
 (load "my-writing.el")
 (load "my-programming.el")
 (load "my-functions.el")

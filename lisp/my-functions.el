@@ -1,27 +1,57 @@
-;;; my-functions.el --- Some helper function that use packages  -*- lexical-binding: t -*-
+;;; my-functions.el --- Some helper function that use packages	-*- lexical-binding: t -*-
 ;;; Commentary:
 ;;; See ./my-basics.el and go to "Functions" to see others defined functions.
 
 ;;; Code:
 
 (require 'ansi-color)
+(require 'my-basics)
+
+(defun my-create-julia-project (project-name)
+	(interactive "s")
+	(shell-command (cl-concatenate 'string "julia /home/dionisos/scripts/create_julia_project.jl " project-name))
+	(find-file (cl-concatenate 'string "/home/dionisos/projets/programmation/julia/" project-name "/src/" project-name ".jl"))
+	)
+
+(defun my-up-directory ()
+	(interactive)
+	(unless (vertico-directory-up 1)
+		(move-end-of-line nil)
+		(backward-char)
+		(re-search-backward "/")
+		(forward-char)
+		(delete-region (point) (point-at-eol))
+		)
+	)
+
+(defun my-add-interactive-time (time-to-add)
+	"Utility function to add TIME-TO-ADD IN my today.org file."
+	(interactive (list (read-string "Time to add (default=30): " nil nil "30")))
+
+	(let ((the-time (delete-and-extract-region (line-beginning-position) (line-end-position))))
+		(insert (my-add-time the-time time-to-add))
+		)
+	(re-search-forward "TODO\\|DONE")
+	(forward-line 1)
+	(move-beginning-of-line nil)
+	)
 
 (defun my-quit-elfeed ()
 	"Quit elfeed"
 	(interactive)
 	(elfeed-search-quit-window)
-  (kill-matching-buffers "^\\*elfeed-search\\*$" nil t)
-  (kill-matching-buffers "^\\*elfeed-log\\*$" nil t)
+	(kill-matching-buffers "^\\*elfeed-search\\*$" nil t)
+	(kill-matching-buffers "^\\*elfeed-log\\*$" nil t)
 )
 
 (defun call-process-discard-output (program &rest args)
-  "Execute program with args without saving any output.
+	"Execute program with args without saving any output.
 In particular, no temp files are created. TOSEE : Why use eval?"
-  (eval (append `(call-process ,program nil nil nil) args)))
+	(eval (append `(call-process ,program nil nil nil) args)))
 
 
 (defun my-trash (filename)
-  "Use trash-cli to trash file (with system-move-file-to-trash)"
+	"Use trash-cli to trash file (with system-move-file-to-trash)"
 	(call-process-discard-output "trash" filename)
 	)
 
@@ -37,59 +67,25 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 	)
 
 (defun my-display-ansi-colors ()
-  (interactive)
-  (ansi-color-apply-on-region (point-min) (point-max)))
-
-;;; Found here : https://github.com/minad/vertico/blob/main/extensions/vertico-directory.el
-(defun vertico-directory--completing-file-p ()
-  "Return non-nil when completing file names."
-  (eq 'file
-      (completion-metadata-get
-       (completion-metadata
-        (buffer-substring (minibuffer-prompt-end)
-                          (max (minibuffer-prompt-end) (point)))
-        minibuffer-completion-table
-        minibuffer-completion-predicate)
-       'category)))
-
-
-(defun vertico-directory-enter ()
-  "Enter directory or exit completion with current candidate."
-  (interactive)
-  (if (and (>= vertico--index 0)
-           (string-suffix-p "/" (vertico--candidate))
-           (vertico-directory--completing-file-p))
-      (vertico-insert)
-    (vertico-exit)))
-
-
-(defun vertico-directory-up ()
-  "Delete directory before point."
-  (interactive)
-  (when (and (eq (char-before) ?/)
-             (vertico-directory--completing-file-p))
-    (save-excursion
-      (goto-char (1- (point)))
-      (when (search-backward "/" (minibuffer-prompt-end) t)
-        (delete-region (1+ (point)) (point-max))
-        t))))
+	(interactive)
+	(ansi-color-apply-on-region (point-min) (point-max)))
 
 (defun my-appt-notification (min-to-app new-time msg)
 	(interactive)
-  (start-process "my-appt-notification-app" nil "notify-send" msg)
+	(start-process "my-appt-notification-app" nil "notify-send" msg)
 	)
 
 (defun my-delete-file-and-buffer ()
-  "Kill the current buffer and deletes the file it is visiting."
-  (interactive)
-  (let ((filename (buffer-file-name)))
-    (if filename
-        (if (y-or-n-p (concat "Do you really want to delete file " filename " ?"))
-            (progn
-              (delete-file filename)
-              (message "Deleted file %s." filename)
-              (kill-buffer)))
-      (message "Not a file visiting buffer!"))))
+	"Kill the current buffer and deletes the file it is visiting."
+	(interactive)
+	(let ((filename (buffer-file-name)))
+		(if filename
+				(if (y-or-n-p (concat "Do you really want to delete file " filename " ?"))
+						(progn
+							(delete-file filename)
+							(message "Deleted file %s." filename)
+							(kill-buffer)))
+			(message "Not a file visiting buffer!"))))
 
 (defun my-dwim-done ()
 	"Close stuffs like langtool and org-timer."
@@ -140,11 +136,11 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 	)
 
 ;; (defun my-run-zeal ()
-;; 	"Probably useless."
-;;   (interactive)
-;;   (setq cur-mode (substring (prin1-to-string major-mode) 0 -5))
-;;   (async-shell-command (cl-concatenate 'string "zeal " cur-mode ":"))
-;;   )
+;;		"Probably useless."
+;;	 (interactive)
+;;	 (setq cur-mode (substring (prin1-to-string major-mode) 0 -5))
+;;	 (async-shell-command (cl-concatenate 'string "zeal " cur-mode ":"))
+;;	 )
 
 (defun my-next-error (&optional reverse)
 	"Find next (previous if REVERSE) error with flycheck, next langtool, and finally flyspell."
@@ -159,7 +155,7 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 
 (defun my-previous-error ()
 	"Correction with flycheck, next langtool, and finally flyspell (see my-next-error)."
-  (interactive)
+	(interactive)
 	(my-next-error t)
 	)
 

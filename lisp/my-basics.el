@@ -299,30 +299,46 @@ Should use kbd, this isn’t a smart macro so don’t try complex stuffs"
 ;; 		 )
 ;; 	)
 
+
 (defun my-parse-time-string (time-string)
-	"Parse TIME-STRING in format '10h35'."
-	(interactive "s")
-	(let* ((hour (nth 0 (split-string time-string "h")))
-				 (min (nth 1 (split-string time-string "h"))))
+	"Parse TIME-STRING in format '10h35' '30' '-10h'."
+	(let
+			((time-list (cond
+									 ((string-match "-\\([0-9]+\\)[hH:]\\([0-9]+\\)" time-string)
+										`(,(- (string-to-number (match-string 1 time-string))) ,(- (string-to-number (match-string 2 time-string))))
+										)
+									 ((string-match "\\([0-9]+\\)[hH:]\\([0-9]+\\)" time-string)
+										`(,(string-to-number (match-string 1 time-string)) ,(string-to-number (match-string 2 time-string)))
+										)
+									 ((string-match "\\(-?[0-9]\\)h" time-string)
+										`(,(string-to-number (match-string 0 time-string)) 0)
+										)
+									 ((string-match "^\\(-?[0-9]+\\)$" time-string)
+										`(0 ,(string-to-number (match-string 1 time-string)))
+										)
+									 (t
+										(error "Format should be \\-?d+[hH:]\\d+ or -?\\d+")
+										)
+									 )
+									)
+			 )
 		;; The ` evaluate every expression starting with , inside the list.
-		`(0 ,(string-to-number min) ,(string-to-number hour) 0 0 2000)
+		(make-decoded-time :hour (nth 0 time-list) :minute (nth 1 time-list))
 		)
 	)
 
+;; (nil nil 1 nil nil nil nil nil nil)
+;; (0 0 2 1 1 1970 nil -1 nil)
+;; (0 0 3 1 1 1970 nil -1 nil)
+
+
 (defun my-add-time (time-string-1 time-string-2)
-	"Add TIME-STRING-1 and TIME-STRING-2 in format '10h35'."
+	"Add TIME-STRING-1 and TIME-STRING-2 (see my-parse-time-string for format)."
 	(let* (
 				 (ti1 (my-parse-time-string time-string-1))
 				 (ti2 (my-parse-time-string time-string-2)))
 
-		(format-time-string "%Hh%M" (time-add
-																 (apply #'encode-time ti1)
-																 (+
-																	(* (nth 1 ti2) 60)
-																	(* (nth 2 ti2) 3600)
-																	)
-																 )
-												)
+		(format-time-string "%Hh%M" (encode-time (decoded-time-add (decoded-time-set-defaults ti1) ti2)))
 		)
 	)
 

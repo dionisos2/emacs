@@ -45,7 +45,7 @@
   :ensure
 	:demand
 	:custom
-	(flycheck-emacs-lisp-load-path '("/home/dionisos/.config/emacs.new"))
+	(flycheck-emacs-lisp-load-path 'inherit)
 	(global-flycheck-mode t)
 	)
 

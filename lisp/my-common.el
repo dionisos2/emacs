@@ -27,15 +27,25 @@
 									))
 	(elfeed-enclosure-default-dir "/home/dionisos/a_trier") ;; don’t know what it is, but don’t want it in my main directory
 
-)
+	)
 
-;; (use-package smtp
-;;		(setq send-mail-function 'smtpmail-send-it)
-;;		(setq smtpmail-smtp-server "smtp.gmail.com")
-;;		(setq smtpmail-smtp-service 25)
-;;		(setq smtpmail-auth-credentials '(("smtp.gmail.com" 25 "USERNAME" "PASSWORD")))
-;;		(setq smtpmail-starttls-credentials '(("smtp.gmail.com" 25 nil nil)))
-;; )
+(use-package sendmail
+	:demand
+	:custom
+	(message-send-mail-function 'message-send-mail-with-sendmail)
+	(send-mail-function 'sendmail-send-it)
+	(sendmail-program "msmtp")
+	(mail-specify-envelope-from t)
+  (mail-envelope-from 'header)
+  (message-sendmail-envelope-from 'header)
+	(message-sendmail-f-is-evil t)
+	;; (message-sendmail-extra-arguments '("--read-envelope-from"))
+	(mail-host-address "gmail.com")
+	(user-full-name "Denis Baudouin")
+	(user-mail-address "denis.baudouin@gmail.com")
+	)
+
+
 
 (use-package notmuch
 	:ensure
@@ -45,29 +55,29 @@
 				 )
 	:custom
 	(notmuch-search-oldest-first nil)
-)
+	)
 
 (use-package xonsh-mode
 	:ensure
 	:demand
-)
+	)
 
 (use-package man
 	:demand
-)
+	)
 
 (use-package xterm-color
 	:ensure
 	:demand
-)
+	)
 
 (use-package emacs-pager
 	:demand
 	:config
 	(add-to-list 'auto-mode-alist '("\\.emacs-pager$" . emacs-pager-mode))
-)
+	)
 
-;(setq auto-mode-alist (delete '("\\.emacs-pager$" . text-mode) auto-mode-alist))
+																				;(setq auto-mode-alist (delete '("\\.emacs-pager$" . text-mode) auto-mode-alist))
 
 (use-package appt
 	:bind (
@@ -78,7 +88,7 @@
 	(appt-display-interval appt-message-warning-time)
 	(appt-disp-window-function 'my-appt-notification)
 	(appt-delete-window-function (lambda () t))
-)
+	)
 
 (use-package with-editor
 	:ensure
@@ -88,7 +98,7 @@
 				 ("C-t C-s" . with-editor-finish)
 				 ("C-t C-k" . with-editor-cancel)
 				 )
-)
+	)
 (use-package org
 	:demand
 	:bind (
@@ -98,7 +108,7 @@
 				 :map org-agenda-mode-map
 				 ("h" . my-copy-heading)
 				 )
-)
+	)
 
 (use-package transpose-mark
 	:ensure
@@ -106,50 +116,42 @@
 	:bind (
 				 ("C-c C-t" . transpose-mark)
 				 )
+	)
+
+(use-package bookmark
+	:bind (
+				 :map override-global-map
+				 ("C-t C-b" . bookmark-set)
+				 ("C-t C-l" . bookmark-jump)
+				 )
+	:custom
+	(bookmark-set-fringe-mark nil)
 )
 
 (use-package bind-key
 	:bind (
 				 :map override-global-map
-							("C-h k" . describe-key)
-							("C-M-x" . eval-expression)
-							("M-x" . execute-extended-command)
-							("C-t C-k" . my-kill-buffer)
-							("C-t k" . my-kill-buffer-and-maybe-window)
-							("C-t C-t" . switch-to-buffer)
-							("C-t C-b" . bookmark-set)
-							("C-t C-l" . bookmark-jump)
-							("C-p C-s" . save-some-buffers)
-							("C-p r" . revert-buffer)
-							("C-p C-M-r" . my-revert-all-buffers)
-							("C-p q" . my-kill-boring-buffer)
-							("C-p C-q" . kill-matching-buffers)
-							("C-p c" . org-timer-set-timer)
-							("C-p C-c" . org-timer-start)
-							("C-p M-c" . org-timer-stop)
-							("C-p w" . org-agenda-list)
-							("C-p C-w" . org-agenda)
-							("C-c C-c" . comment-region)
-							("C-c c" . uncomment-region)
+				 ("C-h k" . describe-key)
+				 ("C-M-x" . eval-expression)
+				 ("M-x" . execute-extended-command)
+				 ("C-t C-k" . my-kill-buffer)
+				 ("C-t k" . my-kill-buffer-and-maybe-window)
+				 ("C-t C-t" . switch-to-buffer)
+				 ("C-p C-s" . save-some-buffers)
+				 ("C-p r" . revert-buffer)
+				 ("C-p C-M-r" . my-revert-all-buffers)
+				 ("C-p q" . my-kill-boring-buffer)
+				 ("C-p C-q" . kill-matching-buffers)
+				 ("C-p c" . org-timer-set-timer)
+				 ("C-p C-c" . org-timer-start)
+				 ("C-p M-c" . org-timer-stop)
+				 ("C-p w" . org-agenda-list)
+				 ("C-p C-w" . org-agenda)
+				 ("C-c C-c" . comment-region)
+				 ("C-c c" . uncomment-region)
 				 )
 	)
 
-(use-package abyss-theme
-	:ensure
-	:demand
-	:custom
-	(custom-safe-themes '("3d4df186126c347e002c8366d32016948068d2e9198c496093a96775cc3b3eaa" default))
-	:config
-	(load-theme 'abyss)
-	)
-
-
- ;; (unless (display-graphic-p)
- ;;		(disable-theme 'abyss)
- ;;		(load-theme 'tango-dark)
- ;;		)
-
-;; Seem like abyss-theme activate ido-mode, this is very weird
 (ido-mode -1)
 
 (use-package use-package-chords
@@ -160,7 +162,7 @@
 	:custom
 	(key-chord-two-keys-delay 0.05)
 	(key-chord-one-key-delay 0.10)
-)
+	)
 
 (use-package org
 	:config
@@ -169,9 +171,9 @@
 	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org"))
 	:bind (
 				 :map org-mode-map
-							("C-c C-t" . transpose-mark)
+				 ("C-c C-t" . transpose-mark)
 				 )
-)
+	)
 
 (use-package org-roam
 	:ensure
@@ -196,7 +198,7 @@
 	(global-undo-tree-mode 1)
 	:custom
 	(undo-tree-history-directory-alist '(("." . "~/.emacs.d/private/undo-tree-save/")))
-)
+	)
 
 (use-package avy
 	:ensure
@@ -207,7 +209,7 @@
 				 )
 	:custom
 	(avy-keys '(?a ?u ?i ?e ?p ?o ?n ?r ?s ?t ?d ?v ?g ?x ?q))
-)
+	)
 
 (use-package magit
 	:ensure
@@ -216,39 +218,14 @@
 				 )
 	:config
 	(bind-key "q" #'(lambda () "Completely quit magit." (interactive) (magit-mode-bury-buffer 16)) magit-status-mode-map)
-)
+	)
 
 (use-package openwith
 	:ensure
 	:custom
 	(openwith-associations '((".pdf" "evince" (file)) (".docx" "libreoffice" (file))))
 	(openwith-mode t)
-)
-
-
-(use-package yasnippet
-	:demand
-	:ensure
-	:bind (
-				 ("C-p C-y" . yas-new-snippet)
-				 ("C-p y" . yas-visit-snippet-file)
-				 :map yas-minor-mode-map
-				 ("<tab>" . nil)
-				 ("TAB" . nil)
-				 ("M-f" . yas-expand-from-trigger-key)
-				 :map yas-keymap
-				 ("<tab>" . yas-next-field)
-				 )
-	:chords (
-					 ("ae" . yas-insert-snippet)
-					 )
-	:config
-	(yas-global-mode 1)
-	(yas-reload-all)
-	:custom
-	(yas-indent-line 'fixed)
-	(yas-snippet-dirs '("/home/dionisos/.emacs.d/snippets/private-snippets" "/home/dionisos/.emacs.d/snippets/yasnippet-snippets/snippets" "/home/dionisos/.emacs.d/snippets/my-snippets"))
-)
+	)
 
 (use-package wgrep
 	:ensure
@@ -262,11 +239,11 @@
 
 (use-package multiple-cursors
 	:ensure
-)
+	)
 
 (use-package phi-search
 	:ensure
-)
+	)
 
 (use-package ranger
 	:ensure
@@ -303,7 +280,7 @@
 
 				 ("<delete>" . dired-do-delete)
 				 )
-)
+	)
 
 (use-package image-mode
 	:mode "\\.svg$"
@@ -314,18 +291,18 @@
 	:demand
 	:bind (
 				 :map winner-mode-map
-							("C-c <left>" . nil)
-							("C-c <right>" . nil)
-							)
+				 ("C-c <left>" . nil)
+				 ("C-c <right>" . nil)
+				 )
 	:custom
 	(winner-mode t)
-)
+	)
 
 (use-package all-the-icons
 	:demand
 	:ensure
 	;; (all-the-icons-install-fonts t)
-)
+	)
 
 (use-package all-the-icons-dired
 	:demand
@@ -338,8 +315,8 @@
 	:ensure
 	:bind (
 				 :map markdown-mode-map
-							("C-p C-t" . markdown-preview)
-							)
+				 ("C-p C-t" . markdown-preview)
+				 )
 	)
 
 (use-package hydra
@@ -360,7 +337,7 @@
 	:config
 	(if (file-exists-p abbrev-file-name)
 			(quietly-read-abbrev-file))
-)
+	)
 
 
 (use-package company
@@ -373,13 +350,13 @@
 				 ("C-f" . company-complete-selection)
 				 ("C-M-f" . company-complete)
 				 :map company-active-map
-							("C-g" . company-abort)
-							("C-n" . company-select-next-or-abort)
-							("C-M-n" . company-select-previous-or-abort)
-							("<down>" . company-select-next-or-abort)
-							("<up>" . company-select-previous-or-abort)
-							;; ("C-h c" . company-show-location)
-							)
+				 ("C-g" . company-abort)
+				 ("C-n" . company-select-next-or-abort)
+				 ("C-M-n" . company-select-previous-or-abort)
+				 ("<down>" . company-select-next-or-abort)
+				 ("<up>" . company-select-previous-or-abort)
+				 ;; ("C-h c" . company-show-location)
+				 )
 	:custom
 	(global-company-mode t)
 	(company-continue-commands t)
@@ -400,7 +377,7 @@
 
 (use-package consult-lsp
 	:ensure
-)
+	)
 
 
 (use-package company-dabbrev
@@ -411,7 +388,7 @@
 	(company-dabbrev-downcase nil)
 	(company-dabbrev-ignore-case nil)
 	(company-dabbrev-minimum-length 3)
-)
+	)
 
 ;; (use-package company-statistics
 ;;		:ensure
@@ -424,7 +401,7 @@
 
 (use-package prescient
 	:ensure
-)
+	)
 
 
 (use-package company-prescient
@@ -434,7 +411,7 @@
 	(prescient-persist-mode 1)
 	:custom
 	(prescient-save-file "/home/dionisos/.emacs.d/private/prescient-save.el")
-)
+	)
 
 (use-package company-quickhelp
 	:ensure
@@ -444,14 +421,14 @@
 	(company-quickhelp-color-background "black")
 	(company-quickhelp-color-foreground "white")
 	(company-quickhelp-delay 0.1)
-)
+	)
 
 (use-package proced
 	:ensure
 	:custom
 	(proced-auto-update-flag t)
 	(proced-auto-update-interval 1)
-)
+	)
 
 (use-package which-key
 	:ensure
@@ -461,7 +438,7 @@
 	(which-key-idle-delay 0.2)
 	(which-key-mode t)
 	(which-key-paging-prefixes '("C-c"))
-)
+	)
 
 
 (use-package vertico
@@ -477,7 +454,7 @@
 				 :map vertico-map
 				 ("C-f" . vertico-insert)
 				 ("<return>" . vertico-directory-enter)
-				 ("^" . vertico-directory-up)
+				 ("^" . my-up-directory)
 				 )
 	)
 
@@ -572,7 +549,7 @@
 
 (use-package consult-company
 	:ensure
-)
+	)
 
 (use-package embark
 	:ensure
@@ -618,13 +595,13 @@
 	(kiwix-default-data-dir "/stockage/kiwix/data")
 	(kiwix-default-library-dir "/stokage/kiwix/lib")
 	(kiwix-server-port 8080)
-)
+	)
 
 (use-package w3m
 	:ensure
 	:custom
 	(w3m-default-display-inline-images t)
-)
+	)
 
 (customize-set-variable 'explicit-shell-file-name "/usr/bin/xonsh")
 

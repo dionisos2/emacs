@@ -42,6 +42,8 @@
 (global-set-key (kbd "C-p e") 'my-eval-region)
 (global-set-key (kbd "C-p C-e") 'my-eval-buffer)
 
+(global-set-key (kbd "M-b") 'repeat)
+
 ;; Edition/navigation in buffers
 (global-set-key (kbd "C-y") 'kill-region)
 (global-set-key (kbd "C-c C-k") 'kill-whole-line)
