@@ -51,7 +51,7 @@
 	:ensure
 	:demand
 	:bind (
-				 ("C-p n" . notmuch)
+				 ("C-p n" . (lambda () (interactive) (notmuch-search "folder:Inbox")))
 				 )
 	:custom
 	(notmuch-search-oldest-first nil)
@@ -239,6 +239,10 @@
 
 (use-package multiple-cursors
 	:ensure
+	:bind (
+				 ("C-c l" . mc/mark-all-dwim)
+				 ("C-c C-l" . mc/mark-all-in-region-regexp)
+				 )
 	)
 
 (use-package phi-search
@@ -347,8 +351,8 @@
 	(setcdr company-active-map	nil) ;; I don’t want any keybinding.
 	(company-keymap--bind-quick-access company-active-map) ;; But still want M-0, M-1, etc shortcut.
 	:bind (
-				 ("C-f" . company-complete-selection)
-				 ("C-M-f" . company-complete)
+				 ("C-f" . company-complete)
+				 ("C-M-f" . company-complete-selection)
 				 :map company-active-map
 				 ("C-g" . company-abort)
 				 ("C-n" . company-select-next-or-abort)
@@ -526,7 +530,7 @@
 
 
 	(advice-add #'register-preview :override #'consult-register-window)
-	(advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
+	;; (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
 
 	;; (setq xref-show-xrefs-function #'consult-xref
 	;;			 xref-show-definitions-function #'consult-xref)

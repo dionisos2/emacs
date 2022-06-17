@@ -7,6 +7,7 @@
 				anchored-transpose
 				backward-sexp
 				copy-region-as-kill
+				elfeed-search-untag-all-unread
 				forward-sexp
 				indent-for-tab-command
 				kill-region
@@ -21,6 +22,7 @@
 (setq mc/cmds-to-run-once
       '(
 				avy-goto-word-0
+				consult-buffer
 				counsel-M-x
 				describe-key
 				my-wgrep-finish-and-save-buffers
