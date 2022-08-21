@@ -175,7 +175,6 @@
 (define-key org-mode-map (kbd "<backtab>") 'hide-subtree)
 (define-key org-mode-map (kbd "C-t o") 'org-remove-occur-highlights)
 (define-key org-mode-map (kbd "C-c C-o") 'org-toggle-ordered-property)
-(define-key org-mode-map (kbd "C-c C-p") 'org-priority)
 (define-key org-mode-map (kbd "C-c C-a") 'org-archive-to-archive-sibling)
 (define-key org-mode-map (kbd "M-c") 'org-toggle-checkbox)
 (define-key org-mode-map (kbd "C-c é") 'org-columns)

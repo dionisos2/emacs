@@ -123,12 +123,12 @@
 	:ensure t
 	:bind (
 				 :map julia-mode-map
-				 ("C-p e" . julia-repl-send-region-or-line)
-				 ("C-p C-e" . julia-repl-send-buffer)
+				 ("C-p e" . julia-repl-send-buffer)
+				 ("C-p C-e" . (lambda () (interactive) (julia-repl-activate-parent nil) (julia-repl-send-buffer nil)))
 				 )
 	:config
-	(load "lsp-julia.el")
 	(setq lsp-julia-default-environment "~/.julia/environments/v1.7")
+	(load "lsp-julia.el")
 	)
 
 
