@@ -319,8 +319,11 @@
 	:ensure
 	:bind (
 				 :map markdown-mode-map
-				 ("C-p C-t" . markdown-preview)
+							("C-p C-t" . markdown-preview)
+							("C-<return>" . markdown-follow-thing-at-point)
 				 )
+	;; :config
+	;; (markdown-open-command )
 	)
 
 (use-package hydra
