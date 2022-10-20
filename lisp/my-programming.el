@@ -127,7 +127,7 @@
 				 ("C-p C-e" . (lambda () (interactive) (julia-repl-activate-parent nil) (julia-repl-send-buffer nil)))
 				 )
 	:config
-	(setq lsp-julia-default-environment "~/.julia/environments/v1.7")
+	(setq lsp-julia-default-environment "~/.julia/environments/v1.8/")
 	(load "lsp-julia.el")
 	)
 
