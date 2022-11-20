@@ -9,8 +9,12 @@
 				copy-region-as-kill
 				elfeed-search-untag-all-unread
 				forward-sexp
+				forward-whitespace
 				indent-for-tab-command
 				kill-region
+				org-beginning-of-line
+				org-end-of-line
+				org-force-self-insert
 				org-self-insert-command
 				org-todo
 				select-symbol
@@ -26,6 +30,8 @@
 				counsel-M-x
 				describe-key
 				my-wgrep-finish-and-save-buffers
+				org-shiftmetaright
+				save-some-buffers
 				swiper-mc
 				wgrep-change-to-wgrep-mode
 				with-editor-finish

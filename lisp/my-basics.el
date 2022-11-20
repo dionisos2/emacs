@@ -446,6 +446,22 @@ buffer is not visiting a file."
   (interactive)
   (org-tags-view t))
 
+(defun my-backward-whitespace()
+	"Voir 'forward-whitespace'."
+	(interactive)
+	(forward-whitespace -1)
+	)
+
+(defun my-term-delete()
+	(interactive)
+	(term-send-raw-string "\ed")
+	)
+
+(defun my-term-bactkspace()
+	(interactive)
+	(term-send-raw-string "\e\x7f")
+	)
+
 (provide 'my-basics)
 ;;; my-basics.el ends here
 

@@ -105,6 +105,10 @@
 				 ("<f4>" . my-dwim-done)
 				 :map org-mode-map
 				 ("C-c h" . my-copy-heading-org)
+				 ("C-c C-l" . nil)
+				 ("C-c C-M-l" . nil)
+				 ("M-<right>" . nil)
+				 ("M-<left>" . nil)
 				 :map org-agenda-mode-map
 				 ("h" . my-copy-heading)
 				 )
@@ -242,6 +246,7 @@
 	:bind (
 				 ("C-c l" . mc/mark-all-dwim)
 				 ("C-c C-l" . mc/mark-all-in-region-regexp)
+				 ("C-c C-M-l" . mc/edit-lines) ;; Add a cursors on each lines
 				 )
 	)
 

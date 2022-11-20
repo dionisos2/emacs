@@ -7,6 +7,42 @@
 (require 'ansi-color)
 (require 'my-basics)
 
+(defun my-python-eval-region ()
+	(interactive)
+	(if (not (python-shell-get-process))
+			(progn
+				(run-python nil nil 1)
+				(sleep-for 1)
+				)
+		)
+	(call-interactively 'python-shell-send-region)
+	(python-shell-switch-to-shell)
+	)
+
+(defun my-python-eval-buffer ()
+	(interactive)
+	(if (not (python-shell-get-process))
+			(progn
+				(run-python nil nil 1)
+				(sleep-for 1)
+				)
+	)
+	(python-shell-send-buffer)
+	(python-shell-switch-to-shell)
+	)
+
+(defun my-julia-eval-region ()
+	(interactive)
+	(julia-repl-activate-parent nil)
+	(julia-repl-send-region-or-line)
+	)
+
+(defun my-julia-eval-buffer ()
+	(interactive)
+	(julia-repl-activate-parent nil)
+	(julia-repl-send-buffer nil)
+)
+
 (defun my-create-julia-project (project-name)
 	(interactive "s")
 	(shell-command (cl-concatenate 'string "julia /home/dionisos/scripts/create_julia_project.jl " project-name))

@@ -84,6 +84,8 @@
 
 (global-set-key (kbd "<C-right>") 'forward-word)
 (global-set-key (kbd "<C-left>") 'backward-word)
+(global-set-key (kbd "<M-right>") 'forward-whitespace)
+(global-set-key (kbd "<M-left>") 'my-backward-whitespace)
 
 (global-set-key (kbd "<C-M-backspace>") 'backward-kill-sexp)
 (define-key minibuffer-local-map (kbd "<C-M-backspace>") 'backward-kill-sexp)
@@ -181,8 +183,8 @@
 (define-key org-mode-map (kbd "C-c h") 'org-clock-in)
 (define-key org-mode-map (kbd "C-c C-M-h") 'org-clock-cancel)
 (define-key org-mode-map (kbd "C-M-<tab>") 'org-global-cycle)
-(define-key org-mode-map (kbd "M-<right>") 'org-shiftmetaright)
-(define-key org-mode-map (kbd "M-<left>") 'org-shiftmetaleft)
+;; (define-key org-mode-map (kbd "M-<right>") 'org-shiftmetaright)
+;; (define-key org-mode-map (kbd "M-<left>") 'org-shiftmetaleft)
 (define-key org-mode-map (kbd "C-c C-.") 'org-time-stamp)
 
 ;; term-mode
@@ -202,8 +204,8 @@
 (define-key term-raw-map (kbd "<C-left>") 'term-send-ctrl-left)
 (define-key term-raw-map (kbd "<C-right>") 'term-send-ctrl-right)
 ;; Found with "bind" command in fish. Or C-v in bash
-(define-key term-raw-map (kbd "<C-delete>") (lambda() (interactive) (term-send-raw-string "\ed")))
-(define-key term-raw-map (kbd "<C-backspace>") (lambda() (interactive) (term-send-raw-string "\e\x7f")))
+(define-key term-raw-map (kbd "<C-delete>") 'my-term-delete)
+(define-key term-raw-map (kbd "<C-backspace>") 'my-term-bactkspace)
 (define-key term-raw-map (kbd "M-t") 'term-send-left)
 (define-key term-raw-map (kbd "M-r") 'term-send-right)
 (define-key term-raw-map (kbd "M-s") 'term-send-down)

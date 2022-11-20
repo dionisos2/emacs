@@ -103,6 +103,12 @@
 	(python-shell-interpreter "python")
 	(python-shell-interpreter-args "")
 	(python-shell-virtualenv-root "/home/dionisos/.emacs.d/elpy/rpc-venv")
+
+	:bind (
+				 :map python-mode-map
+				 ("C-p e" . my-python-eval-region)
+				 ("C-p C-e" . my-python-eval-buffer)
+				 )
 	)
 
 (use-package realgud
@@ -123,8 +129,8 @@
 	:ensure t
 	:bind (
 				 :map julia-mode-map
-				 ("C-p e" . julia-repl-send-buffer)
-				 ("C-p C-e" . (lambda () (interactive) (julia-repl-activate-parent nil) (julia-repl-send-buffer nil)))
+				 ("C-p e" . my-julia-eval-region)
+				 ("C-p C-e" . my-julia-eval-buffer)
 				 )
 	:config
 	(setq lsp-julia-default-environment "~/.julia/environments/v1.8/")
