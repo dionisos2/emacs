@@ -599,6 +599,31 @@
 	(embark-collect-mode-hook . consult-preview-at-point-mode)
 	)
 
+(use-package visual-regexp
+	:ensure
+	)
+
+(use-package visual-regexp-steroids
+	:ensure
+	:demand
+	:init
+	;; Add advise for case insensitivity
+	(defadvice vr--isearch (around add-case-insensitive (forward string &optional bound noerror count) activate)
+		(when (and (eq vr/engine 'python) case-fold-search)
+			(setq string (concat "(?im)" string)))
+		ad-do-it)
+	:bind
+	(
+	 ;; :map override-global-map
+	 ("C-s" . vr/isearch-forward)
+	 ("C-r" . vr/isearch-backward)
+	 ("C-M-r" . vr/query-replace)
+	 )
+	:custom
+	;; See https://docs.python.org/3/library/re.html#re.I
+	;; I:IGNORECASE, M:MULTILINE (^ and $ match for each line)
+	(vr/default-regexp-modifiers '(:I t :M t :S nil :U nil)) ;;
+	)
 
 (use-package kiwix
 	:ensure
