@@ -470,6 +470,15 @@
 				 )
 	)
 
+(use-package ement
+	:ensure
+	:bind (
+				 ("C-t m" . ement-room-view)
+				 :map ement-room-mode-map
+							("M-s" . next-line)
+				 )
+	)
+
 (use-package orderless
 	:ensure
 	:demand
