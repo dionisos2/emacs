@@ -8,6 +8,16 @@
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 (set-face-attribute 'default nil :height 120)
 
+(use-package vdiff
+	:ensure
+	:demand
+	:bind (
+				 :map vdiff-mode-map
+				 ("C-c h" . vdiff-hydra/body)
+				 ("C-t C-q" . vdiff-quit)
+				 )
+	)
+
 (use-package elfeed
 	:ensure
 	:demand

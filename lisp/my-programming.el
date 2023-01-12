@@ -73,6 +73,19 @@
 	(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
 	)
 
+ (eval-after-load 'lsp-mode
+   '(progn
+      (require 'lsp-javascript)
+      (lsp-dependency 'typescript-language-server '(:system ,"/home/dionisos/.npm/packages/bin/typescript-language-server"))
+      (lsp-dependency 'typescript '(:system ,"/home/dionisos/.npm/packages/bin/tsc"))
+			(lsp-dependency 'javascript-typescript-langserver '(:system ,"/home/dionisos/.npm/packages/bin/javascript-typescript-langserver"))
+			)
+	 )
+
+;; where tls-exe is the absolute path to the typescript-language-server
+;; executable and ts-js is the absolute path to the typescript compiler
+;; JavaScript file, tsserver.js (the *.js is required for Windows).
+
 (use-package lsp-pyright
 	:ensure t
 	:hook (python-mode . (lambda ()
@@ -135,6 +148,30 @@
 	:config
 	(setq lsp-julia-default-environment "~/.julia/environments/v1.8/")
 	(load "lsp-julia.el")
+	)
+
+(use-package js2-mode
+	:ensure t
+	:mode ("\\.js\\'")
+	)
+
+;; (use-package skewer-mode
+;;    :ensure t
+;;    :init (add-hook 'js2-mode-hook 'skewer-mode))
+
+(use-package nodejs-repl
+	:ensure t
+	:bind (
+				 :map js2-mode-map
+				 ("C-p e" . nodejs-repl-send-region)
+				 ("C-p C-e" . nodejs-repl-send-buffer)
+				 )
+	)
+
+(use-package add-node-modules-path
+	:ensure t
+  :defer t
+  :hook (((js2-mode) . add-node-modules-path))
 	)
 
 
