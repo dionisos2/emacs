@@ -12,6 +12,7 @@
 				forward-whitespace
 				indent-for-tab-command
 				kill-region
+				my-select-line
 				org-beginning-of-line
 				org-end-of-line
 				org-force-self-insert
