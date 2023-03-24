@@ -121,6 +121,7 @@
 				 ("M-<left>" . nil)
 				 :map org-agenda-mode-map
 				 ("h" . my-copy-heading)
+				 ("C-c h" . my-copy-heading-org)
 				 )
 	)
 
@@ -563,16 +564,16 @@
 	;;			 xref-show-definitions-function #'consult-xref)
 
 
-	:config
-	(setq consult-preview-key 'any)
-	(setq consult-narrow-key "<")
+	;; :config
+	;; (setq consult-preview-key 'any)
+	;; (setq consult-narrow-key "<")
 
 	(consult-customize
 	 consult-ripgrep consult-git-grep consult-grep
 	 consult-bookmark consult-recent-file consult-xref
 	 ;; consult--source-file consult--source-project-file consult--source-bookmark
 	 consult-buffer
-	 :preview-key (kbd "M-v"))
+	 :preview-key "M-v")
 
 	:custom
 	(consult-find-command "find . -ipath *ARG* OPTS")

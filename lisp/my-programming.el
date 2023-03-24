@@ -56,8 +56,13 @@
 				 :map c-mode-map
 				 ("C-d" . avy-goto-word-0)
 				 ("C-M-d" . avy-goto-char)
+				 :map c++-mode-map
+				 ("C-d" . avy-goto-word-0)
+				 ("C-M-d" . avy-goto-char)
 				 )
   )
+
+
 
 (use-package lsp-mode
 	:ensure
@@ -82,10 +87,20 @@
 			)
 	 )
 
+(use-package lsp-haskell
+	:ensure
+	:demand
+	:hook (
+				 (haskell-mode-hook . lsp)
+				 (haskell-literate-mode-hook . lsp)
+				 )
+	:custom
+	(lsp-haskell-server-path "/home/dionisos/.ghcup/bin/haskell-language-server-wrapper")
+	)
+
 ;; where tls-exe is the absolute path to the typescript-language-server
 ;; executable and ts-js is the absolute path to the typescript compiler
 ;; JavaScript file, tsserver.js (the *.js is required for Windows).
-
 (use-package lsp-pyright
 	:ensure t
 	:hook (python-mode . (lambda ()
@@ -132,6 +147,7 @@
 
 (use-package haskell-mode
 	:ensure
+	
 	)
 
 (use-package julia-repl
