@@ -22,7 +22,7 @@
 	:ensure
 	:demand
 	:bind (
-				 ("C-p s" . (lambda () (interactive) (elfeed) (elfeed-update)))
+				 ("C-p C-s" . elfeed)
 				 :map elfeed-search-mode-map
 				 ("U" . elfeed-update)
 				 ("q" . my-quit-elfeed)

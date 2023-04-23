@@ -179,7 +179,7 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 ;;	 )
 
 (defun my-next-error (&optional reverse)
-	"Find next (previous if REVERSE) error with flycheck, next langtool, and finally flyspell."
+	"Find next (previous if REVERSE) error with flycheck, next langtool, and finally flyspell. (see js2-mode for javascript)"
 	(interactive)
 	(cond
 	 ((bound-and-true-p flycheck-current-errors) (if reverse (flycheck-previous-error) (flycheck-next-error)))

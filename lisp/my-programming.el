@@ -78,14 +78,16 @@
 	(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
 	)
 
- (eval-after-load 'lsp-mode
-   '(progn
-      (require 'lsp-javascript)
-      (lsp-dependency 'typescript-language-server '(:system ,"/home/dionisos/.npm/packages/bin/typescript-language-server"))
-      (lsp-dependency 'typescript '(:system ,"/home/dionisos/.npm/packages/bin/tsc"))
-			(lsp-dependency 'javascript-typescript-langserver '(:system ,"/home/dionisos/.npm/packages/bin/javascript-typescript-langserver"))
-			)
-	 )
+(setq read-process-output-max (* 1024 1024))
+
+ ;; (eval-after-load 'lsp-mode
+ ;;   '(progn
+ ;;      (require 'lsp-javascript)
+ ;;      (lsp-dependency 'typescript-language-server '(:system ,"/home/dionisos/.npm/packages/bin/typescript-language-server"))
+ ;;      (lsp-dependency 'typescript '(:system ,"/home/dionisos/.npm/packages/bin/tsc"))
+ ;; 			(lsp-dependency 'javascript-typescript-langserver '(:system ,"/home/dionisos/.npm/packages/bin/javascript-typescript-langserver"))
+ ;; 			)
+ ;; 	 )
 
 (use-package lsp-haskell
 	:ensure

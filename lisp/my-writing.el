@@ -79,6 +79,9 @@
 (use-package spray
 	:demand
 	:ensure
+	:bind (
+				 ("C-p s" . spray-mode)
+				 )
 	:custom
 	(spray-margin-left 20)
 	(spray-margin-top 6)
