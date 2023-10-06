@@ -32,7 +32,7 @@
 	:custom
 	(custom-safe-themes '("3d4df186126c347e002c8366d32016948068d2e9198c496093a96775cc3b3eaa" default))
 	:config
-	(load-theme 'abyss)
+	(load-theme 'abyss t)
 	)
 ;; (unless (display-graphic-p)
 ;;		(disable-theme 'abyss)

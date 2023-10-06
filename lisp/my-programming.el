@@ -120,9 +120,9 @@
 	:commands lsp-ui-mode
 	)
 
-(use-package csharp-mode
-	:ensure
-  )
+;; (use-package csharp-mode
+;; 	:ensure
+;;   )
 
 (use-package python
 	:custom
@@ -141,11 +141,11 @@
 				 )
 	)
 
-(use-package realgud
-	:ensure
-	:custom
-	(realgud:pdb-command-name "python -m pdb")
-	)
+;; (use-package realgud
+;; 	:ensure
+;; 	:custom
+;; 	(realgud:pdb-command-name "python -m pdb")
+;; 	)
 
 (use-package haskell-mode
 	:ensure
@@ -192,6 +192,44 @@
   :hook (((js2-mode) . add-node-modules-path))
 	)
 
+(use-package geiser
+	:ensure
+	:demand
+	)
+
+(use-package geiser-repl
+	:bind (
+				 :map geiser-repl-mode-map
+							("<up>" . comint-previous-matching-input-from-input)
+							("<down>" . comint-next-matching-input-from-input)
+							("C-r" . comint-previous-matching-input)
+							("C-d" . nil)
+							("C-." . nil)
+							)
+	:custom
+	(geiser-repl-history-filename "/home/dionisos/.emacs.d/private/geiser-history")
+	(geiser-repl-use-other-window nil)
+	)
+
+(use-package geiser-mode
+	:bind (
+				 :map geiser-mode-map
+							("C-d" . nil)
+							("C-." . nil)
+							)
+	)
+
+(use-package geiser-guile
+	:ensure
+	:demand
+	:custom
+	(geiser-guile-load-init-file t)
+	)
+
+(use-package paredit
+	:ensure
+	:demand
+	)
 
 (provide 'my-programming)
 ;;; my-programming.el ends here

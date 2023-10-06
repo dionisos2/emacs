@@ -49,8 +49,13 @@
 (global-set-key (kbd "C-c C-k") 'kill-whole-line)
 
 (global-set-key (kbd "C-é") 'undo)
+;; Useless, TOSEE
+(global-unset-key (kbd "C-z"))
+(global-set-key (kbd "C-z") 'undo)
+
 ;; To avoid deleting line by mistake.
 (global-unset-key (kbd "C-d"))
+
 
 (global-set-key (kbd "C-x x") 'copy-region-as-kill)
 (global-set-key (kbd "C-x C-x") 'copy-region-as-kill)

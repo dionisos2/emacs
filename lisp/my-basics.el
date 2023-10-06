@@ -405,6 +405,7 @@ buffer is not visiting a file."
   (kill-matching-buffers "^\\*Warnings\\*$")
   (kill-matching-buffers "^\\*Customize.*\\*$")
   (kill-matching-buffers "^\\*Man .*\\*$")
+	(kill-matching-buffers "^\\*Geiser .*\\*$")
   )
 
 (defun my-kill-buffer ()
