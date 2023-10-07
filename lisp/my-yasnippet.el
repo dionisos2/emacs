@@ -25,7 +25,7 @@
 	(yas-reload-all)
 	:custom
 	(yas-indent-line 'fixed)
-	(yas-snippet-dirs '("/home/dionisos/.config/emacs/snippets/private-snippets" "/home/dionisos/.config/emacs/snippets/yasnippet-snippets/snippets" "/home/dionisos/.config/emacs/snippets/my-snippets"))
+	(yas-snippet-dirs `(,(concat user-emacs-directory "snippets/private-snippets") ,(concat user-emacs-directory "snippets/yasnippet-snippets/snippets") ,(concat user-emacs-directory "snippets/my-snippets")))
 	)
 
 (provide 'my-yasnippet)
