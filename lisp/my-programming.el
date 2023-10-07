@@ -132,7 +132,7 @@
   (python-indent-trigger-commands '(indent-for-tab-command))
 	(python-shell-interpreter "python")
 	(python-shell-interpreter-args "")
-	(python-shell-virtualenv-root "/home/dionisos/.emacs.d/elpy/rpc-venv")
+	(python-shell-virtualenv-root "/home/dionisos/.config/emacs/elpy/rpc-venv")
 
 	:bind (
 				 :map python-mode-map
@@ -207,7 +207,7 @@
 							("C-." . nil)
 							)
 	:custom
-	(geiser-repl-history-filename "/home/dionisos/.emacs.d/private/geiser-history")
+	(geiser-repl-history-filename "/home/dionisos/.config/emacs/private/geiser-history")
 	(geiser-repl-use-other-window nil)
 	)
 
@@ -224,6 +224,7 @@
 	:demand
 	:custom
 	(geiser-guile-load-init-file t)
+	;; (geiser-guile-load-path "")
 	)
 
 (use-package paredit

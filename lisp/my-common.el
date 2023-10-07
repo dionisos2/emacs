@@ -212,7 +212,7 @@
 	:config
 	(global-undo-tree-mode 1)
 	:custom
-	(undo-tree-history-directory-alist '(("." . "~/.emacs.d/private/undo-tree-save/")))
+	(undo-tree-history-directory-alist '(("." . "~/.config/emacs/private/undo-tree-save/")))
 	)
 
 (use-package avy
@@ -433,7 +433,7 @@
 	(company-prescient-mode 1)
 	(prescient-persist-mode 1)
 	:custom
-	(prescient-save-file "/home/dionisos/.emacs.d/private/prescient-save.el")
+	(prescient-save-file "/home/dionisos/.config/emacs/private/prescient-save.el")
 	)
 
 (use-package company-quickhelp
