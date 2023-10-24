@@ -193,11 +193,11 @@
 	)
 
 (use-package geiser
-	:ensure
-	:demand
+	:ensure nil
 	)
 
 (use-package geiser-repl
+	:ensure nil
 	:bind (
 				 :map geiser-repl-mode-map
 							("<up>" . comint-previous-matching-input-from-input)
@@ -212,6 +212,7 @@
 	)
 
 (use-package geiser-mode
+	:ensure nil
 	:bind (
 				 :map geiser-mode-map
 							("C-d" . nil)
@@ -220,12 +221,14 @@
 	)
 
 (use-package geiser-guile
-	:ensure
-	:demand
+	:ensure nil
 	:custom
 	(geiser-guile-load-init-file t)
-	;; (geiser-guile-load-path "")
+	(geiser-guile-load-path '("/home/dionisos/.config/guix/current/share/guile/site/3.0/"))
 	)
+
+;; (with-eval-after-load 'geiser-guile
+;;   (add-to-list 'geiser-guile-load-path "/home/dionisos/.config/guix/"))
 
 (use-package paredit
 	:ensure
