@@ -34,12 +34,14 @@
   (set-face-foreground 'highlight-indent-guides-character-face "blue")
   )
 
-(use-package smart-tabs-mode
-	:ensure
-	:demand
-	:config
-	(smart-tabs-insinuate 'c 'c++ 'javascript 'python)
-  )
+
+;; Bugged for the moment
+;; (use-package smart-tabs-mode
+;; 	:ensure
+;; 	:demand
+;; 	:config
+;; 	(smart-tabs-insinuate 'c 'c++ 'javascript 'python)
+;;   )
 
 (use-package flycheck
   :ensure
@@ -110,9 +112,9 @@
 												 (lsp))))	; or lsp-deferred
 
 
-(use-package dap-mode
-	:ensure
-	)
+;; (use-package dap-mode
+;; 	:ensure
+;; 	)
 ;; (use-package dap-LANGUAGE) to load the dap adapter for your language
 
 (use-package lsp-ui
@@ -192,39 +194,44 @@
   :hook (((js2-mode) . add-node-modules-path))
 	)
 
-(use-package geiser
-	:ensure nil
-	)
 
-(use-package geiser-repl
-	:ensure nil
-	:bind (
-				 :map geiser-repl-mode-map
-							("<up>" . comint-previous-matching-input-from-input)
-							("<down>" . comint-next-matching-input-from-input)
-							("C-r" . comint-previous-matching-input)
-							("C-d" . nil)
-							("C-." . nil)
-							)
-	:custom
-	(geiser-repl-history-filename (concat user-emacs-directory "private/geiser-history"))
-	(geiser-repl-use-other-window nil)
-	)
+(if (file-directory-p "/var/guix")
+		(progn
+			(use-package geiser
+				:ensure nil
+				)
 
-(use-package geiser-mode
-	:ensure nil
-	:bind (
-				 :map geiser-mode-map
-							("C-d" . nil)
-							("C-." . nil)
-							)
-	)
+			(use-package geiser-repl
+				:ensure nil
+				:bind (
+							 :map geiser-repl-mode-map
+							 ("<up>" . comint-previous-matching-input-from-input)
+							 ("<down>" . comint-next-matching-input-from-input)
+							 ("C-r" . comint-previous-matching-input)
+							 ("C-d" . nil)
+							 ("C-." . nil)
+							 )
+				:custom
+				(geiser-repl-history-filename (concat user-emacs-directory "private/geiser-history"))
+				(geiser-repl-use-other-window nil)
+				)
 
-(use-package geiser-guile
-	:ensure nil
-	:custom
-	(geiser-guile-load-init-file t)
-	(geiser-guile-load-path '("/home/dionisos/.config/guix/current/share/guile/site/3.0/"))
+			(use-package geiser-mode
+				:ensure nil
+				:bind (
+							 :map geiser-mode-map
+							 ("C-d" . nil)
+							 ("C-." . nil)
+							 )
+				)
+
+			(use-package geiser-guile
+				:ensure nil
+				:custom
+				(geiser-guile-load-init-file t)
+				(geiser-guile-load-path '("/home/dionisos/.config/guix/current/share/guile/site/3.0/"))
+				)
+			)
 	)
 
 ;; (with-eval-after-load 'geiser-guile

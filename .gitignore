@@ -1,6 +1,7 @@
 elpa
 lisp/beancount.el
 lisp/languageserver
+lisp/my-custom.el
 snippets/yasnippet-snippets
 private/
 .dap-breakpoints

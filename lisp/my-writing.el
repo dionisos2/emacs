@@ -22,6 +22,8 @@
   (langtool-http-server-port 8081)
 )
 
+(defun my-set-dictionary(lang)(+ 1 1))
+
 (use-package flyspell
 	:demand
 	:hook (
