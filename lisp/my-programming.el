@@ -130,7 +130,7 @@
 	(python-indent-offset 2)
 	;; (python-indent-trigger-commands '(indent-for-tab-command yas-expand))
   (python-indent-trigger-commands '(indent-for-tab-command))
-	(python-shell-interpreter "python")
+	(python-shell-interpreter "python3")
 	(python-shell-interpreter-args "")
 	(python-shell-virtualenv-root (concat user-emacs-directory "elpy/rpc-venv"))
 
