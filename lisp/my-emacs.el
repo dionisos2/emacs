@@ -13,15 +13,30 @@
 
 
 (require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 
 ;;; I install everything from melpa, but if there are some problems I can try this.
 ;; (add-to-list 'package-archives
 ;;              '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
+(if init-file-debug
+      (setq use-package-verbose t
+            use-package-expand-minimally nil
+            use-package-compute-statistics t
+            debug-on-error t)
+    (setq use-package-verbose nil
+          use-package-expand-minimally t))
+
 (package-initialize)
+
+(unless package-archive-contents
+ (package-refresh-contents))
+(unless (package-installed-p 'use-package)
+  (package-install 'use-package))
+
 (require 'use-package)
+
+
 ;;; Automatic add of hook suffix is uselessly confuging
 (customize-set-variable 'use-package-hook-name-suffix nil)
 
@@ -40,6 +55,7 @@
 ;;		)
 
 ;; Seem like abyss-theme activate ido-mode, this is very weird
+
 
 (load "my-common.el")
 (load "my-yasnippet.el")
