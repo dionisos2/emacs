@@ -7,6 +7,12 @@
 (require 'ansi-color)
 (require 'my-basics)
 
+(defun my-org-set-time-today ()
+	"Set time to today in `org-agenda'."
+	(interactive)
+	(org-agenda-schedule nil (format-time-string "%Y-%m-%d"))
+	)
+
 (defun my-python-eval-region ()
 	(interactive)
 	(if (not (python-shell-get-process))
@@ -56,7 +62,7 @@
 		(backward-char)
 		(re-search-backward "/")
 		(forward-char)
-		(delete-region (point) (point-at-eol))
+		(delete-region (point) (line-end-position))
 		)
 	)
 

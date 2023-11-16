@@ -8,6 +8,43 @@
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 (set-face-attribute 'default nil :height 120)
 
+(use-package face-remap
+	:bind
+	(
+	 ("C-+" . text-scale-increase)
+	 ("C--" . text-scale-decrease)
+	 ("C-0" . text-scale-set)
+	 ("C-*" . text-scale-set)
+	 )
+	)
+
+(use-package help
+	:bind (
+				 :map help-mode-map
+							("q" . my-kill-buffer)
+				 )
+	)
+
+(use-package info
+	:bind (
+				 :map Info-mode-map
+							("q" . my-kill-buffer)
+         )
+	)
+
+
+(use-package man
+	:bind (
+				 :map Man-mode-map
+							("q" . Man-kill)
+				 )
+	:custom
+	(Man-notify-method 'pushy)
+	:custom-face
+	(Man-overstrike ((nil :inherit 'bold :foreground "orange red")))
+	(Man-underline ((nil :inherit 'underline :foreground "forest green")))
+	)
+
 (use-package vdiff
 	:ensure
 	:demand
@@ -119,9 +156,20 @@
 				 ("C-c C-M-l" . nil)
 				 ("M-<right>" . nil)
 				 ("M-<left>" . nil)
+				 ("C-c C-t" . transpose-mark)
+				 )
+	:config
+	(electric-indent-local-mode -1)
+	:custom
+	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org"))
+	)
+
+(use-package org-agenda
+	:bind (
 				 :map org-agenda-mode-map
 				 ("h" . my-copy-heading)
 				 ("C-c h" . my-copy-heading-org)
+				 ("<f6>" . my-org-set-time-today)
 				 )
 	)
 
@@ -179,24 +227,6 @@
 	(key-chord-one-key-delay 0.10)
 	)
 
-(use-package org
-	:config
-	(electric-indent-local-mode -1)
-	:custom
-	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org"))
-	:bind (
-				 :map org-mode-map
-				 ("C-c C-t" . transpose-mark)
-				 )
-	)
-
-(use-package org-roam
-	:ensure
-	:custom
-	(org-roam-directory "~/projets/R&D/org_roam/")
-	:init
-	(setq org-roam-v2-ack t)
-	)
 
 
 (use-package undo-tree
@@ -206,8 +236,11 @@
 	(defun undo-tree-overridden-undo-bindings-p () nil);; To fix some bug
 	:bind (
 				 ("C-é" . undo-tree-undo)
-				 ("C-É" . undo-tree-redo)
+				 ("C-S-é" . undo-tree-redo)
 				 ("C-M-é" . undo-tree-visualize)
+				 ("C-z" . undo-tree-undo)
+				 ("C-S-z" . undo-tree-redo)
+				 ("C-M-z" . undo-tree-visualize)
 				 )
 	:config
 	(global-undo-tree-mode 1)
@@ -479,6 +512,8 @@
 				 ("<return>" . vertico-directory-enter)
 				 ("^" . my-up-directory)
 				 )
+	:custom
+	(vertico-count 20)
 	)
 
 (use-package ement

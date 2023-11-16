@@ -78,8 +78,11 @@
 (global-set-key (kbd "C-c {") 'narrow-to-region)
 (global-set-key (kbd "C-c }") 'widen)
 
-(define-key isearch-mode-map (kbd "<DEL>") 'isearch-del-char)
+
+(global-set-key (kbd "C-t w") 'man)
+
 (define-key isearch-mode-map (kbd "C-h m") 'describe-mode)
+(define-key isearch-mode-map (kbd "<DEL>") 'isearch-del-char)
 (define-key isearch-mode-map (kbd "<C-right>") 'isearch-yank-word)
 (define-key isearch-mode-map (kbd "C-.") 'isearch-yank-kill)
 (define-key isearch-mode-map (kbd "<C-M-right>") 'isearch-yank-symbol-or-char)
@@ -117,7 +120,7 @@
 
 ;; Windows
 (global-set-key (kbd "C-o") 'other-window)
-(global-set-key (kbd "<C-kp-0>") 'delete-window)
+;; (global-set-key (kbd "<C-kp-0>") 'delete-window)
 (global-set-key (kbd "<C-kp-1>") 'delete-other-windows)
 (global-set-key (kbd "<f2>") 'delete-window)
 (global-set-key (kbd "<f1>") 'delete-other-windows)
