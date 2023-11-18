@@ -129,6 +129,7 @@
 
 ;; Files and buffers
 (global-set-key (kbd "C-t C-f") 'find-file)
+(global-set-key (kbd "C-t M-f") 'find-file-literally)
 (global-set-key (kbd "<f9>") 'find-file-at-point)
 
 (global-set-key (kbd "C-t C-M-f") 'write-file)

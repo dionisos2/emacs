@@ -17,21 +17,17 @@
 (require 'ido)
 (require 'bookmark)
 
-;; How to save backup files (TODO:Reconfigure this correctly)
-(setq backup-by-copying t)
 
 (defvar user-temporary-file-directory
   (concat temporary-file-directory user-login-name "/"))
 
 (make-directory user-temporary-file-directory t)
-(setq backup-by-copying t)
-
-(setq backup-directory-alist
-      `(("." . ,user-temporary-file-directory)
-        (,tramp-file-name-regexp nil)))
 
 (setq auto-save-list-file-prefix
       (concat user-temporary-file-directory ".auto-saves-"))
+
+(setq backup-by-copying t)
+(setq make-backup-files nil)
 
 (customize-set-variable 'backup-directory-alist
 										 '(("." . "/home/dionisos/personnelle/records_and_save/emacs_backups/")))

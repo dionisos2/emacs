@@ -8,6 +8,20 @@
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 (set-face-attribute 'default nil :height 120)
 
+(setq display-buffer-alist
+        '((
+					 ".*"
+					 (display-buffer-reuse-window display-buffer-same-window)
+           (reusable-frames . t)
+					 ))
+				)
+
+
+(use-package window
+	:custom
+	(pop-up-windows . nil)
+	)
+
 (use-package face-remap
 	:bind
 	(
@@ -271,7 +285,7 @@
 (use-package openwith
 	:ensure
 	:custom
-	(openwith-associations '((".pdf" "evince" (file)) (".docx" "libreoffice" (file))))
+	(openwith-associations '(("\\.pdf" "evince" (file)) ("\\.docx" "libreoffice" (file))))
 	(openwith-mode t)
 	)
 
@@ -635,10 +649,9 @@
 	:config
 
 	;; Hide the mode line of the Embark live/completions buffers
-	(add-to-list 'display-buffer-alist
-							 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-								 nil
-								 (window-parameters (mode-line-format . none))))
+	;; (add-to-list 'display-buffer-alist
+	;; 						 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*" nil (window-parameters (mode-line-format . none))))
+
 	(setq embark-action-indicator
 				(lambda (map _target)
 					(which-key--show-keymap "Embark" map nil nil 'no-paging)
