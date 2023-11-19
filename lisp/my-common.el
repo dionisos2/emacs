@@ -8,14 +8,11 @@
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 (set-face-attribute 'default nil :height 120)
 
-(setq display-buffer-alist
-        '((
-					 ".*"
-					 (display-buffer-reuse-window display-buffer-same-window)
-           (reusable-frames . t)
-					 ))
-				)
+;; Avoid hiding any file (ex : avoid to hide backup file)
+(customize-set-variable 'completion-ignored-extensions nil)
 
+;; See : compilation-next-error-function and compilation-goto-locus
+(setq display-buffer-alist '((".*" display-buffer-reuse-window)))
 
 (use-package window
 	:custom
@@ -289,6 +286,43 @@
 	(openwith-mode t)
 	)
 
+
+
+;; (defun compile-goto-error (&optional event)
+;;   "Visit the source for the error message at point.
+;; Use this command in a compilation log buffer."
+;;   (interactive (list last-input-event))
+;;   (if event (posn-set-point (event-end event)))
+;;   (or (compilation-buffer-p (current-buffer))
+;;       (error "Not in a compilation buffer"))
+;;   (compilation--ensure-parse (point))
+;;   (if (get-text-property (point) 'compilation-directory)
+;;       (dired-other-window
+;;        (car (get-text-property (point) 'compilation-directory)))
+;;     (setq compilation-current-error (point))
+;;     (next-error-internal)))
+
+
+(defun my-compile-goto-error (&optional event)
+  "Visit the source for the error message at point.
+Use this command in a compilation log buffer."
+  (interactive (list last-input-event))
+	(message "START")
+  (if event (posn-set-point (event-end event)))
+  ;; (or (compilation-buffer-p (current-buffer))
+  ;;     (error "Not in a compilation buffer"))
+  (compilation--ensure-parse (point))
+	(message "before if")
+  (if (get-text-property (point) 'compilation-directory)
+      (message (car (get-text-property (point) 'compilation-directory)))
+    (setq compilation-current-error (point))
+    (next-error-internal)
+			)
+	(message "END")
+	)
+
+
+
 (use-package wgrep
 	:ensure
 	:bind (
@@ -312,42 +346,43 @@
 	:ensure
 	)
 
-(use-package ranger
-	:ensure
-	:custom
-	(ranger-cleanup-eagerly t)
-	(ranger-excluded-extensions '("mkv" "iso" "mp4" "bin" "exe" "msi" "pdf"))
-	(ranger-format-regexp '("^\\.?#\\|^\\.$\\|^\\.\\.$"))
-	(ranger-override-dired 'ranger)
-	(ranger-override-dired-mode t)
-	(ranger-return-to-ranger t)
-	(ranger-show-hidden 'hidden)
-	(ranger-show-literal nil)
-	(ranger-width-preview 0.5)
-	:bind (
-				 :map ranger-mode-map
-				 ("M-t" . ranger-up-directory)
-				 ("M-r" . ranger-find-file)
+;; Obsolete and too much bug, maybe try bug, essayer peut
+;; (use-package ranger
+;; 	:ensure
+;; 	:custom
+;; 	(ranger-cleanup-eagerly t)
+;; 	(ranger-excluded-extensions '("mkv" "iso" "mp4" "bin" "exe" "msi" "pdf"))
+;; 	(ranger-format-regexp '("^\\.?#\\|^\\.$\\|^\\.\\.$"))
+;; 	(ranger-override-dired 'ranger)
+;; 	(ranger-override-dired-mode t)
+;; 	(ranger-return-to-ranger t)
+;; 	(ranger-show-hidden 'hidden)
+;; 	(ranger-show-literal nil)
+;; 	(ranger-width-preview 0.5)
+;; 	:bind (
+;; 				 :map ranger-mode-map
+;; 				 ("M-t" . ranger-up-directory)
+;; 				 ("M-r" . ranger-find-file)
 
-				 ("t" . ranger-up-directory)
-				 ("r" . ranger-find-file)
-				 ("d" . ranger-prev-file)
-				 ("s" . ranger-next-file)
-				 ("H" . ranger-toggle-dotfiles)
-				 ("SPC" . ranger-toggle-mark)
-				 ("C-d" . avy-goto-word-0)
-				 ("C-M-d" . avy-goto-char)
+;; 				 ("t" . ranger-up-directory)
+;; 				 ("r" . ranger-find-file)
+;; 				 ("d" . ranger-prev-file)
+;; 				 ("s" . ranger-next-file)
+;; 				 ("H" . ranger-toggle-dotfiles)
+;; 				 ("SPC" . ranger-toggle-mark)
+;; 				 ("C-d" . avy-goto-word-0)
+;; 				 ("C-M-d" . avy-goto-char)
 
-				 ("v" . dired-toggle-marks)
-				 ("C-v" . dired-mark-sexp)
+;; 				 ("v" . dired-toggle-marks)
+;; 				 ("C-v" . dired-mark-sexp)
 
-				 ("cc" . ranger-copy)
-				 ("CC" . ranger-cut)
-				 ("C-t p" . ranger-copy-filename)
+;; 				 ("cc" . ranger-copy)
+;; 				 ("CC" . ranger-cut)
+;; 				 ("C-t p" . ranger-copy-filename)
 
-				 ("<delete>" . dired-do-delete)
-				 )
-	)
+;; 				 ("<delete>" . dired-do-delete)
+;; 				 )
+;; 	)
 
 (use-package image-mode
 	:mode "\\.svg$"

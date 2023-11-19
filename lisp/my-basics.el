@@ -28,6 +28,7 @@
 
 (setq backup-by-copying t)
 (setq make-backup-files nil)
+(setq auto-save-default nil)
 
 (customize-set-variable 'backup-directory-alist
 										 '(("." . "/home/dionisos/personnelle/records_and_save/emacs_backups/")))
