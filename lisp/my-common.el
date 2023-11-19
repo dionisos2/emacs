@@ -12,7 +12,12 @@
 (customize-set-variable 'completion-ignored-extensions nil)
 
 ;; See : compilation-next-error-function and compilation-goto-locus
-(setq display-buffer-alist '((".*" display-buffer-reuse-window)))
+(setq display-buffer-alist '(
+														 (".*" display-buffer-reuse-window)
+														 )
+			)
+
+(setq display-buffer-alist nil)
 
 (use-package window
 	:custom
@@ -346,7 +351,7 @@ Use this command in a compilation log buffer."
 	:ensure
 	)
 
-;; Obsolete and too much bug, maybe try bug, essayer peut
+;; Obsolete and too much bug, maybe try dirvish
 ;; (use-package ranger
 ;; 	:ensure
 ;; 	:custom

@@ -134,8 +134,9 @@
 
 (customize-set-variable 'show-trailing-whitespace t)
 
-;;; Never split windows automatically (unsure of why it still splits sometime, but possible improvement here if splitting is messed-up).
-(customize-set-variable 'split-window-preferred-function '(lambda (window) (nil)))
+;; ;;; Never split windows automatically (unsure of why it still splits sometime, but possible improvement here if splitting is messed-up).
+;; ;;; Create problem with rgrep, this is why I removed it
+;; (customize-set-variable 'split-window-preferred-function '(lambda (window) (nil)))
 
 (customize-set-variable 'tool-bar-mode nil)
 
