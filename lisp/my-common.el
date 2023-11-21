@@ -12,10 +12,10 @@
 (customize-set-variable 'completion-ignored-extensions nil)
 
 ;; See : compilation-next-error-function and compilation-goto-locus
-(setq display-buffer-alist '(
-														 (".*" display-buffer-reuse-window)
-														 )
-			)
+;; (setq display-buffer-alist '(
+;; 														 (".*" display-buffer-reuse-window)
+;; 														 )
+;; 			)
 
 (setq display-buffer-alist nil)
 
@@ -570,13 +570,45 @@ Use this command in a compilation log buffer."
 	(vertico-count 20)
 	)
 
+
+(use-package emoji
+	:bind (
+				 ("C-c e" . emoji-search)
+				 )
+	)
+
+(defun my-ement-panta-connect ()
+  (interactive)
+  (ement-connect :uri-prefix "http://localhost:8008" :user-id "@dionisos:matrix.org"))
+
 (use-package ement
 	:ensure
 	:bind (
 				 ("C-t m" . ement-room-view)
+				 ("C-t C-m" . ement-notifications)
+				 ("C-t C-M-m" . ement-list-rooms)
 				 :map ement-room-mode-map
-							("M-s" . next-line)
+				 ("d" . ement-room-scroll-down-command)
+				 ("s" . ement-room-scroll-up-mark-read)
+				 ("t" . ement-room-goto-prev)
+				 ("r" . ement-room-goto-next)
+				 ("RET" . ement-room-send-message)
+         ("S-RET" . ement-room-write-reply)
+         ("M-RET" . ement-room-compose-message)
+         ("o e" . ement-room-edit-message)
+         ("o d d" . ement-room-delete-message)
+         ("o r" . ement-room-send-reaction)
+         ("o m" . ement-room-send-emote)
+         ("o f" . ement-room-send-file)
+         ("o i" . ement-room-send-image)
 				 )
+	:custom
+	(ement-room-retro-messages-number 100)
+	;; (ement-room-prism 'both)
+	;; (ement-save-sessions t)
+	;; (ement-notify-ignore-predicates nil)
+	:init
+	(setq ement-notify-dbus-p nil)
 	)
 
 (use-package orderless
@@ -707,31 +739,33 @@ Use this command in a compilation log buffer."
 	(embark-collect-mode-hook . consult-preview-at-point-mode)
 	)
 
-(use-package visual-regexp
-	:ensure
-	)
 
-(use-package visual-regexp-steroids
-	:ensure
-	:demand
-	:init
-	;; Add advise for case insensitivity
-	(defadvice vr--isearch (around add-case-insensitive (forward string &optional bound noerror count) activate)
-		(when (and (eq vr/engine 'python) case-fold-search)
-			(setq string (concat "(?im)" string)))
-		ad-do-it)
-	:bind
-	(
-	 ;; :map override-global-map
-	 ("C-s" . vr/isearch-forward)
-	 ("C-r" . vr/isearch-backward)
-	 ("C-M-r" . vr/query-replace)
-	 )
-	:custom
-	;; See https://docs.python.org/3/library/re.html#re.I
-	;; I:IGNORECASE, M:MULTILINE (^ and $ match for each line)
-	(vr/default-regexp-modifiers '(:I t :M t :S nil :U nil)) ;;
-	)
+;; (use-package visual-regexp
+;; 	:ensure
+;; 	)
+
+;;;; Removed because bug and seem abandonned
+;; (use-package visual-regexp-steroids
+;; 	:ensure
+;; 	:demand
+;; 	:init
+;; 	;; Add advise for case insensitivity
+;; 	(defadvice vr--isearch (around add-case-insensitive (forward string &optional bound noerror count) activate)
+;; 		(when (and (eq vr/engine 'python) case-fold-search)
+;; 			(setq string (concat "(?im)" string)))
+;; 		ad-do-it)
+;; 	:bind
+;; 	(
+;; 	 ;; :map override-global-map
+;; 	 ("C-s" . vr/isearch-forward)
+;; 	 ("C-r" . vr/isearch-backward)
+;; 	 ("C-M-r" . vr/query-replace)
+;; 	 )
+;; 	:custom
+;; 	;; See https://docs.python.org/3/library/re.html#re.I
+;; 	;; I:IGNORECASE, M:MULTILINE (^ and $ match for each line)
+;; 	(vr/default-regexp-modifiers '(:I t :M t :S nil :U nil)) ;;
+;; 	)
 
 (use-package kiwix
 	:ensure
