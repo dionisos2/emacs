@@ -19,9 +19,38 @@
 
 (setq display-buffer-alist nil)
 
+;; (use-package shr
+;; 	:custom
+;; 	(shr-external-rendering-functions
+;;    '((title . eww-tag-title)
+;;      (form . eww-tag-form)
+;;      (input . eww-tag-input)
+;;      (button . eww-form-submit)
+;;      (textarea . eww-tag-textarea)
+;;      (select . eww-tag-select)
+;;      (link . eww-tag-link)
+;;      (meta . eww-tag-meta)
+;;      (a . eww-tag-a))
+;; 	 )
+;; 	)
+
+(use-package shr-tag-pre-highlight
+  :ensure t
+  :after shr
+  :custom
+  (shr-external-rendering-functions '((pre . shr-tag-pre-highlight))) ;;;; Syntax highlighting for ement.el
+  )
+
+(use-package multisession
+	;; See http://xahlee.info/emacs/emacs_manual/elisp/Multisession-Variables.html, used, by example, for emoji--recent
+	:custom
+	(multisession-directory (concat user-emacs-directory "private/multisession"))
+	(multisession-storage 'file)
+)
+
 (use-package window
 	:custom
-	(pop-up-windows . nil)
+	(pop-up-windows nil)
 	)
 
 (use-package face-remap
@@ -574,7 +603,20 @@ Use this command in a compilation log buffer."
 (use-package emoji
 	:bind (
 				 ("C-c e" . emoji-search)
+				 ("C-c C-e" . emoji-insert)
 				 )
+	:custom-face ;; 👌 : not working because of something about font-lock
+	(emoji ((t :Height 3.0)))
+	)
+
+;;;; No idea what it does or even if it does something
+(setf use-default-font-for-symbols nil)
+(set-fontset-font t 'unicode "Noto Emoji" nil 'append)
+
+
+(use-package htmlize ;; Used to improve display of ement messages
+	:ensure
+	:demand
 	)
 
 (defun my-ement-panta-connect ()
@@ -588,10 +630,12 @@ Use this command in a compilation log buffer."
 				 ("C-t C-m" . ement-notifications)
 				 ("C-t C-M-m" . ement-list-rooms)
 				 :map ement-room-mode-map
+				 ("M-s" . next-line)
 				 ("d" . ement-room-scroll-down-command)
 				 ("s" . ement-room-scroll-up-mark-read)
 				 ("t" . ement-room-goto-prev)
 				 ("r" . ement-room-goto-next)
+				 ("P" . beginning-of-buffer)
 				 ("RET" . ement-room-send-message)
          ("S-RET" . ement-room-write-reply)
          ("M-RET" . ement-room-compose-message)
@@ -601,10 +645,16 @@ Use this command in a compilation log buffer."
          ("o m" . ement-room-send-emote)
          ("o f" . ement-room-send-file)
          ("o i" . ement-room-send-image)
+				 ("a t" . ement-tag-room)
+				 ("a s" . ement-room-set-topic)
+				 ("a n" . ement-room-set-notification-state)
+				 ("a m" . ement-room-set-display-name)
 				 )
 	:custom
+	(ement-room-send-message-filter 'ement-room-send-org-filter)
 	(ement-room-retro-messages-number 100)
-	;; (ement-room-prism 'both)
+	(ement-room-prism 'both) ;; Different color for different people
+	(ement-sessions-file (concat user-emacs-directory "private/ement.el"))
 	;; (ement-save-sessions t)
 	;; (ement-notify-ignore-predicates nil)
 	:init
