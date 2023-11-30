@@ -13,6 +13,7 @@
 	:demand
 	:ensure
 	:bind (
+				 ("C-<tab>" . yas-insert-snippet)
 				 ("C-p C-y" . yas-new-snippet)
 				 ("C-p y" . yas-visit-snippet-file)
 				 :map yas-minor-mode-map

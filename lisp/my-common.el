@@ -19,20 +19,14 @@
 
 (setq display-buffer-alist nil)
 
-;; (use-package shr
-;; 	:custom
-;; 	(shr-external-rendering-functions
-;;    '((title . eww-tag-title)
-;;      (form . eww-tag-form)
-;;      (input . eww-tag-input)
-;;      (button . eww-form-submit)
-;;      (textarea . eww-tag-textarea)
-;;      (select . eww-tag-select)
-;;      (link . eww-tag-link)
-;;      (meta . eww-tag-meta)
-;;      (a . eww-tag-a))
-;; 	 )
-;; 	)
+;; (use-package org-latex-impatient
+;;   :defer t
+;;   :hook (org-mode . org-latex-impatient-mode)
+;;   :init
+;;   (setq org-latex-impatient-tex2svg-bin
+;;         ;; location of tex2svg executable
+;;         "~/node_modules/mathjax-node-cli/bin/tex2svg"))
+
 
 (use-package shr-tag-pre-highlight
   :ensure t
@@ -42,10 +36,11 @@
   )
 
 (use-package multisession
+	:demand
 	;; See http://xahlee.info/emacs/emacs_manual/elisp/Multisession-Variables.html, used, by example, for emoji--recent
 	:custom
-	(multisession-directory (concat user-emacs-directory "private/multisession"))
-	(multisession-storage 'file)
+	(multisession-directory (concat user-emacs-directory "private/multisession/"))
+	(multisession-storage 'files)
 )
 
 (use-package window
@@ -179,7 +174,7 @@
 	(appt-message-warning-time 1)
 	(appt-display-interval appt-message-warning-time)
 	(appt-disp-window-function 'my-appt-notification)
-	(appt-delete-window-function (lambda () t))
+	(appt-delete-window-function always)
 	)
 
 (use-package with-editor
@@ -296,9 +291,11 @@
 (use-package avy
 	:ensure
 	:demand
-	:bind (
+	:bind* (
 				 ("C-d" . avy-goto-word-0)
 				 ("C-M-d" . avy-goto-char)
+				 ("C-S-d" . avy-goto-line)
+				 ("C-," . avy-goto-line)
 				 )
 	:custom
 	(avy-keys '(?a ?u ?i ?e ?p ?o ?n ?r ?s ?t ?d ?v ?g ?x ?q))
@@ -610,8 +607,8 @@ Use this command in a compilation log buffer."
 	)
 
 ;;;; No idea what it does or even if it does something
-(setf use-default-font-for-symbols nil)
-(set-fontset-font t 'unicode "Noto Emoji" nil 'append)
+;; (setf use-default-font-for-symbols nil)
+;; (set-fontset-font t 'unicode "Noto Emoji" nil 'append)
 
 
 (use-package htmlize ;; Used to improve display of ement messages
@@ -621,7 +618,7 @@ Use this command in a compilation log buffer."
 
 (defun my-ement-panta-connect ()
   (interactive)
-  (ement-connect :uri-prefix "http://localhost:8008" :user-id "@dionisos:matrix.org"))
+  (ement-connect :uri-prefix "http://localhost:8010" :user-id "@dionisos:matrix.org"))
 
 (use-package ement
 	:ensure
@@ -649,17 +646,29 @@ Use this command in a compilation log buffer."
 				 ("a s" . ement-room-set-topic)
 				 ("a n" . ement-room-set-notification-state)
 				 ("a m" . ement-room-set-display-name)
+				 :map ement-room-minibuffer-map
+				 ("TAB" . completion-at-point)
+				 ("C-f" . completion-at-point)
 				 )
 	:custom
-	(ement-room-send-message-filter 'ement-room-send-org-filter)
+	(ement-view-room-display-buffer-action '(display-buffer-reuse-mode-window))
+	(ement-room-send-message-filter nil)
+	;; (ement-room-send-message-filter 'ement-room-send-org-filter)
 	(ement-room-retro-messages-number 100)
 	(ement-room-prism 'both) ;; Different color for different people
 	(ement-sessions-file (concat user-emacs-directory "private/ement.el"))
-	;; (ement-save-sessions t)
+	(ement-save-sessions t)
 	;; (ement-notify-ignore-predicates nil)
-	:init
-	(setq ement-notify-dbus-p nil)
+	;; :init
+	;; (setq ement-notify-dbus-p nil)
 	)
+
+(use-package browse-url
+	:custom
+	(browse-url-handlers '(("https?://localhost.*matrix" . w3m-download)))
+	(browse-url-browser-function 'browse-url-generic)
+	(browse-url-generic-program "firefox-developer-edition")
+)
 
 (use-package orderless
 	:ensure
