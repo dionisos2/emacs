@@ -28,6 +28,11 @@
 ;;         "~/node_modules/mathjax-node-cli/bin/tex2svg"))
 
 
+;; (use-package savehist
+;; 	:custom
+;; 	()
+;; 	)
+
 (use-package shr-tag-pre-highlight
   :ensure t
   :after shr
@@ -649,6 +654,7 @@ Use this command in a compilation log buffer."
 				 :map ement-room-minibuffer-map
 				 ("TAB" . completion-at-point)
 				 ("C-f" . completion-at-point)
+				 ("M-RET" . ement-room-compose-from-minibuffer)
 				 )
 	:custom
 	(ement-view-room-display-buffer-action '(display-buffer-reuse-mode-window))
