@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: for_enumerate
+# key: fore
+# --
+
+for ${1:index}, ${2:element} in enumerate(${3:iterable}):
+	$0

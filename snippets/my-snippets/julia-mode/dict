@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: dict
+# key: dict
+# --
+
+Dict(${1::A => 10, :B => 1})$0
+
+
+
+

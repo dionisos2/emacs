@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: angle_brackets2
+# key: a
+# --
+
+<$0>

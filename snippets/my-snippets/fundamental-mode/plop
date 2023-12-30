@@ -1,0 +1,14 @@
+# -*- mode: snippet -*-
+# name: random_snippet
+# key: random_snippet
+# --
+
+======================${1:$(make-string (string-width yas-text) ?\=)}${2:$(make-string (string-width yas-text) ?\=)}
+Your first name is : ${1:firstname}
+Your second name is : ${2:secondname}
+
+$0`yas-selected-text`
+
+Hello $1 $2.
+Capitalized it is : ${1:$(capitalize yas-text)} ${2:$(capitalize yas-text)}.
+======================${1:$(make-string (string-width yas-text) ?\=)}${2:$(make-string (string-width yas-text) ?\=)}

@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: parse_input
+# key: pi
+# --
+
+def parse_input(${1:file_path}):
+	with open($1, 'r') as ${2:input_file}:
+		for line in $2.readlines():
+			pass$0

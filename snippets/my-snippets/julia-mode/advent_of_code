@@ -1,0 +1,40 @@
+# -*- mode: snippet -*-
+# name: advent_of_code
+# key: aoc
+# --
+module Day$1
+
+export parse_input, day$1, day$1_2
+
+using InteractiveUtils
+using OrderedCollections
+using Compat
+
+function parse_input(file_path)
+	open(file_path) do file
+		result = []
+$0
+    for line in eachline(file)
+			push!(result, line)
+    end
+		# return permutedims(stack(eachline(file))) # Because matrix are columns first
+		return result
+  end
+end
+
+
+function day$1($2)
+	return $2
+end
+
+function day$1_2($2)
+	return $2
+end
+
+$2 = parse_input("input$1_test")
+result = day$1($2)
+
+display(result)
+clipboard(string(result))
+
+end

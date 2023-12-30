@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: class
+# key: cls
+# group: object oriented
+# --
+class ${1:Name$(capitalize yas-text)}:
+	def __init__(self, ${2:args}):
+		${2:$(mapconcat (lambda (x) (format "self.%s = %s" x x)) (split-string yas-text ", " t) "\n\t\t")}
+		$0
+
