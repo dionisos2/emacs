@@ -504,17 +504,16 @@ Use this command in a compilation log buffer."
 	(company-idle-delay 0.2)
 	(company-show-numbers t)
 	(company-backends '(
-											(company-files company-keywords company-capf)
-											(company-abbrev company-dabbrev)
+											(:separate ;; company-jedi 
+																 company-files :separate company-keywords :separate company-capf :separate company-abbrev :separate company-dabbrev)
 											)
 										)
-	;; :hook (
-	;;				 (haskell-mode-hook . (lambda() (setq-local company-backends (company-lsp :with company-dabbrev :with company-yasnippet :with company-files))))
-	;;				 (elisp-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
-	;;				 (julia-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
-	;;				 )
 	)
 
+;; (add-hook 'minibuffer-setup-hook 'my/company-mode-maybe)
+
+;; (defun my/company-mode-maybe ()
+;;     (company-mode 1))
 
 (use-package consult-lsp
 	:ensure
@@ -548,7 +547,7 @@ Use this command in a compilation log buffer."
 (use-package company-prescient
 	:ensure
 	:config
-	(company-prescient-mode 1)
+	(company-prescient-mode 1) ;; See company-transformers
 	(prescient-persist-mode 1)
 	:custom
 	(prescient-save-file (concat user-emacs-directory "private/prescient-save.el"))
@@ -594,6 +593,8 @@ Use this command in a compilation log buffer."
 				 ("M-s" . next-line)
 				 :map vertico-map
 				 ("C-f" . vertico-insert)
+				 ("<tab>" . vertico-insert)
+				 ("M-g" . vertico-quick-insert)
 				 ("<return>" . vertico-directory-enter)
 				 ("^" . my-up-directory)
 				 )

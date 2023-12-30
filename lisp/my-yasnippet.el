@@ -22,6 +22,7 @@
 				 ("M-f" . yas-expand-from-trigger-key)
 				 :map yas-keymap
 				 ("<tab>" . yas-next-field)
+				 ("C-g" . yas-exit-snippet)
 				 )
 	:chords (
 					 ("ae" . yas-insert-snippet)
@@ -29,6 +30,7 @@
 	:config
 	(yas-global-mode 1)
 	(yas-reload-all)
+	;; (add-to-list 'warning-suppress-types '(yasnippet backquote-change))
 	:custom
 	(yas-indent-line 'fixed)
 	(yas-snippet-dirs `(,(concat user-emacs-directory "snippets/private-snippets")
