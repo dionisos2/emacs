@@ -188,7 +188,7 @@
 	(julia-indent-offset 2)
 	(lsp-julia-format-indent 2)
 	:config
-	(setq lsp-julia-default-environment "~/.julia/environments/v1.9/")
+	(setq lsp-julia-default-environment "~/.julia/environments/v1.10/")
 	(load "lsp-julia.el")
 	)
 
