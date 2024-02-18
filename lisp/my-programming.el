@@ -57,6 +57,7 @@
 	:custom
 	(flycheck-emacs-lisp-load-path 'inherit)
 	(global-flycheck-mode t)
+	(indent-tabs-mode t)
 	)
 
 (use-package cc-mode
