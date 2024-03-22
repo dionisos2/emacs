@@ -179,7 +179,7 @@
 	(appt-message-warning-time 1)
 	(appt-display-interval appt-message-warning-time)
 	(appt-disp-window-function 'my-appt-notification)
-	(appt-delete-window-function always)
+	;; (appt-delete-window-function always)
 	)
 
 (use-package with-editor
@@ -206,7 +206,7 @@
 	:config
 	(electric-indent-local-mode -1)
 	:custom
-	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org"))
+	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org" "~/organisation/todo.org"))
 	)
 
 (use-package org-agenda

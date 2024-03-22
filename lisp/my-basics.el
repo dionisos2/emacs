@@ -156,7 +156,7 @@
 ;; org-mode
 ;;; TODO : Find what is useful and sort it
 (customize-set-variable 'org-agenda-files
-	 '("~/organisation/agenda.org" "~/organisation/birthdays.org"))
+	 '("~/organisation/agenda.org" "~/organisation/birthdays.org" "~/organisation/todo.org"))
 
 (customize-set-variable 'calendar-day-header-array ["Di" "Lu" "Ma" "Me" "Je" "Ve" "Sa"])
 (customize-set-variable 'calendar-day-name-array
@@ -165,15 +165,17 @@
 
 (add-to-list 'org-agenda-custom-commands
              '("p" "important tasks"
-               tags "PRIORITY=\"A\"/TODO"))
+               tags-todo "PRIORITY=\"A\""))
 
 (add-to-list 'org-agenda-custom-commands
-             '("t" "todo tasks (without schedule)"
-               tags "-SCHEDULED={.}-DEADLINE={.}+ponctuel/TODO"))
+             '("t" "todo tasks without schedule (todo.org)"
+							 tags-todo "-SCHEDULED={.}-DEADLINE={.}" ((org-agenda-files '("~/organisation/todo.org"))))
+						 )
 
 (add-to-list 'org-agenda-custom-commands
-             '("w" "periodic tasks without schedule"
-               tags "-SCHEDULED={.}-DEADLINE={.}+périodique/TODO"))
+             '("w" "periodic tasks without schedule (agenda.org)"
+							 tags-todo "-SCHEDULED={.}-DEADLINE={.}" ((org-agenda-files '("~/organisation/agenda.org"))))
+						 )
 
 
 (customize-set-variable 'org-agenda-include-diary t)

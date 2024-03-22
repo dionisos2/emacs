@@ -166,6 +166,8 @@
 (global-set-key (kbd "C-p q") 'my-kill-boring-buffer)
 (global-set-key (kbd "C-p C-q") 'kill-matching-buffers)
 
+;; org-mode
+
 ;;; TODO : See if org-clock could be useful
 (global-set-key (kbd "C-p c") 'org-timer-set-timer)
 (global-set-key (kbd "C-p C-c") 'org-timer-start)
@@ -174,12 +176,10 @@
 (global-set-key (kbd "C-p C-c") 'org-timer-start)
 (global-set-key (kbd "C-p M-c") 'org-timer-stop)
 
-(global-set-key (kbd "C-p w") 'org-agenda-list)
 (global-set-key (kbd "C-p C-w") 'org-agenda)
 (global-set-key (kbd "C-p w") 'org-agenda-list)
 (global-set-key (kbd "C-p C-w") 'org-agenda)
 
-;; org-mode
 (define-key org-mode-map (kbd "<f5>") 'org-todo)
 (define-key org-mode-map (kbd "<f6>") 'org-schedule)
 (define-key org-mode-map (kbd "C-S-d") 'org-up-element)
