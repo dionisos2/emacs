@@ -143,7 +143,7 @@
 	:ensure
 	:demand
 	:bind (
-				 ("C-p n" . (lambda () (interactive) (notmuch-search "folder:Inbox")))
+				 ("C-p n" . notmuch)
 				 )
 	:custom
 	(notmuch-search-oldest-first nil)
@@ -645,6 +645,7 @@ Use this command in a compilation log buffer."
          ("o e" . ement-room-edit-message)
          ("o d d" . ement-room-delete-message)
          ("o r" . ement-room-send-reaction)
+				 ("o c" . my-ement-room-send-common-reaction)
          ("o m" . ement-room-send-emote)
          ("o f" . ement-room-send-file)
          ("o i" . ement-room-send-image)

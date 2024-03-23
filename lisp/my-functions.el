@@ -201,6 +201,22 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 	(my-next-error t)
 	)
 
+;; Voir : https://github.com/alphapapa/ement.el/issues/199#issuecomment-1806748506
+(defun my-ement-room-send-common-reaction (key position &optional event)
+  "Send a reaction."
+  (interactive
+   (let ((event (ewoc-data (ewoc-locate ement-ewoc))))
+     (unless (ement-event-p event)
+       (user-error "No event at point"))
+     (list (minibuffer-with-setup-hook
+               (lambda ()
+                 (activate-input-method 'emoji)
+                 (push ?r unread-command-events)
+                 (call-interactively #'emoji-insert))
+             (read-string "Reaction: "))
+           (point)
+           event)))
+  (ement-room-send-reaction key position event))
 
 (provide 'my-functions)
 ;;; my-functions.el ends here
