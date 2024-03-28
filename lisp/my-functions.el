@@ -201,6 +201,18 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 	(my-next-error t)
 	)
 
+(defun my-ement-panta-connect ()
+  (interactive)
+  (call-interactively #'ement-connect)
+	(customize-set-variable 'show-trailing-whitespace nil)
+	)
+
+(defun my-ement-panta-connect-new-session ()
+  (interactive)
+  (ement-connect :uri-prefix "http://localhost:8010" :user-id "@dionisos:matrix.org")
+	(customize-set-variable 'show-trailing-whitespace nil)
+	)
+
 ;; Voir : https://github.com/alphapapa/ement.el/issues/199#issuecomment-1806748506
 (defun my-ement-room-send-common-reaction (key position &optional event)
   "Send a reaction."

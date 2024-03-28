@@ -650,10 +650,6 @@ Use this command in a compilation log buffer."
 	:demand
 	)
 
-(defun my-ement-panta-connect ()
-  (interactive)
-  (ement-connect :uri-prefix "http://localhost:8010" :user-id "@dionisos:matrix.org"))
-
 (use-package ement
 	:ensure
 	:bind (
