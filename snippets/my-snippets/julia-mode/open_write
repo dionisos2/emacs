@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: open_write
+# key: openw
+# --
+
+open(${1:file_path}, "w") do ${2:file}
+	println($2, ${3:string})
+end
+$0

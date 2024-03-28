@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: open_read
+# key: openr
+# --
+
+open(${1:file_path}) do ${2:file}
+	$0for line in eachline($2)
+		println(line)
+	end
+
+	str = readlines($2)
+end

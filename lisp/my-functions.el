@@ -114,7 +114,7 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 
 (defun my-appt-notification (min-to-app new-time msg)
 	(interactive)
-	(start-process "my-appt-notification-app" nil "notify-send" msg)
+	(start-process "my-appt-notification-app" nil "notify-send" "-u" "critical" msg)
 	)
 
 (defun my-delete-file-and-buffer ()

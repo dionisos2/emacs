@@ -33,6 +33,11 @@
 ;; 	()
 ;; 	)
 
+(use-package frame
+	:custom
+	(blink-cursor-blinks 3)
+	)
+
 (use-package shr-tag-pre-highlight
   :ensure t
   :after shr
@@ -138,12 +143,35 @@
 	)
 
 
+(defun my-notmuch-delete(&optional beg end)
+	(interactive)
+	(notmuch-search-add-tag '("+deleted"))
+	)
+
+(defun my-notmuch-unread-down()
+	(interactive)
+	(notmuch-search-add-tag '("+unread"))
+	(forward-line)
+	)
+
+(defun my-notmuch-delete-down()
+	(interactive)
+	(my-notmuch-delete)
+	(forward-line)
+	)
 
 (use-package notmuch
 	:ensure
 	:demand
 	:bind (
 				 ("C-p n" . notmuch)
+				 :map notmuch-search-mode-map
+				 ("<deletechar>" . my-notmuch-delete)
+				 ("d" . my-notmuch-delete-down)
+				 ("u" . my-notmuch-unread-down)
+				 ("U" . notmuch-refresh-this-buffer)
+				 ("gg" . beginning-of-buffer)
+				 ("G" . end-of-buffer)
 				 )
 	:custom
 	(notmuch-search-oldest-first nil)
@@ -303,7 +331,7 @@
 				 ("C-," . avy-goto-line)
 				 )
 	:custom
-	(avy-keys '(?a ?u ?i ?e ?p ?o ?n ?r ?s ?t ?d ?v ?g ?x ?q))
+	(avy-keys '(?a ?u ?i ?e ?p ?o ?n ?r ?s ?t ?d ?v ?g ?x))
 	)
 
 (use-package magit

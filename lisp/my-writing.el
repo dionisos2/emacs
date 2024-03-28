@@ -87,7 +87,7 @@
 	:custom
 	(spray-margin-left 20)
 	(spray-margin-top 6)
-	(spray-wpm 400)
+	(spray-wpm 300)
 	)
 
 (provide 'my-writing)
