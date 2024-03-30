@@ -8,6 +8,93 @@
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 (set-face-attribute 'default nil :height 120)
 
+;; Avoid hiding any file (ex : avoid to hide backup file)
+(customize-set-variable 'completion-ignored-extensions nil)
+
+;; See : compilation-next-error-function and compilation-goto-locus
+;; (setq display-buffer-alist '(
+;; 														 (".*" display-buffer-reuse-window)
+;; 														 )
+;; 			)
+
+(setq display-buffer-alist nil)
+
+;; (use-package org-latex-impatient
+;;   :defer t
+;;   :hook (org-mode . org-latex-impatient-mode)
+;;   :init
+;;   (setq org-latex-impatient-tex2svg-bin
+;;         ;; location of tex2svg executable
+;;         "~/node_modules/mathjax-node-cli/bin/tex2svg"))
+
+
+;; (use-package savehist
+;; 	:custom
+;; 	()
+;; 	)
+
+(use-package frame
+	:custom
+	(blink-cursor-blinks 3)
+	)
+
+(use-package shr-tag-pre-highlight
+  :ensure t
+  :after shr
+  :custom
+  (shr-external-rendering-functions '((pre . shr-tag-pre-highlight))) ;;;; Syntax highlighting for ement.el
+  )
+
+(use-package multisession
+	:demand
+	;; See http://xahlee.info/emacs/emacs_manual/elisp/Multisession-Variables.html, used, by example, for emoji--recent
+	:custom
+	(multisession-directory (concat user-emacs-directory "private/multisession/"))
+	(multisession-storage 'files)
+)
+
+(use-package window
+	:custom
+	(pop-up-windows nil)
+	)
+
+(use-package face-remap
+	:bind
+	(
+	 ("C-+" . text-scale-increase)
+	 ("C--" . text-scale-decrease)
+	 ("C-0" . text-scale-set)
+	 ("C-*" . text-scale-set)
+	 )
+	)
+
+(use-package help
+	:bind (
+				 :map help-mode-map
+							("q" . my-kill-buffer)
+				 )
+	)
+
+(use-package info
+	:bind (
+				 :map Info-mode-map
+							("q" . my-kill-buffer)
+         )
+	)
+
+
+(use-package man
+	:bind (
+				 :map Man-mode-map
+							("q" . Man-kill)
+				 )
+	:custom
+	(Man-notify-method 'pushy)
+	:custom-face
+	(Man-overstrike ((nil :inherit 'bold :foreground "orange red")))
+	(Man-underline ((nil :inherit 'underline :foreground "forest green")))
+	)
+
 (use-package vdiff
 	:ensure
 	:demand
@@ -56,12 +143,35 @@
 	)
 
 
+(defun my-notmuch-delete(&optional beg end)
+	(interactive)
+	(notmuch-search-add-tag '("+deleted"))
+	)
+
+(defun my-notmuch-unread-down()
+	(interactive)
+	(notmuch-search-add-tag '("+unread"))
+	(forward-line)
+	)
+
+(defun my-notmuch-delete-down()
+	(interactive)
+	(my-notmuch-delete)
+	(forward-line)
+	)
 
 (use-package notmuch
 	:ensure
 	:demand
 	:bind (
-				 ("C-p n" . (lambda () (interactive) (notmuch-search "folder:Inbox")))
+				 ("C-p n" . notmuch)
+				 :map notmuch-search-mode-map
+				 ("<deletechar>" . my-notmuch-delete)
+				 ("d" . my-notmuch-delete-down)
+				 ("u" . my-notmuch-unread-down)
+				 ("U" . notmuch-refresh-this-buffer)
+				 ("gg" . beginning-of-buffer)
+				 ("G" . end-of-buffer)
 				 )
 	:custom
 	(notmuch-search-oldest-first nil)
@@ -97,7 +207,7 @@
 	(appt-message-warning-time 1)
 	(appt-display-interval appt-message-warning-time)
 	(appt-disp-window-function 'my-appt-notification)
-	(appt-delete-window-function (lambda () t))
+	;; (appt-delete-window-function always)
 	)
 
 (use-package with-editor
@@ -119,9 +229,20 @@
 				 ("C-c C-M-l" . nil)
 				 ("M-<right>" . nil)
 				 ("M-<left>" . nil)
+				 ("C-c C-t" . transpose-mark)
+				 )
+	:config
+	(electric-indent-local-mode -1)
+	:custom
+	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org" "~/organisation/todo.org"))
+	)
+
+(use-package org-agenda
+	:bind (
 				 :map org-agenda-mode-map
 				 ("h" . my-copy-heading)
 				 ("C-c h" . my-copy-heading-org)
+				 ("<f6>" . my-org-set-time-today)
 				 )
 	)
 
@@ -179,24 +300,6 @@
 	(key-chord-one-key-delay 0.10)
 	)
 
-(use-package org
-	:config
-	(electric-indent-local-mode -1)
-	:custom
-	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org"))
-	:bind (
-				 :map org-mode-map
-				 ("C-c C-t" . transpose-mark)
-				 )
-	)
-
-(use-package org-roam
-	:ensure
-	:custom
-	(org-roam-directory "~/projets/R&D/org_roam/")
-	:init
-	(setq org-roam-v2-ack t)
-	)
 
 
 (use-package undo-tree
@@ -206,8 +309,11 @@
 	(defun undo-tree-overridden-undo-bindings-p () nil);; To fix some bug
 	:bind (
 				 ("C-é" . undo-tree-undo)
-				 ("C-É" . undo-tree-redo)
+				 ("C-S-é" . undo-tree-redo)
 				 ("C-M-é" . undo-tree-visualize)
+				 ("C-z" . undo-tree-undo)
+				 ("C-S-z" . undo-tree-redo)
+				 ("C-M-z" . undo-tree-visualize)
 				 )
 	:config
 	(global-undo-tree-mode 1)
@@ -218,12 +324,14 @@
 (use-package avy
 	:ensure
 	:demand
-	:bind (
+	:bind* (
 				 ("C-d" . avy-goto-word-0)
 				 ("C-M-d" . avy-goto-char)
+				 ("C-S-d" . avy-goto-line)
+				 ("C-," . avy-goto-line)
 				 )
 	:custom
-	(avy-keys '(?a ?u ?i ?e ?p ?o ?n ?r ?s ?t ?d ?v ?g ?x ?q))
+	(avy-keys '(?a ?u ?i ?e ?p ?o ?n ?r ?s ?t ?d ?v ?g ?x))
 	)
 
 (use-package magit
@@ -238,9 +346,46 @@
 (use-package openwith
 	:ensure
 	:custom
-	(openwith-associations '((".pdf" "evince" (file)) (".docx" "libreoffice" (file))))
+	(openwith-associations '(("\\.pdf" "evince" (file)) ("\\.docx" "libreoffice" (file))))
 	(openwith-mode t)
 	)
+
+
+
+;; (defun compile-goto-error (&optional event)
+;;   "Visit the source for the error message at point.
+;; Use this command in a compilation log buffer."
+;;   (interactive (list last-input-event))
+;;   (if event (posn-set-point (event-end event)))
+;;   (or (compilation-buffer-p (current-buffer))
+;;       (error "Not in a compilation buffer"))
+;;   (compilation--ensure-parse (point))
+;;   (if (get-text-property (point) 'compilation-directory)
+;;       (dired-other-window
+;;        (car (get-text-property (point) 'compilation-directory)))
+;;     (setq compilation-current-error (point))
+;;     (next-error-internal)))
+
+
+(defun my-compile-goto-error (&optional event)
+  "Visit the source for the error message at point.
+Use this command in a compilation log buffer."
+  (interactive (list last-input-event))
+	(message "START")
+  (if event (posn-set-point (event-end event)))
+  ;; (or (compilation-buffer-p (current-buffer))
+  ;;     (error "Not in a compilation buffer"))
+  (compilation--ensure-parse (point))
+	(message "before if")
+  (if (get-text-property (point) 'compilation-directory)
+      (message (car (get-text-property (point) 'compilation-directory)))
+    (setq compilation-current-error (point))
+    (next-error-internal)
+			)
+	(message "END")
+	)
+
+
 
 (use-package wgrep
 	:ensure
@@ -265,42 +410,43 @@
 	:ensure
 	)
 
-(use-package ranger
-	:ensure
-	:custom
-	(ranger-cleanup-eagerly t)
-	(ranger-excluded-extensions '("mkv" "iso" "mp4" "bin" "exe" "msi" "pdf"))
-	(ranger-format-regexp '("^\\.?#\\|^\\.$\\|^\\.\\.$"))
-	(ranger-override-dired 'ranger)
-	(ranger-override-dired-mode t)
-	(ranger-return-to-ranger t)
-	(ranger-show-hidden 'hidden)
-	(ranger-show-literal nil)
-	(ranger-width-preview 0.5)
-	:bind (
-				 :map ranger-mode-map
-				 ("M-t" . ranger-up-directory)
-				 ("M-r" . ranger-find-file)
+;; Obsolete and too much bug, maybe try dirvish
+;; (use-package ranger
+;; 	:ensure
+;; 	:custom
+;; 	(ranger-cleanup-eagerly t)
+;; 	(ranger-excluded-extensions '("mkv" "iso" "mp4" "bin" "exe" "msi" "pdf"))
+;; 	(ranger-format-regexp '("^\\.?#\\|^\\.$\\|^\\.\\.$"))
+;; 	(ranger-override-dired 'ranger)
+;; 	(ranger-override-dired-mode t)
+;; 	(ranger-return-to-ranger t)
+;; 	(ranger-show-hidden 'hidden)
+;; 	(ranger-show-literal nil)
+;; 	(ranger-width-preview 0.5)
+;; 	:bind (
+;; 				 :map ranger-mode-map
+;; 				 ("M-t" . ranger-up-directory)
+;; 				 ("M-r" . ranger-find-file)
 
-				 ("t" . ranger-up-directory)
-				 ("r" . ranger-find-file)
-				 ("d" . ranger-prev-file)
-				 ("s" . ranger-next-file)
-				 ("H" . ranger-toggle-dotfiles)
-				 ("SPC" . ranger-toggle-mark)
-				 ("C-d" . avy-goto-word-0)
-				 ("C-M-d" . avy-goto-char)
+;; 				 ("t" . ranger-up-directory)
+;; 				 ("r" . ranger-find-file)
+;; 				 ("d" . ranger-prev-file)
+;; 				 ("s" . ranger-next-file)
+;; 				 ("H" . ranger-toggle-dotfiles)
+;; 				 ("SPC" . ranger-toggle-mark)
+;; 				 ("C-d" . avy-goto-word-0)
+;; 				 ("C-M-d" . avy-goto-char)
 
-				 ("v" . dired-toggle-marks)
-				 ("C-v" . dired-mark-sexp)
+;; 				 ("v" . dired-toggle-marks)
+;; 				 ("C-v" . dired-mark-sexp)
 
-				 ("cc" . ranger-copy)
-				 ("CC" . ranger-cut)
-				 ("C-t p" . ranger-copy-filename)
+;; 				 ("cc" . ranger-copy)
+;; 				 ("CC" . ranger-cut)
+;; 				 ("C-t p" . ranger-copy-filename)
 
-				 ("<delete>" . dired-do-delete)
-				 )
-	)
+;; 				 ("<delete>" . dired-do-delete)
+;; 				 )
+;; 	)
 
 (use-package image-mode
 	:mode "\\.svg$"
@@ -386,17 +532,16 @@
 	(company-idle-delay 0.2)
 	(company-show-numbers t)
 	(company-backends '(
-											(company-files company-keywords company-capf)
-											(company-abbrev company-dabbrev)
+											(:separate ;; company-jedi 
+																 company-files :separate company-keywords :separate company-capf :separate company-abbrev :separate company-dabbrev)
 											)
 										)
-	;; :hook (
-	;;				 (haskell-mode-hook . (lambda() (setq-local company-backends (company-lsp :with company-dabbrev :with company-yasnippet :with company-files))))
-	;;				 (elisp-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
-	;;				 (julia-mode-hook . (lambda() (setq-local company-backends (company-capf :with company-dabbrev :with company-yasnippet :with company-files))))
-	;;				 )
 	)
 
+;; (add-hook 'minibuffer-setup-hook 'my/company-mode-maybe)
+
+;; (defun my/company-mode-maybe ()
+;;     (company-mode 1))
 
 (use-package consult-lsp
 	:ensure
@@ -430,7 +575,7 @@
 (use-package company-prescient
 	:ensure
 	:config
-	(company-prescient-mode 1)
+	(company-prescient-mode 1) ;; See company-transformers
 	(prescient-persist-mode 1)
 	:custom
 	(prescient-save-file (concat user-emacs-directory "private/prescient-save.el"))
@@ -476,19 +621,86 @@
 				 ("M-s" . next-line)
 				 :map vertico-map
 				 ("C-f" . vertico-insert)
+				 ("<tab>" . vertico-insert)
+				 ("M-g" . vertico-quick-insert)
 				 ("<return>" . vertico-directory-enter)
 				 ("^" . my-up-directory)
 				 )
+	:custom
+	(vertico-count 20)
+	)
+
+
+(use-package emoji
+	:bind (
+				 ("C-c e" . emoji-search)
+				 ("C-c C-e" . emoji-insert)
+				 )
+	:custom-face ;; 👌 : not working because of something about font-lock
+	(emoji ((t :Height 3.0)))
+	)
+
+;;;; No idea what it does or even if it does something
+;; (setf use-default-font-for-symbols nil)
+;; (set-fontset-font t 'unicode "Noto Emoji" nil 'append)
+
+
+(use-package htmlize ;; Used to improve display of ement messages
+	:ensure
+	:demand
 	)
 
 (use-package ement
 	:ensure
 	:bind (
 				 ("C-t m" . ement-room-view)
+				 ("C-t C-m" . ement-notifications)
+				 ("C-t C-M-m" . ement-list-rooms)
 				 :map ement-room-mode-map
-							("M-s" . next-line)
+				 ("M-s" . next-line)
+				 ("d" . ement-room-scroll-down-command)
+				 ("s" . ement-room-scroll-up-mark-read)
+				 ("t" . ement-room-goto-prev)
+				 ("r" . ement-room-goto-next)
+				 ("P" . beginning-of-buffer)
+				 ("RET" . ement-room-send-message)
+         ("S-RET" . ement-room-write-reply)
+         ("M-RET" . ement-room-compose-message)
+         ("o e" . ement-room-edit-message)
+         ("o d d" . ement-room-delete-message)
+         ("o r" . ement-room-send-reaction)
+				 ("o c" . my-ement-room-send-common-reaction)
+         ("o m" . ement-room-send-emote)
+         ("o f" . ement-room-send-file)
+         ("o i" . ement-room-send-image)
+				 ("a t" . ement-tag-room)
+				 ("a s" . ement-room-set-topic)
+				 ("a n" . ement-room-set-notification-state)
+				 ("a m" . ement-room-set-display-name)
+				 :map ement-room-minibuffer-map
+				 ("TAB" . completion-at-point)
+				 ("C-f" . completion-at-point)
+				 ("M-RET" . ement-room-compose-from-minibuffer)
 				 )
+	:custom
+	(ement-view-room-display-buffer-action '(display-buffer-reuse-mode-window))
+	(ement-room-send-message-filter nil)
+	;; (ement-room-send-message-filter 'ement-room-send-org-filter)
+	(ement-room-retro-messages-number 100)
+	(ement-room-prism 'both) ;; Different color for different people
+	(ement-sessions-file (concat user-emacs-directory "private/ement.el"))
+	(ement-save-sessions t)
+	;; (ement-notify-ignore-predicates nil)
+	;; :init
+	;; (setq ement-notify-dbus-p nil)
 	)
+
+(use-package browse-url
+	:custom
+	(browse-url-handlers '(("https?://localhost.*matrix" . w3m-download)))
+	(browse-url-browser-function 'browse-url-generic)
+	(browse-url-generic-program "firefox-developer-edition")
+)
 
 (use-package orderless
 	:ensure
@@ -600,10 +812,9 @@
 	:config
 
 	;; Hide the mode line of the Embark live/completions buffers
-	(add-to-list 'display-buffer-alist
-							 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-								 nil
-								 (window-parameters (mode-line-format . none))))
+	;; (add-to-list 'display-buffer-alist
+	;; 						 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*" nil (window-parameters (mode-line-format . none))))
+
 	(setq embark-action-indicator
 				(lambda (map _target)
 					(which-key--show-keymap "Embark" map nil nil 'no-paging)
@@ -619,31 +830,33 @@
 	(embark-collect-mode-hook . consult-preview-at-point-mode)
 	)
 
-(use-package visual-regexp
-	:ensure
-	)
 
-(use-package visual-regexp-steroids
-	:ensure
-	:demand
-	:init
-	;; Add advise for case insensitivity
-	(defadvice vr--isearch (around add-case-insensitive (forward string &optional bound noerror count) activate)
-		(when (and (eq vr/engine 'python) case-fold-search)
-			(setq string (concat "(?im)" string)))
-		ad-do-it)
-	:bind
-	(
-	 ;; :map override-global-map
-	 ("C-s" . vr/isearch-forward)
-	 ("C-r" . vr/isearch-backward)
-	 ("C-M-r" . vr/query-replace)
-	 )
-	:custom
-	;; See https://docs.python.org/3/library/re.html#re.I
-	;; I:IGNORECASE, M:MULTILINE (^ and $ match for each line)
-	(vr/default-regexp-modifiers '(:I t :M t :S nil :U nil)) ;;
-	)
+;; (use-package visual-regexp
+;; 	:ensure
+;; 	)
+
+;;;; Removed because bug and seem abandonned
+;; (use-package visual-regexp-steroids
+;; 	:ensure
+;; 	:demand
+;; 	:init
+;; 	;; Add advise for case insensitivity
+;; 	(defadvice vr--isearch (around add-case-insensitive (forward string &optional bound noerror count) activate)
+;; 		(when (and (eq vr/engine 'python) case-fold-search)
+;; 			(setq string (concat "(?im)" string)))
+;; 		ad-do-it)
+;; 	:bind
+;; 	(
+;; 	 ;; :map override-global-map
+;; 	 ("C-s" . vr/isearch-forward)
+;; 	 ("C-r" . vr/isearch-backward)
+;; 	 ("C-M-r" . vr/query-replace)
+;; 	 )
+;; 	:custom
+;; 	;; See https://docs.python.org/3/library/re.html#re.I
+;; 	;; I:IGNORECASE, M:MULTILINE (^ and $ match for each line)
+;; 	(vr/default-regexp-modifiers '(:I t :M t :S nil :U nil)) ;;
+;; 	)
 
 (use-package kiwix
 	:ensure

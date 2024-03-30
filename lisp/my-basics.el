@@ -17,21 +17,18 @@
 (require 'ido)
 (require 'bookmark)
 
-;; How to save backup files (TODO:Reconfigure this correctly)
-(setq backup-by-copying t)
 
 (defvar user-temporary-file-directory
   (concat temporary-file-directory user-login-name "/"))
 
 (make-directory user-temporary-file-directory t)
-(setq backup-by-copying t)
-
-(setq backup-directory-alist
-      `(("." . ,user-temporary-file-directory)
-        (,tramp-file-name-regexp nil)))
 
 (setq auto-save-list-file-prefix
       (concat user-temporary-file-directory ".auto-saves-"))
+
+(setq backup-by-copying t)
+(setq make-backup-files nil)
+(setq auto-save-default nil)
 
 (customize-set-variable 'backup-directory-alist
 										 '(("." . "/home/dionisos/personnelle/records_and_save/emacs_backups/")))
@@ -137,8 +134,9 @@
 
 (customize-set-variable 'show-trailing-whitespace t)
 
-;;; Never split windows automatically (unsure of why it still splits sometime, but possible improvement here if splitting is messed-up).
-(customize-set-variable 'split-window-preferred-function '(lambda (window) (nil)))
+;; ;;; Never split windows automatically (unsure of why it still splits sometime, but possible improvement here if splitting is messed-up).
+;; ;;; Create problem with rgrep, this is why I removed it
+;; (customize-set-variable 'split-window-preferred-function '(lambda (window) (nil)))
 
 (customize-set-variable 'tool-bar-mode nil)
 
@@ -158,7 +156,7 @@
 ;; org-mode
 ;;; TODO : Find what is useful and sort it
 (customize-set-variable 'org-agenda-files
-	 '("~/organisation/agenda.org" "~/organisation/birthdays.org"))
+	 '("~/organisation/agenda.org" "~/organisation/birthdays.org" "~/organisation/todo.org"))
 
 (customize-set-variable 'calendar-day-header-array ["Di" "Lu" "Ma" "Me" "Je" "Ve" "Sa"])
 (customize-set-variable 'calendar-day-name-array
@@ -167,15 +165,17 @@
 
 (add-to-list 'org-agenda-custom-commands
              '("p" "important tasks"
-               tags "PRIORITY=\"A\"/TODO"))
+               tags-todo "PRIORITY=\"A\""))
 
 (add-to-list 'org-agenda-custom-commands
-             '("t" "todo tasks (without schedule)"
-               tags "-SCHEDULED={.}-DEADLINE={.}+ponctuel/TODO"))
+             '("t" "todo tasks without schedule (todo.org)"
+							 tags-todo "-SCHEDULED={.}-DEADLINE={.}" ((org-agenda-files '("~/organisation/todo.org"))))
+						 )
 
 (add-to-list 'org-agenda-custom-commands
-             '("w" "periodic tasks without schedule"
-               tags "-SCHEDULED={.}-DEADLINE={.}+périodique/TODO"))
+             '("w" "periodic tasks without schedule (agenda.org)"
+							 tags-todo "-SCHEDULED={.}-DEADLINE={.}" ((org-agenda-files '("~/organisation/agenda.org"))))
+						 )
 
 
 (customize-set-variable 'org-agenda-include-diary t)
@@ -350,9 +350,9 @@ Will also prompt for a file to visit if current
 buffer is not visiting a file."
   (interactive "P")
   (if (or arg (not buffer-file-name))
-      (find-file (concat "/sudo:root@localhost:"
+      (find-file (concat "/doas:root@localhost:"
                          (ido-read-file-name "Find file(as root): ")))
-    (find-alternate-file (concat "/sudo:root@localhost:" buffer-file-name))
+    (find-alternate-file (concat "/doas:root@localhost:" buffer-file-name))
 		)
 	)
 

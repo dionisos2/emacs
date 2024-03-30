@@ -78,8 +78,11 @@
 (global-set-key (kbd "C-c {") 'narrow-to-region)
 (global-set-key (kbd "C-c }") 'widen)
 
-(define-key isearch-mode-map (kbd "<DEL>") 'isearch-del-char)
+
+(global-set-key (kbd "C-t w") 'man)
+
 (define-key isearch-mode-map (kbd "C-h m") 'describe-mode)
+(define-key isearch-mode-map (kbd "<DEL>") 'isearch-del-char)
 (define-key isearch-mode-map (kbd "<C-right>") 'isearch-yank-word)
 (define-key isearch-mode-map (kbd "C-.") 'isearch-yank-kill)
 (define-key isearch-mode-map (kbd "<C-M-right>") 'isearch-yank-symbol-or-char)
@@ -117,7 +120,7 @@
 
 ;; Windows
 (global-set-key (kbd "C-o") 'other-window)
-(global-set-key (kbd "<C-kp-0>") 'delete-window)
+;; (global-set-key (kbd "<C-kp-0>") 'delete-window)
 (global-set-key (kbd "<C-kp-1>") 'delete-other-windows)
 (global-set-key (kbd "<f2>") 'delete-window)
 (global-set-key (kbd "<f1>") 'delete-other-windows)
@@ -126,6 +129,7 @@
 
 ;; Files and buffers
 (global-set-key (kbd "C-t C-f") 'find-file)
+(global-set-key (kbd "C-t M-f") 'find-file-literally)
 (global-set-key (kbd "<f9>") 'find-file-at-point)
 
 (global-set-key (kbd "C-t C-M-f") 'write-file)
@@ -162,6 +166,8 @@
 (global-set-key (kbd "C-p q") 'my-kill-boring-buffer)
 (global-set-key (kbd "C-p C-q") 'kill-matching-buffers)
 
+;; org-mode
+
 ;;; TODO : See if org-clock could be useful
 (global-set-key (kbd "C-p c") 'org-timer-set-timer)
 (global-set-key (kbd "C-p C-c") 'org-timer-start)
@@ -170,12 +176,10 @@
 (global-set-key (kbd "C-p C-c") 'org-timer-start)
 (global-set-key (kbd "C-p M-c") 'org-timer-stop)
 
-(global-set-key (kbd "C-p w") 'org-agenda-list)
 (global-set-key (kbd "C-p C-w") 'org-agenda)
 (global-set-key (kbd "C-p w") 'org-agenda-list)
 (global-set-key (kbd "C-p C-w") 'org-agenda)
 
-;; org-mode
 (define-key org-mode-map (kbd "<f5>") 'org-todo)
 (define-key org-mode-map (kbd "<f6>") 'org-schedule)
 (define-key org-mode-map (kbd "C-S-d") 'org-up-element)

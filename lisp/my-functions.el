@@ -7,6 +7,12 @@
 (require 'ansi-color)
 (require 'my-basics)
 
+(defun my-org-set-time-today ()
+	"Set time to today in `org-agenda'."
+	(interactive)
+	(org-agenda-schedule nil (format-time-string "%Y-%m-%d"))
+	)
+
 (defun my-python-eval-region ()
 	(interactive)
 	(if (not (python-shell-get-process))
@@ -56,7 +62,7 @@
 		(backward-char)
 		(re-search-backward "/")
 		(forward-char)
-		(delete-region (point) (point-at-eol))
+		(delete-region (point) (line-end-position))
 		)
 	)
 
@@ -108,7 +114,7 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 
 (defun my-appt-notification (min-to-app new-time msg)
 	(interactive)
-	(start-process "my-appt-notification-app" nil "notify-send" msg)
+	(start-process "my-appt-notification-app" nil "notify-send" "-u" "critical" msg)
 	)
 
 (defun my-delete-file-and-buffer ()
@@ -195,6 +201,34 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 	(my-next-error t)
 	)
 
+(defun my-ement-panta-connect ()
+  (interactive)
+  (call-interactively #'ement-connect)
+	(customize-set-variable 'show-trailing-whitespace nil)
+	)
+
+(defun my-ement-panta-connect-new-session ()
+  (interactive)
+  (ement-connect :uri-prefix "http://localhost:8010" :user-id "@dionisos:matrix.org")
+	(customize-set-variable 'show-trailing-whitespace nil)
+	)
+
+;; Voir : https://github.com/alphapapa/ement.el/issues/199#issuecomment-1806748506
+(defun my-ement-room-send-common-reaction (key position &optional event)
+  "Send a reaction."
+  (interactive
+   (let ((event (ewoc-data (ewoc-locate ement-ewoc))))
+     (unless (ement-event-p event)
+       (user-error "No event at point"))
+     (list (minibuffer-with-setup-hook
+               (lambda ()
+                 (activate-input-method 'emoji)
+                 (push ?r unread-command-events)
+                 (call-interactively #'emoji-insert))
+             (read-string "Reaction: "))
+           (point)
+           event)))
+  (ement-room-send-reaction key position event))
 
 (provide 'my-functions)
 ;;; my-functions.el ends here

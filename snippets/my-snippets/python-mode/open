@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: open
+# key: open
+# --
+
+with open(${1:file_path}, 'r') as ${2:input_file}:
+	for line in $2.readlines():
+		$0

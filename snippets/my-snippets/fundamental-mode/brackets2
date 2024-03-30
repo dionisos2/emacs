@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: brackets2
+# key: b
+# --
+
+`(if (string= " " (string (preceding-char))) (backward-delete-char 1))`[$0]
+
+uaie[$0]

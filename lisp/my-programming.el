@@ -17,6 +17,14 @@
 (add-hook 'lisp-mode-hook 'enable-tabs)
 (add-hook 'emacs-lisp-mode-hook 'enable-tabs)
 
+(use-package term
+	:bind (
+				 :map term-raw-map
+							("C-t" . nil)
+							("C-t C-f" . find-file)
+				 )
+	)
+
 (use-package php-mode
 	:ensure
   )
@@ -49,6 +57,7 @@
 	:custom
 	(flycheck-emacs-lisp-load-path 'inherit)
 	(global-flycheck-mode t)
+	(indent-tabs-mode t)
 	)
 
 (use-package cc-mode
@@ -140,8 +149,16 @@
 				 :map python-mode-map
 				 ("C-p e" . my-python-eval-region)
 				 ("C-p C-e" . my-python-eval-buffer)
+				 ("C-c C-t" . transpose-mark)
 				 )
 	)
+
+;; (use-package company-jedi
+;; 	:ensure
+;; 	:demand
+;; 	:custom
+;; 	(jedi:server-command '("python3" "/home/dionisos/.config/emacs/elpa/jedi-core-20210503.1315/jediepcserver.py"))
+;; )
 
 ;; (use-package realgud
 ;; 	:ensure
@@ -150,12 +167,15 @@
 ;; 	)
 
 (use-package haskell-mode
-	:ensure
-	
+	:ensure t
 	)
 
 (use-package julia-repl
-	:ensure
+	:ensure t
+	:bind (
+				:map julia-repl-mode-map
+				("C-t C-f" . find-file)
+				)
 	)
 
 (use-package julia-mode
@@ -165,8 +185,11 @@
 				 ("C-p e" . my-julia-eval-region)
 				 ("C-p C-e" . my-julia-eval-buffer)
 				 )
+	:custom
+	(julia-indent-offset 2)
+	(lsp-julia-format-indent 2)
 	:config
-	(setq lsp-julia-default-environment "~/.julia/environments/v1.8/")
+	(setq lsp-julia-default-environment "~/.julia/environments/v1.10/")
 	(load "lsp-julia.el")
 	)
 
@@ -230,6 +253,10 @@
 				:custom
 				(geiser-guile-load-init-file t)
 				(geiser-guile-load-path '("/home/dionisos/.config/guix/current/share/guile/site/3.0/"))
+				)
+
+			(use-package guix
+				:ensure nil
 				)
 			)
 	)

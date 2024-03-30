@@ -30,8 +30,10 @@
 				consult-buffer
 				counsel-M-x
 				describe-key
+				multiple-cursors-mode
 				my-wgrep-finish-and-save-buffers
 				org-shiftmetaright
+				repeat
 				save-some-buffers
 				swiper-mc
 				wgrep-change-to-wgrep-mode
