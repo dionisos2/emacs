@@ -235,6 +235,8 @@
 	(electric-indent-local-mode -1)
 	:custom
 	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org" "~/organisation/todo.org"))
+	:hook
+	(org-mode-hook . yas-minor-mode)
 	)
 
 (use-package org-agenda
@@ -539,9 +541,9 @@ Use this command in a compilation log buffer."
 	)
 
 (use-package minibuffer
-	:hook
+	;; :hook
 	;; (minibuffer-setup-hook . my/company-mode-maybe)
-	(minibuffer-setup-hook . yas-minor-mode)
+	;; (minibuffer-setup-hook . yas-minor-mode)
 )
 
 
@@ -697,6 +699,8 @@ Use this command in a compilation log buffer."
 	(ement-save-sessions t)
 	:hook
 	(ement-room-compose-hook . yas-minor-mode)
+	(ement-room-compose-hook . ement-room-compose-org)
+	(minibuffer-setup-hook . yas-minor-mode)
 	;; (ement-notify-ignore-predicates nil)
 	;; :init
 	;; (setq ement-notify-dbus-p nil)
