@@ -538,7 +538,12 @@ Use this command in a compilation log buffer."
 										)
 	)
 
-;; (add-hook 'minibuffer-setup-hook 'my/company-mode-maybe)
+(use-package minibuffer
+	:hook
+	;; (minibuffer-setup-hook . my/company-mode-maybe)
+	(minibuffer-setup-hook . yas-minor-mode)
+)
+
 
 ;; (defun my/company-mode-maybe ()
 ;;     (company-mode 1))
@@ -690,6 +695,8 @@ Use this command in a compilation log buffer."
 	(ement-room-prism 'both) ;; Different color for different people
 	(ement-sessions-file (concat user-emacs-directory "private/ement.el"))
 	(ement-save-sessions t)
+	:hook
+	(ement-room-compose-hook . yas-minor-mode)
 	;; (ement-notify-ignore-predicates nil)
 	;; :init
 	;; (setq ement-notify-dbus-p nil)
