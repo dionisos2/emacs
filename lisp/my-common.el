@@ -669,6 +669,7 @@ Use this command in a compilation log buffer."
 	)
 
 (use-package ement
+	:demand
 	:ensure
 	:bind (
 				 ("C-t m" . ement-room-view)
