@@ -246,6 +246,7 @@
 	(electric-indent-local-mode -1)
 	:custom
 	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org" "~/organisation/todo.org"))
+	(org-show-notification-timeout 20)
 	:hook
 	(org-mode-hook . yas-minor-mode)
 	)
