@@ -233,5 +233,39 @@ In particular, no temp files are created. TOSEE : Why use eval?"
            event)))
   (ement-room-send-reaction key position event))
 
+(defun my-previous-image ()
+	(interactive)
+	(text-property-search-backward 'keymap)
+	)
+
+(defun my-next-image ()
+	(interactive)
+	(forward-char)
+	(text-property-search-forward 'keymap)
+	(backward-char)
+	)
+
+(defun my-ement-room-image-show (pos)
+  "Show image at POS in a new buffer."
+  (interactive "d")
+  (pcase-let* ((image (copy-sequence (get-text-property pos 'display)))
+               (ement-event (ewoc-data (ewoc-locate ement-ewoc pos)))
+               ((cl-struct ement-event id) ement-event)
+               (buffer-name (format "*Ement image: %s*" id)))
+    (when (fboundp 'imagemagick-types)
+      ;; Only do this when ImageMagick is supported.
+      ;; FIXME: When requiring Emacs 27+, remove this (I guess?).
+      (setf (image-property image :type) 'imagemagick))
+    (setf (image-property image :scale) 1.0
+          (image-property image :max-width) nil
+          (image-property image :max-height) nil)
+    (unless (get-buffer buffer-name)
+      (with-current-buffer (get-buffer-create buffer-name)
+        (erase-buffer)
+        (insert-image image)
+        (image-mode)))
+		(switch-to-buffer buffer-name)
+		))
+
 (provide 'my-functions)
 ;;; my-functions.el ends here

@@ -239,6 +239,7 @@
 				 ("C-c C-M-l" . nil)
 				 ("M-<right>" . nil)
 				 ("M-<left>" . nil)
+				 ("C-c C-e" . nil)
 				 ("C-c C-t" . transpose-mark)
 				 )
 	:config
@@ -694,6 +695,9 @@ Use this command in a compilation log buffer."
 				 ("a s" . ement-room-set-topic)
 				 ("a n" . ement-room-set-notification-state)
 				 ("a m" . ement-room-set-display-name)
+				 ("i p" . my-previous-image)
+				 ("i n" . my-next-image)
+				 ("i s" . my-ement-room-image-show)
 				 :map ement-room-minibuffer-map
 				 ("TAB" . completion-at-point)
 				 ("C-f" . completion-at-point)
