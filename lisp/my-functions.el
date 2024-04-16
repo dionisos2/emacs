@@ -201,11 +201,13 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 	(my-next-error t)
 	)
 
+(defun my-ement-change-directory ()
+	(cd "~/"))
+
 (defun my-ement-panta-connect ()
   (interactive)
   (call-interactively #'ement-connect)
 	(customize-set-variable 'show-trailing-whitespace nil)
-	(cd "~/téléchargements/")
 	)
 
 (defun my-ement-panta-connect-new-session ()

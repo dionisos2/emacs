@@ -701,6 +701,9 @@ Use this command in a compilation log buffer."
 	(ement-room-compose-hook . yas-minor-mode)
 	(ement-room-compose-hook . ement-room-compose-org)
 	(minibuffer-setup-hook . yas-minor-mode)
+	(ement-room-list-mode-hook . my-ement-change-directory)
+	(ement-tabulated-room-list-mode-hook . my-ement-change-directory)
+	(ement-room-mode-hook . my-ement-change-directory)
 	;; (ement-notify-ignore-predicates nil)
 	;; :init
 	;; (setq ement-notify-dbus-p nil)
