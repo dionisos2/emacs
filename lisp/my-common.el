@@ -109,21 +109,31 @@
 	:ensure
 	:demand
 	:bind (
-				 ("C-p C-s" . elfeed)
 				 :map elfeed-search-mode-map
 				 ("U" . elfeed-update)
 				 ("q" . my-quit-elfeed)
 				 )
 	:custom
-	(elfeed-feeds '(
-									"https://astralcodexten.substack.com/feed"
-									"https://www.dragonball-multiverse.com/flux.rss.php?lang=fr"
-									"https://www.fdn.fr/feed/"
-									"https://noob-tv.com/includes/flux_rss.xml"
-									"https://archlinux.org/feeds/news/"
-									))
-	(elfeed-enclosure-default-dir "/home/dionisos/a_trier") ;; don’t know what it is, but don’t want it in my main directory
+	;; (elfeed-feeds '(
+	;; 								"https://astralcodexten.substack.com/feed"
+	;; 								"https://www.dragonball-multiverse.com/flux.rss.php?lang=fr"
+	;; 								"https://www.fdn.fr/feed/"
+	;; 								"https://noob-tv.com/includes/flux_rss.xml"
+	;; 								"https://archlinux.org/feeds/news/"
+	;; 								))
+	(elfeed-enclosure-default-dir (concat user-emacs-directory "private/elfeed/enclosure/")) ;; don’t know what it is, but don’t want it in my main directory
+	(elfeed-db-directory (concat user-emacs-directory "private/elfeed/"))
 
+	)
+
+(use-package elfeed-org
+	:ensure
+	:demand
+	:after elfeed
+	:init
+	(elfeed-org)
+	:custom
+	(rmh-elfeed-org-files `(,(concat user-emacs-directory "elfeed.org")))
 	)
 
 (use-package sendmail
