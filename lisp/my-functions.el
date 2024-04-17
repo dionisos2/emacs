@@ -6,6 +6,18 @@
 
 (require 'ansi-color)
 (require 'my-basics)
+(require 'python)
+(require 'julia-mode)
+(require 'julia-repl)
+(require 'elfeed-search)
+(require 'appt)
+(require 'langtool)
+(require 'google-translate-default-ui)
+(require 'wgrep)
+(require 'flycheck)
+(require 'flyspell)
+(require 'notmuch)
+(require 'magit-mode)
 
 (defun my-org-set-time-today ()
 	"Set time to today in `org-agenda'."
@@ -14,6 +26,7 @@
 	)
 
 (defun my-python-eval-region ()
+	"Eval a region with python."
 	(interactive)
 	(if (not (python-shell-get-process))
 			(progn
@@ -26,6 +39,7 @@
 	)
 
 (defun my-python-eval-buffer ()
+	"Eval a buffer with python."
 	(interactive)
 	(if (not (python-shell-get-process))
 			(progn
@@ -38,24 +52,29 @@
 	)
 
 (defun my-julia-eval-region ()
+	"Eval a region with julia."
 	(interactive)
 	(julia-repl-activate-parent nil)
 	(julia-repl-send-region-or-line)
 	)
 
 (defun my-julia-eval-buffer ()
+	"Eval a buffer with julia."
 	(interactive)
+	(julia-repl-inferior-buffer)
 	(julia-repl-activate-parent nil)
 	(julia-repl-send-buffer nil)
 )
 
 (defun my-create-julia-project (project-name)
+	"Create a new project PROJECT-NAME with create_julia_project.jl."
 	(interactive "s")
 	(shell-command (cl-concatenate 'string "julia /home/dionisos/scripts/create_julia_project.jl " project-name))
 	(find-file (cl-concatenate 'string "/home/dionisos/projets/programmation/julia/" project-name "/src/" project-name ".jl"))
 	)
 
 (defun my-up-directory ()
+	"Go up one directory in vertico."
 	(interactive)
 	(unless (vertico-directory-up 1)
 		(move-end-of-line nil)
@@ -79,7 +98,7 @@
 	)
 
 (defun my-quit-elfeed ()
-	"Quit elfeed"
+	"Quit elfeed."
 	(interactive)
 	(elfeed-search-quit-window)
 	(kill-matching-buffers "^\\*elfeed-search\\*$" nil t)
@@ -87,19 +106,20 @@
 )
 
 (defun call-process-discard-output (program &rest args)
-	"Execute program with args without saving any output.
-In particular, no temp files are created. TOSEE : Why use eval?"
+	"Execute PROGRAM with ARGS without saving any output.
+In particular, no temp files are created.  TOSEE : Why use eval?"
 	(eval (append `(call-process ,program nil nil nil) args)))
 
 
 (defun my-trash (filename)
-	"Use trash-cli to trash file (with system-move-file-to-trash)"
+	"Use trash-cli to trash FILENAME (with system-move-file-to-trash)."
 	(call-process-discard-output "trash" filename)
 	)
 
 (defalias 'system-move-file-to-trash 'my-trash)
 
 (defun my-show-appt ()
+	"Show all current appt clocks."
 	(interactive)
 	(with-output-to-temp-buffer "appt-notifications"
 		(cl-loop for notif in appt-time-msg-list
@@ -109,10 +129,13 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 	)
 
 (defun my-display-ansi-colors ()
+	"I don't know what this is."
 	(interactive)
 	(ansi-color-apply-on-region (point-min) (point-max)))
 
-(defun my-appt-notification (min-to-app new-time msg)
+(defun my-appt-notification (_min-to-app _new-time msg)
+	"Function used for creating notifications with MSG message.
+MIN-TO-APP NEW-TIME parameters not used."
 	(interactive)
 	(start-process "my-appt-notification-app" nil "notify-send" "-u" "critical" msg)
 	)
@@ -185,7 +208,8 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 ;;	 )
 
 (defun my-next-error (&optional reverse)
-	"Find next (previous if REVERSE) error with flycheck, next langtool, and finally flyspell. (see js2-mode for javascript)"
+	"Find next (previous if REVERSE) error with flycheck, langtool, and then flyspell.
+See js2-mode for javascript."
 	(interactive)
 	(cond
 	 ((bound-and-true-p flycheck-current-errors) (if reverse (flycheck-previous-error) (flycheck-next-error)))
@@ -196,76 +220,107 @@ In particular, no temp files are created. TOSEE : Why use eval?"
 )
 
 (defun my-previous-error ()
-	"Correction with flycheck, next langtool, and finally flyspell (see my-next-error)."
+	"Correction with flycheck, langtool, and then flyspell (see my-next-error)."
 	(interactive)
 	(my-next-error t)
 	)
 
 (defun my-ement-change-directory ()
+	"Default directory for ement."
 	(cd "~/"))
 
 (defun my-ement-panta-connect ()
+	"Connect to Pantalaimon with Ement."
   (interactive)
   (call-interactively #'ement-connect)
 	(customize-set-variable 'show-trailing-whitespace nil)
 	)
 
 (defun my-ement-panta-connect-new-session ()
+	"Connect to Pantalaimon with Ement, creating a new session."
   (interactive)
   (ement-connect :uri-prefix "http://localhost:8010" :user-id "@dionisos:matrix.org")
 	(customize-set-variable 'show-trailing-whitespace nil)
 	)
 
 ;; Voir : https://github.com/alphapapa/ement.el/issues/199#issuecomment-1806748506
-(defun my-ement-room-send-common-reaction (key position &optional event)
-  "Send a reaction."
-  (interactive
-   (let ((event (ewoc-data (ewoc-locate ement-ewoc))))
-     (unless (ement-event-p event)
-       (user-error "No event at point"))
-     (list (minibuffer-with-setup-hook
-               (lambda ()
-                 (activate-input-method 'emoji)
-                 (push ?r unread-command-events)
-                 (call-interactively #'emoji-insert))
-             (read-string "Reaction: "))
-           (point)
-           event)))
-  (ement-room-send-reaction key position event))
+;; (defun my-ement-room-send-common-reaction (key position &optional event)
+;;   "Send a reaction."
+;;   (interactive
+;;    (let ((event (ewoc-data (ewoc-locate ement-ewoc))))
+;;      (unless (ement-event-p event)
+;;        (user-error "No event at point"))
+;;      (list (minibuffer-with-setup-hook
+;;                (lambda ()
+;;                  (activate-input-method 'emoji)
+;;                  (push ?r unread-command-events)
+;;                  (call-interactively #'emoji-insert))
+;;              (read-string "Reaction: "))
+;;            (point)
+;;            event)))
+;;   (ement-room-send-reaction key position event))
 
-(defun my-previous-image ()
+(defun my-previous-actionable-text ()
+	"Fin the previous text with a keymap in text property."
 	(interactive)
 	(text-property-search-backward 'keymap)
 	)
 
-(defun my-next-image ()
+(defun my-next-actionable-text ()
+	"Fin the next text with a keymap in text property."
 	(interactive)
 	(forward-char)
 	(text-property-search-forward 'keymap)
 	(backward-char)
 	)
 
-(defun my-ement-room-image-show (pos)
-  "Show image at POS in a new buffer."
-  (interactive "d")
-  (pcase-let* ((image (copy-sequence (get-text-property pos 'display)))
-               (ement-event (ewoc-data (ewoc-locate ement-ewoc pos)))
-               ((cl-struct ement-event id) ement-event)
-               (buffer-name (format "*Ement image: %s*" id)))
-    (when (fboundp 'imagemagick-types)
-      ;; Only do this when ImageMagick is supported.
-      ;; FIXME: When requiring Emacs 27+, remove this (I guess?).
-      (setf (image-property image :type) 'imagemagick))
-    (setf (image-property image :scale) 1.0
-          (image-property image :max-width) nil
-          (image-property image :max-height) nil)
-    (unless (get-buffer buffer-name)
-      (with-current-buffer (get-buffer-create buffer-name)
-        (erase-buffer)
-        (insert-image image)
-        (image-mode)))
-		(switch-to-buffer buffer-name)
-		))
+;; (defun my-ement-room-image-show (pos)
+;;   "Show image at POS in a new buffer."
+;;   (interactive "d")
+;;   (pcase-let* ((image (copy-sequence (get-text-property pos 'display)))
+;;                (ement-event (ewoc-data (ewoc-locate ement-ewoc pos)))
+;;                ((cl-struct ement-event id) ement-event)
+;;                (buffer-name (format "*Ement image: %s*" id)))
+;;     (when (fboundp 'imagemagick-types)
+;;       ;; Only do this when ImageMagick is supported.
+;;       ;; FIXME: When requiring Emacs 27+, remove this (I guess?).
+;;       (setf (image-property image :type) 'imagemagick))
+;;     (setf (image-property image :scale) 1.0
+;;           (image-property image :max-width) nil
+;;           (image-property image :max-height) nil)
+;;     (unless (get-buffer buffer-name)
+;;       (with-current-buffer (get-buffer-create buffer-name)
+;;         (erase-buffer)
+;;         (insert-image image)
+;;         (image-mode)))
+;; 		(switch-to-buffer buffer-name)
+;; 		))
+
+
+(defun my-notmuch-delete(&optional beg end)
+	"Add a deleted tag to item from BEG to END."
+	(interactive)
+	(notmuch-search-add-tag '("+deleted") beg end)
+	)
+
+(defun my-notmuch-unread-down()
+	"Add a unread tag and then go down."
+	(interactive)
+	(notmuch-search-add-tag '("+unread"))
+	(forward-line)
+	)
+
+(defun my-notmuch-delete-down()
+	"Add a deleted tag and then go down."
+	(interactive)
+	(my-notmuch-delete)
+	(forward-line)
+	)
+
+(defun my-quit-magit()
+	"Completely quit magit."
+	(magit-mode-bury-buffer 16)
+	)
 
 (provide 'my-functions)
 ;;; my-functions.el ends here

@@ -40,7 +40,7 @@
 
 (use-package shr-tag-pre-highlight
   :ensure t
-  :after shr
+  :after (shr)
   :custom
   (shr-external-rendering-functions '((pre . shr-tag-pre-highlight))) ;;;; Syntax highlighting for ement.el
   )
@@ -108,28 +108,24 @@
 (use-package elfeed
 	:ensure
 	:demand
+	:custom
+	(elfeed-enclosure-default-dir (concat user-emacs-directory "private/elfeed/enclosure/")) ;; don’t know what it is, but don’t want it in my main directory
+	(elfeed-db-directory (concat user-emacs-directory "private/elfeed/"))
+	)
+
+(use-package elfeed-search
+	:after (elfeed)
 	:bind (
 				 :map elfeed-search-mode-map
 				 ("U" . elfeed-update)
 				 ("q" . my-quit-elfeed)
 				 )
-	:custom
-	;; (elfeed-feeds '(
-	;; 								"https://astralcodexten.substack.com/feed"
-	;; 								"https://www.dragonball-multiverse.com/flux.rss.php?lang=fr"
-	;; 								"https://www.fdn.fr/feed/"
-	;; 								"https://noob-tv.com/includes/flux_rss.xml"
-	;; 								"https://archlinux.org/feeds/news/"
-	;; 								))
-	(elfeed-enclosure-default-dir (concat user-emacs-directory "private/elfeed/enclosure/")) ;; don’t know what it is, but don’t want it in my main directory
-	(elfeed-db-directory (concat user-emacs-directory "private/elfeed/"))
-
-	)
+)
 
 (use-package elfeed-org
 	:ensure
 	:demand
-	:after elfeed
+	:after (elfeed)
 	:init
 	(elfeed-org)
 	:custom
@@ -152,23 +148,6 @@
 	(user-mail-address "denis.baudouin@gmail.com")
 	)
 
-
-(defun my-notmuch-delete(&optional beg end)
-	(interactive)
-	(notmuch-search-add-tag '("+deleted"))
-	)
-
-(defun my-notmuch-unread-down()
-	(interactive)
-	(notmuch-search-add-tag '("+unread"))
-	(forward-line)
-	)
-
-(defun my-notmuch-delete-down()
-	(interactive)
-	(my-notmuch-delete)
-	(forward-line)
-	)
 
 (use-package notmuch
 	:ensure
@@ -352,9 +331,9 @@
 	:ensure
 	:bind (
 				 ("C-p m" . magit-status)
+				 :map magit-status-mode-map
+				 ("q" . my-quit-magit)
 				 )
-	:config
-	(bind-key "q" #'(lambda () "Completely quit magit." (interactive) (magit-mode-bury-buffer 16)) magit-status-mode-map)
 	)
 
 (use-package openwith
@@ -363,43 +342,6 @@
 	(openwith-associations '(("\\.pdf" "evince" (file)) ("\\.docx" "libreoffice" (file))))
 	(openwith-mode t)
 	)
-
-
-
-;; (defun compile-goto-error (&optional event)
-;;   "Visit the source for the error message at point.
-;; Use this command in a compilation log buffer."
-;;   (interactive (list last-input-event))
-;;   (if event (posn-set-point (event-end event)))
-;;   (or (compilation-buffer-p (current-buffer))
-;;       (error "Not in a compilation buffer"))
-;;   (compilation--ensure-parse (point))
-;;   (if (get-text-property (point) 'compilation-directory)
-;;       (dired-other-window
-;;        (car (get-text-property (point) 'compilation-directory)))
-;;     (setq compilation-current-error (point))
-;;     (next-error-internal)))
-
-
-(defun my-compile-goto-error (&optional event)
-  "Visit the source for the error message at point.
-Use this command in a compilation log buffer."
-  (interactive (list last-input-event))
-	(message "START")
-  (if event (posn-set-point (event-end event)))
-  ;; (or (compilation-buffer-p (current-buffer))
-  ;;     (error "Not in a compilation buffer"))
-  (compilation--ensure-parse (point))
-	(message "before if")
-  (if (get-text-property (point) 'compilation-directory)
-      (message (car (get-text-property (point) 'compilation-directory)))
-    (setq compilation-current-error (point))
-    (next-error-internal)
-			)
-	(message "END")
-	)
-
-
 
 (use-package wgrep
 	:ensure
@@ -504,7 +446,9 @@ Use this command in a compilation log buffer."
 
 (use-package hydra
 	:ensure
+	:after (winner)
 	:demand
+	:functions (winner-undo winner-redo) ;; Remove warning
 	:config
 	(defhydra hydra-zoom (global-map "C-t")
 		"winner"
@@ -526,9 +470,6 @@ Use this command in a compilation log buffer."
 (use-package company
 	:ensure
 	:demand
-	:config
-	(setcdr company-active-map	nil) ;; I don’t want any keybinding.
-	(company-keymap--bind-quick-access company-active-map) ;; But still want M-0, M-1, etc shortcut.
 	:bind (
 				 ("C-f" . company-complete)
 				 ("C-M-f" . company-complete-selection)
@@ -546,10 +487,14 @@ Use this command in a compilation log buffer."
 	(company-idle-delay 0.2)
 	(company-show-numbers t)
 	(company-backends '(
-											(:separate ;; company-jedi 
-																 company-files :separate company-keywords :separate company-capf :separate company-abbrev :separate company-dabbrev)
+											(:separate ;; company-jedi
+											 company-files :separate company-keywords :separate company-capf :separate company-abbrev :separate company-dabbrev)
 											)
 										)
+	:functions (company-keymap--bind-quick-access)
+	:config
+	(setcdr company-active-map	nil) ;; I don’t want any keybinding.
+	(company-keymap--bind-quick-access company-active-map) ;; But still want M-0, M-1, etc shortcut.
 	)
 
 (use-package minibuffer
@@ -593,6 +538,8 @@ Use this command in a compilation log buffer."
 
 (use-package company-prescient
 	:ensure
+	:after (prescient)
+	:functions (prescient-persist-mode)
 	:config
 	(company-prescient-mode 1) ;; See company-transformers
 	(prescient-persist-mode 1)
@@ -652,17 +599,12 @@ Use this command in a compilation log buffer."
 
 (use-package emoji
 	:bind (
-				 ("C-c e" . emoji-search)
-				 ("C-c C-e" . emoji-insert)
+				 ("C-c C-e" . emoji-search)
+				 ("C-c e" . emoji-recent)
 				 )
 	:custom-face ;; 👌 : not working because of something about font-lock
 	(emoji ((t :Height 3.0)))
 	)
-
-;;;; No idea what it does or even if it does something
-;; (setf use-default-font-for-symbols nil)
-;; (set-fontset-font t 'unicode "Noto Emoji" nil 'append)
-
 
 (use-package htmlize ;; Used to improve display of ement messages
 	:ensure
@@ -672,6 +614,7 @@ Use this command in a compilation log buffer."
 (use-package ement
 	:demand
 	:ensure
+	:after (emoji)
 	:bind (
 				 ("C-t m" . ement-room-view)
 				 ("C-t C-m" . ement-notifications)
@@ -713,6 +656,8 @@ Use this command in a compilation log buffer."
 	(ement-room-prism 'both) ;; Different color for different people
 	(ement-sessions-file (concat user-emacs-directory "private/ement.el"))
 	(ement-save-sessions t)
+	(ement-room-reaction-picker #'emoji-search)
+
 	:hook
 	(ement-room-compose-hook . yas-minor-mode)
 	(ement-room-compose-hook . ement-room-compose-org)
@@ -827,29 +772,28 @@ Use this command in a compilation log buffer."
 
 (use-package embark
 	:ensure
-
+	:after (prescient which-key)
 	:bind
 	(("C-." . yank)
 	 ("M-o" . embark-act)					;; pick some comfortable binding
 	 ("C-M-o" . embark-dwim)				;; good alternative: M-.
 	 ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
-	:init
+	:functions (which-key--hide-popup-ignore-command which-key--show-keymap)
+	:config
 
 	;; Optionally replace the key help with a completing-read interface
 	(setq prefix-help-command #'embark-prefix-help-command)
-
-	:config
 
 	;; Hide the mode line of the Embark live/completions buffers
 	;; (add-to-list 'display-buffer-alist
 	;; 						 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*" nil (window-parameters (mode-line-format . none))))
 
-	(setq embark-action-indicator
+	(defvar embark-action-indicator
 				(lambda (map _target)
 					(which-key--show-keymap "Embark" map nil nil 'no-paging)
-					#'which-key--hide-popup-ignore-command)
-				embark-become-indicator embark-action-indicator)
+					#'which-key--hide-popup-ignore-command))
+	(setq embark-indicators embark-action-indicator)
 	)
 
 (use-package embark-consult
@@ -863,29 +807,6 @@ Use this command in a compilation log buffer."
 
 ;; (use-package visual-regexp
 ;; 	:ensure
-;; 	)
-
-;;;; Removed because bug and seem abandonned
-;; (use-package visual-regexp-steroids
-;; 	:ensure
-;; 	:demand
-;; 	:init
-;; 	;; Add advise for case insensitivity
-;; 	(defadvice vr--isearch (around add-case-insensitive (forward string &optional bound noerror count) activate)
-;; 		(when (and (eq vr/engine 'python) case-fold-search)
-;; 			(setq string (concat "(?im)" string)))
-;; 		ad-do-it)
-;; 	:bind
-;; 	(
-;; 	 ;; :map override-global-map
-;; 	 ("C-s" . vr/isearch-forward)
-;; 	 ("C-r" . vr/isearch-backward)
-;; 	 ("C-M-r" . vr/query-replace)
-;; 	 )
-;; 	:custom
-;; 	;; See https://docs.python.org/3/library/re.html#re.I
-;; 	;; I:IGNORECASE, M:MULTILINE (^ and $ match for each line)
-;; 	(vr/default-regexp-modifiers '(:I t :M t :S nil :U nil)) ;;
 ;; 	)
 
 (use-package kiwix
