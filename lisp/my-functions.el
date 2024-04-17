@@ -274,27 +274,27 @@ See js2-mode for javascript."
 	(backward-char)
 	)
 
-;; (defun my-ement-room-image-show (pos)
-;;   "Show image at POS in a new buffer."
-;;   (interactive "d")
-;;   (pcase-let* ((image (copy-sequence (get-text-property pos 'display)))
-;;                (ement-event (ewoc-data (ewoc-locate ement-ewoc pos)))
-;;                ((cl-struct ement-event id) ement-event)
-;;                (buffer-name (format "*Ement image: %s*" id)))
-;;     (when (fboundp 'imagemagick-types)
-;;       ;; Only do this when ImageMagick is supported.
-;;       ;; FIXME: When requiring Emacs 27+, remove this (I guess?).
-;;       (setf (image-property image :type) 'imagemagick))
-;;     (setf (image-property image :scale) 1.0
-;;           (image-property image :max-width) nil
-;;           (image-property image :max-height) nil)
-;;     (unless (get-buffer buffer-name)
-;;       (with-current-buffer (get-buffer-create buffer-name)
-;;         (erase-buffer)
-;;         (insert-image image)
-;;         (image-mode)))
-;; 		(switch-to-buffer buffer-name)
-;; 		))
+(defun my-ement-room-image-show (pos)
+  "show image at pos in a new buffer."
+  (interactive "d")
+  (pcase-let* ((image (copy-sequence (get-text-property pos 'display)))
+               (ement-event (ewoc-data (ewoc-locate ement-ewoc pos)))
+               ((cl-struct ement-event id) ement-event)
+               (buffer-name (format "*ement image: %s*" id)))
+    (when (fboundp 'imagemagick-types)
+      ;; only do this when imagemagick is supported.
+      ;; fixme: when requiring emacs 27+, remove this (i guess?).
+      (setf (image-property image :type) 'imagemagick))
+    (setf (image-property image :scale) 1.0
+          (image-property image :max-width) nil
+          (image-property image :max-height) nil)
+    (unless (get-buffer buffer-name)
+      (with-current-buffer (get-buffer-create buffer-name)
+        (erase-buffer)
+        (insert-image image)
+        (image-mode)))
+		(switch-to-buffer buffer-name)
+		))
 
 
 (defun my-notmuch-delete(&optional beg end)
@@ -320,6 +320,13 @@ See js2-mode for javascript."
 (defun my-quit-magit()
 	"Completely quit magit."
 	(magit-mode-bury-buffer 16)
+	)
+
+(defun my-emoji-search()
+	"Enable recursive minibuffer to allow inserting emoji."
+	(interactive)
+	(let ((enable-recursive-minibuffers t))
+		(call-interactively #'emoji-search))
 	)
 
 (provide 'my-functions)

@@ -598,9 +598,11 @@
 
 
 (use-package emoji
+	:demand
 	:bind (
-				 ("C-c C-e" . emoji-search)
+				 ("C-c C-e" . my-emoji-search)
 				 ("C-c e" . emoji-recent)
+				 ("C-c C-M-e" . emoji-insert)
 				 )
 	:custom-face ;; 👌 : not working because of something about font-lock
 	(emoji ((t :Height 3.0)))
@@ -618,7 +620,7 @@
 	:bind (
 				 ("C-t m" . ement-room-view)
 				 ("C-t C-m" . ement-notifications)
-				 ("C-t C-M-m" . ement-list-rooms)
+				 ("C-t C-M-m" . ement-tabulated-room-list)
 				 :map ement-room-mode-map
 				 ("M-s" . next-line)
 				 ("d" . ement-room-scroll-down-command)
@@ -626,10 +628,10 @@
 				 ("t" . ement-room-goto-prev)
 				 ("r" . ement-room-goto-next)
 				 ("P" . beginning-of-buffer)
-				 ("RET" . ement-room-send-message)
-         ("S-RET" . ement-room-write-reply)
-         ("M-RET" . ement-room-compose-message)
-         ("o e" . ement-room-edit-message)
+				 ("M-RET" . ement-room-dispatch-new-message-alt)
+         ("S-RET" . ement-room-dispatch-reply-to-message)
+         ("RET" . ement-room-dispatch-new-message)
+         ("o e" . ement-room-dispatch-edit-message)
          ("o d d" . ement-room-delete-message)
          ("o r" . ement-room-send-reaction)
 				 ("o c" . my-ement-room-send-common-reaction)
@@ -640,13 +642,15 @@
 				 ("a s" . ement-room-set-topic)
 				 ("a n" . ement-room-set-notification-state)
 				 ("a m" . ement-room-set-display-name)
-				 ("i p" . my-previous-image)
-				 ("i n" . my-next-image)
+				 ("i p" . my-previous-actionable-text)
+				 ("i n" . my-next-actionable-text)
 				 ("i s" . my-ement-room-image-show)
 				 :map ement-room-minibuffer-map
 				 ("TAB" . completion-at-point)
 				 ("C-f" . completion-at-point)
 				 ("M-RET" . ement-room-compose-from-minibuffer)
+				 ;; :map ement-room-reaction-map
+				 ;; ("M-s" . test)
 				 )
 	:custom
 	(ement-view-room-display-buffer-action '(display-buffer-reuse-mode-window))
@@ -657,7 +661,10 @@
 	(ement-sessions-file (concat user-emacs-directory "private/ement.el"))
 	(ement-save-sessions t)
 	(ement-room-reaction-picker #'emoji-search)
-
+	(ement-room-compose-method 'compose-buffer)
+	(ement-room-compose-buffer-window-dedicated t)
+	(ement-room-compose-buffer-window-auto-height-min 10)
+	(ement-room-self-insert-mode nil)
 	:hook
 	(ement-room-compose-hook . yas-minor-mode)
 	(ement-room-compose-hook . ement-room-compose-org)
@@ -665,9 +672,7 @@
 	(ement-room-list-mode-hook . my-ement-change-directory)
 	(ement-tabulated-room-list-mode-hook . my-ement-change-directory)
 	(ement-room-mode-hook . my-ement-change-directory)
-	;; (ement-notify-ignore-predicates nil)
-	;; :init
-	;; (setq ement-notify-dbus-p nil)
+	;; (ement-notify-ignore-predicates nil) ;; Remove notifications
 	)
 
 (use-package browse-url
@@ -788,12 +793,6 @@
 	;; Hide the mode line of the Embark live/completions buffers
 	;; (add-to-list 'display-buffer-alist
 	;; 						 '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*" nil (window-parameters (mode-line-format . none))))
-
-	(defvar embark-action-indicator
-				(lambda (map _target)
-					(which-key--show-keymap "Embark" map nil nil 'no-paging)
-					#'which-key--hide-popup-ignore-command))
-	(setq embark-indicators embark-action-indicator)
 	)
 
 (use-package embark-consult
