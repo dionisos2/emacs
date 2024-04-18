@@ -319,6 +319,7 @@ See js2-mode for javascript."
 
 (defun my-quit-magit()
 	"Completely quit magit."
+	(interactive)
 	(magit-mode-bury-buffer 16)
 	)
 

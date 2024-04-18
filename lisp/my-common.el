@@ -619,8 +619,9 @@
 	:after (emoji)
 	:bind (
 				 ("C-t m" . ement-room-view)
-				 ("C-t C-m" . ement-notifications)
-				 ("C-t C-M-m" . ement-tabulated-room-list)
+				 ("C-t C-M-m" . ement-notifications)
+				 ("C-t C-m" . ement-tabulated-room-list)
+				 ("C-t M-m" . ement-room-list)
 				 :map ement-room-mode-map
 				 ("M-s" . next-line)
 				 ("d" . ement-room-scroll-down-command)
@@ -634,7 +635,6 @@
          ("o e" . ement-room-dispatch-edit-message)
          ("o d d" . ement-room-delete-message)
          ("o r" . ement-room-send-reaction)
-				 ("o c" . my-ement-room-send-common-reaction)
          ("o m" . ement-room-send-emote)
          ("o f" . ement-room-send-file)
          ("o i" . ement-room-send-image)
