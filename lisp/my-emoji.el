@@ -12,6 +12,7 @@
 															("😆" "xD" "><" "lol")
 															("👌" "ok")
 															("🙂" "smile" ":)" "good")
+															("😊" "cute smile" "^^")
 															("😇" "innocent" "angel")
 															("😶‍🌫️" "hide")
 															("🫠" "melt")

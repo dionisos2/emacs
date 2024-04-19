@@ -33,6 +33,39 @@
 ;; 	()
 ;; 	)
 
+(use-package quelpa
+	:ensure
+	:demand
+	)
+
+(use-package persist
+	:ensure
+	:demand
+	:custom
+	(org-persist-directory (concat user-emacs-directory "private/persist/"))
+	)
+
+(use-package activities
+	:ensure
+	:demand
+  :bind
+  (("C-t C-a C-n" . activities-new)
+   ("C-t C-a C-d" . activities-define)
+   ("C-t C-a C-a" . activities-resume)
+   ("C-t C-a C-s" . activities-suspend)
+   ("C-t C-a C-k" . activities-kill)
+   ("C-t C-a RET" . activities-switch)
+   ("C-t C-a b" . activities-switch-buffer)
+   ("C-t C-a g" . activities-revert)
+   ("C-t C-a l" . activities-list))
+
+  :config
+  (activities-mode)
+  (activities-tabs-mode)
+  ;; Prevent `edebug' default bindings from interfering.
+  ;; (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+)
+
 (use-package frame
 	:custom
 	(blink-cursor-blinks 3)
@@ -226,6 +259,7 @@
 	:custom
 	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org" "~/organisation/todo.org"))
 	(org-show-notification-timeout 20)
+	(org-export-preserve-breaks t)
 	:hook
 	(org-mode-hook . yas-minor-mode)
 	)
@@ -411,13 +445,20 @@
 (use-package winner
 	:ensure
 	:demand
+	:after (hydra)
 	:bind (
 				 :map winner-mode-map
 				 ("C-c <left>" . nil)
 				 ("C-c <right>" . nil)
 				 )
-	:custom
+	:functions (winner-undo winner-redo) ;; Remove warning
+	:config
 	(winner-mode t)
+	(defhydra hydra-zoom (global-map "C-t")
+		"winner"
+		("<left>" winner-undo "undo")
+		("<right>" winner-redo "redo")
+		)
 	)
 
 (use-package all-the-icons
@@ -446,15 +487,7 @@
 
 (use-package hydra
 	:ensure
-	:after (winner)
 	:demand
-	:functions (winner-undo winner-redo) ;; Remove warning
-	:config
-	(defhydra hydra-zoom (global-map "C-t")
-		"winner"
-		("<left>" winner-undo)
-		("<right>" winner-redo)
-		)
 	)
 
 (use-package abbrev
@@ -616,7 +649,7 @@
 (use-package ement
 	:demand
 	:ensure
-	:after (emoji)
+	:after (emoji hydra)
 	:bind (
 				 ("C-t m" . ement-room-view)
 				 ("C-t C-M-m" . ement-notifications)
@@ -642,9 +675,6 @@
 				 ("a s" . ement-room-set-topic)
 				 ("a n" . ement-room-set-notification-state)
 				 ("a m" . ement-room-set-display-name)
-				 ("i p" . my-previous-actionable-text)
-				 ("i n" . my-next-actionable-text)
-				 ("i s" . my-ement-room-image-show)
 				 :map ement-room-minibuffer-map
 				 ("TAB" . completion-at-point)
 				 ("C-f" . completion-at-point)
@@ -665,6 +695,7 @@
 	(ement-room-compose-buffer-window-dedicated t)
 	(ement-room-compose-buffer-window-auto-height-min 10)
 	(ement-room-self-insert-mode nil)
+
 	:hook
 	(ement-room-compose-hook . yas-minor-mode)
 	(ement-room-compose-hook . ement-room-compose-org)
@@ -673,6 +704,15 @@
 	(ement-tabulated-room-list-mode-hook . my-ement-change-directory)
 	(ement-room-mode-hook . my-ement-change-directory)
 	;; (ement-notify-ignore-predicates nil) ;; Remove notifications
+
+	:functions (my-previous-actionable-text my-next-actionable-text my-ement-room-image-show)
+	:config
+	(defhydra hydra-actionable-text (ement-room-mode-map "i")
+		"navigate room actionable text"
+		("p" my-previous-actionable-text "previous")
+		("n" my-next-actionable-text "next")
+		("s" my-ement-room-image-show "show image")
+		)
 	)
 
 (use-package browse-url
