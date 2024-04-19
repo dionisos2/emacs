@@ -4,18 +4,32 @@
 
 ;;; Code:
 
-(setq custom-tab-width 2)
+(defvar custom-tab-width 2)
 
-;; Two callable functions for enabling/disabling tabs in Emacs
-(defun disable-tabs () (setq indent-tabs-mode nil))
-(defun enable-tabs	()
+(defun my-disable-tabs ()
+	"Disable \"indent-tabs-mode\"."
+	(setq indent-tabs-mode nil))
+
+(defun my-enable-tabs ()
+	"Enable \"indent-tabs-mode\"."
 	(local-set-key (kbd "TAB") 'indent-for-tab-command)
 	(setq indent-tabs-mode t)
   (setq tab-width custom-tab-width))
 
-(add-hook 'prog-mode-hook 'enable-tabs)
-(add-hook 'lisp-mode-hook 'enable-tabs)
-(add-hook 'emacs-lisp-mode-hook 'enable-tabs)
+(use-package prog-mode
+	:hook
+	(prog-mode-hook . my-enable-tabs)
+	)
+
+(use-package lisp-mode
+	:hook
+	(lisp-mode-hook . my-enable-tabs)
+	)
+
+(use-package elisp-mode
+	:hook
+	(emacs-lisp-mode-hook . my-enable-tabs)
+	)
 
 (use-package term
 	:bind (
@@ -136,6 +150,7 @@
 ;;   )
 
 (use-package python
+	:ensure
 	:custom
 	(python-indent-guess-indent-offset nil)
 	(python-indent-offset 2)
@@ -187,10 +202,14 @@
 				 )
 	:custom
 	(julia-indent-offset 2)
+
+	)
+
+(use-package lsp-julia
+	:custom
 	(lsp-julia-format-indent 2)
 	:config
 	(setq lsp-julia-default-environment "~/.julia/environments/v1.10/")
-	(load "lsp-julia.el")
 	)
 
 (use-package js2-mode

@@ -62,6 +62,7 @@
 (load "my-writing.el")
 (load "my-programming.el")
 (load "my-functions.el")
+(load "my-emoji.el")
 
 
 (provide 'my-emacs)

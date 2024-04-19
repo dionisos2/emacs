@@ -1,0 +1,9 @@
+* tree1                                                                                             :elfeed:
+** divertissement                                                                                   :divertissement:
+*** https://astralcodexten.substack.com/feed
+*** https://www.dragonball-multiverse.com/flux.rss.php?lang=fr
+*** https://noob-tv.com/includes/flux_rss.xml
+** administratif                                                                                    :administratif:
+*** https://www.fdn.fr/feed/
+** linux                                                                                            :linux:
+*** https://archlinux.org/feeds/news/
