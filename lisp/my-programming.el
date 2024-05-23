@@ -12,9 +12,19 @@
 
 (defun my-enable-tabs ()
 	"Enable \"indent-tabs-mode\"."
+	(interactive)
 	(local-set-key (kbd "TAB") 'indent-for-tab-command)
 	(setq indent-tabs-mode t)
-  (setq tab-width custom-tab-width))
+  (customize-set-variable 'tab-width custom-tab-width)
+	(customize-set-variable 'sh-basic-offset tab-width)
+	(customize-set-variable 'smie-indent-basic tab-width)
+	)
+
+
+(use-package sh-script
+	:hook
+	(prog-mode-hook . my-enable-tabs)
+	)
 
 (use-package prog-mode
 	:hook
