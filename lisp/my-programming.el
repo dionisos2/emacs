@@ -15,9 +15,9 @@
 	(interactive)
 	(local-set-key (kbd "TAB") 'indent-for-tab-command)
 	(setq indent-tabs-mode t)
-  (customize-set-variable 'tab-width custom-tab-width)
-	(customize-set-variable 'sh-basic-offset tab-width)
-	(customize-set-variable 'smie-indent-basic tab-width)
+  (setq tab-width custom-tab-width)
+	(setq sh-basic-offset tab-width)
+	(setq smie-indent-basic tab-width)
 	)
 
 
@@ -176,6 +176,9 @@
 				 ("C-p C-e" . my-python-eval-buffer)
 				 ("C-c C-t" . transpose-mark)
 				 )
+
+	:hook
+	(python-mode-hook . my-enable-tabs)
 	)
 
 ;; (use-package company-jedi
