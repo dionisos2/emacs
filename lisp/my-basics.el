@@ -267,8 +267,16 @@ Should use kbd, this isn’t a smart macro so don’t try complex stuffs"
 	"Insert the current date."
   (interactive)
   (shell-command "date '+%Hh%M'" 't)
-  (forward-word)
-  (delete-char 1))
+  (end-of-line)
+	(insert ":")
+	(call-interactively 'next-line)
+	(shell-command "date '+%Hh%M'" 't)
+	(end-of-line)
+	(insert "-")
+	(delete-char 1)
+	(call-interactively 'previous-line)
+  (end-of-line)
+	)
 
 (defun my-save-buffer-always ()
   "Save the buffer even if it is not modified."
