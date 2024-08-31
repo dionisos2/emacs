@@ -45,26 +45,77 @@
 	(org-persist-directory (concat user-emacs-directory "private/persist/"))
 	)
 
-(use-package activities
+(use-package keycast
 	:ensure
 	:demand
-  :bind
-  (("C-t C-a C-n" . activities-new)
-   ("C-t C-a C-d" . activities-define)
-   ("C-t C-a C-a" . activities-resume)
-   ("C-t C-a C-s" . activities-suspend)
-   ("C-t C-a C-k" . activities-kill)
-   ("C-t C-a RET" . activities-switch)
-   ("C-t C-a b" . activities-switch-buffer)
-   ("C-t C-a g" . activities-revert)
-   ("C-t C-a l" . activities-list))
+	:config
+	(keycast-tab-bar-mode)
+	)
 
-  :config
-  (activities-mode)
-  (activities-tabs-mode)
-  ;; Prevent `edebug' default bindings from interfering.
-  ;; (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+(defun my-persp-load-default ()
+	(interactive)
+	(persp-state-load persp-state-default-file)
+	)
+
+(defun my-persp-save-default ()
+	(interactive)
+	(persp-state-save persp-state-default-file)
+	)
+
+(use-package perspective
+	:ensure
+	:after (consult)
+	:demand
+  :bind (
+				 ("C-t t" . persp-switch)
+				 :map perspective-map
+				 ("k" . persp-kill)
+				 ("<f7>" . my-persp-save-default)
+				 ("c" . nil)
+				 )
+
+  :custom
+  (persp-mode-prefix-key (kbd "<f7>"))  ; pick your own prefix key here
+	(persp-state-default-file (concat user-emacs-directory "private/perspective.el"))
+
+  :init
+  (persp-mode)
+
+	:config
+	(consult-customize consult--source-buffer :hidden t :default nil)
+	(add-to-list 'consult-buffer-sources persp-consult-source)
+
+	;; :hook
+	;; (kill-emacs-hook . persp-state-save)
+	;; (server-after-make-frame-hook . my-persp-load-default)
 )
+
+;; (use-package activities
+;; 	:ensure
+;; 	:demand
+;;   :bind
+;;   (("<f7> n" . activities-new)
+;;    ("<f7> d" . activities-define)
+;;    ("<f7> <f7>" . activities-resume)
+;;    ("<f7> <f6>" . activities-suspend)
+;;    ("<f7> <f8>" . activities-kill)
+;;    ("<f7> RET" . activities-switch)
+;;    ("<f7> b" . activities-switch-buffer)
+;;    ("C-t t" . activities-switch-buffer)
+;;    ("<f7> g" . activities-revert)
+;;    ("<f7> l" . activities-list))
+
+;;   :config
+;;   (activities-mode)
+;;   (activities-tabs-mode)
+
+;; 	:init
+;;   ;; Prevent `edebug' default bindings from interfering.
+;;   (setq edebug-inhibit-emacs-lisp-mode-bindings t)
+
+;; 	:custom
+;; 	(activities-kill-buffers t)
+;; )
 
 (use-package frame
 	:custom
