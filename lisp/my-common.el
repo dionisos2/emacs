@@ -62,33 +62,50 @@
 	(persp-state-save persp-state-default-file)
 	)
 
-(use-package perspective
+(use-package tabspaces
 	:ensure
-	:after (consult)
 	:demand
-  :bind (
-				 ("C-t t" . persp-switch)
-				 :map perspective-map
-				 ("k" . persp-kill)
-				 ("<f7>" . my-persp-save-default)
-				 ("c" . nil)
-				 )
-
+  :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup.
+  :commands (tabspaces-switch-or-create-workspace
+             tabspaces-open-or-create-project-and-workspace)
   :custom
-  (persp-mode-prefix-key (kbd "<f7>"))  ; pick your own prefix key here
-	(persp-state-default-file (concat user-emacs-directory "private/perspective.el"))
+  (tabspaces-use-filtered-buffers-as-default t)
+  (tabspaces-default-tab "Default")
+  (tabspaces-remove-to-default t)
+  (tabspaces-include-buffers '("*scratch*"))
+  ;; (tabspaces-initialize-project-with-todo t)
+  ;; (tabspaces-todo-file-name "project-todo.org")
+  ;; sessions
+  (tabspaces-session t)
+  (tabspaces-session-auto-restore t))
 
-  :init
-  (persp-mode)
+;; (use-package perspective
+;; 	:ensure
+;; 	:after (consult)
+;; 	:demand
+;;   :bind (
+;; 				 ("C-t t" . persp-switch)
+;; 				 :map perspective-map
+;; 				 ("k" . persp-kill)
+;; 				 ("<f7>" . my-persp-save-default)
+;; 				 ("c" . nil)
+;; 				 )
 
-	:config
-	(consult-customize consult--source-buffer :hidden t :default nil)
-	(add-to-list 'consult-buffer-sources persp-consult-source)
+;;   :custom
+;;   (persp-mode-prefix-key (kbd "<f7>"))  ; pick your own prefix key here
+;; 	(persp-state-default-file (concat user-emacs-directory "private/perspective.el"))
 
-	;; :hook
-	;; (kill-emacs-hook . persp-state-save)
-	;; (server-after-make-frame-hook . my-persp-load-default)
-)
+;;   :init
+;;   (persp-mode)
+
+;; 	:config
+;; 	(consult-customize consult--source-buffer :hidden t :default nil)
+;; 	(add-to-list 'consult-buffer-sources persp-consult-source)
+
+;; 	;; :hook
+;; 	;; (kill-emacs-hook . persp-state-save)
+;; 	;; (server-after-make-frame-hook . my-persp-load-default)
+;; )
 
 ;; (use-package activities
 ;; 	:ensure
@@ -387,7 +404,7 @@
 	(defun undo-tree-overridden-undo-bindings-p () nil);; To fix some bug
 	:bind (
 				 ("C-é" . undo-tree-undo)
-				 ("C-S-é" . undo-tree-redo)
+				 ("M-é" . undo-tree-redo)
 				 ("C-M-é" . undo-tree-visualize)
 				 ("C-z" . undo-tree-undo)
 				 ("C-S-z" . undo-tree-redo)
