@@ -64,9 +64,10 @@
 
 	:custom
 	(persp-save-dir (concat user-emacs-directory "private/persp-confs/"))
-	(persp-keymap-prefix "<f7>")
+	(persp-keymap-prefix (kbd "<f7>"))
 
 	:config
+	(persp-mode 1)
 	(consult-customize consult--source-buffer :hidden t :default nil)
 	;; set consult-workspace buffer list
 	(setq consult--source-persp
@@ -83,6 +84,7 @@
 		)
 
 	(add-to-list 'consult-buffer-sources 'consult--source-persp)
+	(set-persp-parameter 'dont-save-to-file t nil)
 	)
 
 
