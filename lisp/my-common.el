@@ -52,58 +52,38 @@
 	(keycast-tab-bar-mode)
 	)
 
-(use-package tabspaces
+(use-package persp-mode
 	:ensure
 	:demand
 	:after (consult)
-  :hook
-	;; (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup.
-	(server-after-make-frame-hook . tabspaces-mode)
-
 	:bind
 	(
-	 ("C-t t" . tabspaces-switch-or-create-workspace)
-	 ("C-t C-t" . tabspaces-switch-to-buffer)
-	 :map tabspaces-command-map
-	 ("s" . tabspaces-save-session)
+	 ("C-t t" . persp-switch)
+	 ("C-t M-t" . persp-switch-to-buffer)
 	 )
 
-  :custom
-	(tabspaces-session-file (concat user-emacs-directory "private/tabsession.el"))
-	(tabspaces-keymap-prefix "<f7>")
-  (tabspaces-use-filtered-buffers-as-default t)
-  (tabspaces-default-tab "main")
-  (tabspaces-remove-to-default t)
-  (tabspaces-include-buffers nil)
-  ;; (tabspaces-initialize-project-with-todo t)
-  ;; (tabspaces-todo-file-name "project-todo.org")
-  ;; sessions
-  (tabspaces-session t)
-  (tabspaces-session-auto-restore t)
+	:custom
+	(persp-save-dir (concat user-emacs-directory "private/persp-confs/"))
+	(persp-keymap-prefix "<f7>")
 
 	:config
-		;; hide full buffer list (still available with "b" prefix)
 	(consult-customize consult--source-buffer :hidden t :default nil)
-		;; set consult-workspace buffer list
-	(defvar consult--source-workspace
-		(list :name     "Workspace Buffers"
+	;; set consult-workspace buffer list
+	(setq consult--source-persp
+		(list :name     "Perps Buffers"
 					:narrow   ?w
 					:history  'buffer-name-history
 					:category 'buffer
 					:state    #'consult--buffer-state
 					:default  t
 					:items    (lambda () (consult--buffer-query
-																:predicate #'tabspaces--local-buffer-p
+																:predicate #'persp-contain-buffer-p
 																:sort 'visibility
 																:as #'buffer-name)))
+		)
 
-		"Set workspace buffer list for consult-buffer.")
-	(add-to-list 'consult-buffer-sources 'consult--source-workspace)
-
+	(add-to-list 'consult-buffer-sources 'consult--source-persp)
 	)
-
-
-
 
 
 (use-package frame
