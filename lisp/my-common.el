@@ -52,87 +52,59 @@
 	(keycast-tab-bar-mode)
 	)
 
-(defun my-persp-load-default ()
-	(interactive)
-	(persp-state-load persp-state-default-file)
-	)
-
-(defun my-persp-save-default ()
-	(interactive)
-	(persp-state-save persp-state-default-file)
-	)
-
 (use-package tabspaces
 	:ensure
 	:demand
-  :hook (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup.
-  :commands (tabspaces-switch-or-create-workspace
-             tabspaces-open-or-create-project-and-workspace)
+	:after (consult)
+  :hook
+	;; (after-init . tabspaces-mode) ;; use this only if you want the minor-mode loaded at startup.
+	(server-after-make-frame-hook . tabspaces-mode)
+
+	:bind
+	(
+	 ("C-t t" . tabspaces-switch-or-create-workspace)
+	 ("C-t C-t" . tabspaces-switch-to-buffer)
+	 :map tabspaces-command-map
+	 ("s" . tabspaces-save-session)
+	 )
+
   :custom
+	(tabspaces-session-file (concat user-emacs-directory "private/tabsession.el"))
+	(tabspaces-keymap-prefix "<f7>")
   (tabspaces-use-filtered-buffers-as-default t)
-  (tabspaces-default-tab "Default")
+  (tabspaces-default-tab "main")
   (tabspaces-remove-to-default t)
-  (tabspaces-include-buffers '("*scratch*"))
+  (tabspaces-include-buffers nil)
   ;; (tabspaces-initialize-project-with-todo t)
   ;; (tabspaces-todo-file-name "project-todo.org")
   ;; sessions
   (tabspaces-session t)
-  (tabspaces-session-auto-restore t))
+  (tabspaces-session-auto-restore t)
 
-;; (use-package perspective
-;; 	:ensure
-;; 	:after (consult)
-;; 	:demand
-;;   :bind (
-;; 				 ("C-t t" . persp-switch)
-;; 				 :map perspective-map
-;; 				 ("k" . persp-kill)
-;; 				 ("<f7>" . my-persp-save-default)
-;; 				 ("c" . nil)
-;; 				 )
+	:config
+		;; hide full buffer list (still available with "b" prefix)
+	(consult-customize consult--source-buffer :hidden t :default nil)
+		;; set consult-workspace buffer list
+	(defvar consult--source-workspace
+		(list :name     "Workspace Buffers"
+					:narrow   ?w
+					:history  'buffer-name-history
+					:category 'buffer
+					:state    #'consult--buffer-state
+					:default  t
+					:items    (lambda () (consult--buffer-query
+																:predicate #'tabspaces--local-buffer-p
+																:sort 'visibility
+																:as #'buffer-name)))
 
-;;   :custom
-;;   (persp-mode-prefix-key (kbd "<f7>"))  ; pick your own prefix key here
-;; 	(persp-state-default-file (concat user-emacs-directory "private/perspective.el"))
+		"Set workspace buffer list for consult-buffer.")
+	(add-to-list 'consult-buffer-sources 'consult--source-workspace)
 
-;;   :init
-;;   (persp-mode)
+	)
 
-;; 	:config
-;; 	(consult-customize consult--source-buffer :hidden t :default nil)
-;; 	(add-to-list 'consult-buffer-sources persp-consult-source)
 
-;; 	;; :hook
-;; 	;; (kill-emacs-hook . persp-state-save)
-;; 	;; (server-after-make-frame-hook . my-persp-load-default)
-;; )
 
-;; (use-package activities
-;; 	:ensure
-;; 	:demand
-;;   :bind
-;;   (("<f7> n" . activities-new)
-;;    ("<f7> d" . activities-define)
-;;    ("<f7> <f7>" . activities-resume)
-;;    ("<f7> <f6>" . activities-suspend)
-;;    ("<f7> <f8>" . activities-kill)
-;;    ("<f7> RET" . activities-switch)
-;;    ("<f7> b" . activities-switch-buffer)
-;;    ("C-t t" . activities-switch-buffer)
-;;    ("<f7> g" . activities-revert)
-;;    ("<f7> l" . activities-list))
 
-;;   :config
-;;   (activities-mode)
-;;   (activities-tabs-mode)
-
-;; 	:init
-;;   ;; Prevent `edebug' default bindings from interfering.
-;;   (setq edebug-inhibit-emacs-lisp-mode-bindings t)
-
-;; 	:custom
-;; 	(activities-kill-buffers t)
-;; )
 
 (use-package frame
 	:custom
