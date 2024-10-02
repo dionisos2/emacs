@@ -142,7 +142,8 @@
 	:ensure t
 	:hook (python-mode . (lambda ()
 												 (require 'lsp-pyright)
-												 (lsp))))	; or lsp-deferred
+												 (lsp)))
+	)	; or lsp-deferred
 
 
 ;; (use-package dap-mode
@@ -277,6 +278,8 @@
 							 :map geiser-mode-map
 							 ("C-d" . nil)
 							 ("C-." . nil)
+							 ("C-p C-e" . geiser-load-current-buffer)
+							 ("C-p e" . geiser-eval-region)
 							 )
 				)
 
