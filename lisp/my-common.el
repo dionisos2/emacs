@@ -334,6 +334,9 @@
 				 ("C-p C-w" . org-agenda)
 				 ("C-c C-c" . comment-region)
 				 ("C-c c" . uncomment-region)
+				 ("C-p C-p f" . my-tiddly-perso-open-tiddler)
+				 ("C-p C-p n" . my-tiddly-perso-create-tiddler)
+				 ("C-p C-p g" . my-tiddly-perso-grep-tiddler)
 				 )
 	)
 
