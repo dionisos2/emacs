@@ -28,7 +28,7 @@
   :ensure nil
 
 	:custom
-	(ispell-dictionary "fr-classique")
+	(ispell-dictionary "fr-toutesvariantes")
 	(ispell-program-name "hunspell")
 	)
 
@@ -36,7 +36,7 @@
 	:demand
 	:hook (
 				 (text-mode-hook . flyspell-mode)
-				 (text-mode-hook . (lambda() (my-set-dictionary "fr-classique")))
+				 (text-mode-hook . (lambda() (my-set-dictionary "fr-toutesvariantes")))
 				 (prog-mode-hook . flyspell-prog-mode)
 				 (prog-mode-hook . (lambda() (my-set-dictionary "en_US-large")))
 
@@ -52,7 +52,7 @@
 	:custom
 	(flyspell-abbrev-p t)
 	(flyspell-delay 2)
-	(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("en_US-large" "fr-classique"))
+	(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("en_US-large" "fr-toutesvariantes"))
 	(flyspell-duplicate-distance 500)
 	;; (ispell-dictionary "fr")
 	;; (ispell-local-dictionary "fr")

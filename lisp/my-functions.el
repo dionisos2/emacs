@@ -167,7 +167,7 @@ MIN-TO-APP NEW-TIME parameters not used."
 	(interactive)
 	(if (and (boundp 'ispell-local-dictionary) (equal ispell-local-dictionary "en_US-large"))
 			(progn
-				(my-set-dictionary "fr-classique")
+				(my-set-dictionary "fr-toutesvariantes")
 				)
 		(my-set-dictionary "en_US-large")
 		)
@@ -179,7 +179,7 @@ MIN-TO-APP NEW-TIME parameters not used."
 	(langtool-switch-default-language lang)
 	(ispell-change-dictionary lang)
 	(customize-set-variable 'flyspell-mode-line-string (format " Fly:(%s)" lang))
-	(if (equal lang "fr-classique")
+	(if (equal lang "fr-toutesvariantes")
 		(progn
 		 (setq google-translate-default-source-language "fr")
 		 (setq google-translate-default-target-language "en")
