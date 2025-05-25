@@ -24,13 +24,21 @@
 
 (defun my-set-dictionary(lang)(+ 1 1))
 
+(use-package ispell
+  :ensure nil
+
+	:custom
+	(ispell-dictionary "fr-classique")
+	(ispell-program-name "hunspell")
+	)
+
 (use-package flyspell
 	:demand
 	:hook (
 				 (text-mode-hook . flyspell-mode)
-				 (text-mode-hook . (lambda() (my-set-dictionary "fr")))
+				 (text-mode-hook . (lambda() (my-set-dictionary "fr-classique")))
 				 (prog-mode-hook . flyspell-prog-mode)
-				 (prog-mode-hook . (lambda() (my-set-dictionary "en")))
+				 (prog-mode-hook . (lambda() (my-set-dictionary "en_US-large")))
 
 	)
 	:bind (
@@ -44,7 +52,7 @@
 	:custom
 	(flyspell-abbrev-p t)
 	(flyspell-delay 2)
-	(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("en" "fr"))
+	(flyspell-dictionaries-that-consider-dash-as-word-delimiter '("en_US-large" "fr-classique"))
 	(flyspell-duplicate-distance 500)
 	;; (ispell-dictionary "fr")
 	;; (ispell-local-dictionary "fr")

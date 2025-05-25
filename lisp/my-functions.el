@@ -165,11 +165,11 @@ MIN-TO-APP NEW-TIME parameters not used."
 (defun my-change-dictionary ()
 	"Change dictionary between fr and en."
 	(interactive)
-	(if (and (boundp 'ispell-local-dictionary) (equal ispell-local-dictionary "fr"))
+	(if (and (boundp 'ispell-local-dictionary) (equal ispell-local-dictionary "en_US-large"))
 			(progn
-				(my-set-dictionary "en")
+				(my-set-dictionary "fr-classique")
 				)
-		(my-set-dictionary "fr")
+		(my-set-dictionary "en_US-large")
 		)
 	)
 
@@ -179,7 +179,7 @@ MIN-TO-APP NEW-TIME parameters not used."
 	(langtool-switch-default-language lang)
 	(ispell-change-dictionary lang)
 	(customize-set-variable 'flyspell-mode-line-string (format " Fly:(%s)" lang))
-	(if (equal lang "fr")
+	(if (equal lang "fr-classique")
 		(progn
 		 (setq google-translate-default-source-language "fr")
 		 (setq google-translate-default-target-language "en")
