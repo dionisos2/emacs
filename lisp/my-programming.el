@@ -6,6 +6,14 @@
 
 (defvar custom-tab-width 2)
 
+(use-package rustic
+  :ensure t
+  :config
+  (setq rustic-format-on-save nil)
+  :custom
+  (rustic-cargo-use-last-stored-arguments t))
+
+
 (defun my-disable-tabs ()
 	"Disable \"indent-tabs-mode\"."
 	(setq indent-tabs-mode nil))

@@ -19,6 +19,9 @@
 
 (setq display-buffer-alist nil)
 
+(defvar en-dict "en_US")
+(defvar fr-dict "fr_FR")
+
 ;; (use-package org-latex-impatient
 ;;   :defer t
 ;;   :hook (org-mode . org-latex-impatient-mode)
@@ -59,7 +62,7 @@
 	:bind
 	(
 	 ("C-t t" . persp-switch)
-	 ("C-t M-t" . persp-switch-to-buffer)
+	 ("C-t M-t" . switch-to-buffer)
 	 )
 
 	:custom

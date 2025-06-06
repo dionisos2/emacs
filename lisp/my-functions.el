@@ -165,31 +165,31 @@ MIN-TO-APP NEW-TIME parameters not used."
 (defun my-change-dictionary ()
 	"Change dictionary between fr and en."
 	(interactive)
-	(if (and (boundp 'ispell-local-dictionary) (equal ispell-local-dictionary "en_US-large"))
-			(progn
-				(my-set-dictionary "fr-toutesvariantes")
-				)
-		(my-set-dictionary "en_US-large")
+	(if (and (boundp 'ispell-local-dictionary) (equal ispell-local-dictionary en-dict))
+			(my-set-dictionary fr-dict)
+		(my-set-dictionary en-dict)
 		)
 	)
 
 (defun my-set-dictionary(lang)
 	"Change dictionary for LANG (fr or en)."
 	(interactive "s")
-	(langtool-switch-default-language lang)
+	(flyspell-mode)
 	(ispell-change-dictionary lang)
 	(customize-set-variable 'flyspell-mode-line-string (format " Fly:(%s)" lang))
-	(if (equal lang "fr-toutesvariantes")
+	(if (equal lang fr_FR)
+			(progn
+				(langtool-switch-default-language "fr")
+				(setq google-translate-default-source-language "fr")
+				(setq google-translate-default-target-language "en")
+				)
 		(progn
-		 (setq google-translate-default-source-language "fr")
-		 (setq google-translate-default-target-language "en")
-		 )
-		(progn
-		 (setq google-translate-default-source-language "en")
-		 (setq google-translate-default-target-language "fr")
-		 )
+			(langtool-switch-default-language "en")
+			(setq google-translate-default-source-language "en")
+			(setq google-translate-default-target-language "fr")
+			)
 		)
-)
+	)
 
 (defun my-wgrep-finish-and-save-buffers()
 	"Finish edition in wgrep buffer and save all modified buffers."
