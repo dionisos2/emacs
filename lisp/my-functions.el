@@ -177,7 +177,7 @@ MIN-TO-APP NEW-TIME parameters not used."
 	(flyspell-mode)
 	(ispell-change-dictionary lang)
 	(customize-set-variable 'flyspell-mode-line-string (format " Fly:(%s)" lang))
-	(if (equal lang fr_FR)
+	(if (equal lang fr-dict)
 			(progn
 				(langtool-switch-default-language "fr")
 				(setq google-translate-default-source-language "fr")
