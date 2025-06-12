@@ -63,11 +63,16 @@
 	(
 	 ("C-t t" . persp-switch)
 	 ("C-t M-t" . switch-to-buffer)
+	 ("C-t C-q" . my-persp-remove-current-buffer)
 	 )
 
 	:custom
 	(persp-save-dir (concat user-emacs-directory "private/persp-confs/"))
 	(persp-keymap-prefix (kbd "<f7>"))
+	(persp-autokill-buffer-on-remove 'kill-weak)
+	(persp-kill-foreign-buffer-behaviour 'kill)
+	(persp-add-buffer-on-after-change-major-mode t)
+
 
 	:config
 	(persp-mode 1)

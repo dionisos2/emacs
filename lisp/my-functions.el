@@ -330,5 +330,13 @@ See js2-mode for javascript."
 		(call-interactively #'emoji-search))
 	)
 
+(defun my-persp-remove-current-buffer ()
+  "Remove current buffer from current perspective without prompting."
+  (interactive)
+  (persp-remove-buffer (current-buffer)))
+
+;; Ajoute un raccourci, par exemple à "C-c p K"
+(define-key persp-key-map (kbd "K") #'my/persp-remove-current-buffer)
+
 (provide 'my-functions)
 ;;; my-functions.el ends here
