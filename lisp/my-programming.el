@@ -230,8 +230,10 @@
 (use-package lsp-julia
 	:custom
 	(lsp-julia-format-indent 2)
-	:config
-	(setq lsp-julia-default-environment "~/.julia/environments/v1.10/")
+	:custom
+	(lsp-julia-default-environment "~/.julia/environments/v1.11/")
+	(lsp-julia-flags '("--project=/home/dionisos/.config/emacs/lisp/languageserver"
+ "--startup-file=no" "--history-file=no -J /home/dionisos/logiciels/languageserver.so"))
 	)
 
 (use-package js2-mode
