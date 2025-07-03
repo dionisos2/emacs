@@ -335,8 +335,57 @@ See js2-mode for javascript."
   (interactive)
   (persp-remove-buffer (current-buffer)))
 
-;; Ajoute un raccourci, par exemple à "C-c p K"
-(define-key persp-key-map (kbd "K") #'my/persp-remove-current-buffer)
+(defvar my-tiddly-perso-path "~/projets/RD/tiddly_perso/Wikis/BobWiki/tiddlers/"
+  "Tiddlers directory")
+
+(defun my-tiddly-perso-open-tiddler-list ()
+  "TiddlyPerso tiddlers directory."
+  (directory-files my-tiddly-perso-path t "^[^.$].*")
+	)
+
+(defun my-tiddly-perso-open-tiddler ()
+  "Find a tiddler by its filename."
+  (interactive)
+  (let* ((files (my-tiddly-perso-open-tiddler-list))
+         (file (completing-read "Choisir un fichier : " (mapcar #'file-name-nondirectory files))))
+    (when file
+      (find-file (expand-file-name file my-tiddly-perso-path)))))
+
+(defun my-tiddly-perso-grep-tiddler ()
+  "Find tiddler by its contents"
+  (interactive)
+  (let (
+				(consult-ripgrep-args (concat consult-ripgrep-args " --glob !*\\$*"))
+				)
+  (consult-ripgrep my-tiddly-perso-path))
+	)
+
+(defun my-current-timestamp ()
+  "Current date in format :
+year/month/day/hour/minute/seconde/milliseconde."
+  (interactive)
+  (let* ((now (current-time))
+         (seconds (nth 1 now))
+         (microseconds (nth 2 now))
+         (milliseconds (/ microseconds 1000))
+         (time-str (format-time-string "%Y%m%d%H%M%S" now)))
+    (message "%s%03d" time-str milliseconds)))
+
+(defun my-tiddly-perso-create-tiddler (tiddlername)
+  "Create a tiddler."
+  (interactive "sTiddler name: ")
+	(let ((filename (concat tiddlername ".tid")))
+		(when (string-match-p " " filename)
+			(error "Name should not contain space"))
+		(let ((full-path (expand-file-name filename my-tiddly-perso-path)))
+			(when (file-exists-p full-path)
+				(error "file '%s' already exists" filename))
+			(find-file full-path)
+			(insert (format "created: %s\nmodified: %s\ntitle: %s\nuuid : %s\ntags: Contenu Bordel\n\n! Description" (my-current-timestamp) (my-current-timestamp) tiddlername tiddlername))
+			(save-buffer)
+			(message "Tiddler '%s' created" tiddlername))
+		)
+	)
 
 (provide 'my-functions)
 ;;; my-functions.el ends here
