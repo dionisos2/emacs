@@ -34,13 +34,6 @@
 
 (use-package flyspell
 	:demand
-	:hook (
-				 (text-mode-hook . flyspell-mode)
-				 (text-mode-hook . (lambda() (my-set-dictionary fr-dict)))
-				 (prog-mode-hook . flyspell-prog-mode)
-				 (prog-mode-hook . (lambda() (my-set-dictionary en-dict)))
-
-	)
 	:bind (
 				 ("C-c s" . flyspell-correct-wrapper)
 				 ("C-p i" . my-change-dictionary)

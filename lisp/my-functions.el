@@ -387,5 +387,26 @@ year/month/day/hour/minute/seconde/milliseconde."
 		)
 	)
 
+(defun my-run-on-buffer-first-visible (window)
+  "Run buffer-specific hooks once when a buffer is first displayed in a window."
+  (with-current-buffer (window-buffer window)
+    (when (and (not (bound-and-true-p my-already-processed))
+               (not (minibufferp)))
+      (setq-local my-already-processed t)
+      (cond
+       ((derived-mode-p 'text-mode)
+        (flyspell-mode 1)
+        (my-set-dictionary fr-dict))
+       ((derived-mode-p 'prog-mode)
+        (flyspell-prog-mode)
+        (my-set-dictionary en-dict))))))
+
+(defun my-scan-visible-windows ()
+  "Apply `my-run-on-buffer-first-visible` to all visible windows."
+  (walk-windows #'my-run-on-buffer-first-visible nil 'visible))
+
+(add-hook 'window-configuration-change-hook #'my-scan-visible-windows)
+
+
 (provide 'my-functions)
 ;;; my-functions.el ends here

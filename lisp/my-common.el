@@ -898,5 +898,11 @@
 
 (customize-set-variable 'explicit-shell-file-name "/usr/bin/xonsh")
 
+(use-package text-mode
+  :ensure nil
+  :mode ("\\.tid\\'" . text-mode)
+	)
+
+
 (provide 'my-common)
 ;;; my-common.el ends here
