@@ -903,6 +903,18 @@
   :mode ("\\.tid\\'" . text-mode)
 	)
 
+(use-package calfw
+  :straight (:host github :repo "Stebalien/emacs-calfw")
+	)
+
+(use-package calfw-org
+  :after calfw
+  :straight (:host github :repo "Stebalien/emacs-calfw")
+	:config
+  (defun my-calendar ()
+    (interactive)
+    (cfw:open-org-calendar))
+	)
 
 (provide 'my-common)
 ;;; my-common.el ends here
