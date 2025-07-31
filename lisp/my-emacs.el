@@ -82,6 +82,7 @@
 (load "my-programming.el")
 (load "my-functions.el")
 (load "my-emoji.el")
+(load "my-estimate-weighted-time.el")
 
 
 (provide 'my-emacs)
