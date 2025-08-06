@@ -233,7 +233,9 @@
 	:custom
 	(lsp-julia-default-environment "~/.julia/environments/v1.11/")
 	(lsp-julia-flags '("--project=/home/dionisos/.config/emacs/lisp/languageserver"
- "--startup-file=no" "--history-file=no -J /home/dionisos/logiciels/languageserver.so"))
+										 "--startup-file=no" "--history-file=no"))
+ ;; 	(lsp-julia-flags '("--project=/home/dionisos/.config/emacs/lisp/languageserver"
+ ;; "--startup-file=no" "--history-file=no -J /home/dionisos/logiciels/languageserver.so"))
 	)
 
 (use-package js2-mode
@@ -317,6 +319,71 @@
 (use-package systemd
 	:ensure
 	:demand
+	)
+
+(use-package copilot
+  :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
+  :ensure t
+	:bind
+	(
+	 ("C-M-<tab>" . 'hydra-copilot/body)
+	 )
+	:custom
+	(copilot-idle-delay nil)
+	:config
+	(defhydra hydra-copilot (:pre (copilot-complete))
+		"copilot"
+		("f" copilot-accept-completion "copilot-accept-completion" :exit t)
+		("r" copilot-next-completion "copilot-next-completion")
+		("t" copilot-previous-completion "copilot-previous-completion")
+		("l" copilot-accept-completion-by-line "copilot-accept-completion-by-line")
+		("w" copilot-accept-completion-by-word "copilot-accept-completion-by-word")
+		("q" nil "Quit hydra")
+		)
+	)
+
+
+(use-package copilot-chat
+	:ensure t
+	:bind
+	(
+	 ("C-p C-i" . 'hydra-copilot-chat/body)
+	 )
+	:config
+	(defhydra hydra-copilot-chat (:color pink :hint nil)
+  "
+Copilot Chat:
+  _c_: chat        _a_: ask         _l_: list         _p_: custom prompt
+  _e_: explain     _f_: fix         _o_: optimize     _t_: test
+  _v_: review      _d_: doc         _m_: commit msg   _y_: yank
+  _r_: yank-pop    _L_: load        _s_: save         _Q_: quotas
+  _q_: quit
+"
+  ;; Chat & Questions
+  ("c" copilot-chat "chat" :exit t)
+  ("a" copilot-chat-ask-and-insert "ask" :exit t)
+  ("l" copilot-chat-list "list" :exit t)
+  ("p" copilot-chat-custom-prompt-selection "custom prompt" :exit t)
+  ;; Actions
+  ("e" copilot-chat-explain "explain" :exit t)
+  ("f" copilot-chat-fix "fix" :exit t)
+  ("o" copilot-chat-optimize "optimize" :exit t)
+  ("t" copilot-chat-test "test" :exit t)
+  ("v" copilot-chat-review "review" :exit t)
+  ("d" copilot-chat-doc "doc" :exit t)
+  ("m" copilot-chat-insert-commit-message "commit msg" :exit t)
+  ;; Yank
+  ("y" copilot-chat-yank "yank")
+  ("r" copilot-chat-yank-pop "yank-pop")
+	;; Save
+  ("s" copilot-chat-save "save" :exit t)
+	("L" copilot-chat-load "load" :exit t)
+  ;; Infos
+  ("Q" copilot-chat-quotas "quotas" :exit t)
+  ;; Quit
+  ("q" nil "quit"))
+
+
 	)
 
 (provide 'my-programming)
