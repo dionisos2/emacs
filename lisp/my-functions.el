@@ -11,11 +11,10 @@
 (require 'julia-repl)
 (require 'elfeed-search)
 (require 'appt)
-(require 'langtool)
 (require 'google-translate-default-ui)
 (require 'wgrep)
 (require 'flycheck)
-(require 'flyspell)
+;; (require 'flyspell)
 (require 'notmuch)
 (require 'magit-mode)
 
@@ -156,7 +155,7 @@ MIN-TO-APP NEW-TIME parameters not used."
 	"Close stuffs like langtool and org-timer."
 	(interactive)
 	(cond
-	 ((bound-and-true-p langtool-mode-line-message) (langtool-check-done))
+	 ;; ((bound-and-true-p langtool-mode-line-message) (langtool-check-done))
 	 ((bound-and-true-p org-timer-start-time) (org-timer-stop))
 	 (t (message "Nothing to do."))
 	 )
@@ -174,17 +173,17 @@ MIN-TO-APP NEW-TIME parameters not used."
 (defun my-set-dictionary(lang)
 	"Change dictionary for LANG (fr or en)."
 	(interactive "s")
-	(flyspell-mode)
+	;; (flyspell-mode)
 	(ispell-change-dictionary lang)
-	(customize-set-variable 'flyspell-mode-line-string (format " Fly:(%s)" lang))
+	;; (customize-set-variable 'flyspell-mode-line-string (format " Fly:(%s)" lang))
 	(if (equal lang fr-dict)
 			(progn
-				(langtool-switch-default-language "fr")
+				;; (langtool-switch-default-language "fr")
 				(setq google-translate-default-source-language "fr")
 				(setq google-translate-default-target-language "en")
 				)
 		(progn
-			(langtool-switch-default-language "en")
+			;; (langtool-switch-default-language "en")
 			(setq google-translate-default-source-language "en")
 			(setq google-translate-default-target-language "fr")
 			)
@@ -213,8 +212,8 @@ See js2-mode for javascript."
 	(interactive)
 	(cond
 	 ((bound-and-true-p flycheck-current-errors) (if reverse (flycheck-previous-error) (flycheck-next-error)))
-	 ((bound-and-true-p langtool-mode-line-message) (if reverse (langtool-goto-previous-error) (langtool-goto-next-error)))
-	 ((bound-and-true-p flyspell-mode) (if reverse (flyspell-check-previous-highlighted-word) (progn (flyspell-goto-next-error) (flyspell-correct-wrapper))))
+	 ;; ((bound-and-true-p langtool-mode-line-message) (if reverse (langtool-goto-previous-error) (langtool-goto-next-error)))
+	 ;; ((bound-and-true-p flyspell-mode) (if reverse (flyspell-check-previous-highlighted-word) (progn (flyspell-goto-next-error) (flyspell-correct-wrapper))))
 	 (t (message "No error found."))
 	 )
 )
@@ -387,25 +386,25 @@ year/month/day/hour/minute/seconde/milliseconde."
 		)
 	)
 
-(defun my-run-on-buffer-first-visible (window)
-  "Run buffer-specific hooks once when a buffer is first displayed in a window."
-  (with-current-buffer (window-buffer window)
-    (when (and (not (bound-and-true-p my-already-processed))
-               (not (minibufferp)))
-      (setq-local my-already-processed t)
-      (cond
-       ((derived-mode-p 'text-mode)
-        (flyspell-mode 1)
-        (my-set-dictionary fr-dict))
-       ((derived-mode-p 'prog-mode)
-        (flyspell-prog-mode)
-        (my-set-dictionary en-dict))))))
+;; (defun my-run-on-buffer-first-visible (window)
+;;   "Run buffer-specific hooks once when a buffer is first displayed in a window."
+;;   (with-current-buffer (window-buffer window)
+;;     (when (and (not (bound-and-true-p my-already-processed))
+;;                (not (minibufferp)))
+;;       (setq-local my-already-processed t)
+;;       (cond
+;;        ((derived-mode-p 'text-mode)
+;;         (flyspell-mode 1)
+;;         (my-set-dictionary fr-dict))
+;;        ((derived-mode-p 'prog-mode)
+;;         (flyspell-prog-mode)
+;;         (my-set-dictionary en-dict))))))
 
-(defun my-scan-visible-windows ()
-  "Apply `my-run-on-buffer-first-visible` to all visible windows."
-  (walk-windows #'my-run-on-buffer-first-visible nil 'visible))
+;; (defun my-scan-visible-windows ()
+;;   "Apply `my-run-on-buffer-first-visible` to all visible windows."
+;;   (walk-windows #'my-run-on-buffer-first-visible nil 'visible))
 
-(add-hook 'window-configuration-change-hook #'my-scan-visible-windows)
+;; (add-hook 'window-configuration-change-hook #'my-scan-visible-windows)
 
 
 (provide 'my-functions)

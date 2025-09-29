@@ -52,8 +52,8 @@
 (use-package term
 	:bind (
 				 :map term-raw-map
-							("C-t" . nil)
-							("C-t C-f" . find-file)
+				 ("C-t" . nil)
+				 ("C-t C-f" . find-file)
 				 )
 	)
 
@@ -112,46 +112,47 @@
 	:init
 	(setq lsp-keymap-prefix "C-c l") ;; lsp-keymap-prefix is mostly for documentation of which-key integration only.
 	:hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-				 (julia-mode-hook . lsp)
+				 (julia-mode-hook . lsp-deferred)
 				 (lsp-mode-hook . lsp-enable-which-key-integration)
 				 (lsp-mode-hook . (lambda() (lsp-headerline-breadcrumb-mode 1)))
 				 )
 	:commands lsp
 	:config
 	(define-key lsp-mode-map (kbd "C-c l") lsp-command-map)
+	(setq lsp-idle-delay 1.5) ;; évite les corrections trop fréquentes
+  (setq lsp-ltex-server-command '("ltex-ls"))
+  (setq lsp-ltex-checkOnlyVisibleParagraphs t)
+  (setq lsp-ltex-maxBufferLength 5000)
 	)
 
 (setq read-process-output-max (* 1024 1024))
 
- ;; (eval-after-load 'lsp-mode
- ;;   '(progn
- ;;      (require 'lsp-javascript)
- ;;      (lsp-dependency 'typescript-language-server '(:system ,"/home/dionisos/.npm/packages/bin/typescript-language-server"))
- ;;      (lsp-dependency 'typescript '(:system ,"/home/dionisos/.npm/packages/bin/tsc"))
- ;; 			(lsp-dependency 'javascript-typescript-langserver '(:system ,"/home/dionisos/.npm/packages/bin/javascript-typescript-langserver"))
- ;; 			)
- ;; 	 )
+;; (eval-after-load 'lsp-mode
+;;   '(progn
+;;      (require 'lsp-javascript)
+;;      (lsp-dependency 'typescript-language-server '(:system ,"/home/dionisos/.npm/packages/bin/typescript-language-server"))
+;;      (lsp-dependency 'typescript '(:system ,"/home/dionisos/.npm/packages/bin/tsc"))
+;; 			(lsp-dependency 'javascript-typescript-langserver '(:system ,"/home/dionisos/.npm/packages/bin/javascript-typescript-langserver"))
+;; 			)
+;; 	 )
 
 (use-package lsp-haskell
 	:ensure
 	:demand
 	:hook (
-				 (haskell-mode-hook . lsp)
-				 (haskell-literate-mode-hook . lsp)
+				 (haskell-mode-hook . lsp-deferred)
+				 (haskell-literate-mode-hook . lsp-deferred)
 				 )
 	:custom
 	(lsp-haskell-server-path "/home/dionisos/.ghcup/bin/haskell-language-server-wrapper")
 	)
 
-;; where tls-exe is the absolute path to the typescript-language-server
-;; executable and ts-js is the absolute path to the typescript compiler
-;; JavaScript file, tsserver.js (the *.js is required for Windows).
 (use-package lsp-pyright
 	:ensure t
 	:hook (python-mode . (lambda ()
 												 (require 'lsp-pyright)
-												 (lsp)))
-	)	; or lsp-deferred
+												 (lsp-deferred)))
+	)
 
 
 ;; (use-package dap-mode
@@ -190,6 +191,16 @@
 	(python-mode-hook . my-enable-tabs)
 	)
 
+;; (use-package pyvenv-auto
+;; 	:ensure
+;;   :hook ((python-mode . pyvenv-auto-run))
+;; 	)
+
+(use-package direnv
+  :ensure t
+  :config
+  (direnv-mode))
+
 ;; (use-package company-jedi
 ;; 	:ensure
 ;; 	:demand
@@ -210,9 +221,9 @@
 (use-package julia-repl
 	:ensure t
 	:bind (
-				:map julia-repl-mode-map
-				("C-t C-f" . find-file)
-				)
+				 :map julia-repl-mode-map
+				 ("C-t C-f" . find-file)
+				 )
 	)
 
 (use-package julia-mode
@@ -234,8 +245,8 @@
 	(lsp-julia-default-environment "~/.julia/environments/v1.11/")
 	(lsp-julia-flags '("--project=/home/dionisos/.config/emacs/lisp/languageserver"
 										 "--startup-file=no" "--history-file=no"))
- ;; 	(lsp-julia-flags '("--project=/home/dionisos/.config/emacs/lisp/languageserver"
- ;; "--startup-file=no" "--history-file=no -J /home/dionisos/logiciels/languageserver.so"))
+	;; 	(lsp-julia-flags '("--project=/home/dionisos/.config/emacs/lisp/languageserver"
+	;; "--startup-file=no" "--history-file=no -J /home/dionisos/logiciels/languageserver.so"))
 	)
 
 (use-package js2-mode
@@ -351,39 +362,94 @@
 	 )
 	:config
 	(defhydra hydra-copilot-chat (:color pink :hint nil)
-  "
+		"
 Copilot Chat:
-  _c_: chat        _a_: ask         _l_: list         _p_: custom prompt
-  _e_: explain     _f_: fix         _o_: optimize     _t_: test
-  _v_: review      _d_: doc         _m_: commit msg   _y_: yank
-  _r_: yank-pop    _L_: load        _s_: save         _Q_: quotas
-  _q_: quit
+^General^       ^Ask Copilot^              ^Insert^
+^^^^^^^^----------------------------------------------------------------------
+_l_: list       _c_: chat                  _a_: ask & insert
+_S_: save       _e_: custom prompt         _s_: yank
+_L_: load       _v_: explain               _m_: yank-pop
+_Q_: quotas     _p_: fix                   _y_: send to buffer
+_q_: quit       _f_: optimize              _r_: insert commit msg
+^ ^             _o_: test
+^ ^             _t_: review
+^ ^             _d_: doc
 "
-  ;; Chat & Questions
-  ("c" copilot-chat "chat" :exit t)
-  ("a" copilot-chat-ask-and-insert "ask" :exit t)
-  ("l" copilot-chat-list "list" :exit t)
-  ("p" copilot-chat-custom-prompt-selection "custom prompt" :exit t)
-  ;; Actions
-  ("e" copilot-chat-explain "explain" :exit t)
-  ("f" copilot-chat-fix "fix" :exit t)
-  ("o" copilot-chat-optimize "optimize" :exit t)
-  ("t" copilot-chat-test "test" :exit t)
-  ("v" copilot-chat-review "review" :exit t)
-  ("d" copilot-chat-doc "doc" :exit t)
-  ("m" copilot-chat-insert-commit-message "commit msg" :exit t)
-  ;; Yank
-  ("y" copilot-chat-yank "yank")
-  ("r" copilot-chat-yank-pop "yank-pop")
-	;; Save
-  ("s" copilot-chat-save "save" :exit t)
-	("L" copilot-chat-load "load" :exit t)
-  ;; Infos
-  ("Q" copilot-chat-quotas "quotas" :exit t)
-  ;; Quit
-  ("q" nil "quit"))
+		;; General
+		("l" copilot-chat-list "list" :exit t)
+		("S" copilot-chat-save "save" :exit t)
+		("L" copilot-chat-load "load" :exit t)
+		("Q" copilot-chat-quotas "quotas" :exit t)
+		("q" nil "quit")
+		;; Ask Copilot
+		("c" copilot-chat "chat" :exit t)
+		("e" copilot-chat-explain "explain" :exit t)
+		("v" copilot-chat-review "review" :exit t)
+		("p" copilot-chat-custom-prompt-selection "custom prompt")
+		("f" copilot-chat-fix "fix")
+		("o" copilot-chat-optimize "optimize")
+		("t" copilot-chat-test "test")
+		("d" copilot-chat-doc "doc")
+		;; Insert
+		("a" copilot-chat-ask-and-insert "ask" :exit t)
+		("s" copilot-chat-send-to-buffer "send" :exit t)
+		("m" copilot-chat-insert-commit-message "commit msg" :exit t)
+		("y" copilot-chat-yank "yank")
+		("r" copilot-chat-yank-pop "yank-pop")
+		)
 
+	)
 
+(use-package typst-ts-mode
+	:ensure
+	:hook (typst-ts-mode . typst-preview-mode)
+	)
+
+(use-package websocket
+	:ensure
+	)
+
+(use-package typst-preview
+	:straight (typst-preview :type git :repo "https://github.com/havarddj/typst-preview.el")
+  :after typst-ts-mode
+  :config
+  ;; Utilise SVG si possible
+  (setq typst-preview-image-type 'svg)
+	:custom
+  (typst-preview-browser "eaf-browser")
+	)
+
+(use-package eaf
+  :straight (eaf
+             :type git
+             :host github
+             :repo "emacs-eaf/emacs-application-framework"
+             :files ("*.el" "*.py" "core" "app" "*.json")
+             :includes (eaf-pdf-viewer eaf-browser) ; Straight won't try to search for these packages when we make further use-package invocations for them
+             :pre-build (("python" "install-eaf.py" "--install" "pdf-viewer" "browser" "--ignore-sys-deps"))
+             )
+  :custom
+  ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+  ;; (eaf-browser-continue-where-left-off t)
+  (browse-url-browser-function 'eaf-open-browser)
+	(eaf-wm-name "Qtile")
+	)
+
+(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+
+(use-package eaf-browser
+  :custom
+  (eaf-browser-continue-where-left-off nil)
+  (eaf-browser-enable-adblocker t)
+	:config
+	(setq eaf-is-member-of-focus-fix-wms t)
+  (eaf-bind-key nil "M-q" eaf-browser-keybinding) ;; unbind, see more in the Wiki
+	(eaf-bind-key other-window "C-o" eaf-browser-keybinding)
+	(eaf-bind-key consult-buffer "C-t" eaf-browser-keybinding)
+	(eaf-bind-key my-kill-buffer "C-k" eaf-browser-keybinding)
+	)
+
+(use-package eaf-pdf-viewer
 	)
 
 (provide 'my-programming)

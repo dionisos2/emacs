@@ -7,19 +7,58 @@
 (bind-key "C-n" 'my-next-error)
 (bind-key "C-M-n" 'my-previous-error)
 
-(use-package langtool
-	:ensure
-	:demand
-	:bind (
-				 ("C-c C-M-s" . langtool-check)
-				 )
-	:custom
-	(langtool-default-language "fr")
-	(langtool-mother-tongue "fr")
-	;; (langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
-	;; (langtool-user-arguments '("--languagemodel" "/home/dionisos/logiciels/ngrams_dicts/"))
-	(langtool-http-server-host "localhost")
-  (langtool-http-server-port 8081)
+;; (use-package langtool
+;; 	:ensure
+;; 	:demand
+;; 	:bind (
+;; 				 ("C-c C-M-s" . langtool-check)
+;; 				 )
+;; 	:custom
+;; 	(langtool-default-language "fr")
+;; 	(langtool-mother-tongue "fr")
+;; 	;; (langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
+;; 	;; (langtool-user-arguments '("--languagemodel" "/home/dionisos/logiciels/ngrams_dicts/"))
+;; 	(langtool-http-server-host "localhost")
+;;   (langtool-http-server-port 8081)
+;; )
+
+;; (use-package flycheck-languagetool
+;; 	:ensure
+;;   :after flycheck
+;;   :custom
+;;   (flycheck-languagetool-server-command nil)
+;; 	(flycheck-languagetool-url "http://localhost:8081")
+;; 	(flycheck-languagetool-server-port nil)
+;;   (flycheck-languagetool-language "fr")
+;; 	(flycheck-languagetool-active-modes '(fundamental-mode text-mode latex-mode org-mode markdown-mode message-mode))
+;;   :hook
+;;   (text-mode . flycheck-languagetool-setup)
+;;   (org-mode . flycheck-languagetool-setup)
+;;   (markdown-mode . flycheck-languagetool-setup)
+;; 	)
+
+;; (use-package lsp-ltex-plus
+;;   :straight (:host github :repo "emacs-languagetool/lsp-ltex-plus")
+;;   ;; :hook (text-mode . (lambda ()
+;;   ;;                      (require 'lsp-ltex-plus)
+;;   ;;                      (lsp)))  ; or lsp-deferred
+;;   :init
+;;   (setq lsp-ltex-plus-version "18.2.0"))
+
+(use-package languagetool
+  :ensure t
+  :commands (languagetool-check
+             languagetool-clear-suggestions
+             languagetool-correct-at-point
+             languagetool-correct-buffer
+             languagetool-set-language
+             languagetool-server-mode
+             languagetool-server-start
+             languagetool-server-stop)
+  :custom
+  (languagetool-java-arguments '("-Dfile.encoding=UTF-8"))
+	(languagetool-server-url "http://localhost")
+	(languagetool-server-port 8081)
 )
 
 (defun my-set-dictionary(lang)(+ 1 1))
@@ -32,28 +71,28 @@
 	(ispell-program-name "hunspell")
 	)
 
-(use-package flyspell
-	:demand
-	:bind (
-				 ("C-c s" . flyspell-correct-wrapper)
-				 ("C-p i" . my-change-dictionary)
-				 :map flyspell-mode-map
-							("C-." . nil)
-							("C-M-i" . nil)
-							("<M-tab>" . nil)
-				 )
-	:custom
-	(flyspell-abbrev-p t)
-	(flyspell-delay 2)
-	(flyspell-dictionaries-that-consider-dash-as-word-delimiter '(en-dict fr-dict))
-	(flyspell-duplicate-distance 500)
-	)
+;; (use-package flyspell
+;; 	:demand
+;; 	:bind (
+;; 				 ("C-c s" . flyspell-correct-wrapper)
+;; 				 ("C-p i" . my-change-dictionary)
+;; 				 :map flyspell-mode-map
+;; 							("C-." . nil)
+;; 							("C-M-i" . nil)
+;; 							("<M-tab>" . nil)
+;; 				 )
+;; 	:custom
+;; 	(flyspell-abbrev-p t)
+;; 	(flyspell-delay 2)
+;; 	(flyspell-dictionaries-that-consider-dash-as-word-delimiter '(en-dict fr-dict))
+;; 	(flyspell-duplicate-distance 500)
+;; 	)
 
-(use-package flyspell-correct
-	:ensure
-	:demand
-  :after flyspell
-	)
+;; (use-package flyspell-correct
+;; 	:ensure
+;; 	:demand
+;;   :after flyspell
+;; 	)
 
 (use-package google-translate
 	:demand

@@ -277,6 +277,7 @@
 				 ("<f4>" . my-dwim-done)
 				 :map org-mode-map
 				 ("C-c h" . my-copy-heading-org)
+				 ("C-^" . org-up-element)
 				 ("C-c C-l" . nil)
 				 ("C-c C-M-l" . nil)
 				 ("M-<right>" . nil)
@@ -915,6 +916,11 @@
     (interactive)
     (cfw:open-org-calendar))
 	)
+
+;; (use-package keypression Not working at all
+;; 	:ensure t
+;; 	)
+
 
 (provide 'my-common)
 ;;; my-common.el ends here
