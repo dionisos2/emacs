@@ -921,6 +921,24 @@
 ;; 	:ensure t
 ;; 	)
 
+(use-package anki-editor
+  :defer t
+  :straight (:repo "anki-editor/anki-editor")
+	)
+
+(use-package sqlite3
+  :straight (:host github :repo "pekingduck/emacs-sqlite3-api")
+	)
+
+(use-package ankiorg
+  :straight (:host github :repo "orgtre/ankiorg")
+  :custom
+  (ankiorg-sql-database
+   "/home/dionisos/.local/share/Anki2/dionisos/collection.anki2")
+  (ankiorg-media-directory
+   "/home/dionisos/.local/share/Anki2/dionisos/collection.media")
+	)
+
 
 (provide 'my-common)
 ;;; my-common.el ends here
