@@ -406,6 +406,27 @@ year/month/day/hour/minute/seconde/milliseconde."
 
 ;; (add-hook 'window-configuration-change-hook #'my-scan-visible-windows)
 
+(defun my-add-abbrev ()
+  "Create a global abbrev from the word at point, asking for the expansion.
+The minibuffer prompt shows the word that will be replaced."
+  (interactive)
+  (let ((abbrev (thing-at-point 'word t)))
+    (if (not abbrev)
+        (message "No word at point")
+      (let* ((bounds (bounds-of-thing-at-point 'word))
+             (expansion (read-string (format "Expansion for '%s': " abbrev))))
+        ;; Define the abbrev
+        (define-abbrev global-abbrev-table abbrev expansion)
+        ;; Replace the word at point by its expansion
+        (delete-region (car bounds) (cdr bounds))
+        (insert expansion)
+        (message "Added abbrev: %s → %s" abbrev expansion)
+				)
+			)
+		)
+	)
+
+
 
 (provide 'my-functions)
 ;;; my-functions.el ends here

@@ -526,6 +526,9 @@
 
 (use-package abbrev
 	:demand
+	:bind (
+				 ("C-c M-s" . my-add-abbrev)
+				 )
 	:hook
 	((text-mode-hook prog-mode-hook erc-mode-hook LaTeX-mode-hook org-mode-hook) . abbrev-mode)
 	:config
