@@ -7,36 +7,40 @@
 (bind-key "C-n" 'my-next-error)
 (bind-key "C-M-n" 'my-previous-error)
 
-(use-package languagetool
-	:ensure nil
-  :straight (:host github
-             :repo "dionisos2/languagetool.el"
-             :branch "dionisos")
-  :commands (
-						 languagetool-clear-suggestions
-             languagetool-correct-at-point
-             languagetool-correct-buffer
-						 languagetool-correct-buffer-forward
-             languagetool-set-language
-             languagetool-server-mode
-						 )
-	:hook
-  (text-mode-hook . languagetool-server-mode)
-  (org-mode-hook . languagetool-server-mode)
-  (markdown-mode-hook . languagetool-server-mode)
-	:bind (
-				 ("C-c s" . languagetool-correct-buffer-forward)
-				 )
-  :custom
-	(languagetool-correction-language "fr")
-  (languagetool-java-arguments '("-Dfile.encoding=UTF-8"))
-	(languagetool-server-url "http://localhost")
-	(languagetool-server-port 8081)
-	(languagetool-hint-idle-delay 0.5)
-	(languagetool-server-lines-before 10)
-	(languagetool-server-lines-after 10)
-	(languagetool-correction-keys (string-to-vector "auienrstdoygov123456789"))
-)
+;; (use-package languagetool
+;; 	:ensure nil
+;;   :straight (:host github
+;;              :repo "dionisos2/languagetool.el"
+;;              :branch "dionisos")
+;;   :commands (
+;; 						 languagetool-clear-suggestions
+;;              languagetool-correct-at-point
+;;              languagetool-correct-buffer
+;; 						 languagetool-correct-buffer-forward
+;;              languagetool-set-language
+;;              languagetool-server-mode
+;; 						 )
+;; 	:hook
+;;   (text-mode-hook . languagetool-server-mode)
+;;   (org-mode-hook . languagetool-server-mode)
+;;   (markdown-mode-hook . languagetool-server-mode)
+;; 	:bind (
+;; 				 ("C-c s" . languagetool-correct-at-point)
+;; 				 ("C-c C-s" . languagetool-correct-buffer-forward)
+;; 				 ("C-<f10>" . languagetool-server-mode)
+;; 				 ("<f10>" . languagetool-server-check-region-around-point)
+;; 				 )
+;;   :custom
+;; 	(languagetool-correction-language "fr")
+;;   (languagetool-java-arguments '("-Dfile.encoding=UTF-8"))
+;; 	(languagetool-server-url "http://localhost")
+;; 	(languagetool-server-port 8081)
+;; 	(languagetool-hint-idle-delay 0.5)
+;; 	(languagetool-server-check-delay 1.5)
+;; 	(languagetool-server-lines-before 10)
+;; 	(languagetool-server-lines-after 10)
+;; 	(languagetool-correction-keys (string-to-vector "auienrstdoygov123456789"))
+;; )
 
 (defun my-set-dictionary(lang)(+ 1 1))
 

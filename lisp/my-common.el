@@ -45,7 +45,8 @@
 	:ensure
 	:demand
 	:custom
-	(org-persist-directory (concat user-emacs-directory "private/persist/"))
+	(org-persist-directory (concat user-emacs-directory "private/persist/org"))
+	(persist--directory-location (concat user-emacs-directory "private/persist/"))
 	)
 
 (use-package keycast
@@ -65,6 +66,10 @@
 	 ("C-t M-t" . switch-to-buffer)
 	 ("C-t C-q" . my-persp-remove-current-buffer)
 	 )
+
+	:hook
+	(emacs-startup-hook . my-push-messages-to-all-persps)
+	(persp-after-switch-functions . (lambda (_new-persp _old-persp) (my-push-messages-to-all-persps)))
 
 	:custom
 	(persp-save-dir (concat user-emacs-directory "private/persp-confs/"))

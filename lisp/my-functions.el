@@ -334,6 +334,24 @@ See js2-mode for javascript."
   (interactive)
   (persp-remove-buffer (current-buffer)))
 
+(defun my-push-messages-to-all-persps ()
+  "Add the *Messages* buffer to every existing perspective."
+	(interactive)
+  (let ((buf (get-buffer "*Messages*")))
+    (when (and buf (buffer-live-p buf))
+      (dolist (persp-name (persp-names))
+        (let ((p (persp-get-by-name persp-name)))
+          (when p
+            ;; If buffer is not already in that perspective
+            (unless (persp-contain-buffer-p buf p)
+              (persp-add-buffer buf p))
+						)
+					)
+				)
+			)
+		)
+	)
+
 (defvar my-tiddly-perso-path "~/projets/RD/tiddly_perso/Wikis/BobWiki/tiddlers/"
   "Tiddlers directory")
 
