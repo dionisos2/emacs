@@ -402,7 +402,7 @@ buffer is not visiting a file."
   (kill-matching-buffers "^\\*Flycheck error messages\\*$")
   (kill-matching-buffers "^\\*Help\\*$")
   (kill-matching-buffers "^\\*scratch\\*$")
-  (kill-matching-buffers "^diary$")
+  (kill-matching-buffers "^diary.*$")
   (kill-matching-buffers "^birthdays.org$")
   (kill-matching-buffers "^agenda.org$")
   (kill-matching-buffers "^diary$")

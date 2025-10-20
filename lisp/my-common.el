@@ -362,7 +362,7 @@
 	:config
 	(key-chord-mode 1)
 	:custom
-	(key-chord-two-keys-delay 0.05)
+	(key-chord-two-keys-delay 0.01)
 	(key-chord-one-key-delay 0.10)
 	)
 
