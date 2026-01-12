@@ -16,6 +16,7 @@
 
 (defun my-disable-tabs ()
 	"Disable \"indent-tabs-mode\"."
+	(interactive)
 	(setq indent-tabs-mode nil))
 
 (defun my-enable-tabs ()
@@ -188,7 +189,7 @@
 				 )
 
 	:hook
-	(python-mode-hook . my-enable-tabs)
+	(python-mode-hook . my-disable-tabs)
 	)
 
 ;; (use-package pyvenv-auto
@@ -400,57 +401,57 @@ _q_: quit       _f_: optimize              _r_: insert commit msg
 
 	)
 
-(use-package typst-ts-mode
-	:ensure
-	:hook (typst-ts-mode . typst-preview-mode)
-	)
+;; (use-package typst-ts-mode
+;; 	:ensure
+;; 	:hook (typst-ts-mode . typst-preview-mode)
+;; 	)
 
-(use-package websocket
-	:ensure
-	)
+;; (use-package websocket
+;; 	:ensure
+;; 	)
 
-(use-package typst-preview
-	:straight (typst-preview :type git :repo "https://github.com/havarddj/typst-preview.el")
-  :after typst-ts-mode
-  :config
-  ;; Utilise SVG si possible
-  (setq typst-preview-image-type 'svg)
-	:custom
-  (typst-preview-browser "eaf-browser")
-	)
+;; (use-package typst-preview
+;; 	:straight (typst-preview :type git :repo "https://github.com/havarddj/typst-preview.el")
+;;   :after typst-ts-mode
+;;   :config
+;;   ;; Utilise SVG si possible
+;;   (setq typst-preview-image-type 'svg)
+;; 	;; :custom
+;;   ;; (typst-preview-browser "eaf-browser")
+;; 	)
 
-(use-package eaf
-  :straight (eaf
-             :type git
-             :host github
-             :repo "emacs-eaf/emacs-application-framework"
-             :files ("*.el" "*.py" "core" "app" "*.json")
-             :includes (eaf-pdf-viewer eaf-browser) ; Straight won't try to search for these packages when we make further use-package invocations for them
-             :pre-build (("python" "install-eaf.py" "--install" "pdf-viewer" "browser" "--ignore-sys-deps"))
-             )
-  :custom
-  ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
-  ;; (eaf-browser-continue-where-left-off t)
-  (browse-url-browser-function 'eaf-open-browser)
-	(eaf-wm-name "Qtile")
-	)
+;; (use-package eaf
+;;   :straight (eaf
+;;              :type git
+;;              :host github
+;;              :repo "emacs-eaf/emacs-application-framework"
+;;              :files ("*.el" "*.py" "core" "app" "*.json")
+;;              :includes (eaf-pdf-viewer eaf-browser) ; Straight won't try to search for these packages when we make further use-package invocations for them
+;;              :pre-build (("python" "install-eaf.py" "--install" "pdf-viewer" "browser" "--ignore-sys-deps"))
+;;              )
+;;   :custom
+;;   ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
+;;   ;; (eaf-browser-continue-where-left-off t)
+;;   (browse-url-browser-function 'eaf-open-browser)
+;; 	(eaf-wm-name "Qtile")
+;; 	)
 
-(add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+;; (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
 
-(use-package eaf-browser
-  :custom
-  (eaf-browser-continue-where-left-off nil)
-  (eaf-browser-enable-adblocker t)
-	:config
-	(setq eaf-is-member-of-focus-fix-wms t)
-  (eaf-bind-key nil "M-q" eaf-browser-keybinding) ;; unbind, see more in the Wiki
-	(eaf-bind-key other-window "C-o" eaf-browser-keybinding)
-	(eaf-bind-key consult-buffer "C-t" eaf-browser-keybinding)
-	(eaf-bind-key my-kill-buffer "C-k" eaf-browser-keybinding)
-	)
+;; (use-package eaf-browser
+;;   :custom
+;;   (eaf-browser-continue-where-left-off nil)
+;;   (eaf-browser-enable-adblocker t)
+;; 	:config
+;; 	(setq eaf-is-member-of-focus-fix-wms t)
+;;   (eaf-bind-key nil "M-q" eaf-browser-keybinding) ;; unbind, see more in the Wiki
+;; 	(eaf-bind-key other-window "C-o" eaf-browser-keybinding)
+;; 	(eaf-bind-key consult-buffer "C-t" eaf-browser-keybinding)
+;; 	(eaf-bind-key my-kill-buffer "C-k" eaf-browser-keybinding)
+;; 	)
 
-(use-package eaf-pdf-viewer
-	)
+;; (use-package eaf-pdf-viewer
+;; 	)
 
 (provide 'my-programming)
 ;;; my-programming.el ends here

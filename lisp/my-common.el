@@ -56,51 +56,6 @@
 	(keycast-tab-bar-mode)
 	)
 
-(use-package persp-mode
-	:ensure
-	:demand
-	:after (consult)
-	:bind
-	(
-	 ("C-t t" . persp-switch)
-	 ("C-t M-t" . switch-to-buffer)
-	 ("C-t C-q" . my-persp-remove-current-buffer)
-	 )
-
-	:hook
-	(emacs-startup-hook . my-push-messages-to-all-persps)
-	(persp-after-switch-functions . (lambda (_new-persp _old-persp) (my-push-messages-to-all-persps)))
-
-	:custom
-	(persp-save-dir (concat user-emacs-directory "private/persp-confs/"))
-	(persp-keymap-prefix (kbd "<f7>"))
-	(persp-autokill-buffer-on-remove 'kill-weak)
-	(persp-kill-foreign-buffer-behaviour 'kill)
-	(persp-add-buffer-on-after-change-major-mode t)
-
-
-	:config
-	(persp-mode 1)
-	(consult-customize consult--source-buffer :hidden t :default nil)
-	;; set consult-workspace buffer list
-	(setq consult--source-persp
-		(list :name     "Perps Buffers"
-					:narrow   ?w
-					:history  'buffer-name-history
-					:category 'buffer
-					:state    #'consult--buffer-state
-					:default  t
-					:items    (lambda () (consult--buffer-query
-																:predicate #'persp-contain-buffer-p
-																:sort 'visibility
-																:as #'buffer-name)))
-		)
-
-	(add-to-list 'consult-buffer-sources 'consult--source-persp)
-	(set-persp-parameter 'dont-save-to-file t nil)
-	)
-
-
 (use-package frame
 	:custom
 	(blink-cursor-blinks 3)
@@ -582,20 +537,6 @@
 ;; (defun my/company-mode-maybe ()
 ;;     (company-mode 1))
 
-(use-package consult-lsp
-	:ensure
-	)
-
-
-(use-package company-dabbrev
-	:demand
-	:after (company)
-	:custom
-	(company-dabbrev-char-regexp "\\(\\sw\\|[-$_]\\)")
-	(company-dabbrev-downcase nil)
-	(company-dabbrev-ignore-case nil)
-	(company-dabbrev-minimum-length 3)
-	)
 
 ;; (use-package company-statistics
 ;;		:ensure
@@ -838,7 +779,7 @@
 	;;			 xref-show-definitions-function #'consult-xref)
 
 
-	;; :config
+	:config
 	;; (setq consult-preview-key 'any)
 	;; (setq consult-narrow-key "<")
 
@@ -851,6 +792,65 @@
 
 	:custom
 	(consult-find-command "find . -ipath *ARG* OPTS")
+	)
+
+;; (use-package consult-lsp
+;; 	:ensure
+;; 	)
+
+
+(use-package company-dabbrev
+	:demand
+	:after (company)
+	:custom
+	(company-dabbrev-char-regexp "\\(\\sw\\|[-$_]\\)")
+	(company-dabbrev-downcase nil)
+	(company-dabbrev-ignore-case nil)
+	(company-dabbrev-minimum-length 3)
+	)
+
+(use-package persp-mode
+	:ensure
+	:demand
+	:after (consult)
+	:bind
+	(
+	 ("C-t t" . persp-switch)
+	 ("C-t M-t" . switch-to-buffer)
+	 ("C-t C-q" . my-persp-remove-current-buffer)
+	 )
+
+	:hook
+	(emacs-startup-hook . my-push-messages-to-all-persps)
+	(persp-after-switch-functions . (lambda (_new-persp _old-persp) (my-push-messages-to-all-persps)))
+
+	:custom
+	(persp-save-dir (concat user-emacs-directory "private/persp-confs/"))
+	(persp-keymap-prefix (kbd "<f7>"))
+	(persp-autokill-buffer-on-remove 'kill-weak)
+	(persp-kill-foreign-buffer-behaviour 'kill)
+	(persp-add-buffer-on-after-change-major-mode t)
+
+
+	:config
+	(persp-mode 1)
+	(consult-customize consult--source-buffer :hidden t :default nil)
+	;; set consult-workspace buffer list
+	(setq consult--source-persp
+		(list :name     "Perps Buffers"
+					:narrow   ?w
+					:history  'buffer-name-history
+					:category 'buffer
+					:state    #'consult--buffer-state
+					:default  t
+					:items    (lambda () (consult--buffer-query
+																:predicate #'persp-contain-buffer-p
+																:sort 'visibility
+																:as #'buffer-name)))
+		)
+
+	(add-to-list 'consult-buffer-sources 'consult--source-persp)
+	(set-persp-parameter 'dont-save-to-file t nil)
 	)
 
 (use-package consult-company
