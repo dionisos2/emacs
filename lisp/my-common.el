@@ -3,7 +3,7 @@
 ;;; Nothing special.
 
 ;;; Code:
-(require 'use-package)
+;; (require 'use-package)
 
 (customize-set-variable 'printer-name "EPSON_WF-2750") ;; House
 (set-face-attribute 'default nil :height 120)
@@ -57,6 +57,7 @@
 	)
 
 (use-package frame
+	:straight nil
 	:custom
 	(blink-cursor-blinks 3)
 	)
@@ -77,6 +78,7 @@
 )
 
 (use-package window
+	:straight nil
 	:custom
 	(pop-up-windows nil)
 	)
@@ -92,6 +94,7 @@
 	)
 
 (use-package help
+	:straight nil
 	:bind (
 				 :map help-mode-map
 							("q" . my-kill-buffer)
@@ -137,6 +140,7 @@
 	)
 
 (use-package elfeed-search
+	:straight nil
 	:after (elfeed)
 	:bind (
 				 :map elfeed-search-mode-map
@@ -204,6 +208,7 @@
 	)
 
 (use-package emacs-pager
+	:straight nil
 	:demand
 	:config
 	(add-to-list 'auto-mode-alist '("\\.emacs-pager$" . emacs-pager-mode))
@@ -212,6 +217,7 @@
 																				;(setq auto-mode-alist (delete '("\\.emacs-pager$" . text-mode) auto-mode-alist))
 
 (use-package appt
+	:straight nil
 	:bind (
 				 ("C-p C-M-c" . appt-add)
 				 )
@@ -251,11 +257,12 @@
 	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org" "~/organisation/todo.org"))
 	(org-show-notification-timeout 20)
 	(org-export-preserve-breaks t)
-	:hook
-	(org-mode-hook . yas-minor-mode)
+	;:hook
+	;(org-mode-hook . yas-minor-mode)
 	)
 
 (use-package org-agenda
+	:straight nil
 	:bind (
 				 :map org-agenda-mode-map
 				 ("h" . my-copy-heading)
@@ -485,6 +492,7 @@
 	)
 
 (use-package abbrev
+	:straight nil
 	:demand
 	:bind (
 				 ("C-c M-s" . my-add-abbrev)
@@ -528,6 +536,7 @@
 	)
 
 (use-package minibuffer
+	:straight nil
 	;; :hook
 	;; (minibuffer-setup-hook . my/company-mode-maybe)
 	;; (minibuffer-setup-hook . yas-minor-mode)
@@ -614,6 +623,7 @@
 
 
 (use-package emoji
+	:straight nil
 	:demand
 	:bind (
 				 ("C-c C-e" . my-emoji-search)
@@ -630,8 +640,6 @@
 	)
 
 (use-package ement
-	:demand
-	:ensure
 	:after (emoji hydra)
 	:bind (
 				 ("C-t m" . ement-room-view)
@@ -680,9 +688,9 @@
 	(ement-room-self-insert-mode nil)
 
 	:hook
-	(ement-room-compose-hook . yas-minor-mode)
+	;(ement-room-compose-hook . yas-minor-mode)
 	(ement-room-compose-hook . ement-room-compose-org)
-	(minibuffer-setup-hook . yas-minor-mode)
+	;(minibuffer-setup-hook . yas-minor-mode)
 	(ement-room-list-mode-hook . my-ement-change-directory)
 	(ement-tabulated-room-list-mode-hook . my-ement-change-directory)
 	(ement-room-mode-hook . my-ement-change-directory)
@@ -800,6 +808,7 @@
 
 
 (use-package company-dabbrev
+	:straight nil
 	:demand
 	:after (company)
 	:custom
@@ -834,7 +843,7 @@
 
 	:config
 	(persp-mode 1)
-	(consult-customize consult--source-buffer :hidden t :default nil)
+	;; (consult-customize consult--source-buffer :hidden t :default nil)
 	;; set consult-workspace buffer list
 	(setq consult--source-persp
 		(list :name     "Perps Buffers"
@@ -908,6 +917,7 @@
 (customize-set-variable 'explicit-shell-file-name "/usr/bin/xonsh")
 
 (use-package text-mode
+	:straight nil
   :ensure nil
   :mode ("\\.tid\\'" . text-mode)
 	)
@@ -916,14 +926,14 @@
   :straight (:host github :repo "Stebalien/emacs-calfw")
 	)
 
-(use-package calfw-org
-  :after calfw
-  :straight (:host github :repo "Stebalien/emacs-calfw")
-	:config
-  (defun my-calendar ()
-    (interactive)
-    (cfw:open-org-calendar))
-	)
+;; (use-package calfw-org
+;;   :after calfw
+;; 	:straight nil
+;; 	:config
+;;   (defun my-calendar ()
+;;     (interactive)
+;;     (cfw:open-org-calendar))
+;; 	)
 
 ;; (use-package keypression Not working at all
 ;; 	:ensure t

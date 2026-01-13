@@ -103,6 +103,7 @@
 )
 
 (use-package google-translate-smooth-ui
+	:straight nil
 	:after (google-translate)
 )
 

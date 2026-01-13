@@ -4,37 +4,7 @@
 
 ;;; Code:
 
-;; Everything that should load without packages
-(load "my-basics.el")
-(load "my-basics-keybindings.el")
-
-;; A place to save named macro.
-(load "my-macro.el")
-
-
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
-
-;;; I install everything from melpa, but if there are some problems I can try this.
-;; (add-to-list 'package-archives
-;;              '("melpa-stable" . "http://stable.melpa.org/packages/"))
-
-(if init-file-debug
-      (setq use-package-verbose t
-            use-package-expand-minimally nil
-            use-package-compute-statistics t
-            debug-on-error t)
-    (setq use-package-verbose nil
-          use-package-expand-minimally t))
-
-(package-initialize)
-
-(unless package-archive-contents
- (package-refresh-contents))
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
-
-(require 'use-package)
+(setq package-enable-at-startup nil)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -54,9 +24,25 @@
 
 (straight-use-package 'use-package)
 
-(setq straight-use-package-by-default nil)
+(setq straight-use-package-by-default t)
+(straight-use-package 'org)
 
-;;; Automatic add of hook suffix is uselessly confuging
+(advice-add 'package-install :before
+            (lambda (&rest _)
+              (error "package-install is forbidden; use straight.el")))
+
+(custom-set-variables
+ '(warning-suppress-log-types '((straight package) (straight package)))
+ )
+
+;; Everything that should load without packages
+(load "my-basics.el")
+(load "my-basics-keybindings.el")
+
+;; A place to save named macro.
+(load "my-macro.el")
+
+;;; Automatic add of hook suffix is uselessly confusing
 (customize-set-variable 'use-package-hook-name-suffix nil)
 
 ;;; Choose theme here, to avoid blink at eval in my-common.el
@@ -74,7 +60,6 @@
 ;;		)
 
 ;; Seem like abyss-theme activate ido-mode, this is very weird
-
 
 (load "my-common.el")
 (load "my-yasnippet.el")

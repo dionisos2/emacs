@@ -36,21 +36,25 @@
 	)
 
 (use-package prog-mode
+	:straight nil
 	:hook
 	(prog-mode-hook . my-enable-tabs)
 	)
 
 (use-package lisp-mode
+	:straight nil
 	:hook
 	(lisp-mode-hook . my-enable-tabs)
 	)
 
 (use-package elisp-mode
+	:straight nil
 	:hook
 	(emacs-lisp-mode-hook . my-enable-tabs)
 	)
 
 (use-package term
+	:straight nil
 	:bind (
 				 :map term-raw-map
 				 ("C-t" . nil)

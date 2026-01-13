@@ -188,7 +188,7 @@
 (customize-set-variable 'org-startup-truncated nil)
 (customize-set-variable 'org-tags-column 100)
 (customize-set-variable 'org-tags-exclude-from-inheritance '("ORDERED"))
-(customize-set-variable 'org-timer-default-timer "4")
+(customize-set-variable 'org-timer-default-timer "1")
 (customize-set-variable 'org-track-ordered-property-with-tag t)
 
 (customize-set-variable 'explicit-shell-file-name "/usr/bin/fish")
