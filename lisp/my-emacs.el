@@ -5,6 +5,13 @@
 ;;; Code:
 
 (setq package-enable-at-startup nil)
+(setq package-selected-packages nil)
+
+(advice-add 'package-install-selected-packages
+            :override
+            (lambda (&rest _)
+              (message "package-install-selected-packages blocked")))
+
 
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -30,6 +37,24 @@
 (advice-add 'package-install :before
             (lambda (&rest _)
               (error "package-install is forbidden; use straight.el")))
+
+(advice-add 'package-refresh-contents :before
+            (lambda (&rest _)
+              (error "📌 package-refresh-contents called!")))
+
+
+(with-eval-after-load 'package
+  (advice-add 'package-install :before
+              (lambda (&rest _)
+                (error "❌ package-install is forbidden (use straight)")))
+
+  (advice-add 'package-refresh-contents :before
+              (lambda (&rest _)
+                (error "❌ package-refresh-contents is forbidden")))
+
+  (advice-add 'package-initialize :before
+              (lambda (&rest _)
+                (error "❌ package-initialize is forbidden"))))
 
 (custom-set-variables
  '(warning-suppress-log-types '((straight package) (straight package)))

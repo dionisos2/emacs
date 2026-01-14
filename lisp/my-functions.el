@@ -352,6 +352,20 @@ See js2-mode for javascript."
 		)
 	)
 
+;; Automatically add visited buffers to current perspective
+(defun my-add-buffer-to-persp-on-visit (&rest _args)
+  "Add the current buffer to the active perspective if it isn't already there."
+	;; (interactive)
+  (when (and (bound-and-true-p persp-mode)
+             (buffer-live-p (current-buffer)))
+    (let ((buf (current-buffer))
+          (persp (get-current-persp)))
+      (when (and persp
+                 ;; only add if not already in this persp
+                 (not (persp-contain-buffer-p buf persp)))
+        (persp-add-buffer buf persp)))))
+
+
 (defvar my-tiddly-perso-path "~/projets/RD/tiddly_perso/Wikis/BobWiki/tiddlers/"
   "Tiddlers directory")
 

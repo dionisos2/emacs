@@ -860,6 +860,8 @@
 
 	(add-to-list 'consult-buffer-sources 'consult--source-persp)
 	(set-persp-parameter 'dont-save-to-file t nil)
+	(advice-add #'consult-buffer :after #'my-add-buffer-to-persp-on-visit)
+	(advice-add #'find-file :after #'my-add-buffer-to-persp-on-visit)
 	)
 
 (use-package consult-company
