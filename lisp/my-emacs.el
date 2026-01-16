@@ -38,9 +38,9 @@
             (lambda (&rest _)
               (error "package-install is forbidden; use straight.el")))
 
-(advice-add 'package-refresh-contents :before
-            (lambda (&rest _)
-              (error "📌 package-refresh-contents called!")))
+;; (advice-add 'package-refresh-contents :before
+;;             (lambda (&rest _)
+;;               (error "📌 package-refresh-contents called!")))
 
 
 (with-eval-after-load 'package
@@ -48,13 +48,14 @@
               (lambda (&rest _)
                 (error "❌ package-install is forbidden (use straight)")))
 
-  (advice-add 'package-refresh-contents :before
-              (lambda (&rest _)
-                (error "❌ package-refresh-contents is forbidden")))
+  ;; (advice-add 'package-refresh-contents :before
+  ;;             (lambda (&rest _)
+  ;;               (error "❌ package-refresh-contents is forbidden")))
 
-  (advice-add 'package-initialize :before
-              (lambda (&rest _)
-                (error "❌ package-initialize is forbidden"))))
+  ;; (advice-add 'package-initialize :before
+  ;;             (lambda (&rest _)
+  ;;               (error "❌ package-initialize is forbidden")))
+	)
 
 (custom-set-variables
  '(warning-suppress-log-types '((straight package) (straight package)))
