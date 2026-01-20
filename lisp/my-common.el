@@ -244,6 +244,7 @@
 				 :map org-mode-map
 				 ("C-c h" . my-copy-heading-org)
 				 ("C-^" . org-up-element)
+				 ("C-c C-s" . nil)
 				 ("C-c C-l" . nil)
 				 ("C-c C-M-l" . nil)
 				 ("M-<right>" . nil)

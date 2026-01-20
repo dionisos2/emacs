@@ -12,6 +12,7 @@
             (lambda (&rest _)
               (message "package-install-selected-packages blocked")))
 
+;; (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/") t)
 
 (defvar bootstrap-version)
 (let ((bootstrap-file

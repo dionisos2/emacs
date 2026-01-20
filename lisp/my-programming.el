@@ -6,13 +6,12 @@
 
 (defvar custom-tab-width 2)
 
-(use-package rustic
-  :ensure t
-  :config
-  (setq rustic-format-on-save nil)
-  :custom
-  (rustic-cargo-use-last-stored-arguments t))
-
+;; (use-package rustic
+;;   :ensure t
+;;   :config
+;;   (setq rustic-format-on-save nil)
+;;   :custom
+;;   (rustic-cargo-use-last-stored-arguments t))
 
 (defun my-disable-tabs ()
 	"Disable \"indent-tabs-mode\"."
@@ -116,7 +115,8 @@
 	:ensure
 	:init
 	(setq lsp-keymap-prefix "C-c l") ;; lsp-keymap-prefix is mostly for documentation of which-key integration only.
-	:hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+	:hook (
+				 (rust-mode-hook . lsp-deferred)
 				 (julia-mode-hook . lsp-deferred)
 				 (lsp-mode-hook . lsp-enable-which-key-integration)
 				 (lsp-mode-hook . (lambda() (lsp-headerline-breadcrumb-mode 1)))
@@ -128,6 +128,10 @@
   (setq lsp-ltex-server-command '("ltex-ls"))
   (setq lsp-ltex-checkOnlyVisibleParagraphs t)
   (setq lsp-ltex-maxBufferLength 5000)
+	(setq lsp-rust-analyzer-cargo-watch-command "clippy")  ; Utilise clippy
+  (setq lsp-eldoc-render-all t)
+	:custom
+	(lsp-rust-analyzer-store-path "/usr/lib/rustup/bin/rust-analyzer")
 	)
 
 (setq read-process-output-max (* 1024 1024))
@@ -168,6 +172,10 @@
 (use-package lsp-ui
 	:ensure
 	:commands lsp-ui-mode
+	:config
+  (setq lsp-ui-peek-always-show t)
+  (setq lsp-ui-sideline-show-hover t)
+  (setq lsp-ui-doc-enable t)
 	)
 
 ;; (use-package csharp-mode
@@ -405,57 +413,78 @@ _q_: quit       _f_: optimize              _r_: insert commit msg
 
 	)
 
-;; (use-package typst-ts-mode
-;; 	:ensure
-;; 	:hook (typst-ts-mode . typst-preview-mode)
-;; 	)
+(defun my-rust-check()
+	(interactive)
+	(cargo-process-check)
+	)
 
-;; (use-package websocket
-;; 	:ensure
-;; 	)
+(defun my-rust-run()
+	(interactive)
+	(cargo-process-run)
+	)
 
-;; (use-package typst-preview
-;; 	:straight (typst-preview :type git :repo "https://github.com/havarddj/typst-preview.el")
-;;   :after typst-ts-mode
-;;   :config
-;;   ;; Utilise SVG si possible
-;;   (setq typst-preview-image-type 'svg)
-;; 	;; :custom
-;;   ;; (typst-preview-browser "eaf-browser")
-;; 	)
+(use-package rust-mode
+  :mode "\\.rs\\'"
+	:bind (
+				 :map rust-mode-map
+				 ("C-p e" . my-rust-check)
+				 ("C-p C-e" . my-rust-run)
+				 )
+  :config
+  (setq rust-format-on-save t)
+	)
 
-;; (use-package eaf
-;;   :straight (eaf
-;;              :type git
-;;              :host github
-;;              :repo "emacs-eaf/emacs-application-framework"
-;;              :files ("*.el" "*.py" "core" "app" "*.json")
-;;              :includes (eaf-pdf-viewer eaf-browser) ; Straight won't try to search for these packages when we make further use-package invocations for them
-;;              :pre-build (("python" "install-eaf.py" "--install" "pdf-viewer" "browser" "--ignore-sys-deps"))
-;;              )
-;;   :custom
-;;   ; See https://github.com/emacs-eaf/emacs-application-framework/wiki/Customization
-;;   ;; (eaf-browser-continue-where-left-off t)
-;;   (browse-url-browser-function 'eaf-open-browser)
-;; 	(eaf-wm-name "Qtile")
-;; 	)
+(use-package cargo
+  :hook (rust-mode . cargo-minor-mode)
+	)
 
-;; (add-to-list 'load-path "~/.emacs.d/site-lisp/emacs-application-framework/")
+(use-package dap-mode
+  :after lsp-mode
+  :config
+  (dap-auto-configure-mode)
+	(require 'dap-cpptools))
 
-;; (use-package eaf-browser
-;;   :custom
-;;   (eaf-browser-continue-where-left-off nil)
-;;   (eaf-browser-enable-adblocker t)
-;; 	:config
-;; 	(setq eaf-is-member-of-focus-fix-wms t)
-;;   (eaf-bind-key nil "M-q" eaf-browser-keybinding) ;; unbind, see more in the Wiki
-;; 	(eaf-bind-key other-window "C-o" eaf-browser-keybinding)
-;; 	(eaf-bind-key consult-buffer "C-t" eaf-browser-keybinding)
-;; 	(eaf-bind-key my-kill-buffer "C-k" eaf-browser-keybinding)
-;; 	)
+;; (with-eval-after-load 'dap-cpptools
+;;   (dap-register-debug-template
+;;    "Rust::Cargo Run (LLDB)"
+;;    (list :type "cppdbg"
+;;          :request "launch"
+;;          :name "Rust::Cargo Run (LLDB)"
+;;          :MIMode "lldb"
+;;          :program "${workspaceFolder}/target/debug/${workspaceFolderBasename}"
+;;          :cwd "${workspaceFolder}"
+;;          :args []
+;;          :stopAtEntry nil)))
 
-;; (use-package eaf-pdf-viewer
-;; 	)
+;; (defun my/dap-pick-rust-binary ()
+;;   "Ask for a Rust executable to debug."
+;;   (read-file-name "Executable: "))
+
+;; (with-eval-after-load 'dap-mode
+;;   (dap-register-debug-command
+;;    "pickRustBinary"
+;;    #'my/dap-pick-rust-binary))
+
+
+;; (with-eval-after-load 'dap-cpptools
+;;   (dap-register-debug-template
+;;    "Rust::Pick Binary"
+;;    (list :type "cppdbg"
+;;          :request "launch"
+;;          :name "Rust::Pick Binary"
+;;          :MIMode "lldb"
+;;          :program "${command:pickRustBinary}"
+;;          :cwd "${fileDirname}"
+;;          :stopAtEntry nil)))
+
+
+
+
+(defun my-rust-compile-and-run ()
+  "Compile and run the current Rust file."
+  (interactive)
+  (let ((file (buffer-file-name)))
+    (compile (format "rustc %s -o /tmp/rust_out && /tmp/rust_out" file))))
 
 (provide 'my-programming)
 ;;; my-programming.el ends here

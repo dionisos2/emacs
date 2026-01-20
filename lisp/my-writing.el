@@ -15,8 +15,8 @@
       (and (<= 0 hours 23) (<= 0 minutes 59)))))
 
 (use-package languagetool
-	:disabled t
-  ;; :demand
+	;; :disabled t
+  :demand
 	;; :ensure nil
 	;; :straight (:host github
 	;; 								 :repo "dionisos2/languagetool.el"
