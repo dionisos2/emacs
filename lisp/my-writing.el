@@ -14,14 +14,37 @@
           (minutes (string-to-number (match-string 2 word))))
       (and (<= 0 hours 23) (<= 0 minutes 59)))))
 
+(use-package tiddlywiki-mode
+	:disabled t
+  ;; :straight (:host github :repo "dionisos2/tiddlywiki-mode")
+	:straight nil
+	:load-path "~/projets/programmation/emacs/tiddlywiki-mode"
+  :mode "\\.tid\\'"
+  :bind (
+         ("C-p C-p f" . tiddlywiki-open-tiddler)
+         ("C-p C-p r" . tiddlywiki-grep)
+         ("C-p C-p n" . tiddlywiki-new-tiddler)
+         ("C-p C-p w" . tiddlywiki-select-wiki)
+				 :map tiddlywiki-mode-map
+         ("C-p C-p h" . tiddlywiki-toggle-header)
+         ("C-p C-p t" . tiddlywiki-add-tag)
+         ("C-p C-p r" . tiddlywiki-remove-tag))
+  :custom
+  (tiddlywiki-wiki-alist
+   '(("tiddly_perso" . "~/projets/RD/tiddly_perso/Wikis/BobWiki/tiddlers")))
+  (tiddlywiki-default-wiki "tiddly_perso"))
+
+(use-package tiddlywiki-polymode
+  :straight (:host github :repo "dionisos2/tiddlywiki-mode")
+  :mode ("\\.tid\\'" . poly-tiddlywiki-mode))
+
 (use-package languagetool
-	;; :disabled t
   :demand
-	;; :ensure nil
-	;; :straight (:host github
-	;; 								 :repo "dionisos2/languagetool.el"
-	;; 								 :branch "dionisos")
-  :load-path "~/projets/programmation/emacs/languagetool.el"
+	:ensure nil
+	:straight (:host github
+									 :repo "dionisos2/languagetool.el"
+									 :branch "dionisos")
+  ;; :load-path "~/projets/programmation/emacs/languagetool.el"
   :commands (languagetool-clear-suggestions
              languagetool-correct-at-point
              languagetool-correct-buffer
@@ -32,6 +55,8 @@
   (text-mode-hook . languagetool-server-mode)
   (org-mode-hook . languagetool-server-mode)
   (markdown-mode-hook . languagetool-server-mode)
+	(languagetool-correction-accepted-functions . languagetool-correction-add-to-abbrev)
+
   :bind (
          ("C-c s" . languagetool-correct-at-point)
          ("C-c C-s" . languagetool-correct-buffer-forward)

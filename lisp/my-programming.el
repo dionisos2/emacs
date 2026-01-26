@@ -158,9 +158,9 @@
 
 (use-package lsp-pyright
 	:ensure t
-	:hook (python-mode . (lambda ()
-												 (require 'lsp-pyright)
-												 (lsp-deferred)))
+	;; :hook (python-mode-hook . (lambda ()
+	;; 											 (require 'lsp-pyright)
+	;; 											 (lsp-deferred)))
 	)
 
 
@@ -206,7 +206,7 @@
 
 ;; (use-package pyvenv-auto
 ;; 	:ensure
-;;   :hook ((python-mode . pyvenv-auto-run))
+;;   :hook ((python-mode-hook . pyvenv-auto-run))
 ;; 	)
 
 (use-package direnv
@@ -283,7 +283,7 @@
 (use-package add-node-modules-path
 	:ensure t
   :defer t
-  :hook (((js2-mode) . add-node-modules-path))
+  :hook (((js2-mode-hook) . add-node-modules-path))
 	)
 
 
@@ -423,6 +423,9 @@ _q_: quit       _f_: optimize              _r_: insert commit msg
 	(cargo-process-run)
 	)
 
+(use-package lua-mode
+	)
+
 (use-package rust-mode
   :mode "\\.rs\\'"
 	:bind (
@@ -435,7 +438,7 @@ _q_: quit       _f_: optimize              _r_: insert commit msg
 	)
 
 (use-package cargo
-  :hook (rust-mode . cargo-minor-mode)
+  :hook (rust-mode-hook . cargo-minor-mode)
 	)
 
 (use-package dap-mode
