@@ -30,6 +30,18 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(setq straight-built-in-pseudo-packages
+      '(project
+        flymake
+        xref
+        seq
+        jsonrpc
+        eldoc
+        imenu
+        subr-x
+        cl-lib
+        compat))
+
 (straight-use-package 'use-package)
 
 (setq straight-use-package-by-default t)

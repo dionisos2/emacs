@@ -437,9 +437,9 @@
 ;; 				 )
 ;; 	)
 
-(use-package image-mode
-	:mode "\\.svg$"
-	)
+;; (use-package image-mode
+;; 	:mode "\\.svg$"
+;; 	)
 
 (use-package winner
 	:ensure

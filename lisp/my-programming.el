@@ -13,6 +13,9 @@
 ;;   :custom
 ;;   (rustic-cargo-use-last-stored-arguments t))
 
+(use-package project
+  :ensure nil)
+
 (defun my-disable-tabs ()
 	"Disable \"indent-tabs-mode\"."
 	(interactive)
@@ -117,7 +120,6 @@
 	(setq lsp-keymap-prefix "C-c l") ;; lsp-keymap-prefix is mostly for documentation of which-key integration only.
 	:hook (
 				 (rust-mode-hook . lsp-deferred)
-				 (julia-mode-hook . lsp-deferred)
 				 (lsp-mode-hook . lsp-enable-which-key-integration)
 				 (lsp-mode-hook . (lambda() (lsp-headerline-breadcrumb-mode 1)))
 				 )
@@ -251,16 +253,47 @@
 
 	)
 
-(use-package lsp-julia
-	:custom
-	(lsp-julia-format-indent 2)
-	:custom
-	(lsp-julia-default-environment "~/.julia/environments/v1.11/")
-	(lsp-julia-flags '("--project=/home/dionisos/.config/emacs/lisp/languageserver"
-										 "--startup-file=no" "--history-file=no"))
-	;; 	(lsp-julia-flags '("--project=/home/dionisos/.config/emacs/lisp/languageserver"
-	;; "--startup-file=no" "--history-file=no -J /home/dionisos/logiciels/languageserver.so"))
-	)
+;; (use-package lsp-julia
+;; 	:custom
+;; 	(lsp-julia-format-indent 2)
+;; 	:custom
+;; 	(lsp-julia-default-environment "/home/dionisos/.julia/environments/v1.12")
+;; 	(lsp-julia-flags '("--project=/home/dionisos/.julia/environments/v1.12/"
+;; 										 "--startup-file=no" "--history-file=no"))
+;; 	;; (lsp-julia-flags '("--startup-file=no" "--history-file=no"))
+;; 	;; 	(lsp-julia-flags '("--project=/home/dionisos/.config/emacs/lisp/languageserver"
+;; 	;; "--startup-file=no" "--history-file=no -J /home/dionisos/logiciels/languageserver.so"))
+;; 	)
+
+
+;; (use-package eglot
+;;   :ensure t
+;;   :hook
+;;   (julia-mode . eglot-ensure)
+
+;;   :custom
+;;   ;; Ne pas spammer le minibuffer
+;;   (eglot-report-progress nil)
+;;   (eglot-confirm-server-initiated-edits nil)
+;;   (eglot-send-changes-idle-time 0.2)
+;;   ;; Désactiver les events inutiles
+;;   (eglot-events-buffer-size 0)
+;;   ;; Garder les workspaces simples
+;;   (eglot-autoshutdown t)
+;;   ;; Timeout généreux (JET peut analyser longtemps)
+;;   (eglot-connect-timeout 60)
+;;   ;; Montrer les diagnostics automatiquement
+;;   (eglot-extend-to-xref t)
+
+;;   :config
+;; 	(add-to-list 'eglot-server-programs
+;;                '(((julia-mode :language-id "julia")
+;;                   (julia-ts-mode :language-id "julia"))
+;;                  "/home/dionisos/.julia/bin/jetls"
+;;                  "--threads=auto"
+;;                  "--"
+;;                  "--socket"
+;;                  :autoport)))
 
 (use-package js2-mode
 	:ensure t

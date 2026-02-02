@@ -15,10 +15,10 @@
       (and (<= 0 hours 23) (<= 0 minutes 59)))))
 
 (use-package tiddlywiki-mode
-	:disabled t
-  ;; :straight (:host github :repo "dionisos2/tiddlywiki-mode")
-	:straight nil
-	:load-path "~/projets/programmation/emacs/tiddlywiki-mode"
+	:demand
+  :straight (:host github :repo "dionisos2/tiddlywiki-mode")
+	;; :straight nil
+	;; :load-path "~/projets/programmation/emacs/tiddlywiki-mode"
   :mode "\\.tid\\'"
   :bind (
          ("C-p C-p f" . tiddlywiki-open-tiddler)
@@ -34,9 +34,13 @@
    '(("tiddly_perso" . "~/projets/RD/tiddly_perso/Wikis/BobWiki/tiddlers")))
   (tiddlywiki-default-wiki "tiddly_perso"))
 
-(use-package tiddlywiki-polymode
-  :straight (:host github :repo "dionisos2/tiddlywiki-mode")
-  :mode ("\\.tid\\'" . poly-tiddlywiki-mode))
+(use-package polymode
+  :straight t)
+
+(use-package poly-tiddlywiki
+	:demand
+	:straight nil
+	:mode ("\\.tid\\'" . poly-tiddlywiki-mode))
 
 (use-package languagetool
   :demand
@@ -60,6 +64,7 @@
   :bind (
          ("C-c s" . languagetool-correct-at-point)
          ("C-c C-s" . languagetool-correct-buffer-forward)
+				 ("C-c C-M-s" . languagetool-correct-buffer-forward-from-point)
          ("C-<f10>" . languagetool-server-mode)
          ("<f10>" . languagetool-server-check-region)
          )
