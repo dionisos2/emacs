@@ -97,6 +97,7 @@
 	(flycheck-emacs-lisp-load-path 'inherit)
 	(global-flycheck-mode t)
 	(indent-tabs-mode t)
+	(flycheck-disabled-checkers '(org-lint))
 	)
 
 (use-package cc-mode
