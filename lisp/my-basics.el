@@ -414,6 +414,7 @@ buffer is not visiting a file."
   (kill-matching-buffers "^\\*Customize.*\\*$")
   (kill-matching-buffers "^\\*Man .*\\*$")
 	(kill-matching-buffers "^\\*Geiser .*\\*$")
+	(kill-matching-buffers "^todo.org$")
   )
 
 (defun my-kill-buffer ()
