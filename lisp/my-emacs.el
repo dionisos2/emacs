@@ -39,8 +39,7 @@
         eldoc
         imenu
         subr-x
-        cl-lib
-        compat))
+        cl-lib))
 
 (straight-use-package 'use-package)
 
