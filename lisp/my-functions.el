@@ -416,7 +416,25 @@ The minibuffer prompt shows the word that will be replaced."
 		)
 	)
 
+(defun my-languagetool-disable ()
+	"Remove commun hooks for languagetool to avoid slowdown temporarily."
+	(interactive)
+	(progn
+   (remove-hook 'text-mode-hook 'languagetool-server-mode)
+   (remove-hook 'org-mode-hook 'languagetool-server-mode)
+   (remove-hook 'markdown-mode-hook 'languagetool-server-mode)
+	 )
+	)
 
+(defun my-languagetool-enable ()
+	"Remove commun hooks for languagetool to avoid slowdown temporarily."
+	(interactive)
+	(progn
+   (add-hook 'text-mode-hook 'languagetool-server-mode)
+   (add-hook 'org-mode-hook 'languagetool-server-mode)
+   (add-hook 'markdown-mode-hook 'languagetool-server-mode)
+	 )
+	)
 
 (provide 'my-functions)
 ;;; my-functions.el ends here

@@ -258,6 +258,7 @@
 	(org-agenda-files '("~/organisation/agenda.org" "~/organisation/birthdays.org" "~/organisation/todo.org"))
 	(org-show-notification-timeout 20)
 	(org-export-preserve-breaks t)
+	(org-startup-folded 'content)
 	;:hook
 	;(org-mode-hook . yas-minor-mode)
 	)
