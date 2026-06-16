@@ -436,5 +436,14 @@ The minibuffer prompt shows the word that will be replaced."
 	 )
 	)
 
+(defun my-bookmark-file-path (file bookmark-name)
+  (interactive
+   (list (read-file-name "File: ")
+         (read-string "Bookmark name: ")))
+  (bookmark-store
+   bookmark-name
+	 `((filename . ,(expand-file-name file)))  nil)
+	)
+
 (provide 'my-functions)
 ;;; my-functions.el ends here
