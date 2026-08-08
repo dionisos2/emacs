@@ -14,6 +14,11 @@
           (minutes (string-to-number (match-string 2 word))))
       (and (<= 0 hours 23) (<= 0 minutes 59)))))
 
+(defun languagetool-ignore-kg-p (word)
+  "Return t if WORD is a valid format like '10kg', etc."
+  (string-match "^\\([0-9]+\\)kg$" word)
+		)
+
 (use-package tiddlywiki-mode
 	:demand
   :straight (:host github :repo "dionisos2/tiddlywiki-mode")
@@ -81,6 +86,7 @@
 	(languagetool-server-check-visible-text t)
 	:config
 	(add-to-list 'languagetool-core-correct-predicates #'languagetool-ignore-time-format-p)
+	(add-to-list 'languagetool-core-correct-predicates #'languagetool-ignore-kg-p)
   )
 
 (defun my-set-dictionary(lang)(+ 1 1))
