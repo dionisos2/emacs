@@ -900,14 +900,14 @@
 ;; 	:ensure
 ;; 	)
 
-(use-package kiwix
-	:ensure
-	:custom
-	(kiwix-default-browser-function 'w3m-browse-url)
-	(kiwix-default-data-dir "/stockage/kiwix/data")
-	(kiwix-default-library-dir "/stokage/kiwix/lib")
-	(kiwix-server-port 8080)
-	)
+;; (use-package kiwix
+;; 	:ensure
+;; 	:custom
+;; 	(kiwix-default-browser-function 'w3m-browse-url)
+;; 	(kiwix-default-data-dir "/stockage/kiwix/data")
+;; 	(kiwix-default-library-dir "/stokage/kiwix/lib")
+;; 	(kiwix-server-port 8080)
+;; 	)
 
 (use-package w3m
 	:ensure

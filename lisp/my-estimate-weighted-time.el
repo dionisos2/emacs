@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 (defun my-estimate-weighted-time ()
   "Estimate a weighted duration based on selected time ranges and user-provided coefficients."
   (interactive)

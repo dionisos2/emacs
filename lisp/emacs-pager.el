@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; emacs-pager.el --- incredibly simple mode for showing data paged by emacs-pager
 
 ;; Copyright (C) 2014 Matt Briggs <http://mattbriggs.net>

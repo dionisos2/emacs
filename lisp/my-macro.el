@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;;; my-macro.el --- some saved macro
 ;;; Commentary:
 ;; 1) create the macro C-( and C-)
