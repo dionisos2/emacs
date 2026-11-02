@@ -379,73 +379,73 @@
 	:demand
 	)
 
-(use-package copilot
-  :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
-  :ensure t
-	:bind
-	(
-	 ("C-M-<tab>" . 'hydra-copilot/body)
-	 )
-	:custom
-	(copilot-idle-delay nil)
-	:config
-	(defhydra hydra-copilot (:pre (copilot-complete))
-		"copilot"
-		("f" copilot-accept-completion "copilot-accept-completion" :exit t)
-		("r" copilot-next-completion "copilot-next-completion")
-		("t" copilot-previous-completion "copilot-previous-completion")
-		("l" copilot-accept-completion-by-line "copilot-accept-completion-by-line")
-		("w" copilot-accept-completion-by-word "copilot-accept-completion-by-word")
-		("q" nil "Quit hydra")
-		)
-	)
+;; (use-package copilot
+;;   :straight (:host github :repo "copilot-emacs/copilot.el" :files ("*.el"))
+;;   :ensure t
+;; 	:bind
+;; 	(
+;; 	 ("C-M-<tab>" . 'hydra-copilot/body)
+;; 	 )
+;; 	:custom
+;; 	(copilot-idle-delay nil)
+;; 	:config
+;; 	(defhydra hydra-copilot (:pre (copilot-complete))
+;; 		"copilot"
+;; 		("f" copilot-accept-completion "copilot-accept-completion" :exit t)
+;; 		("r" copilot-next-completion "copilot-next-completion")
+;; 		("t" copilot-previous-completion "copilot-previous-completion")
+;; 		("l" copilot-accept-completion-by-line "copilot-accept-completion-by-line")
+;; 		("w" copilot-accept-completion-by-word "copilot-accept-completion-by-word")
+;; 		("q" nil "Quit hydra")
+;; 		)
+;; 	)
 
 
-(use-package copilot-chat
-	:ensure t
-	:bind
-	(
-	 ("C-p C-i" . 'hydra-copilot-chat/body)
-	 )
-	:config
-	(defhydra hydra-copilot-chat (:color pink :hint nil)
-		"
-Copilot Chat:
-^General^       ^Ask Copilot^              ^Insert^
-^^^^^^^^----------------------------------------------------------------------
-_l_: list       _c_: chat                  _a_: ask & insert
-_S_: save       _e_: custom prompt         _s_: yank
-_L_: load       _v_: explain               _m_: yank-pop
-_Q_: quotas     _p_: fix                   _y_: send to buffer
-_q_: quit       _f_: optimize              _r_: insert commit msg
-^ ^             _o_: test
-^ ^             _t_: review
-^ ^             _d_: doc
-"
-		;; General
-		("l" copilot-chat-list "list" :exit t)
-		("S" copilot-chat-save "save" :exit t)
-		("L" copilot-chat-load "load" :exit t)
-		("Q" copilot-chat-quotas "quotas" :exit t)
-		("q" nil "quit")
-		;; Ask Copilot
-		("c" copilot-chat "chat" :exit t)
-		("e" copilot-chat-explain "explain" :exit t)
-		("v" copilot-chat-review "review" :exit t)
-		("p" copilot-chat-custom-prompt-selection "custom prompt")
-		("f" copilot-chat-fix "fix")
-		("o" copilot-chat-optimize "optimize")
-		("t" copilot-chat-test "test")
-		("d" copilot-chat-doc "doc")
-		;; Insert
-		("a" copilot-chat-ask-and-insert "ask" :exit t)
-		("s" copilot-chat-send-to-buffer "send" :exit t)
-		("m" copilot-chat-insert-commit-message "commit msg" :exit t)
-		("y" copilot-chat-yank "yank")
-		("r" copilot-chat-yank-pop "yank-pop")
-		)
+;; (use-package copilot-chat
+;; 	:ensure t
+;; 	:bind
+;; 	(
+;; 	 ("C-p C-i" . 'hydra-copilot-chat/body)
+;; 	 )
+;; 	:config
+;; 	(defhydra hydra-copilot-chat (:color pink :hint nil)
+;; 		"
+;; Copilot Chat:
+;; ^General^       ^Ask Copilot^              ^Insert^
+;; ^^^^^^^^----------------------------------------------------------------------
+;; _l_: list       _c_: chat                  _a_: ask & insert
+;; _S_: save       _e_: custom prompt         _s_: yank
+;; _L_: load       _v_: explain               _m_: yank-pop
+;; _Q_: quotas     _p_: fix                   _y_: send to buffer
+;; _q_: quit       _f_: optimize              _r_: insert commit msg
+;; ^ ^             _o_: test
+;; ^ ^             _t_: review
+;; ^ ^             _d_: doc
+;; "
+;; 		;; General
+;; 		("l" copilot-chat-list "list" :exit t)
+;; 		("S" copilot-chat-save "save" :exit t)
+;; 		("L" copilot-chat-load "load" :exit t)
+;; 		("Q" copilot-chat-quotas "quotas" :exit t)
+;; 		("q" nil "quit")
+;; 		;; Ask Copilot
+;; 		("c" copilot-chat "chat" :exit t)
+;; 		("e" copilot-chat-explain "explain" :exit t)
+;; 		("v" copilot-chat-review "review" :exit t)
+;; 		("p" copilot-chat-custom-prompt-selection "custom prompt")
+;; 		("f" copilot-chat-fix "fix")
+;; 		("o" copilot-chat-optimize "optimize")
+;; 		("t" copilot-chat-test "test")
+;; 		("d" copilot-chat-doc "doc")
+;; 		;; Insert
+;; 		("a" copilot-chat-ask-and-insert "ask" :exit t)
+;; 		("s" copilot-chat-send-to-buffer "send" :exit t)
+;; 		("m" copilot-chat-insert-commit-message "commit msg" :exit t)
+;; 		("y" copilot-chat-yank "yank")
+;; 		("r" copilot-chat-yank-pop "yank-pop")
+;; 		)
 
-	)
+;; )
 
 (defun my-rust-check()
 	(interactive)
@@ -481,40 +481,32 @@ _q_: quit       _f_: optimize              _r_: insert commit msg
   (dap-auto-configure-mode)
 	(require 'dap-cpptools))
 
-;; (with-eval-after-load 'dap-cpptools
-;;   (dap-register-debug-template
-;;    "Rust::Cargo Run (LLDB)"
-;;    (list :type "cppdbg"
-;;          :request "launch"
-;;          :name "Rust::Cargo Run (LLDB)"
-;;          :MIMode "lldb"
-;;          :program "${workspaceFolder}/target/debug/${workspaceFolderBasename}"
-;;          :cwd "${workspaceFolder}"
-;;          :args []
-;;          :stopAtEntry nil)))
-
-;; (defun my/dap-pick-rust-binary ()
-;;   "Ask for a Rust executable to debug."
-;;   (read-file-name "Executable: "))
-
-;; (with-eval-after-load 'dap-mode
-;;   (dap-register-debug-command
-;;    "pickRustBinary"
-;;    #'my/dap-pick-rust-binary))
+(add-to-list 'exec-path (expand-file-name "~/.elan/bin"))
+(setenv "PATH"
+        (concat (expand-file-name "~/.elan/bin") ":"
+                (getenv "PATH")))
 
 
-;; (with-eval-after-load 'dap-cpptools
-;;   (dap-register-debug-template
-;;    "Rust::Pick Binary"
-;;    (list :type "cppdbg"
-;;          :request "launch"
-;;          :name "Rust::Pick Binary"
-;;          :MIMode "lldb"
-;;          :program "${command:pickRustBinary}"
-;;          :cwd "${fileDirname}"
-;;          :stopAtEntry nil)))
+(defun my-lean4-no-tabs ()
+  (setq-local indent-tabs-mode nil))
 
-
+(use-package lean4-mode
+  :straight (:host github
+             :repo "leanprover-community/lean4-mode"
+             :files ("*.el" "data"))
+	:bind
+  (:map lean4-mode-map
+        ("TAB" . lean4-tab-indent)
+				("<tab>" . lean4-tab-indent)
+				("RET" . newline-and-indent)
+				)
+	:custom
+	(indent-tabs-mode nil)
+	(lsp-inlay-hint-enable nil)
+	(lean4-enable-server nil)
+  :hook
+  (lean4-mode-hook . my-lean4-no-tabs)
+	)
 
 
 (defun my-rust-compile-and-run ()
