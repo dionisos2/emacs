@@ -36,7 +36,7 @@
          ("C-p C-p r" . tiddlywiki-remove-tag))
   :custom
   (tiddlywiki-wiki-alist
-   '(("tiddly_perso" . "~/projets/RD/tiddly_perso/Wikis/BobWiki/tiddlers")))
+   '(("tiddly_perso" . "~/projets/RD/tiddly_perso/wiki/tiddlers")))
   (tiddlywiki-default-wiki "tiddly_perso"))
 
 (use-package polymode
